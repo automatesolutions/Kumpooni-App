@@ -6,7 +6,8 @@ import {
   dehydrateOptions,
   queryClient,
 } from './lib/react-query';
-
+import {I18nextProvider} from 'react-i18next';
+import {RootSiblingParent} from 'react-native-root-siblings';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
@@ -23,8 +24,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {ThemeProvider} from '#/theme';
 import {useColorModeTheme} from './theme/util/useColorModeTheme';
 import {useLocationStore} from './stores/location';
-import {RootSiblingParent} from 'react-native-root-siblings';
-import {I18nextProvider} from 'react-i18next';
+
 import {i18n} from './i18n';
 
 import * as notification from '#/lib/notifications/notifications';
