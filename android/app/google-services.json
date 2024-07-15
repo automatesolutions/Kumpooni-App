@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060671071326",
+    "project_id": "auto-mate-push-notification",
+    "storage_bucket": "auto-mate-push-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060671071326:android:68861b30eafd9a328c80cf",
+        "android_client_info": {
+          "package_name": "com.kumpooni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9if2LCrTtu58YU2MQIZUkIUCjEta2e0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
