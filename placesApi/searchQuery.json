@@ -1,0 +1,337 @@
+{
+  "places": [
+    {
+      "id": "ChIJ-VXmBc7RrjMRjgvuh9YW8RE",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "MW2X+XVP, Corazon Aquino Dr, Automatic Climate Control, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=1292839678691380110",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Jimmy Kee Auto Mechanic Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJPz1kn7nRrjMRdMUdOpzPnWY",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0917 995 1601",
+      "internationalPhoneNumber": "+63 917 995 1601",
+      "formattedAddress": "GONZAGA EXT. SHARINA HEIGHTS PRK RIVERSIDE BRGY, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=7394294433109099892",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Pame Auto Repair Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJO0hrqXzRrjMRfeCHDcreh8k",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "MXC2+HF2, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=14521820482871222397",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "raymund232323",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJn8zd4M7RrjMRj_KsfWV17gQ",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0910 984 9288",
+      "internationalPhoneNumber": "+63 910 984 9288",
+      "formattedAddress": "6100 Taculing Road, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=355350499369480847",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "RPS AUTO REPAIR SHOP",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJb7SZYprRrjMRmZEvbgiBvYw",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0968 869 7464",
+      "internationalPhoneNumber": "+63 968 869 7464",
+      "formattedAddress": "Bangga engineer, back of Bacolod city college, Bangga engineer, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=10141403809116557721",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Rey's Auto Repair Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJnQP2nBHRrjMRS0qy9RWrwm0",
+      "types": [
+        "car_repair",
+        "auto_parts_store",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 441 1444",
+      "internationalPhoneNumber": "+63 34 441 1444",
+      "formattedAddress": "Lacson St, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=7909072006420777547",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "PJL AUTO CENTER Bacolod Tires Batteries Oil and Repairs",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJ-bU3oqTRrjMROGO6xHI3fmE",
+      "types": [
+        "car_repair",
+        "auto_parts_store",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0917 132 8086",
+      "internationalPhoneNumber": "+63 917 132 8086",
+      "formattedAddress": "Burgos Ave, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=7025113434810901304",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Smart Lube Car Care Center",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJ2155CJfRrjMRATECVcfTeow",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 703 3106",
+      "internationalPhoneNumber": "+63 34 703 3106",
+      "formattedAddress": "MX89+VM4, Carlos Hilado Hwy, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=10122635965546770689",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "EAST GARAGE",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJs3IyLXPRrjMRXOQLREt9NTw",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0916 646 6793",
+      "internationalPhoneNumber": "+63 916 646 6793",
+      "formattedAddress": "St Martin de Porres, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=4338511578258990172",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Bab's Shop Automotive",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJT8lwJCzRrjMR4zCH721REg0",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "MX84+W6G, Solar Block Ave, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=941904804685754595",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "JCARSGARAGE AUTO SHOP BACOLOD",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJ-bzlQQDRrjMRSrmImNhfwE4",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "MXC5+3W8, L N Agustin Dr, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=5674640914363496778",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "RB4 AUTO REPAIR SHOP",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJuWoO7XHRrjMRg9S69pznMLY",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0909 489 0348",
+      "internationalPhoneNumber": "+63 909 489 0348",
+      "formattedAddress": "Lot 14, Block 4 Liroville Subd. Brgy, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=13128247575125349507",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "VFM Auto Services No2 Auto Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJk7mfVdvRrjMRrFUHJIZ8Afw",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "7045524",
+      "internationalPhoneNumber": "+63 7045524",
+      "formattedAddress": "Fronting BFAR negros occidental office, Poras street, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=18158932088106472876",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "GILBERT Auto Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJmZu0sMLRrjMRWeQgGTqU0f0",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "MX28+53X, Circumferential Rd, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=18289562538978894937",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "May2x and Cherrylyn Auto Repair/Service Center",
+        "languageCode": "fil"
+      }
+    },
+    {
+      "id": "ChIJl3CJ2enPrjMRKh2epXO_iuo",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0905 256 4275",
+      "internationalPhoneNumber": "+63 905 256 4275",
+      "formattedAddress": "Murcia Road, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=16900531055081954602",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "MCKL AUTO SERVICES",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJmcY4gVTRrjMRgsS30u3kZhk",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0912 057 6017",
+      "internationalPhoneNumber": "+63 912 057 6017",
+      "formattedAddress": "Banaue Street, Brgy. Villamonte, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=1830402008666326146",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Quick Fix Car Repair and Services",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJ__8z5rzRrjMRNIa9ug0u--Q",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "formattedAddress": "896 Kanlaon, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=16499832296304379444",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Onyok's Automobile Repair Shop",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJoZSUqIjRrjMRe9ZUCjT0Seo",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0929 814 8249",
+      "internationalPhoneNumber": "+63 929 814 8249",
+      "formattedAddress": "MX84+973, Rizal St, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=16882293182523823739",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "STAN Calibration Services",
+        "languageCode": "en"
+      }
+    },
+    {
+      "id": "ChIJWT1IDB3RrjMRC8TrTtYgj7A",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0948 058 9781",
+      "internationalPhoneNumber": "+63 948 058 9781",
+      "formattedAddress": "Prk Immaculada, Brgy 36 Rodriguez Ave, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=12722423577164104715",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "Truck & Auto Care services",
+        "languageCode": "fil"
+      }
+    },
+    {
+      "id": "ChIJdSF3SSTRrjMR0_PaC4p8Pnw",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "0909 812 5209",
+      "internationalPhoneNumber": "+63 909 812 5209",
+      "formattedAddress": "Lot 5 Blk9 Alabado St, Bacolod, 6100 Negros Occidental, Philippines",
+      "googleMapsUri": "https://maps.google.com/?cid=8952730041605354451",
+      "businessStatus": "OPERATIONAL",
+      "displayName": {
+        "text": "CARKEN Auto Shop",
+        "languageCode": "en"
+      }
+    }
+  ],
+  "nextPageToken": "AUc7tXUQCvRGT_DG3Sh5tR6FY7QORCIs7kwmqKhp8Z-55PsxWVUzod8cOJNylKdx8xg9aNSgcnKeFnux35_SAuYFmsEu6gz8Iixk6hX858sIaW5vvi6neDI-Dmqid1tG3qhshW6XF5QxH7-dYPy2k0hUeofkHpJECAXzC3vTEvmxeCp6EFcZ_wqGk8kuiysypAz5CniHZ57NvTYihrk1zHNUzNAojKumjicxBtw2bf4aMRADSjJNA7jAyIeTYWzV_36K4e7Qj3Yy7hOgwGH2jFzNZjNGQ3-KZE_oRUoIlkIN_SMV3UJxgZVyQbS469AqMXdnv6n6zB0LTzFO_5e5A6j2g5oJjhIBP68VWXqW3F8YTYTxevOhOH-UCqz8W1b1OJTS5yukyZHBhtijG0Uh4Y6Xi9KZt-D27FWc-PdJIergbrkge0ZxXvlyHSIUbxm5sJHUOfGPw7K75xdhF7JtB8WiISRYcTFcpzBW2dSkc1TcsRQTUi3YVBLF_bnHSl09yGuc8ic0wlQt-hmUUxvLTKYI6VoI8AVOKa6M63VuAIESgfmbib4zhvy7gg3XE_nEG1PyBGoMzb7FohOF5QjKbSK-TPbkOVUpwORF6a2ElcxYXLo19EvjSKCQ9ENiQ6N3__rD5vtTPgRKabawUktSrilZRVwWqib5rz0qprXGgXXOkltvRW4Ht9SvTsFJv7g0Z5q9W-iiIziWaDEBlbLm4YREuNewzlVKUCOaUEdsF1bh7B536DT7uIpSfu7Iofs5U5_mR5WBksCnnR-fCt-kJi645AIuDGfYIwxNDWW_1uIAzCu8zxR9eb3G8ixbTeOGnvSnpOnWw55C8cIJ"
+}

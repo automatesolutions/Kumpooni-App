@@ -1,0 +1,164 @@
+{
+  "places": [
+    {
+      "id": "ChIJ0aCdw7HRrjMR2llyk4HtYUo",
+      "types": [
+        "electronics_store",
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=5359826172327909850",
+      "displayName": {
+        "text": "WESTERN ELECTRONICS",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "Locsin St, Bacolod"
+    },
+    {
+      "id": "ChIJ4cvh4rPRrjMRNJcQ7JxALVw",
+      "types": [
+        "car_repair",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=6642036068160935732",
+      "displayName": {
+        "text": "New KAPITAN Parts Center & Co., Inc.",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "Corner Gonzaga St, Bacolod"
+    },
+    {
+      "id": "ChIJjUcIz7PRrjMRQOTWS37KmhY",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=1628836859034920000",
+      "displayName": {
+        "text": "DYPO AUTO SUPPLY CORPORATION",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "MJN Building, Corner Rizal Lacson St, Bacolod"
+    },
+    {
+      "id": "ChIJW-ZfELHRrjMRSOXmQ-TvrWA",
+      "types": [
+        "car_dealer",
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=6966487962282812744",
+      "displayName": {
+        "text": "Suzuki Bacolod, Negros Occidental - Eversure 3S Shop",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "MX92+3HP, Rizal St, Bacolod"
+    },
+    {
+      "id": "ChIJ-yfyE7HRrjMR1W8h7tTv8gg",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=644841394474676181",
+      "displayName": {
+        "text": "Gyp Motor Cycle Parts",
+        "languageCode": "fil"
+      },
+      "shortFormattedAddress": "MX92+4CX, Rizal St, Bacolod"
+    },
+    {
+      "id": "ChIJUeUL1LPRrjMRNe5mzakD5ds",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=15845074891803389493",
+      "displayName": {
+        "text": "DBO Auto Parts",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "MW9X+FJW, Rizal St, Bacolod"
+    },
+    {
+      "id": "ChIJ5y8uy7PRrjMREEOKRTWnPEw",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=5493449492726956816",
+      "displayName": {
+        "text": "MIRASOL TIRE SUPPLY",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "Mirasol-Tan Building, Rizal St, Bacolod"
+    },
+    {
+      "id": "ChIJT6_UWbHRrjMRNy54Q3RmTdE",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=15081823376667848247",
+      "displayName": {
+        "text": "NEGROS PIONEER ENTERPRISES, INC.",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "MW8X+XV7, Lacson St, Bacolod"
+    },
+    {
+      "id": "ChIJtSyeRbHRrjMRlKtsmi5Z_HE",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=8213537877111122836",
+      "displayName": {
+        "text": "MIDLINE PARTS SUPPLY CORP.",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "MX82+R4Q, Napoleon D. Gonzaga St, Bacolod"
+    },
+    {
+      "id": "ChIJPw51ELHRrjMRoWoc38PFKcw",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "store",
+        "point_of_interest",
+        "establishment"
+      ],
+      "googleMapsUri": "https://maps.google.com/?cid=14711507102834911905",
+      "displayName": {
+        "text": "Galaxy Motor Parts",
+        "languageCode": "en"
+      },
+      "shortFormattedAddress": "MW9X+FRX, Rizal St, Bacolod"
+    }
+  ]
+}

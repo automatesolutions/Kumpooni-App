@@ -1,0 +1,21 @@
+{
+  "editor.tabSize": 2,
+  "editor.suggestSelection": "first",
+  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "workbench.sideBar.location": "right",
+  "editor.inlineSuggest.enabled": true,
+  "emmet.excludeLanguages": [
+    "javascriptreact",
+    "javascript",
+    "typescript",
+    "typescriptreact"
+  ],
+  "javascript.preferences.importModuleSpecifier": "project-relative",
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/yarn.lock": true,
+    "**/tmp": true,
+    "**/android": true
+  }
+}

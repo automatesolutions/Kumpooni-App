@@ -1,0 +1,21 @@
+diff --git a/node_modules/@twotalltotems/react-native-otp-input/dist/index.js b/node_modules/@twotalltotems/react-native-otp-input/dist/index.js
+index 71580b8..900dd85 100644
+--- a/node_modules/@twotalltotems/react-native-otp-input/dist/index.js
++++ b/node_modules/@twotalltotems/react-native-otp-input/dist/index.js
+@@ -4,6 +4,7 @@ import Clipboard from '@react-native-community/clipboard';
+ import styles from './styles';
+ import { isAutoFillSupported } from './helpers/device';
+ import { codeToArray } from './helpers/codeToArray';
++
+ export default class OTPInputView extends Component {
+     constructor(props) {
+         super(props);
+@@ -155,7 +156,7 @@ export default class OTPInputView extends Component {
+     }
+     componentDidMount() {
+         this.copyCodeFromClipBoardOnAndroid();
+-        this.bringUpKeyBoardIfNeeded();
++        setTimeout(() => this.bringUpKeyBoardIfNeeded(), 100)
+         this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
+     }
+     componentWillUnmount() {
