@@ -1,12 +1,15 @@
+import {haversine} from '#/lib/geo/haversine';
 import {supabase} from '#/lib/supabase';
 import {logger} from '#/logger';
 import {
   Coordinates,
   Coords,
+  GooglePlaceDto,
   NearbyStoresServices,
   StoreCategory,
 } from '#/types/automate';
-import {useQuery} from '@tanstack/react-query';
+import {InfiniteData, useInfiniteQuery, useQuery} from '@tanstack/react-query';
+import {GOOGLE_MAP_KEY} from 'react-native-dotenv';
 
 export const RQKEY = (coord: Coords | null) => ['nearby-store', coord];
 
@@ -102,5 +105,128 @@ export function useSearchStoresQuery({
       }
       return data;
     },
+  });
+}
+
+// export function useGooglePlacesRepairShopQuery({
+//   textQuery = '',
+//   location,
+// }: {
+//   textQuery: string;
+//   location: Coords | null;
+// }) {
+//   return useQuery({
+//     queryKey: ['google-places', textQuery],
+//     queryFn: async () => {
+//       return await searchGooglePlacesRepairShop({textQuery, location});
+//     },
+//   });
+// }
+
+const PAGE_SIZE = 10;
+async function searchGooglePlacesRepairShop({
+  textQuery = '',
+  location,
+  pageToken = null,
+}: {
+  textQuery: string;
+  location: Coords | null;
+  pageToken: string | null;
+}) {
+  logger.debug('Hello World');
+  if (!location) throw new Error('Missing location fields');
+  if (!GOOGLE_MAP_KEY) {
+    throw new Error('Missing Google API Key');
+  }
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-Goog-Api-Key': GOOGLE_MAP_KEY,
+    'X-Goog-FieldMask':
+      'places.id,places.displayName,places.location,places.photos,places.shortFormattedAddress,places.types,places.googleMapsUri,places.rating,nextPageToken',
+  };
+
+  try {
+    const response = await fetch(
+      'https://places.googleapis.com/v1/places:searchText',
+      {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          languageCode: 'en',
+          textQuery: textQuery,
+          strictTypeFiltering: true,
+          includedType: 'car_repair',
+          rankPreference: 'RELEVANCE',
+          locationBias: {
+            circle: {
+              center: {
+                latitude: location.lat,
+                longitude: location.lng,
+              },
+              radius: 500.0,
+            },
+          },
+          pageSize: PAGE_SIZE,
+          pageToken: pageToken,
+        }),
+      },
+    );
+
+    const responseJson = await response.json();
+    const responseTyped = responseJson.places as GooglePlaceDto[];
+
+    const hasNextPage = (responseTyped?.length || 0) >= PAGE_SIZE;
+    const nextPageToken = responseJson?.nextPageToken as string;
+    // Filter based on types
+
+    const filteredData = responseTyped.filter(
+      place => place.rating !== undefined,
+    );
+    console.log('filteredData', filteredData);
+    // const places = responseTyped.map(place => ({
+    //   id: place.id,
+    //   displayName: place.displayName,
+    //   googleMapsUri: place.googleMapsUri,
+    //   shortFormattedAddress: place.shortFormattedAddress,
+    //   types: place.types,
+    // }));
+
+    return {
+      places: filteredData.map(data => ({
+        ...data,
+        distance: haversine(
+          [location.lat, location.lng],
+          [data.location.latitude, data.location.longitude],
+        ),
+      })),
+      nextPageToken: hasNextPage ? nextPageToken : nextPageToken ?? null,
+    };
+  } catch (error: any) {
+    throw new Error(error);
+  }
+}
+
+type RQPageParam = string | null;
+
+export function useListGooglePlacesQuery({
+  textQuery,
+  location,
+}: {
+  textQuery: string;
+  location: Coords | null;
+}) {
+  return useInfiniteQuery({
+    queryKey: ['places-list', textQuery, location],
+    queryFn: async ({pageParam}) => {
+      const data = await searchGooglePlacesRepairShop({
+        textQuery,
+        location,
+        pageToken: pageParam,
+      });
+      return data;
+    },
+    initialPageParam: null as RQPageParam,
+    getNextPageParam: lastPage => lastPage.nextPageToken,
   });
 }

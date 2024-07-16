@@ -221,3 +221,27 @@ export interface StoreCategory {
   longitude: number;
   categories: {id: number; name: string}[];
 }
+
+interface GooglePlaceDisplayNameDto {
+  text: string;
+  languageCode: string;
+}
+interface GooglePlacePhotos {
+  name: string;
+  widthPx: number;
+  heightPx: number;
+}
+export interface GooglePlaceDto {
+  id: string;
+  displayName: GooglePlaceDisplayNameDto;
+  shortFormattedAddress: string;
+  types: string[];
+  googleMapsUri: string;
+  photos: GooglePlacePhotos[];
+  rating: number;
+  distance?: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+}

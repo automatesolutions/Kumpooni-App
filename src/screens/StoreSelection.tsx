@@ -15,26 +15,31 @@ import {useTheme, atoms as a} from '#/theme';
 import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types';
 import {useLocationStore} from '#/stores/location';
 
-import {NearbyStoresServices} from '#/types/automate';
+import {GooglePlaceDto, NearbyStoresServices} from '#/types/automate';
 import {EmptyStore} from '#/components/store/EmptyStore';
 import {StoreCard} from '#/components/store/StoreCard';
 
-import {useGetNearbyStoreQuery} from '#/state/queries/stores';
+import {
+  useGetNearbyStoreQuery,
+  useListGooglePlacesQuery,
+} from '#/state/queries/stores';
 import {BottomSheetModalInstance} from '#/components/BottomSheetModal';
 import {CartItems, useShopCartStore} from '#/stores/shop-cart';
 import {useCartStore} from '#/stores/cart';
 import {color} from '../theme/tokens';
 import {SortShop, sortColumns} from '../lib/constants';
+import {logger} from '#/logger';
+import {Button, ButtonText} from '#/components/Button';
+import {PlacesItem} from '#/components/store/PlacesItem';
+import {ListFooter} from '#/components/List';
+import {cleanError} from '#/lib/strings/errors';
+import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender';
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'StoreSelection'>;
 export function StoreSelectionScreen(props: Props) {
   const t = useTheme();
   const bottomSheetRef = useRef<BottomSheetModalInstance>(null);
-  const initialSnapPoints = useMemo(() => ['35%'], []);
-  const handleSheetChanges = useCallback((index: number) => {}, []);
-  const handleDismiss = useCallback(() => {
-    bottomSheetRef?.current?.dismiss();
-  }, []);
+
   const navigation = useNavigation<NavigationProp>();
   const {location} = useLocationStore(state => ({location: state.location}));
   const {serviceIds, cartItems} = useCartStore(state => ({
@@ -46,11 +51,39 @@ export function StoreSelectionScreen(props: Props) {
   const {setShopCartItems} = useShopCartStore(state => ({
     setShopCartItems: state.addBulkItems,
   }));
-
+  const initialNumToRender = useInitialNumToRender();
   const {data: stores, isLoading: isLoadingStores} = useGetNearbyStoreQuery(
     location,
     serviceIds,
   );
+
+  console.log('stores', stores);
+  const {
+    data,
+    error: placesError,
+    fetchNextPage,
+    isError,
+    hasNextPage,
+    error,
+    isFetchingNextPage,
+  } = useListGooglePlacesQuery({
+    textQuery: 'auto repair shop, car repair and maintenance service',
+    location,
+  });
+  const places = useMemo(() => {
+    if (data?.pages) {
+      return data.pages.flatMap(page => page.places);
+    }
+    return [];
+  }, [data]);
+  const onEndReached = useCallback(async () => {
+    if (isFetchingNextPage || !hasNextPage || isError) return;
+    try {
+      await fetchNextPage();
+    } catch (err) {
+      logger.error('Failed to load more google places', {message: err});
+    }
+  }, [isFetchingNextPage, hasNextPage, isError, fetchNextPage]);
 
   const onPressSort = (newSort: SortShop) => {
     setSort(newSort);
@@ -58,7 +91,7 @@ export function StoreSelectionScreen(props: Props) {
   const sortedStores = useMemo(() => {
     if (!stores) return [];
     if (sort === 'rating') {
-      return stores.sort((a, b) => b.store_rating - a.store_rating);
+      return stores.sort((a, b) => b.rating - a.rating);
     }
     if (sort === 'distance') {
       return stores.sort((a, b) => a.dist_meters - b.dist_meters);
@@ -73,14 +106,6 @@ export function StoreSelectionScreen(props: Props) {
   const onPressBookAppointment = useCallback(
     (store: NearbyStoresServices) => {
       return (services: CartItems[]) => {
-        const {
-          services: service,
-          service_ids,
-          dist_meters,
-          store_rating,
-          order_total,
-          ...restStore
-        } = store;
         setShopCartItems(services);
         setTimeout(() => {
           navigation.navigate('Checkout', {
@@ -89,7 +114,7 @@ export function StoreSelectionScreen(props: Props) {
         }, 100);
       };
     },
-    [setShopCartItems],
+    [setShopCartItems, navigation],
   );
 
   const renderItem = useCallback(
@@ -100,6 +125,11 @@ export function StoreSelectionScreen(props: Props) {
         cartItems={cartItems}
       />
     ),
+    [onPressBookAppointment],
+  );
+
+  const renderPlaceItem = useCallback(
+    ({item}: ListRenderItemInfo<GooglePlaceDto>) => <PlacesItem place={item} />,
     [],
   );
 
@@ -122,19 +152,39 @@ export function StoreSelectionScreen(props: Props) {
   return (
     <View style={[t.atoms.bg, a.flex_1]}>
       <SortColumn sort={sort} onPress={onPressSort} />
-      <View style={[a.flex_1]}>
-        <FlatList
-          data={sortedStores}
-          style={{flex: 1}}
-          renderItem={renderItem}
-          contentContainerStyle={{
-            paddingBottom: 10,
-            gap: 10,
-            flex: 1,
-          }}
-          ListEmptyComponent={<EmptyStore />}
-        />
-      </View>
+      {/* <FlatList
+        data={sortedStores}
+        renderItem={renderItem}
+        contentContainerStyle={{
+          paddingBottom: 10,
+          gap: 10,
+        }}
+        ListEmptyComponent={<EmptyStore />}
+      /> */}
+
+      <FlatList
+        data={places}
+        renderItem={renderPlaceItem}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={1.5}
+        contentContainerStyle={{
+          paddingBottom: 10,
+          gap: 10,
+        }}
+        ListFooterComponent={
+          <ListFooter
+            isFetchingNextPage={isFetchingNextPage}
+            error={cleanError(error)}
+            onRetry={fetchNextPage}
+            style={{borderColor: 'transparent'}}
+            hasNextPage={hasNextPage}
+            showEndMessage={true}
+            endMessageText={`No more shops to show`}
+          />
+        }
+        initialNumToRender={initialNumToRender}
+        ListEmptyComponent={<EmptyStore />}
+      />
     </View>
   );
 }

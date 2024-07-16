@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {NearbyStores, NearbyStoresServices, Service} from '#/types/automate';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+
+import {Image, Linking, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {colors, shadows} from '#/utils/theme';
 import {Star, Store} from 'lucide-react-native';
 import {color} from '#/theme/tokens';
@@ -10,51 +10,24 @@ import {atoms as a, useTheme} from '#/theme';
 
 import {currency} from '#/lib/strings/currency';
 
-import {ServiceDetailModal} from '../modals/ServiceDetailModal';
-import {logger} from '#/logger';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '#/lib/routes/types';
-import {CartStoreItem} from '#/stores/cart';
 import {StoreRating} from './StoreRating';
+import {GooglePlaceDto} from '#/types/automate';
+import {GOOGLE_MAP_KEY} from 'react-native-dotenv';
 
-export function StoreCard({
-  store,
-  onPressBookAppointment,
-  cartItems,
-}: {
-  store: NearbyStoresServices;
-  onPressBookAppointment: (cartItems: CartStoreItem[]) => void;
-  cartItems: CartStoreItem[];
-}) {
+export function PlacesItem({place}: {place: GooglePlaceDto}) {
   const [visible, setVisible] = useState<boolean>(false);
   const t = useTheme();
-  const kmDistance = store.dist_meters / 1000;
-  const roundedKm = Math.round(kmDistance * 10) / 10;
-  const onPressViewDetails = () => setVisible(true);
+
+  const roundedKm = Math.round((place.distance ?? 0) * 10) / 10;
+  const onPressViewLocation = () => {
+    Linking.openURL(place.googleMapsUri);
+  };
 
   const onClosed = () => {
     setVisible(false);
   };
 
-  const storeServices = store.services.map(service => {
-    const quantity = cartItems?.find(
-      cartItem => cartItem.id === service.source_id,
-    )?.quantity;
-
-    return {
-      ...service,
-      quantity: quantity ?? 0,
-    };
-  });
-
-  const total = useMemo(() => {
-    return store.services.reduce((acc, service) => {
-      const quantity = cartItems?.find(
-        cartItem => cartItem.id === service.source_id,
-      )?.quantity;
-      return acc + service.price * (quantity ?? 0);
-    }, 0);
-  }, [store, cartItems]);
+  const total = 0;
 
   return (
     <>
@@ -69,10 +42,10 @@ export function StoreCard({
           {marginHorizontal: 12, paddingVertical: 6},
         ]}>
         <View style={[a.flex_row, a.align_center, a.px_xs, {gap: 10}]}>
-          {store.store_img ? (
+          {place.photos ? (
             <Image
               source={{
-                uri: store.store_img,
+                uri: `https://places.googleapis.com/v1/${place.photos[0].name}/media?maxWidthPx=1023&key=${GOOGLE_MAP_KEY}`,
               }}
               style={{
                 height: 70,
@@ -107,15 +80,11 @@ export function StoreCard({
                   fontWeight: '600',
                   color: colors.black,
                 }}>
-                {store.name}
+                {place.displayName.text}
               </Text>
               <View style={[a.flex_row, a.align_center, {gap: 4}]}>
                 <Star size={10} color="#FF8700" fill="#FF8700" />
-
-                <StoreRating
-                  store_rating={store.rating}
-                  order_total={store.order_total}
-                />
+                <StoreRating store_rating={place.rating} order_total={10} />
               </View>
             </View>
             <View style={{paddingTop: 5}}>
@@ -123,7 +92,7 @@ export function StoreCard({
                 <Text style={{fontSize: 10, color: '#000', fontWeight: 'bold'}}>
                   {`${roundedKm} km `}
                 </Text>
-                - {store?.address}
+                - {place.shortFormattedAddress}
               </Text>
             </View>
           </View>
@@ -137,28 +106,19 @@ export function StoreCard({
             a.gap_2xs,
             a.mt_2xs,
           ]}>
-          <Text style={[a.font_bold]}>{currency.format(total)}</Text>
           <TouchableOpacity style={[styles.btn, styles.viewBtn]}>
             <Text
-              style={[a.text_xs, {color: t.palette.primary_500}]}
-              onPress={onPressViewDetails}>
-              See details
+              style={[a.text_xs, {color: t.palette.primary_400}]}
+              onPress={onPressViewLocation}>
+              Get directions
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.btn, styles.appointmentBtn]}
-            onPress={() => onPressBookAppointment(storeServices)}>
+          {/* <TouchableOpacity style={[styles.btn, styles.appointmentBtn]}>
             <Text style={[a.text_xs, {color: '#fff'}]}>Book appointment</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
-      <ServiceDetailModal
-        isOpen={visible}
-        onClosed={onClosed}
-        services={(storeServices as []) ?? []}
-        total={total}
-      />
     </>
   );
 }
@@ -170,7 +130,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   viewBtn: {
-    borderColor: color.blue_400,
+    ...shadows.medium,
+    backgroundColor: '#fff',
+    borderColor: 'transparent',
   },
   appointmentBtn: {
     backgroundColor: '#000',

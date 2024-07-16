@@ -11,7 +11,7 @@
     "postinstall": "patch-package",
     "android:release": "npx react-native build-android --mode=release",
     "android:apk": "yarn android --mode release",
-    "db:types": "npx supabase gen types typescript --project-id pnisqggcyxhdowtevdzu --schema public > src/types/supabase.ts",
+    "db:types": "npx supabase gen types --lang=typescript --project-id pnisqggcyxhdowtevdzu --schema public > src/types/supabase.ts",
     "postversion": "npx react-native-version --never-amend",
     "clean": "rm -rf ./node_modules"
   },

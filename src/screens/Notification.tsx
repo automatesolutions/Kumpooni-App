@@ -6,35 +6,34 @@ import {
   ViewStyle,
   StyleSheet,
   RefreshControl,
-} from 'react-native'
-import React, { useCallback } from 'react'
+} from 'react-native';
+import React, {useCallback} from 'react';
 
-import { useSession } from '#/state/session'
-import { useNotifications } from '#/state/queries/notification'
-import { Text } from '#/components/Typography'
-import { colors, spacing } from '#/utils/theme'
-import { useDate } from '#/lib/hooks/useDate'
-import { NotificationCard } from '#/components/notification/NotificationCard'
-import { LoaderComponent } from '#/components/Loader'
-import { ParsedNotification } from '#/types/automate'
-import { EmptyNotification } from '#/components/notification/EmptyNotification'
+import {useSession} from '#/state/session';
+import {useNotifications} from '#/state/queries/notification';
+import {Text} from '#/components/Typography';
+import {colors, spacing} from '#/utils/theme';
+import {useDate} from '#/lib/hooks/useDate';
+import {NotificationCard} from '#/components/notification/NotificationCard';
+import {Loader} from '#/components/Loader';
+import {ParsedNotification} from '#/types/automate';
+import {EmptyNotification} from '#/components/notification/EmptyNotification';
 
 export const NotificationScreen = () => {
-  const { session } = useSession()
-  const { data, refetch, isRefetching, isLoading } = useNotifications(
+  const {session} = useSession();
+  const {data, refetch, isRefetching, isLoading} = useNotifications(
     session?.user?.id,
-  )
-  const date = useDate()
+  );
+  const date = useDate();
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<ParsedNotification>) => {
-      return <NotificationCard notification={item} />
+    ({item}: ListRenderItemInfo<ParsedNotification>) => {
+      return <NotificationCard notification={item} />;
     },
     [],
-  )
+  );
 
-  if (isLoading)
-    return <LoaderComponent style={{ flex: 1, alignItems: 'center' }} />
+  if (isLoading) return <Loader style={{flex: 1, alignItems: 'center'}} />;
 
   return (
     <View style={$root}>
@@ -50,13 +49,13 @@ export const NotificationScreen = () => {
       <SectionList<ParsedNotification>
         //@ts-ignore
         sections={data}
-        style={{ flex: 1 }}
+        style={{flex: 1}}
         contentContainerStyle={{
           gap: 6,
         }}
         stickyHeaderHiddenOnScroll
         renderItem={renderItem}
-        renderSectionHeader={({ section }) => (
+        renderSectionHeader={({section}) => (
           <Text style={styles.heading}>
             {date.formatDate(section?.date, 'MMMM DD, YYYY')}
           </Text>
@@ -76,8 +75,8 @@ export const NotificationScreen = () => {
         }
       />
     </View>
-  )
-}
+  );
+};
 const styles = StyleSheet.create({
   heading: {
     textAlign: 'center',
@@ -86,8 +85,8 @@ const styles = StyleSheet.create({
     color: '#1e1e1e',
     paddingBottom: 4,
   },
-})
+});
 const $root: ViewStyle = {
   flex: 1,
   backgroundColor: '#f6f6f6',
-}
+};
