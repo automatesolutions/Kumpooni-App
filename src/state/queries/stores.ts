@@ -8,7 +8,8 @@ import {
   NearbyStoresServices,
   StoreCategory,
 } from '#/types/automate';
-import {InfiniteData, useInfiniteQuery, useQuery} from '@tanstack/react-query';
+import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
+import {useEffect, useRef} from 'react';
 import {GOOGLE_MAP_KEY} from 'react-native-dotenv';
 
 export const RQKEY = (coord: Coords | null) => ['nearby-store', coord];
@@ -123,7 +124,7 @@ export function useSearchStoresQuery({
 //   });
 // }
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 async function searchGooglePlacesRepairShop({
   textQuery = '',
   location,
@@ -143,7 +144,7 @@ async function searchGooglePlacesRepairShop({
     'Content-Type': 'application/json',
     'X-Goog-Api-Key': GOOGLE_MAP_KEY,
     'X-Goog-FieldMask':
-      'places.id,places.displayName,places.location,places.photos,places.shortFormattedAddress,places.types,places.googleMapsUri,places.rating,nextPageToken',
+      'places.id,places.userRatingCount,places.displayName,places.location,places.photos,places.shortFormattedAddress,places.types,places.googleMapsUri,places.rating,nextPageToken',
   };
 
   try {
@@ -181,21 +182,13 @@ async function searchGooglePlacesRepairShop({
     // Filter based on types
 
     const filteredData = responseTyped.filter(
-      place => place.rating !== undefined,
+      place => place.userRatingCount > 3,
     );
-    console.log('filteredData', filteredData);
-    // const places = responseTyped.map(place => ({
-    //   id: place.id,
-    //   displayName: place.displayName,
-    //   googleMapsUri: place.googleMapsUri,
-    //   shortFormattedAddress: place.shortFormattedAddress,
-    //   types: place.types,
-    // }));
 
     return {
       places: filteredData.map(data => ({
         ...data,
-        distance: haversine(
+        dist_meters: haversine(
           [location.lat, location.lng],
           [data.location.latitude, data.location.longitude],
         ),
@@ -216,7 +209,8 @@ export function useListGooglePlacesQuery({
   textQuery: string;
   location: Coords | null;
 }) {
-  return useInfiniteQuery({
+  const lastPageCountRef = useRef(0);
+  const query = useInfiniteQuery({
     queryKey: ['places-list', textQuery, location],
     queryFn: async ({pageParam}) => {
       const data = await searchGooglePlacesRepairShop({
@@ -229,4 +223,30 @@ export function useListGooglePlacesQuery({
     initialPageParam: null as RQPageParam,
     getNextPageParam: lastPage => lastPage.nextPageToken,
   });
+
+  useEffect(() => {
+    const {isFetching, hasNextPage, data} = query;
+    if (isFetching || !hasNextPage) {
+      return;
+    }
+    // avoid double fires of fetchNextPage()
+    if (
+      lastPageCountRef.current !== 0 &&
+      lastPageCountRef.current === data?.pages?.length
+    ) {
+      return;
+    }
+
+    // fetch next page if we haven't gotten a full page of content
+    let count = 0;
+    for (const page of data?.pages || []) {
+      count += page.places.length;
+    }
+    if (count < PAGE_SIZE && (data?.pages.length || 0) < 6) {
+      query.fetchNextPage();
+      lastPageCountRef.current = data?.pages?.length || 0;
+    }
+  }, [query]);
+
+  return query;
 }

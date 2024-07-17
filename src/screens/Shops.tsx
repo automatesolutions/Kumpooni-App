@@ -16,6 +16,8 @@ import {StoreRating} from '#/components/store/StoreRating';
 import {getRoundedKm} from '#/lib/utils';
 import {atoms as a, useTheme} from '#/theme';
 import {color} from '#/theme/tokens';
+import {StarRating} from '#/components/store/StarRating';
+import {Ratings} from '#/components/store/Ratings';
 
 export function ShopsScreen() {
   const t = useTheme();
@@ -35,6 +37,7 @@ export function ShopsScreen() {
     keyword: '',
   });
 
+  console.log('useSearchStoresQuery', data);
   const onPressStore =
     ({id, order_total, store_rating, review_count}: SearchNearbyStore) =>
     () => {
@@ -127,69 +130,14 @@ function StoreCard({
         </Text>
 
         <View style={[a.flex_row, a.align_center, {gap: 4, marginTop: 8}]}>
-          <Star size={10} color="#FF8700" fill="#FF8700" />
+          {/* <Star size={10} color="#FF8700" fill="#FF8700" />
           <StoreRating
             store_rating={store.store_rating}
             order_total={store.order_total}
-          />
+          /> */}
+          <Ratings rating={store.store_rating} />
         </View>
-        {/* <View style={[a.flex_row]}>
-          <Text style={[a.text_xs]}>Beauty Shop</Text>
-          <Text style={[a.text_xs]}>Maintenance</Text>
-        </View> */}
       </View>
     </TouchableOpacity>
   );
 }
-
-// export function StoreCard() {
-//   return (
-//     <View
-//       style={[
-//         a.m_sm,
-//         a.mt_sm,
-//         {
-//           borderRadius: 10,
-
-//           width: '50%',
-
-//           backgroundColor: '#F1F3F6',
-//         },
-//       ]}>
-//       <View style={[a.justify_center, a.align_center, a.py_2xs]}>
-// <Image
-//   source={{
-//     uri: 'https://vheyzzpdmmyiejsxerzg.supabase.co/storage/v1/object/public/image/store-image.png',
-//   }}
-//   style={[{ borderRadius: 5 }]}
-//   height={120}
-//   width={120}
-// />
-
-//         <View style={{ paddingTop: 3 }}>
-//           <Text
-//             style={{
-//               fontSize: 14,
-//               fontWeight: '600',
-//               color: colors.black,
-//             }}>
-//             Name of Store
-//           </Text>
-//           <View style={[a.flex_row, a.align_center, { gap: 4 }]}>
-//             <Star size={12} color="#FF8700" fill="#FF8700" />
-//             <Text style={[a.text_xs, a.font_normal]}>4.99 | 50 orders</Text>
-//           </View>
-//         </View>
-//       </View>
-//       <View style={[a.p_2xs]}>
-//         <Text style={{ fontSize: 12, color: '#625C58', maxWidth: '90%' }}>
-//           <Text style={{ fontSize: 12, color: '#000', fontWeight: 'bold' }}>
-//             {`${30} km `}
-//           </Text>
-//           - Corner 102 - Araneta Street, Brgy. Singcang-airport, Bacolod City
-//           6100 Negros Occidental
-//         </Text>
-//       </View>
-//     </View>
-//   )
-// }

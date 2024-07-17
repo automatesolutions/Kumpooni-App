@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react'
+import React, {FC, useCallback, useState} from 'react';
 import {
   FlatList,
   ListRenderItemInfo,
@@ -7,82 +7,76 @@ import {
   View,
   ViewStyle,
   StyleSheet,
-} from 'react-native'
+} from 'react-native';
 
-import version from '../../package.json'
+import version from '../../package.json';
 
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { LogOut, Trash2Icon } from 'lucide-react-native'
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {LogOut, Trash2Icon} from 'lucide-react-native';
 
-import { useQueryClient } from '@tanstack/react-query'
+import {useQueryClient} from '@tanstack/react-query';
 
-import { accountRoutes } from '#/lib/config/account'
+import {accountRoutes} from '#/lib/config/account';
 
-import { useNavigation } from '@react-navigation/native'
-import { supabase } from '#/lib/supabase'
-import {
-  AllNavigatorParams,
-  MyAccountTabNavigatorParams,
-  NavigationProp,
-} from '#/lib/routes/types'
-import { useSession, useSessionApi } from '#/state/session'
-import { useGlobalLoadingControls } from '#/state/shell/global-loading'
-import { AccountNavigationItem } from '#/types/automate'
-import { SectionItem } from '#/components/account/SectionItem'
-import { useTheme } from '#/theme'
-import { DeleteAccountModal } from '#/components/modals/DeleteAccountModal'
-import * as notifications from '#/lib/notifications/notifications'
-import { useCartStore } from '#/stores/cart'
-import { useVehicleStore } from '#/stores/vehicle'
-type Props = NativeStackScreenProps<MyAccountTabNavigatorParams, 'MyAccount'>
+import {useNavigation} from '@react-navigation/native';
+import {supabase} from '#/lib/supabase';
+import {MyAccountTabNavigatorParams, NavigationProp} from '#/lib/routes/types';
+import {useSession, useSessionApi} from '#/state/session';
+import {useGlobalLoadingControls} from '#/state/shell/global-loading';
+import {AccountNavigationItem} from '#/types/automate';
+import {SectionItem} from '#/components/account/SectionItem';
+import {useTheme} from '#/theme';
+import {DeleteAccountModal} from '#/components/modals/DeleteAccountModal';
+import {useCartStore} from '#/stores/cart';
+import {useVehicleStore} from '#/stores/vehicle';
+type Props = NativeStackScreenProps<MyAccountTabNavigatorParams, 'MyAccount'>;
 
 export const MyAccountScreen: FC<Props> = props => {
-  const navigation = useNavigation<NavigationProp>()
-  const [isOpen, setIsOpen] = useState(false)
-  const { session } = useSession()
-  const { logout } = useSessionApi()
-  const t = useTheme()
-  const queryClient = useQueryClient()
+  const navigation = useNavigation<NavigationProp>();
+  const [isOpen, setIsOpen] = useState(false);
+  const {session} = useSession();
+  const {logout} = useSessionApi();
+  const t = useTheme();
+  const queryClient = useQueryClient();
 
-  const clearCartItem = useCartStore(state => state.clearItem)
-  const clearVehicles = useVehicleStore(state => state.clearVehicles)
-  const globalLoading = useGlobalLoadingControls()
+  const clearCartItem = useCartStore(state => state.clearItem);
+  const clearVehicles = useVehicleStore(state => state.clearVehicles);
+  const globalLoading = useGlobalLoadingControls();
 
   const handleLogout = useCallback(async () => {
-    globalLoading.show()
+    globalLoading.show();
     try {
-      await notifications.remoteRegisteredFCMToken(session!)
-      clearCartItem()
-      clearVehicles()
-      await logout()
+      clearCartItem();
+      clearVehicles();
+      await logout();
     } catch (error) {}
 
-    navigation.navigate('Home')
+    navigation.navigate('Home');
 
-    globalLoading.hide()
-  }, [queryClient, navigation])
+    globalLoading.hide();
+  }, [queryClient, navigation]);
   const onClosed = () => {
-    setIsOpen(() => false)
-  }
+    setIsOpen(() => false);
+  };
   const onOpen = () => {
-    setIsOpen(() => true)
-  }
+    setIsOpen(() => true);
+  };
   const onPressDeleteAccount = useCallback(async () => {
-    onClosed()
+    onClosed();
     try {
-      globalLoading.show()
-      await logout()
-      await supabase.rpc('delete_user')
+      globalLoading.show();
+      await logout();
+      await supabase.rpc('delete_user');
     } catch (error) {
     } finally {
-      setTimeout(() => navigation.navigate('Home'), 500)
-      globalLoading.hide()
+      setTimeout(() => navigation.navigate('Home'), 500);
+      globalLoading.hide();
     }
-  }, [handleLogout])
+  }, [handleLogout]);
 
-  const keyExtractor = (item: AccountNavigationItem) => item.id.toString()
+  const keyExtractor = (item: AccountNavigationItem) => item.id.toString();
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<AccountNavigationItem>) => {
+    ({item}: ListRenderItemInfo<AccountNavigationItem>) => {
       return (
         <SectionItem
           section={item}
@@ -90,10 +84,10 @@ export const MyAccountScreen: FC<Props> = props => {
           onPress={() => navigation.navigate(item?.name)}
           hasIconRight
         />
-      )
+      );
     },
     [],
-  )
+  );
 
   return (
     <>
@@ -106,7 +100,7 @@ export const MyAccountScreen: FC<Props> = props => {
                 : 'A'}
             </Text>
           </View>
-          <View style={{ flexDirection: 'column', gap: 5 }}>
+          <View style={{flexDirection: 'column', gap: 5}}>
             <Text style={$fullName}>
               {session?.user?.user_metadata?.full_name
                 ? session?.user?.user_metadata?.full_name
@@ -133,7 +127,7 @@ export const MyAccountScreen: FC<Props> = props => {
             }}
           />
         </View>
-        <View style={[styles.sectionItem, { height: 60 }, t.atoms.shadow_sm]}>
+        <View style={[styles.sectionItem, {height: 60}, t.atoms.shadow_sm]}>
           <SectionItem
             key={5}
             section={{
@@ -148,7 +142,7 @@ export const MyAccountScreen: FC<Props> = props => {
         <View
           style={[
             styles.sectionItem,
-            { paddingVertical: 10, marginVertical: 0, height: 50 },
+            {paddingVertical: 10, marginVertical: 0, height: 50},
             t.atoms.shadow_sm,
           ]}>
           <SectionItem
@@ -173,13 +167,13 @@ export const MyAccountScreen: FC<Props> = props => {
         onPressDeleteAccount={onPressDeleteAccount}
       />
     </>
-  )
-}
+  );
+};
 
 const $root: ViewStyle = {
   flex: 1,
   backgroundColor: '#fff',
-}
+};
 
 const $fullName: TextStyle = {
   fontSize: 18,
@@ -187,19 +181,19 @@ const $fullName: TextStyle = {
   color: '#000',
   marginTop: 16,
   textAlign: 'center',
-}
+};
 
 const $smallText: TextStyle = {
   fontSize: 12,
   color: '#625c58',
   textAlign: 'center',
-}
+};
 
 const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
   },
-  flexCenter: { alignItems: 'center', justifyContent: 'center' },
+  flexCenter: {alignItems: 'center', justifyContent: 'center'},
   spacing: {
     marginVertical: 14,
   },
@@ -224,6 +218,6 @@ const styles = StyleSheet.create({
     fontSize: 48,
     color: '#fff',
   },
-  version: { flex: 1, justifyContent: 'flex-end', marginBottom: 10 },
-  versionText: { alignSelf: 'center', color: '#625C58' },
-})
+  version: {flex: 1, justifyContent: 'flex-end', marginBottom: 10},
+  versionText: {alignSelf: 'center', color: '#625C58'},
+});

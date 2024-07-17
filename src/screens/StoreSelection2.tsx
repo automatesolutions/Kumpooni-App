@@ -71,8 +71,18 @@ export function StoreSelectionScreen(props: Props) {
     if (data?.pages) {
       return data.pages.flatMap(page => page.places);
     }
+
     return [];
   }, [data]);
+
+  // const onEndReached = useCallback(async () => {
+  //   if (isFetchingNextPage || !hasNextPage || isError) return;
+  //   try {
+  //     await fetchNextPage();
+  //   } catch (err) {
+  //     logger.error('Failed to load more google places', {message: err});
+  //   }
+  // }, [isFetchingNextPage, hasNextPage, isError, fetchNextPage]);
 
   const onPressSort = (newSort: SortShop) => {
     setSort(newSort);
@@ -80,18 +90,15 @@ export function StoreSelectionScreen(props: Props) {
   const sortedStores = useMemo(() => {
     if (!stores) return [];
     if (sort === 'rating') {
-      return [...stores.sort((a, b) => b.rating - a.rating), ...places];
+      return stores.sort((a, b) => b.rating - a.rating);
     }
     if (sort === 'distance') {
-      return [
-        ...stores.sort((a, b) => a.dist_meters - b.dist_meters),
-        ...places.sort((a, b) => a.dist_meters - b.dist_meters),
-      ];
+      return stores.sort((a, b) => a.dist_meters - b.dist_meters);
     }
     if (sort === 'price') {
-      return [...stores.sort((a, b) => a.total - b.total), ...places];
+      return stores.sort((a, b) => a.total - b.total);
     }
-  }, [stores, places, sort]);
+  }, [stores, sort]);
 
   const isScreenFocused = useIsFocused();
 
@@ -120,6 +127,11 @@ export function StoreSelectionScreen(props: Props) {
     [onPressBookAppointment],
   );
 
+  const renderPlaceItem = useCallback(
+    ({item}: ListRenderItemInfo<GooglePlaceDto>) => <PlacesItem place={item} />,
+    [],
+  );
+
   useEffect(() => {
     if (isScreenFocused && !location) {
       setTimeout(() => {
@@ -139,22 +151,30 @@ export function StoreSelectionScreen(props: Props) {
   return (
     <View style={[t.atoms.bg_contrast_25, a.flex_1]}>
       <SortColumn sort={sort} onPress={onPressSort} />
+      {/* <FlatList
+        data={sortedStores}
+        renderItem={renderItem}
+        contentContainerStyle={{
+          paddingBottom: 10,
+          gap: 10,
+        }}
+        ListEmptyComponent={<EmptyStore />}
+      /> */}
 
       <FlatList
         data={sortedStores}
-        renderItem={({item}) => {
-          if ('googleMapsUri' in item) {
-            return <PlacesItem place={item} />;
-          } else {
-            return (
-              <StoreCard
-                cartItems={cartItems}
-                store={item}
-                onPressBookAppointment={onPressBookAppointment(item)}
-              />
-            );
-          }
+        renderItem={renderItem}
+        // onEndReached={onEndReached}
+        onEndReachedThreshold={1.5}
+        style={[]}
+        contentContainerStyle={{
+          gap: 5,
         }}
+        initialNumToRender={initialNumToRender}
+      />
+      <FlatList
+        data={places}
+        renderItem={renderPlaceItem}
         // onEndReached={onEndReached}
         onEndReachedThreshold={1.5}
         style={[]}

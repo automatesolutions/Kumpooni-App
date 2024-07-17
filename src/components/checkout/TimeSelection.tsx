@@ -1,33 +1,33 @@
-import React, { SetStateAction, useCallback, useState } from 'react'
+import React, {SetStateAction, useCallback, useState} from 'react';
 import {
   View,
   StyleSheet,
   FlatList,
   ListRenderItemInfo,
   TouchableOpacity,
-} from 'react-native'
-import { Text } from '#/components/Typography'
-import { useTheme, atoms as a } from '#/theme'
-import { convertTo12HourFormat } from '#/lib/utils'
-import { color } from '#/theme/tokens'
+} from 'react-native';
+import {Text} from '#/components/Typography';
+import {useTheme, atoms as a} from '#/theme';
+import {convertTo12HourFormat} from '#/lib/utils';
+import {color} from '#/theme/tokens';
 
 export function TimeSelection({
   times,
   time,
   setTime,
 }: {
-  times: string[]
-  time: string
-  setTime: React.Dispatch<SetStateAction<string>>
+  times: string[];
+  time: string;
+  setTime: React.Dispatch<SetStateAction<string>>;
 }) {
   const onPressTime = useCallback((time: string, index: number) => {
-    setTime(time)
-  }, [])
+    setTime(time);
+  }, []);
 
   return (
     <View style={[a.px_xs, a.pb_sm]}>
       <View style={[a.py_sm]}>
-        <Text style={[a.font_bold, a.text_md]}>Choose a time</Text>
+        <Text style={[a.font_bold, a.text_md]}>Select time</Text>
       </View>
       <View
         style={{
@@ -36,8 +36,8 @@ export function TimeSelection({
           rowGap: 15,
         }}>
         {times?.map((slotTime, index) => {
-          const isActive = slotTime === time
-          const activeColor = isActive ? color.blue_500 : '#000'
+          const isActive = slotTime === time;
+          const activeColor = isActive ? color.blue_500 : '#000';
           return (
             <TouchableOpacity
               key={slotTime}
@@ -60,16 +60,16 @@ export function TimeSelection({
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <Text style={[a.text_sm, { color: activeColor }]}>
+                <Text style={[a.text_sm, {color: activeColor}]}>
                   {convertTo12HourFormat(slotTime)}
                 </Text>
               </View>
             </TouchableOpacity>
-          )
+          );
         })}
       </View>
     </View>
-  )
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

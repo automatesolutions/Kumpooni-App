@@ -1,4 +1,4 @@
-import React, { SetStateAction, useCallback, useState } from 'react'
+import React, {SetStateAction, useCallback, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,35 +6,35 @@ import {
   FlatList,
   ListRenderItemInfo,
   TouchableOpacity,
-} from 'react-native'
-import { Text } from '#/components/Typography'
-import { useTheme, atoms as a } from '#/theme'
-import { color } from '#/theme/tokens'
-import dayjs from 'dayjs'
+} from 'react-native';
+import {Text} from '#/components/Typography';
+import {useTheme, atoms as a} from '#/theme';
+import {color} from '#/theme/tokens';
+import dayjs from 'dayjs';
 type AvailableSlots = {
-  available_date: string
-  available_timeslots: string[]
-  week_day: string
-}
+  available_date: string;
+  available_timeslots: string[];
+  week_day: string;
+};
 export function DateSelection({
   dateSlots,
   onPress,
 }: {
-  dateSlots: AvailableSlots[]
-  onPress: (newDate: string) => void
+  dateSlots: AvailableSlots[];
+  onPress: (newDate: string) => void;
 }) {
-  const t = useTheme()
-  const [active, setActive] = useState<number | null>(0)
+  const t = useTheme();
+  const [active, setActive] = useState<number | null>(0);
 
   const onDayPress = (date: string, index: number) => {
-    setActive(index)
-    onPress(date)
-  }
+    setActive(index);
+    onPress(date);
+  };
 
   const renderItem = useCallback(
-    ({ item, index }: ListRenderItemInfo<AvailableSlots>) => {
-      const isActive = active === index
-      const activeColor = isActive ? color.blue_500 : '#000'
+    ({item, index}: ListRenderItemInfo<AvailableSlots>) => {
+      const isActive = active === index;
+      const activeColor = isActive ? color.blue_500 : '#000';
       return (
         <TouchableOpacity
           onPress={() => onDayPress(item.available_date, index)}
@@ -47,27 +47,27 @@ export function DateSelection({
             a.align_center,
             a.justify_center,
             a.border,
-            t.atoms.border_contrast_high,
             a.rounded_sm,
-            { borderColor: isActive ? color.blue_500 : color.gray_200 },
+            t.atoms.border_contrast_high,
+            {borderColor: isActive ? color.blue_500 : color.gray_200},
           ]}>
-          <Text style={[a.text_sm, a.font_bold, { color: activeColor }]}>
+          <Text style={[a.text_xs, {color: activeColor}]}>{item.week_day}</Text>
+          <Text style={[a.text_lg, a.font_bold, {color: activeColor}]}>
             {item.available_date.split('-')[2]}
           </Text>
-          <Text style={[a.text_xs, a.font_semibold, { color: activeColor }]}>
-            {item.week_day}
-          </Text>
         </TouchableOpacity>
-      )
+      );
     },
     [active],
-  )
+  );
   return (
     <View style={[a.px_xs]}>
-      <View style={[a.py_sm]}>
-        <Text style={[a.font_bold, a.text_md]}>Choose a date</Text>
+      <View style={[a.flex_row, a.justify_between, a.py_sm]}>
+        <Text style={[a.font_bold, a.text_md]}>Select date</Text>
+        <Text style={[a.font_bold, a.text_md]}>
+          {dayjs(dateSlots[0].available_date).format('MMMM')}
+        </Text>
       </View>
-
       <FlatList
         horizontal
         data={dateSlots}
@@ -78,7 +78,7 @@ export function DateSelection({
         showsHorizontalScrollIndicator={false}
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -94,4 +94,4 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
   },
-})
+});

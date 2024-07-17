@@ -39,6 +39,8 @@ export type Recommendation = {
   img_url: string;
 }[];
 
+export type NotificationType = Enums<'notification_type'>;
+
 export interface QuestionOption extends Omit<Question, 'options'> {
   options: {
     answer: {
@@ -165,7 +167,7 @@ export type Coords = {
 };
 export interface ParsedNotification {
   id: string;
-  notification_type: string;
+  type: NotificationType;
   content: string | null;
   user_id: string | null;
   read_at: string | null;
@@ -239,9 +241,10 @@ export interface GooglePlaceDto {
   googleMapsUri: string;
   photos: GooglePlacePhotos[];
   rating: number;
-  distance?: number;
+  dist_meters?: number;
   location: {
     latitude: number;
     longitude: number;
   };
+  userRatingCount: number;
 }

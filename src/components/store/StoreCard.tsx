@@ -11,11 +11,12 @@ import {atoms as a, useTheme} from '#/theme';
 import {currency} from '#/lib/strings/currency';
 
 import {ServiceDetailModal} from '../modals/ServiceDetailModal';
-import {logger} from '#/logger';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '#/lib/routes/types';
+
 import {CartStoreItem} from '#/stores/cart';
 import {StoreRating} from './StoreRating';
+import {StarRating} from './StarRating';
+import {FormattedAddress} from './FormattedAddress';
+import {Ratings} from './Ratings';
 
 export function StoreCard({
   store,
@@ -29,7 +30,7 @@ export function StoreCard({
   const [visible, setVisible] = useState<boolean>(false);
   const t = useTheme();
   const kmDistance = store.dist_meters / 1000;
-  const roundedKm = Math.round(kmDistance * 10) / 10;
+
   const onPressViewDetails = () => setVisible(true);
 
   const onClosed = () => {
@@ -62,11 +63,8 @@ export function StoreCard({
         style={[
           {
             backgroundColor: '#fff',
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: color.gray_50,
+            paddingTop: 8,
           },
-          {marginHorizontal: 12, paddingVertical: 6},
         ]}>
         <View style={[a.flex_row, a.align_center, a.px_xs, {gap: 10}]}>
           {store.store_img ? (
@@ -75,31 +73,19 @@ export function StoreCard({
                 uri: store.store_img,
               }}
               style={{
-                height: 70,
+                height: 60,
                 width: 60,
-                borderRadius: 4,
+                borderRadius: 3,
               }}
             />
-          ) : (
-            <View
-              style={{
-                height: 70,
-                width: 60,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderWidth: 1,
-                borderRadius: 4,
-                borderColor: color.gray_100,
-              }}>
-              <Store size={40} color={color.gray_100} />
-            </View>
-          )}
+          ) : null}
           <View
             style={{
               flex: 1,
               height: '100%',
               paddingVertical: 4,
             }}>
+            {/* Store Rating */}
             <View style={{paddingTop: 3}}>
               <Text
                 style={{
@@ -109,23 +95,10 @@ export function StoreCard({
                 }}>
                 {store.name}
               </Text>
-              <View style={[a.flex_row, a.align_center, {gap: 4}]}>
-                <Star size={10} color="#FF8700" fill="#FF8700" />
+              <Ratings rating={store.rating} />
+            </View>
 
-                <StoreRating
-                  store_rating={store.rating}
-                  order_total={store.order_total}
-                />
-              </View>
-            </View>
-            <View style={{paddingTop: 5}}>
-              <Text style={{fontSize: 10, color: '#625C58', maxWidth: '90%'}}>
-                <Text style={{fontSize: 10, color: '#000', fontWeight: 'bold'}}>
-                  {`${roundedKm} km `}
-                </Text>
-                - {store?.address}
-              </Text>
-            </View>
+            <FormattedAddress address={store.address} distance={kmDistance} />
           </View>
         </View>
         <View
@@ -135,7 +108,8 @@ export function StoreCard({
             a.align_center,
             a.pr_2xs,
             a.gap_2xs,
-            a.mt_2xs,
+            a.mb_2xs,
+            {marginTop: 2},
           ]}>
           <Text style={[a.font_bold]}>{currency.format(total)}</Text>
           <TouchableOpacity style={[styles.btn, styles.viewBtn]}>
@@ -165,7 +139,7 @@ export function StoreCard({
 
 const styles = StyleSheet.create({
   btn: {
-    padding: 7,
+    padding: 4,
     borderWidth: 1,
     borderRadius: 5,
   },

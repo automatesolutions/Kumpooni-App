@@ -67,6 +67,7 @@
     "react-native-modal": "^13.0.1",
     "react-native-pager-view": "^6.3.0",
     "react-native-permissions": "^4.1.4",
+    "react-native-popup-menu": "^0.16.1",
     "react-native-reanimated": "^3.14.0",
     "react-native-root-siblings": "^5.0.1",
     "react-native-safe-area-context": "^4.9.0",

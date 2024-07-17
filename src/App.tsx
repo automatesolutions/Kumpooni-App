@@ -25,11 +25,11 @@ import {ThemeProvider} from '#/theme';
 import {useColorModeTheme} from './theme/util/useColorModeTheme';
 import {useLocationStore} from './stores/location';
 
-import {i18n} from './i18n';
-
-import * as notification from '#/lib/notifications/notifications';
+import {MenuProvider} from 'react-native-popup-menu';
+import * as notification from 'lib/notifications';
 import messaging from '@react-native-firebase/messaging';
-import {Shell} from './view/shell';
+import {Shell} from 'view/shell';
+import {i18n} from './i18n';
 
 function InnerApp() {
   const theme = useColorModeTheme();
@@ -49,7 +49,9 @@ function InnerApp() {
         <ThemeProvider theme={theme}>
           <RootSiblingParent>
             <GestureHandlerRootView style={{height: '100%'}}>
-              <Shell />
+              <MenuProvider>
+                <Shell />
+              </MenuProvider>
             </GestureHandlerRootView>
           </RootSiblingParent>
         </ThemeProvider>

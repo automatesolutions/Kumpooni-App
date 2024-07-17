@@ -1,8 +1,8 @@
-import { Platform } from 'react-native'
+import {Platform, StyleSheet} from 'react-native';
 
-import * as tokens from '#/theme/tokens'
-import { native, web } from '#/theme/util/platform'
-
+import * as tokens from '#/theme/tokens';
+import {native, web} from '#/theme/util/platform';
+import hairlineWidth = StyleSheet.hairlineWidth;
 export const atoms = {
   /*
    * Positioning
@@ -276,19 +276,19 @@ export const atoms = {
     borderWidth: 0,
   },
   border: {
-    borderWidth: 1,
+    borderWidth: hairlineWidth,
   },
   border_t: {
-    borderTopWidth: 1,
+    borderTopWidth: hairlineWidth,
   },
   border_b: {
-    borderBottomWidth: 1,
+    borderBottomWidth: hairlineWidth,
   },
   border_l: {
-    borderLeftWidth: 1,
+    borderLeftWidth: hairlineWidth,
   },
   border_r: {
-    borderRightWidth: 1,
+    borderRightWidth: hairlineWidth,
   },
 
   /*
@@ -851,4 +851,4 @@ export const atoms = {
   mr_auto: {
     marginRight: 'auto',
   },
-} as const
+} as const;

@@ -8021,6 +8021,7 @@ __metadata:
     react-native-modal: ^13.0.1
     react-native-pager-view: ^6.3.0
     react-native-permissions: ^4.1.4
+    react-native-popup-menu: ^0.16.1
     react-native-reanimated: ^3.14.0
     react-native-root-siblings: ^5.0.1
     react-native-safe-area-context: ^4.9.0
@@ -9958,6 +9959,13 @@ __metadata:
     react-native-windows:
       optional: true
   checksum: dc4b366a0f561a47f032c027eb703a2be45e801788b915ed583e38f617eea23656eb63a77b17fb3a663fe3199b2ec25788f799e751421634e35a64f5258feed9
+  languageName: node
+  linkType: hard
+
+"react-native-popup-menu@npm:^0.16.1":
+  version: 0.16.1
+  resolution: "react-native-popup-menu@npm:0.16.1"
+  checksum: 4a4cfdfdcd7ee0a2515dbd4fa427dd38af89121e375ea452a470091456ecb8fc35fd24d6a79936703ebc4a84905352e8df0de24d58b036f56d2a9ba61449a7d5
   languageName: node
   linkType: hard
 
