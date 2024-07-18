@@ -1,43 +1,42 @@
-import React from 'react';
-import {Platform} from 'react-native';
+import React from 'react'
+import {Platform} from 'react-native'
 import {
   BottomTabBarProps,
   createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
-import {Header} from '#/components/Header';
-import {BottomBar} from '#/components/bottom-bar/BottomBar';
-import {useTheme} from '#/theme';
+} from '@react-navigation/bottom-tabs'
+import {Header} from '#/components/Header'
+import {BottomBar} from '#/components/bottom-bar/BottomBar'
+import {useTheme} from '#/theme'
 import {
   BottomTabNavigatorParams,
   MyAccountTabNavigatorParams,
   OrdersTabNavigatorParams,
   PartsTabNavigatorParams,
   ShopTabNavigatorParams,
-} from '#/lib/routes/types';
-import {createNativeStackNavigatorWithAuth} from '#/view/shell/createNativeStackNavigatorWithAuth';
-import {isAndroid} from '#/platform/detection';
-import {HomeScreen} from '#/screens/Home';
-import {OrderScreen} from '#/screens/Orders';
-import {ShopsScreen} from '#/screens/Shops';
-import {MyAccountScreen} from '#/screens/MyAccount';
-import {PartsScreen} from '#/screens/Parts';
-import {colors} from '#/lib/styles';
-
-const Tab = createBottomTabNavigator<BottomTabNavigatorParams>();
-const HomeTab = createNativeStackNavigatorWithAuth();
-const OrdersTab =
-  createNativeStackNavigatorWithAuth<OrdersTabNavigatorParams>();
-const PartsTab = createNativeStackNavigatorWithAuth<PartsTabNavigatorParams>();
-const ShopTab = createNativeStackNavigatorWithAuth<ShopTabNavigatorParams>();
+} from '#/lib/routes/types'
+import {createNativeStackNavigatorWithAuth} from '#/view/shell/createNativeStackNavigatorWithAuth'
+import {isAndroid} from '#/platform/detection'
+import {HomeScreen} from '#/screens/Home'
+import {OrderScreen} from '#/screens/Orders'
+import {ShopsScreen} from '#/screens/Shops'
+import {MyAccountScreen} from '#/screens/MyAccount'
+import {PartsScreen} from '#/screens/Parts'
+import {colors} from '#/lib/styles'
+import {atoms as a} from '#/theme'
+const Tab = createBottomTabNavigator<BottomTabNavigatorParams>()
+const HomeTab = createNativeStackNavigatorWithAuth()
+const OrdersTab = createNativeStackNavigatorWithAuth<OrdersTabNavigatorParams>()
+const PartsTab = createNativeStackNavigatorWithAuth<PartsTabNavigatorParams>()
+const ShopTab = createNativeStackNavigatorWithAuth<ShopTabNavigatorParams>()
 const MyAccountTab =
-  createNativeStackNavigatorWithAuth<MyAccountTabNavigatorParams>();
+  createNativeStackNavigatorWithAuth<MyAccountTabNavigatorParams>()
 export function TabsNavigator() {
   const tabBar = React.useCallback(
     (props: JSX.IntrinsicAttributes & BottomTabBarProps) => (
       <BottomBar {...props} />
     ),
     [],
-  );
+  )
 
   return (
     <Tab.Navigator
@@ -71,19 +70,52 @@ export function TabsNavigator() {
         getComponent={() => MyAccountTabNavigator}
       />
     </Tab.Navigator>
-  );
+  )
 }
 
 function PartsTabNavigator() {
-  const t = useTheme();
+  const t = useTheme()
   return (
-    <PartsTab.Navigator>
+    <PartsTab.Navigator
+      screenOptions={({route, navigation}) => {
+        return {
+          headerShown: true,
+          headerShadowVisible: true,
+          animationEnabled: true,
+
+          title: 'Parts',
+          fullScreenGestureEnabled: true,
+          animation:
+            Platform.OS === 'android' ? 'fade_from_bottom' : 'simple_push',
+          animationDuration: Platform.OS === 'ios' ? 400 : undefined,
+          statusBarAnimation: 'fade',
+          statusBarStyle: 'auto',
+          header: ({options}) => (
+            <Header
+              title={options.title}
+              titleStyle={{
+                color: colors.black,
+                fontFamily: 'Inter-Bold',
+                fontSize: 17,
+              }}
+              backgroundColor={t.atoms.bg_contrast_25.backgroundColor}
+              leftIcon="back"
+              leftIconColor={colors.black}
+              onLeftPress={() => {
+                return route.name === 'Parts'
+                  ? navigation.goBack()
+                  : navigation.popToTop()
+              }}
+            />
+          ),
+        }
+      }}>
       <PartsTab.Screen name="Parts" getComponent={() => PartsScreen} />
     </PartsTab.Navigator>
-  );
+  )
 }
 function HomeTabNavigator() {
-  const t = useTheme();
+  const t = useTheme()
   return (
     <HomeTab.Navigator
       screenOptions={{
@@ -96,11 +128,11 @@ function HomeTabNavigator() {
       }}>
       <HomeTab.Screen name="Home" getComponent={() => HomeScreen} />
     </HomeTab.Navigator>
-  );
+  )
 }
 
 function OrdersTabNavigator() {
-  const t = useTheme();
+  const t = useTheme()
   return (
     <OrdersTab.Navigator
       screenOptions={{
@@ -117,11 +149,11 @@ function OrdersTabNavigator() {
         options={{requireAuth: true}}
       />
     </OrdersTab.Navigator>
-  );
+  )
 }
 
 function ShopTabNavigator() {
-  const t = useTheme();
+  const t = useTheme()
   return (
     <ShopTab.Navigator
       screenOptions={{
@@ -138,11 +170,11 @@ function ShopTabNavigator() {
         options={{requireAuth: true, title: ''}}
       />
     </ShopTab.Navigator>
-  );
+  )
 }
 
 function MyAccountTabNavigator() {
-  const t = useTheme();
+  const t = useTheme()
   return (
     <MyAccountTab.Navigator
       screenOptions={({route, navigation}) => {
@@ -171,11 +203,11 @@ function MyAccountTabNavigator() {
               onLeftPress={() => {
                 return route.name === 'MyAccount'
                   ? navigation.goBack()
-                  : navigation.popToTop();
+                  : navigation.popToTop()
               }}
             />
           ),
-        };
+        }
       }}>
       <MyAccountTab.Screen
         name="MyAccount"
@@ -185,5 +217,5 @@ function MyAccountTabNavigator() {
         }}
       />
     </MyAccountTab.Navigator>
-  );
+  )
 }

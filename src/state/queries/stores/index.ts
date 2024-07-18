@@ -1,18 +1,18 @@
-import {haversine} from '#/lib/geo/haversine';
-import {supabase} from '#/lib/supabase';
-import {logger} from '#/logger';
+import {haversine} from '#/lib/geo/haversine'
+import {supabase} from '#/lib/supabase'
+import {logger} from '#/logger'
 import {
   Coordinates,
   Coords,
   GooglePlaceDto,
   NearbyStoresServices,
   StoreCategory,
-} from '#/types/automate';
-import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
-import {useEffect, useRef} from 'react';
-import {GOOGLE_MAP_KEY} from 'react-native-dotenv';
+} from '#/types/automate'
+import {useInfiniteQuery, useQuery} from '@tanstack/react-query'
+import {useEffect, useRef} from 'react'
+import {GOOGLE_MAP_KEY} from 'react-native-dotenv'
 
-export const RQKEY = (coord: Coords | null) => ['nearby-store', coord];
+export const RQKEY = (coord: Coords | null) => ['nearby-store', coord]
 
 export function useGetNearbyStoreQuery(
   coord: Coords | null,
@@ -28,17 +28,17 @@ export function useGetNearbyStoreQuery(
             ? {_lat: coord.lat, _lng: coord.lng, _service_ids: service_ids}
             : {_lat: 0, _lng: 0, _service_ids: service_ids},
         )
-        .returns<NearbyStoresServices[]>();
+        .returns<NearbyStoresServices[]>()
 
       if (error) {
-        logger.error('ServiceError', {error});
+        logger.error('ServiceError', {error})
 
-        throw error;
+        throw error
       }
 
-      return data;
+      return data
     },
-  });
+  })
 }
 
 export function useGetStoreOpenDaysQuery({id}: {id: string}) {
@@ -49,16 +49,16 @@ export function useGetStoreOpenDaysQuery({id}: {id: string}) {
         .rpc('get_store_available_slots', {
           storeid: id,
         })
-        .not('available_timeslots', 'is', null);
+        .not('available_timeslots', 'is', null)
 
       if (error) {
-        logger.error('useGetStoreOpenDaysQuery', {error});
-        throw error;
+        logger.error('useGetStoreOpenDaysQuery', {error})
+        throw error
       }
-      return data;
+      return data
     },
     enabled: !!id,
-  });
+  })
 }
 
 export function useStoreQuery(storeId: string) {
@@ -71,16 +71,16 @@ export function useStoreQuery(storeId: string) {
           'id, name, address, store_img, banner_img, store_logo, outside_img, business_hours, contact_no, latitude, longitude, categories(id, name)',
         )
         .eq('id', storeId)
-        .single();
+        .single()
 
       if (error) {
-        logger.error('useStoreQuery', {error});
-        throw error;
+        logger.error('useStoreQuery', {error})
+        throw error
       }
 
-      return data;
+      return data
     },
-  });
+  })
 }
 
 export function useSearchStoresQuery({
@@ -88,9 +88,9 @@ export function useSearchStoresQuery({
   lng,
   keyword,
 }: {
-  keyword: string;
-  lng: number | null;
-  lat: number | null;
+  keyword: string
+  lng: number | null
+  lat: number | null
 }) {
   return useQuery({
     queryKey: ['store-searches', keyword],
@@ -99,14 +99,14 @@ export function useSearchStoresQuery({
         _lat: lat!,
         _lng: lng!,
         _search: keyword,
-      });
+      })
       if (error) {
-        logger.error('useSearchStoresQuery', {error});
-        throw error;
+        logger.error('useSearchStoresQuery', {error})
+        throw error
       }
-      return data;
+      return data
     },
-  });
+  })
 }
 
 // export function useGooglePlacesRepairShopQuery({
@@ -124,20 +124,20 @@ export function useSearchStoresQuery({
 //   });
 // }
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 20
 async function searchGooglePlacesRepairShop({
   textQuery = '',
   location,
   pageToken = null,
 }: {
-  textQuery: string;
-  location: Coords | null;
-  pageToken: string | null;
+  textQuery: string
+  location: Coords | null
+  pageToken: string | null
 }) {
-  logger.debug('Hello World');
-  if (!location) throw new Error('Missing location fields');
+  logger.debug('Hello World')
+  if (!location) throw new Error('Missing location fields')
   if (!GOOGLE_MAP_KEY) {
-    throw new Error('Missing Google API Key');
+    throw new Error('Missing Google API Key')
   }
 
   const headers = {
@@ -145,7 +145,7 @@ async function searchGooglePlacesRepairShop({
     'X-Goog-Api-Key': GOOGLE_MAP_KEY,
     'X-Goog-FieldMask':
       'places.id,places.userRatingCount,places.displayName,places.location,places.photos,places.shortFormattedAddress,places.types,places.googleMapsUri,places.rating,nextPageToken',
-  };
+  }
 
   try {
     const response = await fetch(
@@ -172,18 +172,18 @@ async function searchGooglePlacesRepairShop({
           pageToken: pageToken,
         }),
       },
-    );
+    )
 
-    const responseJson = await response.json();
-    const responseTyped = responseJson.places as GooglePlaceDto[];
+    const responseJson = await response.json()
+    const responseTyped = responseJson.places as GooglePlaceDto[]
 
-    const hasNextPage = (responseTyped?.length || 0) >= PAGE_SIZE;
-    const nextPageToken = responseJson?.nextPageToken as string;
+    const hasNextPage = (responseTyped?.length || 0) >= PAGE_SIZE
+    const nextPageToken = responseJson?.nextPageToken as string
     // Filter based on types
 
     const filteredData = responseTyped.filter(
       place => place.userRatingCount > 3,
-    );
+    )
 
     return {
       places: filteredData.map(data => ({
@@ -194,22 +194,22 @@ async function searchGooglePlacesRepairShop({
         ),
       })),
       nextPageToken: hasNextPage ? nextPageToken : nextPageToken ?? null,
-    };
+    }
   } catch (error: any) {
-    throw new Error(error);
+    throw new Error(error)
   }
 }
 
-type RQPageParam = string | null;
+type RQPageParam = string | null
 
 export function useListGooglePlacesQuery({
   textQuery,
   location,
 }: {
-  textQuery: string;
-  location: Coords | null;
+  textQuery: string
+  location: Coords | null
 }) {
-  const lastPageCountRef = useRef(0);
+  const lastPageCountRef = useRef(0)
   const query = useInfiniteQuery({
     queryKey: ['places-list', textQuery, location],
     queryFn: async ({pageParam}) => {
@@ -217,36 +217,36 @@ export function useListGooglePlacesQuery({
         textQuery,
         location,
         pageToken: pageParam,
-      });
-      return data;
+      })
+      return data
     },
     initialPageParam: null as RQPageParam,
     getNextPageParam: lastPage => lastPage.nextPageToken,
-  });
+  })
 
   useEffect(() => {
-    const {isFetching, hasNextPage, data} = query;
+    const {isFetching, hasNextPage, data} = query
     if (isFetching || !hasNextPage) {
-      return;
+      return
     }
     // avoid double fires of fetchNextPage()
     if (
       lastPageCountRef.current !== 0 &&
       lastPageCountRef.current === data?.pages?.length
     ) {
-      return;
+      return
     }
 
     // fetch next page if we haven't gotten a full page of content
-    let count = 0;
+    let count = 0
     for (const page of data?.pages || []) {
-      count += page.places.length;
+      count += page.places.length
     }
     if (count < PAGE_SIZE && (data?.pages.length || 0) < 6) {
-      query.fetchNextPage();
-      lastPageCountRef.current = data?.pages?.length || 0;
+      query.fetchNextPage()
+      lastPageCountRef.current = data?.pages?.length || 0
     }
-  }, [query]);
+  }, [query])
 
-  return query;
+  return query
 }

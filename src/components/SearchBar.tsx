@@ -1,11 +1,11 @@
 import React from 'react'
-import { Text } from '#/components/Typography'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { useTheme, atoms as a } from '#/theme'
-import { SearchIcon } from 'lucide-react-native'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from '#/lib/routes/types'
-import { colors } from '#/lib/styles'
+import {Text} from '#/components/Typography'
+import {View, StyleSheet, TouchableOpacity} from 'react-native'
+import {useTheme, atoms as a} from '#/theme'
+import {SearchIcon} from 'lucide-react-native'
+import {useNavigation} from '@react-navigation/native'
+import {NavigationProp} from '#/lib/routes/types'
+import {colors} from '#/lib/styles'
 export function SearchBar({
   disabled,
   onPress,
@@ -17,8 +17,6 @@ export function SearchBar({
   title: string
   searchColor?: string
 }) {
-  const t = useTheme()
-  const navigation = useNavigation<NavigationProp>()
   return (
     <View
       style={[

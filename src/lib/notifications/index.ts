@@ -1,7 +1,9 @@
-import messaging from '@react-native-firebase/messaging';
-import notifee, {EventType} from '@notifee/react-native';
-import {PermissionsAndroid, Platform} from 'react-native';
-import {PERMISSIONS, request} from 'react-native-permissions';
+import messaging, {
+  FirebaseMessagingTypes,
+} from '@react-native-firebase/messaging'
+import notifee, {EventType} from '@notifee/react-native'
+import {PermissionsAndroid, Platform} from 'react-native'
+import {PERMISSIONS, request} from 'react-native-permissions'
 import {
   getApiLevel,
   getBrand,
@@ -11,47 +13,48 @@ import {
   getSystemName,
   getUniqueId,
   isEmulator,
-} from 'react-native-device-info';
-import {supabase} from '../supabase';
-import {Session} from '@supabase/supabase-js';
-import Notifee from '@notifee/react-native';
-import {devicePlatform} from '#/platform/detection';
-import {logger} from '#/logger';
+} from 'react-native-device-info'
+import {supabase} from '../supabase'
+import {Session} from '@supabase/supabase-js'
+import Notifee from '@notifee/react-native'
+import {devicePlatform} from '#/platform/detection'
+import {logger} from '#/logger'
+import {ANDROID_DEFAULT_CHANNEL_ID} from './constants'
 
 const isSimulator = async () => {
-  const isDevice = await isEmulator();
+  const isDevice = await isEmulator()
 
   return (
     Platform.OS === 'ios' && isDevice === true // iOS simulator check
-  );
-};
+  )
+}
 
 export async function checkPermission() {
-  const permission = await messaging().hasPermission();
+  const permission = await messaging().hasPermission()
 
-  return permission;
+  return permission
 }
 
 export async function requestPermission() {
-  const apiLevel = await getApiLevel();
-  const fcmToken = await messaging().getToken();
-  const deviceId = await getUniqueId();
-  const manufacturer = await getManufacturer();
-  const devicePlatform = getSystemName();
-  const model = getModel();
+  const apiLevel = await getApiLevel()
+  const fcmToken = await messaging().getToken()
+  const deviceId = await getUniqueId()
+  const manufacturer = await getManufacturer()
+  const devicePlatform = getSystemName()
+  const model = getModel()
 
-  const deviceName = `${manufacturer} ${model}`;
+  const deviceName = `${manufacturer} ${model}`
 
-  const brandName = getBrand();
-  const buildNumber = getBuildNumber();
+  const brandName = getBrand()
+  const buildNumber = getBuildNumber()
 
-  const isAndroidAPILevelGreater32 = apiLevel > 32 && Platform.OS === 'android';
+  const isAndroidAPILevelGreater32 = apiLevel > 32 && Platform.OS === 'android'
   if (isAndroidAPILevelGreater32) {
     await PermissionsAndroid.request(
       PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-    );
+    )
   }
-  await messaging().requestPermission();
+  await messaging().requestPermission()
 
   const pushData = {
     subscription_type: 'fcm',
@@ -64,19 +67,19 @@ export async function requestPermission() {
       push_token: fcmToken,
       device_id: deviceId,
     },
-  };
+  }
 }
 
 //TODO: Optimize Update on User
 export async function getFCMToken(userId: string | null) {
-  let token = null;
+  let token = null
 
-  await checkApplicationNotificationPermission();
-  await registerAppWithFCM();
+  await checkApplicationNotificationPermission()
+  await registerAppWithFCM()
 
-  if (!userId) return;
-  token = await messaging().getToken();
-  logger.debug('FCM TOKEN', {token});
+  if (!userId) return
+  token = await messaging().getToken()
+  logger.debug('FCM TOKEN', {token})
   try {
     await supabase.from('notification_push_token').upsert(
       {
@@ -86,9 +89,9 @@ export async function getFCMToken(userId: string | null) {
         app_id: 'www.kumpooni.com',
       },
       {ignoreDuplicates: true},
-    );
+    )
   } catch (error) {
-    console.error('Failed to saved fcm token');
+    console.error('Failed to saved fcm token')
   }
 }
 
@@ -97,30 +100,30 @@ export async function registerAppWithFCM() {
     await messaging()
       .registerDeviceForRemoteMessages()
       .then(status => {
-        console.log('registerDeviceForRemoteMessages status', status);
+        console.log('registerDeviceForRemoteMessages status', status)
       })
       .catch(error => {
-        console.log('registerDeviceForRemoteMessages error ', error);
-      });
+        console.log('registerDeviceForRemoteMessages error ', error)
+      })
   }
 }
 
 export async function checkApplicationNotificationPermission() {
-  const authStatus = await messaging().requestPermission();
+  const authStatus = await messaging().requestPermission()
   const enabled =
     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    authStatus === messaging.AuthorizationStatus.PROVISIONAL
 
   if (enabled) {
-    console.log('Authorization status:', authStatus);
+    console.log('Authorization status:', authStatus)
   }
   request(PERMISSIONS.ANDROID.POST_NOTIFICATIONS)
     .then(result => {
-      console.log('POST_NOTIFICATIONS status:', result);
+      console.log('POST_NOTIFICATIONS status:', result)
     })
     .catch(error => {
-      console.log('POST_NOTIFICATIONS error ', error);
-    });
+      console.log('POST_NOTIFICATIONS error ', error)
+    })
 }
 
 export function registerTokenChangeHandler(session: Session) {
@@ -134,36 +137,34 @@ export function registerTokenChangeHandler(session: Session) {
           app_id: 'www.kumpooni.com',
         },
         {ignoreDuplicates: true},
-      );
+      )
     } catch (error) {
-      console.error('Failed to saved fcm token');
+      console.error('Failed to saved fcm token')
     }
-  });
+  })
 
   return () => {
-    unsubscribe();
-  };
+    unsubscribe()
+  }
 }
 
-export async function onDisplayNotification(notification: any) {
+export async function onDisplayNotification(
+  payload: FirebaseMessagingTypes.RemoteMessage,
+) {
   // Request permissions (required for iOS)
-  await notifee.requestPermission();
-
-  const channelId = await Notifee.createChannel({
-    id: 'my-channel',
-    name: 'My Channel',
-  });
+  await notifee.requestPermission()
 
   await Notifee.displayNotification({
-    title: notification.title ?? '',
-    body: notification.body ?? '',
+    title: payload.notification?.title ?? '',
+    body: payload.notification?.body ?? '',
     android: {
-      channelId,
+      channelId: ANDROID_DEFAULT_CHANNEL_ID,
       smallIcon: 'ic_launcher_round',
       largeIcon: 'ic_launcher_round',
       pressAction: {
         id: 'default',
       },
     },
-  });
+    data: payload.data,
+  })
 }

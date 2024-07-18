@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState} from 'react'
 import {
   View,
   StyleSheet,
@@ -10,35 +10,35 @@ import {
   ListRenderItem,
   Image,
   ActivityIndicator,
-} from 'react-native';
-import {Text} from '#/components/Typography';
+} from 'react-native'
+import {Text} from '#/components/Typography'
 import Animated, {
   FadeInRight,
   useAnimatedScrollHandler,
-} from 'react-native-reanimated';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useTheme, atoms as a} from '#/theme';
-import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types';
-import {useNavigation} from '@react-navigation/native';
-import {debounce} from '#/lib/debounce';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ChevronLeft, Search, Star, Store} from 'lucide-react-native';
-import {colors, spacing} from '#/utils/theme';
-import {SkeletonServices} from '#/components/skeleton/SkeletonServices';
-import {Separator} from '#/components/utils/Views';
-import {SearchNearbyStore, Service, Store as StoreType} from '#/types/automate';
+} from 'react-native-reanimated'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {useTheme, atoms as a} from '#/theme'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {useNavigation} from '@react-navigation/native'
+import {debounce} from '#/lib/debounce'
+import {SafeAreaView} from 'react-native-safe-area-context'
+import {ChevronLeft, Search, Star, Store} from 'lucide-react-native'
+import {colors, spacing} from '#/utils/theme'
+import {SkeletonServices} from '#/components/skeleton/SkeletonServices'
+import {Separator} from '#/components/utils/Views'
+import {SearchNearbyStore, Service, Store as StoreType} from '#/types/automate'
 
-import {useSearchStoresQuery} from '#/state/queries/stores';
-import {useLocationStore} from '#/stores/location';
-import {color} from '#/theme/tokens';
-import {StoreRating} from '#/components/store/StoreRating';
+import {useSearchStoresQuery} from '#/state/queries/stores'
+import {useLocationStore} from '#/stores/location'
+import {color} from '#/theme/tokens'
+import {StoreRating} from '#/components/store/StoreRating'
 
-type Props = NativeStackScreenProps<CommonNavigatorParams, 'SearchStores'>;
+type Props = NativeStackScreenProps<CommonNavigatorParams, 'SearchStores'>
 export function SearchStoresScreen(props: Props) {
-  const t = useTheme();
-  const navigation = useNavigation<NavigationProp>();
-  const [search, setSearch] = useState('');
-  const wrappedSetSearch = debounce(setSearch, 500);
+  const t = useTheme()
+  const navigation = useNavigation<NavigationProp>()
+  const [search, setSearch] = useState('')
+  const wrappedSetSearch = debounce(setSearch, 500)
   return (
     <SafeAreaView edges={['top']} style={{flex: 1, backgroundColor: '#fff'}}>
       <Animated.View entering={FadeInRight.duration(500)}>
@@ -67,18 +67,18 @@ export function SearchStoresScreen(props: Props) {
         onScroll={() => Keyboard.isVisible() && Keyboard.dismiss()}
       />
     </SafeAreaView>
-  );
+  )
 }
 type StoresFeedListProps = {
-  searchKeyword: string;
-  onScroll?: ReturnType<typeof useAnimatedScrollHandler>;
-};
+  searchKeyword: string
+  onScroll?: ReturnType<typeof useAnimatedScrollHandler>
+}
 
 export function StoresFeedList({searchKeyword, onScroll}: StoresFeedListProps) {
-  const navigation = useNavigation<NavigationProp>();
+  const navigation = useNavigation<NavigationProp>()
   const {location} = useLocationStore(state => ({
     location: state.location,
-  }));
+  }))
   const {
     data: storesFeed,
     isLoading,
@@ -88,28 +88,28 @@ export function StoresFeedList({searchKeyword, onScroll}: StoresFeedListProps) {
     lng: location?.lng!,
     lat: location?.lat!,
     keyword: searchKeyword,
-  });
+  })
   const onStorePress = useCallback(
     (id: string) => () => {
-      navigation.navigate('Store', {storeId: id});
+      navigation.navigate('Store', {storeId: id})
     },
     [navigation],
-  );
+  )
 
   const renderServiceItem: ListRenderItem<SearchNearbyStore> = useCallback(
     ({item}) => {
-      return <StoresListItem store={item} onPress={onStorePress(item.id)} />;
+      return <StoresListItem store={item} onPress={onStorePress(item.id)} />
     },
     [],
-  );
+  )
 
   if (isLoading) {
     return (
       <ActivityIndicator style={[a.flex_1, a.justify_center, a.align_center]} />
-    );
+    )
   }
   if (!storesFeed || isError) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator />
   }
   return (
     <FlatList
@@ -134,18 +134,18 @@ export function StoresFeedList({searchKeyword, onScroll}: StoresFeedListProps) {
         ) : null
       }
     />
-  );
+  )
 }
 
 export function StoresListItem({
   store,
   onPress,
 }: {
-  store: SearchNearbyStore;
-  onPress: () => void;
+  store: SearchNearbyStore
+  onPress: () => void
 }) {
-  const kmDistance = 5000 / 1000;
-  const roundedKm = Math.round(kmDistance * 10) / 10;
+  const kmDistance = 5000 / 1000
+  const roundedKm = Math.round(kmDistance * 10) / 10
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -228,7 +228,7 @@ export function StoresListItem({
         </View>
       </View>
     </TouchableOpacity>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -253,4 +253,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: spacing.extraSmall - 2,
   },
-});
+})

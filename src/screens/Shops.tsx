@@ -1,43 +1,44 @@
-import {SearchBar} from '#/components/SearchBar';
-import React, {useCallback} from 'react';
-import {View, Image, FlatList, ListRenderItemInfo} from 'react-native';
+import {SearchBar} from '#/components/SearchBar'
+import React, {useCallback} from 'react'
+import {View, Image, FlatList, ListRenderItemInfo} from 'react-native'
 
-import {ChevronDown, Pin, Plus, PlusCircle, Star} from 'lucide-react-native';
-import {Text} from '#/components/Typography';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '#/lib/routes/types';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ChevronDown, Pin, Plus, PlusCircle, Star} from 'lucide-react-native'
+import {Text} from '#/components/Typography'
+import {useNavigation} from '@react-navigation/native'
+import {NavigationProp} from '#/lib/routes/types'
+import {TouchableOpacity} from 'react-native-gesture-handler'
 
-import {useLocationStore} from '#/stores/location';
-import {useSearchStoresQuery} from '#/state/queries/stores';
-import {SearchNearbyStore, Store} from '#/types/automate';
-import {logger} from '#/logger';
-import {StoreRating} from '#/components/store/StoreRating';
-import {getRoundedKm} from '#/lib/utils';
-import {atoms as a, useTheme} from '#/theme';
-import {color} from '#/theme/tokens';
-import {StarRating} from '#/components/store/StarRating';
-import {Ratings} from '#/components/store/Ratings';
+import {useLocationStore} from '#/stores/location'
+
+import {SearchNearbyStore, Store} from '#/types/automate'
+import {logger} from '#/logger'
+import {StoreRating} from '#/components/store/StoreRating'
+import {getRoundedKm} from '#/lib/utils'
+import {atoms as a, useTheme} from '#/theme'
+import {color} from '#/theme/tokens'
+import {StarRating} from '#/components/store/StarRating'
+import {Ratings} from '#/components/store/Ratings'
+import {useSearchStoresQuery} from '#/state/queries/stores'
 
 export function ShopsScreen() {
-  const t = useTheme();
-  const navigation = useNavigation<NavigationProp>();
+  const t = useTheme()
+  const navigation = useNavigation<NavigationProp>()
   const onPressSearch = () => {
-    navigation.navigate('SearchStores');
-  };
-  const {location} = useLocationStore(state => ({location: state.location}));
-  const {address} = useLocationStore();
+    navigation.navigate('SearchStores')
+  }
+  const {location} = useLocationStore(state => ({location: state.location}))
+  const {address} = useLocationStore()
   const onPressLocation = () => {
-    navigation.navigate('Location');
-  };
+    navigation.navigate('Location')
+  }
 
   const {data, isLoading, isError} = useSearchStoresQuery({
     lat: location?.lat!,
     lng: location?.lng!,
     keyword: '',
-  });
+  })
 
-  console.log('useSearchStoresQuery', data);
+  console.log('useSearchStoresQuery', data)
   const onPressStore =
     ({id, order_total, store_rating, review_count}: SearchNearbyStore) =>
     () => {
@@ -46,14 +47,14 @@ export function ShopsScreen() {
         order_total,
         store_rating,
         review_count,
-      });
-    };
+      })
+    }
   const renderItem = useCallback(
     ({item, index}: ListRenderItemInfo<SearchNearbyStore>) => (
       <StoreCard key={item.id} store={item} onPress={onPressStore(item)} />
     ),
     [],
-  );
+  )
   return (
     <View style={[t.atoms.bg, a.flex_1]}>
       <View style={[a.mt_sm, a.flex_row, a.align_center, a.gap_3xs, a.mx_2xs]}>
@@ -77,15 +78,15 @@ export function ShopsScreen() {
       </View>
       <FlatList data={data} renderItem={renderItem} />
     </View>
-  );
+  )
 }
 
 function StoreCard({
   store,
   onPress,
 }: {
-  store: SearchNearbyStore;
-  onPress: () => void;
+  store: SearchNearbyStore
+  onPress: () => void
 }) {
   return (
     <TouchableOpacity
@@ -139,5 +140,5 @@ function StoreCard({
         </View>
       </View>
     </TouchableOpacity>
-  );
+  )
 }

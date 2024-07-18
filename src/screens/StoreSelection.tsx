@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react'
 import {
   View,
   StyleSheet,
@@ -6,54 +6,55 @@ import {
   ListRenderItemInfo,
   TouchableOpacity,
   FlatList,
-} from 'react-native';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+} from 'react-native'
+import {useIsFocused, useNavigation} from '@react-navigation/native'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
 
-import {Text} from '#/components/Typography';
-import {useTheme, atoms as a} from '#/theme';
-import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types';
-import {useLocationStore} from '#/stores/location';
+import {Text} from '#/components/Typography'
+import {useTheme, atoms as a} from '#/theme'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {useLocationStore} from '#/stores/location'
 
-import {GooglePlaceDto, NearbyStoresServices} from '#/types/automate';
-import {EmptyStore} from '#/components/store/EmptyStore';
-import {StoreCard} from '#/components/store/StoreCard';
+import {GooglePlaceDto, NearbyStoresServices} from '#/types/automate'
+import {EmptyStore} from '#/components/store/EmptyStore'
+import {StoreCard} from '#/components/store/StoreCard'
 
-import {CartItems, useShopCartStore} from '#/stores/shop-cart';
-import {useCartStore} from '#/stores/cart';
-import {color} from '../theme/tokens';
-import {SortShop, sortColumns} from '../lib/constants';
-import {PlacesItem} from '#/components/store/PlacesItem';
-import {ListFooter} from '#/components/List';
-import {cleanError} from '#/lib/strings/errors';
-import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender';
+import {CartItems, useShopCartStore} from '#/stores/shop-cart'
+import {useCartStore} from '#/stores/cart'
+import {color} from '../theme/tokens'
+import {SortShop, sortColumns} from '../lib/constants'
+import {PlacesItem} from '#/components/store/PlacesItem'
+import {ListFooter} from '#/components/List'
+import {cleanError} from '#/lib/strings/errors'
+import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender'
+
+import {logger} from '#/logger'
 import {
   useGetNearbyStoreQuery,
   useListGooglePlacesQuery,
-} from '#/state/queries/stores';
-import {logger} from '#/logger';
+} from '#/state/queries/stores'
 
-type Props = NativeStackScreenProps<CommonNavigatorParams, 'StoreSelection'>;
+type Props = NativeStackScreenProps<CommonNavigatorParams, 'StoreSelection'>
 export function StoreSelectionScreen(props: Props) {
-  const t = useTheme();
+  const t = useTheme()
 
-  const navigation = useNavigation<NavigationProp>();
-  const {location} = useLocationStore(state => ({location: state.location}));
+  const navigation = useNavigation<NavigationProp>()
+  const {location} = useLocationStore(state => ({location: state.location}))
   const {serviceIds, cartItems} = useCartStore(state => ({
     serviceIds: state.serviceIds.map(serviceId => Number(serviceId)),
     cartItems: state.items,
-  }));
+  }))
 
-  const [sort, setSort] = useState(sortColumns[0].key);
+  const [sort, setSort] = useState(sortColumns[0].key)
   const {setShopCartItems} = useShopCartStore(state => ({
     setShopCartItems: state.addBulkItems,
-  }));
-  const initialNumToRender = useInitialNumToRender();
+  }))
+  const initialNumToRender = useInitialNumToRender()
 
   const {data: stores, isLoading: isLoadingStores} = useGetNearbyStoreQuery(
     location,
     serviceIds,
-  );
+  )
 
   const {
     data,
@@ -65,49 +66,49 @@ export function StoreSelectionScreen(props: Props) {
   } = useListGooglePlacesQuery({
     textQuery: 'auto repair shop, car repair and maintenance service',
     location,
-  });
+  })
 
   const places = useMemo(() => {
     if (data?.pages) {
-      return data.pages.flatMap(page => page.places);
+      return data.pages.flatMap(page => page.places)
     }
-    return [];
-  }, [data]);
+    return []
+  }, [data])
 
   const onPressSort = (newSort: SortShop) => {
-    setSort(newSort);
-  };
+    setSort(newSort)
+  }
   const sortedStores = useMemo(() => {
-    if (!stores) return [];
+    if (!stores) return []
     if (sort === 'rating') {
-      return [...stores.sort((a, b) => b.rating - a.rating), ...places];
+      return [...stores.sort((a, b) => b.rating - a.rating), ...places]
     }
     if (sort === 'distance') {
       return [
         ...stores.sort((a, b) => a.dist_meters - b.dist_meters),
         ...places.sort((a, b) => a.dist_meters - b.dist_meters),
-      ];
+      ]
     }
     if (sort === 'price') {
-      return [...stores.sort((a, b) => a.total - b.total), ...places];
+      return [...stores.sort((a, b) => a.total - b.total), ...places]
     }
-  }, [stores, places, sort]);
+  }, [stores, places, sort])
 
-  const isScreenFocused = useIsFocused();
+  const isScreenFocused = useIsFocused()
 
   const onPressBookAppointment = useCallback(
     (store: NearbyStoresServices) => {
       return (services: CartItems[]) => {
-        setShopCartItems(services);
+        setShopCartItems(services)
         setTimeout(() => {
           navigation.navigate('Checkout', {
             store: {id: store.id, name: store.name},
-          });
-        }, 100);
-      };
+          })
+        }, 100)
+      }
     },
     [setShopCartItems, navigation],
-  );
+  )
 
   const renderItem = useCallback(
     ({item}: ListRenderItemInfo<NearbyStoresServices>) => (
@@ -118,15 +119,15 @@ export function StoreSelectionScreen(props: Props) {
       />
     ),
     [onPressBookAppointment],
-  );
+  )
 
   useEffect(() => {
     if (isScreenFocused && !location) {
       setTimeout(() => {
-        navigation.push('Location');
-      }, 100);
+        navigation.push('Location')
+      }, 100)
     }
-  }, [location, isScreenFocused]);
+  }, [location, isScreenFocused])
 
   if (isLoadingStores)
     return (
@@ -134,7 +135,7 @@ export function StoreSelectionScreen(props: Props) {
         size={'large'}
         style={[a.flex_1, a.justify_center, a.align_center]}
       />
-    );
+    )
 
   return (
     <View style={[t.atoms.bg_contrast_25, a.flex_1]}>
@@ -144,7 +145,7 @@ export function StoreSelectionScreen(props: Props) {
         data={sortedStores}
         renderItem={({item}) => {
           if ('googleMapsUri' in item) {
-            return <PlacesItem place={item} />;
+            return <PlacesItem place={item} />
           } else {
             return (
               <StoreCard
@@ -152,7 +153,7 @@ export function StoreSelectionScreen(props: Props) {
                 store={item}
                 onPressBookAppointment={onPressBookAppointment(item)}
               />
-            );
+            )
           }
         }}
         // onEndReached={onEndReached}
@@ -176,17 +177,17 @@ export function StoreSelectionScreen(props: Props) {
         ListEmptyComponent={<EmptyStore />}
       />
     </View>
-  );
+  )
 }
 
 function SortColumn({
   sort,
   onPress,
 }: {
-  sort: string;
-  onPress: (sort: SortShop) => void;
+  sort: string
+  onPress: (sort: SortShop) => void
 }) {
-  const t = useTheme();
+  const t = useTheme()
   return (
     <View
       style={[
@@ -199,7 +200,7 @@ function SortColumn({
         {paddingVertical: 10},
       ]}>
       {sortColumns.map(sortColumn => {
-        const isActive = sortColumn.key === sort;
+        const isActive = sortColumn.key === sort
         return (
           <TouchableOpacity
             style={styles.btn}
@@ -213,10 +214,10 @@ function SortColumn({
               {sortColumn.label}
             </Text>
           </TouchableOpacity>
-        );
+        )
       })}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -224,4 +225,4 @@ const styles = StyleSheet.create({
   rating: {
     fontSize: 14,
   },
-});
+})

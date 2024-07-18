@@ -38,13 +38,9 @@ export function CartScreen() {
   const {carts} = useCartStore(state => ({
     carts: state.items,
   }))
-  const {session} = useSession()
-  const {
-    data: vehicles,
-    isLoading,
-    isRefetching,
-  } = useVehiclesQuery(session?.user.id!)
   const setSelectedVehicle = useVehicleStore(state => state.setSelectedVehicle)
+  const {session} = useSession()
+  const {data: vehicles} = useVehiclesQuery(session?.user.id!)
   const {setServiceIds} = useCartStore(state => ({
     setServiceIds: state.setServiceIds,
   }))
@@ -191,17 +187,6 @@ export function MaintenanceService({
     setServiceIds: state.setServiceIds,
   }))
 
-  // const shop = useShopStore(state => state.shop)
-
-  // const totalPrice = maintenance.reduce((acc, cart) => {
-  //   const exist = selectedIds.includes(String(cart.id))
-  //   if (exist) {
-  //     return acc + cart.price * cart.quantity
-  //   } else {
-  //     return acc
-  //   }
-  // }, 0)
-
   const onPressEditing = useCallback(() => {
     if (isEditing) {
       setAll(false)
@@ -241,7 +226,7 @@ export function MaintenanceService({
             a.text_lg,
             a.font_bold,
           ]}>{`Your cart for ${name} is empty`}</Text>
-        {/* <Text style={[pal.textLight]}>Add services to get started</Text> */}
+
         <Pressable
           style={{
             backgroundColor: color.gray_100,

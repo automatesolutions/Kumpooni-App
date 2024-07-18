@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, {useCallback, useState} from 'react'
 import {
   View,
   StyleSheet,
@@ -10,25 +10,25 @@ import {
   ListRenderItem,
   Image,
 } from 'react-native'
-import { Text } from '#/components/Typography'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useTheme, atoms as a } from '#/theme'
-import { CommonNavigatorParams, NavigationProp } from '#/lib/routes/types'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import {Text} from '#/components/Typography'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {useTheme, atoms as a} from '#/theme'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {SafeAreaView} from 'react-native-safe-area-context'
 import Animated, {
   FadeInRight,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated'
-import { ChevronLeft, Search } from 'lucide-react-native'
-import { colors, spacing } from '#/utils/theme'
-import { useNavigation } from '@react-navigation/native'
-import { Separator } from '#/components/utils/Views'
-import { Service, Services, ServicesWithCategory } from '#/types/automate'
-import { useServicesFeed } from '#/state/queries/services'
-import { SkeletonServices } from '#/components/skeleton/SkeletonServices'
-import { debounce } from '#/lib/debounce'
-import { currency } from '#/lib/strings/currency'
-import { logger } from '#/logger'
+import {ChevronLeft, Search} from 'lucide-react-native'
+import {colors, spacing} from '#/utils/theme'
+import {useNavigation} from '@react-navigation/native'
+import {Separator} from '#/components/utils/Views'
+import {Service} from '#/types/automate'
+import {useServicesFeed} from '#/state/queries/services'
+import {SkeletonServices} from '#/components/skeleton/SkeletonServices'
+import {debounce} from '#/lib/debounce'
+import {currency} from '#/lib/strings/currency'
+import {logger} from '#/logger'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Search'>
 export function SearchScreen({}: Props) {
@@ -37,7 +37,7 @@ export function SearchScreen({}: Props) {
   const [search, setSearch] = useState('')
   const wrappedSetSearch = debounce(setSearch, 500)
   return (
-    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: '#fff' }}>
+    <SafeAreaView edges={['top']} style={{flex: 1, backgroundColor: '#fff'}}>
       <Animated.View entering={FadeInRight.duration(500)}>
         <View style={styles.container}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -76,9 +76,9 @@ export function ServicesFeedList({
   searchKeyword,
   onScroll,
 }: ServicesFeedListProps) {
-  const { data: servicesFeed, isFetching } = useServicesFeed(searchKeyword)
-  logger.debug('services', { servicesFeed })
-  const renderServiceItem: ListRenderItem<Service> = useCallback(({ item }) => {
+  const {data: servicesFeed, isFetching} = useServicesFeed(searchKeyword)
+  logger.debug('services', {servicesFeed})
+  const renderServiceItem: ListRenderItem<Service> = useCallback(({item}) => {
     return <ServicesListItem service={item} />
   }, [])
   return (
@@ -92,14 +92,14 @@ export function ServicesFeedList({
       renderItem={renderServiceItem}
       keyExtractor={(item: Service) => item?.id?.toString()}
       ItemSeparatorComponent={() => (
-        <Separator style={{ marginVertical: 5, marginHorizontal: 8 }} />
+        <Separator style={{marginVertical: 5, marginHorizontal: 8}} />
       )}
       scrollEventThrottle={16}
       ListEmptyComponent={() =>
         isFetching ? (
           <>
-            <SkeletonServices style={{ marginHorizontal: spacing.medium }} />
-            <SkeletonServices style={{ marginHorizontal: spacing.medium }} />
+            <SkeletonServices style={{marginHorizontal: spacing.medium}} />
+            <SkeletonServices style={{marginHorizontal: spacing.medium}} />
           </>
         ) : null
       }
@@ -107,12 +107,12 @@ export function ServicesFeedList({
   )
 }
 
-export function ServicesListItem({ service }: { service: Service }) {
+export function ServicesListItem({service}: {service: Service}) {
   const navigation = useNavigation<NavigationProp>()
 
   return (
     <Pressable
-      style={({ pressed }) => [
+      style={({pressed}) => [
         {
           flexDirection: 'row',
           gap: 10,
@@ -130,13 +130,13 @@ export function ServicesListItem({ service }: { service: Service }) {
         })
       }>
       <Image
-        source={{ uri: service?.img_url! }}
+        source={{uri: service?.img_url!}}
         resizeMode="contain"
-        style={{ height: 70, width: 70, borderRadius: 5 }}
+        style={{height: 70, width: 70, borderRadius: 5}}
       />
-      <View style={{ flex: 1, paddingVertical: spacing.tiny }}>
+      <View style={{flex: 1, paddingVertical: spacing.tiny}}>
         <Text style={[a.text_md, a.font_bold]}>{service?.name}</Text>
-        <Text style={[a.text_sm, { color: '#b61616' }]}>
+        <Text style={[a.text_sm, {color: '#b61616'}]}>
           {service?.short_description}
         </Text>
         {/* <Text

@@ -1,0 +1,5065 @@
+{
+  "places": [
+    {
+      "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds",
+      "id": "ChIJUeUL1LPRrjMRNe5mzakD5ds",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 435 6304",
+      "internationalPhoneNumber": "+63 34 435 6304",
+      "formattedAddress": "MW9X+FJW, Rizal St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "MW9X+FJW",
+          "shortText": "MW9X+FJW",
+          "types": [
+            "plus_code"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Rizal Street",
+          "shortText": "Rizal St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "location": {
+        "latitude": 10.6687479,
+        "longitude": 122.949071
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.667447469708495,
+          "longitude": 122.94774416970849
+        },
+        "high": {
+          "latitude": 10.6701454302915,
+          "longitude": 122.95044213029148
+        }
+      },
+      "rating": 5,
+      "googleMapsUri": "https://maps.google.com/?cid=15845074891803389493",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 7,
+              "minute": 45
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:45 AM – 5:00 PM",
+          "Tuesday: 7:45 AM – 5:00 PM",
+          "Wednesday: 7:45 AM – 5:00 PM",
+          "Thursday: 7:45 AM – 5:00 PM",
+          "Friday: 7:45 AM – 5:00 PM",
+          "Saturday: 7:45 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 3:00 PM"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "MW9X+FJW, \u003cspan class=\"street-address\"\u003eRizal St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 8,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "DBO Auto Parts",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 21
+              }
+            },
+            "close": {
+              "day": 0,
+              "hour": 15,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 21
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 7,
+              "minute": 45,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 7,
+              "minute": 45,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 7,
+              "minute": 45,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 7,
+              "minute": 45,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 7,
+              "minute": 45,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 7,
+              "minute": 45,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 7:45 AM – 5:00 PM",
+          "Tuesday: 7:45 AM – 5:00 PM",
+          "Wednesday: 7:45 AM – 5:00 PM",
+          "Thursday: 7:45 AM – 5:00 PM",
+          "Friday: 7:45 AM – 5:00 PM",
+          "Saturday: 7:45 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 3:00 PM"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "MW9X+FJW, Rizal St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChdDSUhNMG9nS0VJQ0FnSUQ1b0pQbnJnRRAB",
+          "relativePublishTimeDescription": "9 months ago",
+          "rating": 5,
+          "text": {
+            "text": "Great and fast service! They get the Job done!",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Great and fast service! They get the Job done!",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Miguel Diaz",
+            "uri": "https://www.google.com/maps/contrib/118272667358716235349/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLcPcOC3lJbhEdhrHiMd2HN1MntaGG7sstGLJrVMbb6qrKJsw=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2023-10-18T13:40:55Z"
+        },
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChZDSUhNMG9nS0VJQ0FnSURnZzZiTWZ3EAE",
+          "relativePublishTimeDescription": "6 years ago",
+          "rating": 5,
+          "text": {
+            "text": "Thank you for the discount on a high quality product! 👍",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Thank you for the discount on a high quality product! 👍",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Juco Yee",
+            "uri": "https://www.google.com/maps/contrib/103776439793861454950/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVuPLG34LjUjv5Zz5ICc_K3oZc97_mYB6lU9dRAKdxuo6S55Wri=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2017-12-08T08:57:33Z"
+        },
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChZDSUhNMG9nS0VJQ0FnSURReDZfeVZREAE",
+          "relativePublishTimeDescription": "6 years ago",
+          "rating": 5,
+          "text": {
+            "text": "Affordable car parts",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Affordable car parts",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Jeffric Pisueña (JP)",
+            "uri": "https://www.google.com/maps/contrib/117339788427521224581/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWvxMFTe_fo6xWEgNlMFI6TT-7G5XncmnG853EVhCcSJMoohwaZqg=s128-c0x00000000-cc-rp-mo-ba3"
+          },
+          "publishTime": "2018-01-01T07:27:14Z"
+        },
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChZDSUhNMG9nS0VJQ0FnSUNKNjdXVWRBEAE",
+          "relativePublishTimeDescription": "a year ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Anthon io",
+            "uri": "https://www.google.com/maps/contrib/112402684181555617510/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocI9OBvEj9D5OabT0NvY-NcsVxO1EwgQujto07fEvPEhEXT1Uok=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2023-07-05T10:45:35Z"
+        },
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChZDSUhNMG9nS0VJQ0FnSUQyMmVPeklREAE",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Teresa Olpinda",
+            "uri": "https://www.google.com/maps/contrib/107749127438764152945/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVnvjOgeahw2F-9o5cx7i8pho2FQNJt7FrK1rA4h05zUdQi6RvM=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2022-05-19T07:44:36Z"
+        }
+      ],
+      "photos": [
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/photos/AUc7tXUVX6DwcUt5KQNlH9iSlPPuMjU-LF4_odnIm_mGraRvDLZemc484wS7EcmvY5fvpl2reA8prTuaXAGLt72vfTS-XglMd3PKSkY2rhuHFbnwA2fXJ9rp6yF6_FNmzo6FcsEf6DR2ZjbAHX3ajyc8ZCaUY570CNLtw1lX",
+          "widthPx": 3456,
+          "heightPx": 4608,
+          "authorAttributions": [
+            {
+              "displayName": "JV Rivera",
+              "uri": "//maps.google.com/maps/contrib/108795248370842228081",
+              "photoUri": "//lh3.googleusercontent.com/a-/ALV-UjXtgMDcfcefWYv4xpllQUsAGh77Ox5eVgQxuajxoDMjjeFNn4uIdg=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/photos/AUc7tXVCKvWBFZ-WkbQZPhZqgSTFf7-Qxy92MpY_Muve3-O_dCXK-Rr2C39dbRhh1VD2u7puH2HJwPOM00obARF_K_RVOO52fNZG7KYGYqhRgaZbeL5A9WetEbBOfyn9ohtBrT9WQBELSKcLN_5b_-B4Z7di2d4xDRhx6t7Z",
+          "widthPx": 3456,
+          "heightPx": 4608,
+          "authorAttributions": [
+            {
+              "displayName": "JV Rivera",
+              "uri": "//maps.google.com/maps/contrib/108795248370842228081",
+              "photoUri": "//lh3.googleusercontent.com/a-/ALV-UjXtgMDcfcefWYv4xpllQUsAGh77Ox5eVgQxuajxoDMjjeFNn4uIdg=s100-p-k-no-mo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY",
+      "id": "ChIJjUcIz7PRrjMRQOTWS37KmhY",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 454 7416",
+      "internationalPhoneNumber": "+63 34 454 7416",
+      "formattedAddress": "MJN Building, Corner Rizal Lacson St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "MJN Building",
+          "shortText": "MJN Building",
+          "types": [
+            "point_of_interest",
+            "establishment"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Corner Rizal",
+          "shortText": "Corner Rizal",
+          "types": [
+            "street_number"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Lacson Street",
+          "shortText": "Lacson St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "plusCode": {
+        "globalCode": "7Q24MW9X+FW",
+        "compoundCode": "MW9X+FW Bacolod, Negros Occidental, Philippines"
+      },
+      "location": {
+        "latitude": 10.6687152,
+        "longitude": 122.94982820000001
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.667333319708499,
+          "longitude": 122.94855951970852
+        },
+        "high": {
+          "latitude": 10.670031280291504,
+          "longitude": 122.95125748029152
+        }
+      },
+      "rating": 4.3,
+      "googleMapsUri": "https://maps.google.com/?cid=1628836859034920000",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 15,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 3:00 PM"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "MJN Building, \u003cspan class=\"street-address\"\u003eCorner Rizal Lacson St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 39,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "DYPO AUTO SUPPLY CORPORATION",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 21
+              }
+            },
+            "close": {
+              "day": 0,
+              "hour": 15,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 21
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 3:00 PM"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "MJN Building, Corner Rizal Lacson St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChdDSUhNMG9nS0VJQ0FnSURVM0pQQ3p3RRAB",
+          "relativePublishTimeDescription": "4 years ago",
+          "rating": 1,
+          "text": {
+            "text": "I retract my previous rating, I thought they were straight in dealing with customers, I first called if a certain part was available, they said yes and the price was P3800 per piece. When I got there, the parts were not available daw, I tried to control my disappointment as I was about to schedule my car repair after I get the parts. Option was for them to order the parts for me that will take around 2 days, I said yes, they gave me the number of one of their salesman to text the parts that I wanted with the details of the car, I was surprised that when they texted back, the price already went up to P4800 per piece, at this point, I cancelled my supposed order, they can't argue that there was a price increase because I can get the same parts for the same price at another store.  I just went to them first as this was recommended to me by someone I know. Also, their salesman was a bit rude though not all of them naman, the one that I just talked to when I was there.",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "I retract my previous rating, I thought they were straight in dealing with customers, I first called if a certain part was available, they said yes and the price was P3800 per piece. When I got there, the parts were not available daw, I tried to control my disappointment as I was about to schedule my car repair after I get the parts. Option was for them to order the parts for me that will take around 2 days, I said yes, they gave me the number of one of their salesman to text the parts that I wanted with the details of the car, I was surprised that when they texted back, the price already went up to P4800 per piece, at this point, I cancelled my supposed order, they can't argue that there was a price increase because I can get the same parts for the same price at another store.  I just went to them first as this was recommended to me by someone I know. Also, their salesman was a bit rude though not all of them naman, the one that I just talked to when I was there.",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Nick Geonanga",
+            "uri": "https://www.google.com/maps/contrib/104029560184882907255/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLm9kS5GUa2GMfEvQzCyV6PvQDxgYZlvuIU11Gh78NVuzyquqLk=s128-c0x00000000-cc-rp-mo-ba5"
+          },
+          "publishTime": "2019-08-19T01:27:18Z"
+        },
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSURNZ2NyWGNBEAE",
+          "relativePublishTimeDescription": "4 years ago",
+          "rating": 4,
+          "text": {
+            "text": "Good store with fair prices, they also usually have hard to find parts especially for nissan",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Good store with fair prices, they also usually have hard to find parts especially for nissan",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Philip Bahmannejad",
+            "uri": "https://www.google.com/maps/contrib/109620690256370289904/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjW0UhIRsULC_ckrgKKYLoLbF0CVYf9qZ4X653RVTb8_FYhMRMPq=s128-c0x00000000-cc-rp-mo-ba3"
+          },
+          "publishTime": "2020-01-01T07:46:55Z"
+        },
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSUNLck1pUlhBEAE",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 5,
+          "text": {
+            "text": "Another one of my go-to parts store for my car brand. Very responsive to inquiries and other concerns.",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Another one of my go-to parts store for my car brand. Very responsive to inquiries and other concerns.",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Richard Chiu",
+            "uri": "https://www.google.com/maps/contrib/116787539146132725146/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWWdYoeGC_bn_5p-sf6IbePN4sm3hXB__yf8BeKp7X5kt-r47KP9g=s128-c0x00000000-cc-rp-mo-ba4"
+          },
+          "publishTime": "2021-03-30T02:56:29Z"
+        },
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSURDa0tIMENnEAE",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 4,
+          "text": {
+            "text": "Can cater almost everything for your car parts needs",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Can cater almost everything for your car parts needs",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Flit Caldz",
+            "uri": "https://www.google.com/maps/contrib/108660166928704714203/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWDE4byLuVz7fYu_AUIsT-SGunDf7uY7iS1-L2DvhJPNMulSbo=s128-c0x00000000-cc-rp-mo-ba4"
+          },
+          "publishTime": "2020-09-11T11:32:23Z"
+        },
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSUNHNjlQUFF3EAE",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 2,
+          "text": {
+            "text": "Problem there is parking\nBz is busy area",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Problem there is parking\nBz is busy area",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Black Shadow",
+            "uri": "https://www.google.com/maps/contrib/106953186834059360419/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXV3fPCUhWa2hvbZJU0PcTsLnQa6L-2FLmtL5zpNyq5U42MfKA=s128-c0x00000000-cc-rp-mo-ba5"
+          },
+          "publishTime": "2021-11-09T23:50:45Z"
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJLUfgf7HRrjMREF1P8qQ3DyY",
+      "id": "ChIJLUfgf7HRrjMREF1P8qQ3DyY",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 434 5392",
+      "internationalPhoneNumber": "+63 34 434 5392",
+      "formattedAddress": "USGO Bldg Rizal Street, corner Lacson St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "corner",
+          "shortText": "corner",
+          "types": [
+            "street_number"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Lacson Street",
+          "shortText": "Lacson St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "plusCode": {
+        "globalCode": "7Q24MW9X+GQ",
+        "compoundCode": "MW9X+GQ Bacolod, Negros Occidental, Philippines"
+      },
+      "location": {
+        "latitude": 10.668873999999999,
+        "longitude": 122.949411
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.667458669708497,
+          "longitude": 122.94803171970852
+        },
+        "high": {
+          "latitude": 10.670156630291501,
+          "longitude": 122.9507296802915
+        }
+      },
+      "rating": 4.5,
+      "googleMapsUri": "https://maps.google.com/?cid=2742471879671373072",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 13,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 13,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 13,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 13,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 13,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 13,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Tuesday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Wednesday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Thursday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Friday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Saturday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "USGO Bldg Rizal Street, \u003cspan class=\"street-address\"\u003ecorner Lacson St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 6,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "Negros International Auto Parts",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 13,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 13,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 13,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 13,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 13,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 13,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Tuesday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Wednesday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Thursday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Friday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Saturday: 8:30 AM – 12:00 PM, 1:30 – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "USGO Bldg Rizal Street, corner Lacson St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJLUfgf7HRrjMREF1P8qQ3DyY/reviews/ChdDSUhNMG9nS0VJQ0FnSURwdzlUaW1nRRAB",
+          "relativePublishTimeDescription": "9 months ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Ricky Martin Rebamonte",
+            "uri": "https://www.google.com/maps/contrib/110356446553752530684/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVxLXcHVeZuRCflYDJF1oamsSyT6Us_dxKtGV3erxa7CmdVlNi0=s128-c0x00000000-cc-rp-mo-ba3"
+          },
+          "publishTime": "2023-10-11T06:16:23Z"
+        },
+        {
+          "name": "places/ChIJLUfgf7HRrjMREF1P8qQ3DyY/reviews/ChdDSUhNMG9nS0VJQ0FnSUNabjdEdnNnRRAB",
+          "relativePublishTimeDescription": "10 months ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Menchor Allen Mayang",
+            "uri": "https://www.google.com/maps/contrib/115470351818583280898/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVMIGf6yv9oYznPRlcWIPRJ1syBs9nuixT3QxpDfuV91t36DUDz=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2023-09-21T04:23:48Z"
+        },
+        {
+          "name": "places/ChIJLUfgf7HRrjMREF1P8qQ3DyY/reviews/ChdDSUhNMG9nS0VJQ0FnSUNaaTZIMzJBRRAB",
+          "relativePublishTimeDescription": "10 months ago",
+          "rating": 3,
+          "authorAttribution": {
+            "displayName": "Shonan Cuenca",
+            "uri": "https://www.google.com/maps/contrib/107435383232080844802/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLFPseDO2ofBk8aDXJNvMFhJEkwaBhpUaUYnBYTtlBQnCd1RA=s128-c0x00000000-cc-rp-mo-ba4"
+          },
+          "publishTime": "2023-09-18T03:08:59Z"
+        },
+        {
+          "name": "places/ChIJLUfgf7HRrjMREF1P8qQ3DyY/reviews/ChZDSUhNMG9nS0VJQ0FnSUNHc0pHcE9REAE",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "unstress coz hagard",
+            "uri": "https://www.google.com/maps/contrib/113339995894609736205/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXShrcPXX2zWJpkYGJLK5-rZfl1hvBRhUU-szXoOvDsmUwVCew=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2021-10-18T04:36:18Z"
+        },
+        {
+          "name": "places/ChIJLUfgf7HRrjMREF1P8qQ3DyY/reviews/ChdDSUhNMG9nS0VJQ0FnSUQ2MnZxMzVBRRAB",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 4,
+          "authorAttribution": {
+            "displayName": "Sherwin Gialolo",
+            "uri": "https://www.google.com/maps/contrib/116753965320417966161/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXSrzM061JDoTadubA_SXScLRy8CIkLC-CJowIqkhZPkHO3eXMR=s128-c0x00000000-cc-rp-mo-ba3"
+          },
+          "publishTime": "2021-09-27T05:39:45Z"
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJlcD08j7RrjMRW-r8F6Y3UEE",
+      "id": "ChIJlcD08j7RrjMRW-r8F6Y3UEE",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 432 0170",
+      "internationalPhoneNumber": "+63 34 432 0170",
+      "formattedAddress": "115 Lacson St, 24, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "115",
+          "shortText": "115",
+          "types": [
+            "street_number"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Lacson Street",
+          "shortText": "Lacson St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "24",
+          "shortText": "24",
+          "types": [
+            "sublocality_level_1",
+            "sublocality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "plusCode": {
+        "globalCode": "7Q24MW9X+4R",
+        "compoundCode": "MW9X+4R Bacolod, Negros Occidental, Philippines"
+      },
+      "location": {
+        "latitude": 10.6678708,
+        "longitude": 122.9495591
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.666504019708498,
+          "longitude": 122.94825581970849
+        },
+        "high": {
+          "latitude": 10.669201980291502,
+          "longitude": 122.95095378029147
+        }
+      },
+      "rating": 4.5,
+      "googleMapsUri": "https://maps.google.com/?cid=4706322797108718171",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 5:00 PM",
+          "Tuesday: 8:30 AM – 5:00 PM",
+          "Wednesday: 8:30 AM – 5:00 PM",
+          "Thursday: 8:30 AM – 5:00 PM",
+          "Friday: 8:30 AM – 5:00 PM",
+          "Saturday: 8:30 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "\u003cspan class=\"street-address\"\u003e115 Lacson St\u003c/span\u003e, \u003cspan class=\"extended-address\"\u003e24\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 2,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "Hong San Auto Supply",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:30 AM – 5:00 PM",
+          "Tuesday: 8:30 AM – 5:00 PM",
+          "Wednesday: 8:30 AM – 5:00 PM",
+          "Thursday: 8:30 AM – 5:00 PM",
+          "Friday: 8:30 AM – 5:00 PM",
+          "Saturday: 8:30 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "115 Lacson St, 24, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJlcD08j7RrjMRW-r8F6Y3UEE/reviews/ChZDSUhNMG9nS0VJQ0FnSURkNi1hSUVnEAE",
+          "relativePublishTimeDescription": "4 months ago",
+          "rating": 4,
+          "authorAttribution": {
+            "displayName": "Rizza Lezama",
+            "uri": "https://www.google.com/maps/contrib/108320060097629633852/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLIs6S4UwIVqOgNfF8HUTF7ajWHDkia7Ul0EKv26q426sZJUw=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2024-02-27T11:01:55Z"
+        },
+        {
+          "name": "places/ChIJlcD08j7RrjMRW-r8F6Y3UEE/reviews/ChZDSUhNMG9nS0VJQ0FnSUNxdDh2YWZBEAE",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Jy Uy",
+            "uri": "https://www.google.com/maps/contrib/100208624811833247396/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLRZ90C-z789Pthe4zyHebBQzMFnf0F0_w10aYL0w9BtqYb8g=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2021-06-22T10:27:29Z"
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0",
+      "id": "ChIJPzgqVrHRrjMR_yi-tV5gbg0",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 434 1435",
+      "internationalPhoneNumber": "+63 34 434 1435",
+      "formattedAddress": "MW8X+RQ8, Lacson St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "MW8X+RQ8",
+          "shortText": "MW8X+RQ8",
+          "types": [
+            "plus_code"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Lacson Street",
+          "shortText": "Lacson St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "location": {
+        "latitude": 10.667047,
+        "longitude": 122.9494581
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.665718669708498,
+          "longitude": 122.94805521970852
+        },
+        "high": {
+          "latitude": 10.668416630291503,
+          "longitude": 122.95075318029151
+        }
+      },
+      "rating": 4.3,
+      "googleMapsUri": "https://maps.google.com/?cid=967816929823566079",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "MW8X+RQ8, \u003cspan class=\"street-address\"\u003eLacson St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 6,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "NSA PARTS CENTER",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "MW8X+RQ8, Lacson St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0/reviews/ChZDSUhNMG9nS0VJQ0FnSUN3OGVYaVpBEAE",
+          "relativePublishTimeDescription": "6 years ago",
+          "rating": 3,
+          "text": {
+            "text": "Accessible place where you can find auto parts you need",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Accessible place where you can find auto parts you need",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Melanie Castillo",
+            "uri": "https://www.google.com/maps/contrib/111974967097774433176/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXpqZdg06gBfBWI3YGPOilOqmV2gTcToZBs-PScOaI1eNOI62I=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2017-12-18T12:41:55Z"
+        },
+        {
+          "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0/reviews/ChdDSUhNMG9nS0VJQ0FnSURMczlMZzN3RRAB",
+          "relativePublishTimeDescription": "2 weeks ago",
+          "rating": 5,
+          "text": {
+            "text": "Nice",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Nice",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Apple Kiss",
+            "uri": "https://www.google.com/maps/contrib/103774753812855119317/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWMLN5UqrSRheGoetDkWxYHTEJxsiaOcLhZcfm5sgIT5MUCXKKOyQ=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2024-06-30T16:43:54Z"
+        },
+        {
+          "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0/reviews/ChdDSUhNMG9nS0VJQ0FnSUNVaEtpdzlBRRAB",
+          "relativePublishTimeDescription": "5 years ago",
+          "rating": 4,
+          "text": {
+            "text": "They got my cars parts",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "They got my cars parts",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Lawrence Montinola",
+            "uri": "https://www.google.com/maps/contrib/107953984662717781298/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjUsWvhXMdbIuaE-cLbJwJi04gCI-I7uK-5AzBv6U5727PmFdIDc=s128-c0x00000000-cc-rp-mo-ba4"
+          },
+          "publishTime": "2019-07-17T14:14:30Z"
+        },
+        {
+          "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0/reviews/ChZDSUhNMG9nS0VJQ0FnSURDNmFLR053EAE",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Philippe louie Espellogo",
+            "uri": "https://www.google.com/maps/contrib/101647213026280176513/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWYVdTBm_LWVKA90zlh51bIrzNJ8bs1NZi6Epk-5kp81CCwj6iN=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2020-10-02T10:55:58Z"
+        },
+        {
+          "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0/reviews/ChdDSUhNMG9nS0VJQ0FnSURDbW8yT21BRRAB",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "jhun mark elma",
+            "uri": "https://www.google.com/maps/contrib/101853495352090597738/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocI7QUDgk7iEKSexCHMfz4rlYisURQSmnVhoEoqlOnbRHOPQoA=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2020-09-23T06:55:53Z"
+        }
+      ],
+      "accessibilityOptions": {
+        "wheelchairAccessibleParking": false
+      }
+    },
+    {
+      "name": "places/ChIJ7-sfULHRrjMRVPdarmojtdo",
+      "id": "ChIJ7-sfULHRrjMRVPdarmojtdo",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "MX82+Q2Q, Gonzaga St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "MX82+Q2Q",
+          "shortText": "MX82+Q2Q",
+          "types": [
+            "plus_code"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Gonzaga Street",
+          "shortText": "Gonzaga St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "location": {
+        "latitude": 10.6669644,
+        "longitude": 122.9501008
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.665646569708498,
+          "longitude": 122.94876541970851
+        },
+        "high": {
+          "latitude": 10.668344530291503,
+          "longitude": 122.95146338029149
+        }
+      },
+      "rating": 3,
+      "googleMapsUri": "https://maps.google.com/?cid=15759541412151621460",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "MX82+Q2Q, \u003cspan class=\"street-address\"\u003eGonzaga St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "Three N Auto Parts Enterprises",
+        "languageCode": "fil"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "MX82+Q2Q L M Building, Gonzaga St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJ7-sfULHRrjMRVPdarmojtdo/reviews/ChdDSUhNMG9nS0VJQ0FnSURteC1tNG5RRRAB",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 3,
+          "text": {
+            "text": "anytime you want something is  so can go in this place ..",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "anytime you want something is  so can go in this place ..",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Miss Bloom",
+            "uri": "https://www.google.com/maps/contrib/103867829812812717139/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjV7Qfsd-57qQPKf9THEYwmYl2taX_aV5Na-QTvTiDngKBZ0HTOb=s128-c0x00000000-cc-rp-mo-ba3"
+          },
+          "publishTime": "2022-02-11T07:14:46Z"
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4",
+      "id": "ChIJc2zkNbHRrjMRNQj4KjFLq_4",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 467 1195",
+      "internationalPhoneNumber": "+63 34 467 1195",
+      "formattedAddress": "MX82+J8X, Gonzaga St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "MX82+J8X",
+          "shortText": "MX82+J8X",
+          "types": [
+            "plus_code"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Gonzaga Street",
+          "shortText": "Gonzaga St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "location": {
+        "latitude": 10.666618399999999,
+        "longitude": 122.95086900000001
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.665307619708498,
+          "longitude": 122.9495365197085
+        },
+        "high": {
+          "latitude": 10.668005580291503,
+          "longitude": 122.95223448029148
+        }
+      },
+      "rating": 5,
+      "googleMapsUri": "https://maps.google.com/?cid=18350843781197596725",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 0,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 5:00 PM"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "MX82+J8X, \u003cspan class=\"street-address\"\u003eGonzaga St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 1,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "Spark Auto Parts",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 0,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 21
+              }
+            },
+            "close": {
+              "day": 0,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 21
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: 8:00 AM – 5:00 PM"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "MX82+J8X, Gonzaga St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/reviews/ChZDSUhNMG9nS0VJQ0FnSUQtZ0x6MVNnEAE",
+          "relativePublishTimeDescription": "a year ago",
+          "rating": 5,
+          "text": {
+            "text": "Bacolod Pet Accessories is inside the Spark Auto Parts",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Bacolod Pet Accessories is inside the Spark Auto Parts",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Aubrey Esteban",
+            "uri": "https://www.google.com/maps/contrib/114901129368612801969/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2023-01-01T04:25:22Z"
+        }
+      ],
+      "photos": [
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXX5oCGXq1BVKapL-vU_6c5x7daiyV8PqgBi3Jfs1FEAkIvJji9-coSWMVYzx9uaPWuXnXcmgRGlRk_nx0D0nVOTgMXUDeHHt5UQ6a3PeoRS60eTyErnBwzVkTkv8ySCpH-_4xZCiXK8u5OBrvf7r3-Ox0YT-j5DIKNH",
+          "widthPx": 1080,
+          "heightPx": 1920,
+          "authorAttributions": [
+            {
+              "displayName": "Aubrey Esteban",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXXShHNkTol7UwIbnaCClcjzxL8rnqmdAV2-8capNrNlqFxujn2ibewjZA9OEDq4i55K9RolQI9m15UoKiMp-2IGTFLUJymiQuNKbak1p6upniTTYyH7Hwep9MOqEr_KS9w81IlEFLL_RiSbw16PFCve5FD6mCwtoRLH",
+          "widthPx": 1080,
+          "heightPx": 1920,
+          "authorAttributions": [
+            {
+              "displayName": "Aubrey Esteban",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXUdDKH9Nz6F0OCh24ZIc96h_84by6x4a7fPeflDtGMI5kcYY7vIeIb-e7TaK7x79PlGBLZknc9g6JBwx1HVGCb-Pa3H15n5BBb1r18LhdCzI7q13VE2F20rhQGRWvSbqqqabLdxYHc8-ECkLYQwf6Lqdf0RXFJjyF86",
+          "widthPx": 3120,
+          "heightPx": 4160,
+          "authorAttributions": [
+            {
+              "displayName": "Aubrey Esteban",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXUc3Ug7Jw_EOjQsL64pAzwbM4M3OUGHkwKCSkyqAUHlB75sZbYNWJWXhovT95Pd7IYeYfWocP8eBCFlZvVpdZ7h40GZuli0ldLFwwHsgQZxEeKrt0pW_8brW1hwI-mK1YAUtZAVa4GPGOd9IabV5qQCB0SsxD9lunul",
+          "widthPx": 3072,
+          "heightPx": 3072,
+          "authorAttributions": [
+            {
+              "displayName": "Aubrey Esteban",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJuf0L4LPRrjMR-Q5QmGMBtgg",
+      "id": "ChIJuf0L4LPRrjMR-Q5QmGMBtgg",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "formattedAddress": "23 Gonzaga St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "23",
+          "shortText": "23",
+          "types": [
+            "street_number"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Gonzaga Street",
+          "shortText": "Gonzaga St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "plusCode": {
+        "globalCode": "7Q24MW9X+3Q",
+        "compoundCode": "MW9X+3Q Bacolod, Negros Occidental, Philippines"
+      },
+      "location": {
+        "latitude": 10.6676737,
+        "longitude": 122.9494785
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.666306719708498,
+          "longitude": 122.94817561970851
+        },
+        "high": {
+          "latitude": 10.669004680291502,
+          "longitude": 122.95087358029149
+        }
+      },
+      "rating": 5,
+      "googleMapsUri": "https://maps.google.com/?cid=627690725333536505",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "\u003cspan class=\"street-address\"\u003e23 Gonzaga St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 2,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "Joden Auto Parts Merchandising",
+        "languageCode": "fil"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 5:00 PM",
+          "Tuesday: 8:00 AM – 5:00 PM",
+          "Wednesday: 8:00 AM – 5:00 PM",
+          "Thursday: 8:00 AM – 5:00 PM",
+          "Friday: 8:00 AM – 5:00 PM",
+          "Saturday: 8:00 AM – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "T. Gensoli Building, 23 Gonzaga St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJuf0L4LPRrjMR-Q5QmGMBtgg/reviews/ChZDSUhNMG9nS0VJQ0FnSUROcHZ6c01nEAE",
+          "relativePublishTimeDescription": "5 months ago",
+          "rating": 5,
+          "text": {
+            "text": "Best place in Bacolod to get parts for your Dumptruck or 10 wheeler. Even car parts or generic filters. 10/10",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Best place in Bacolod to get parts for your Dumptruck or 10 wheeler. Even car parts or generic filters. 10/10",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Jelle Korthuis",
+            "uri": "https://www.google.com/maps/contrib/109198945488109898095/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIcH2SEE7PkEonzAmLW0Kf0_OQ9umsduzFID1tm0NA7EaufQw=s128-c0x00000000-cc-rp-mo-ba4"
+          },
+          "publishTime": "2024-01-22T03:34:33Z"
+        },
+        {
+          "name": "places/ChIJuf0L4LPRrjMR-Q5QmGMBtgg/reviews/ChZDSUhNMG9nS0VJQ0FnSUN5M1BydkVnEAE",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Armando Formentera",
+            "uri": "https://www.google.com/maps/contrib/114734363235440870021/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjUipV7XO3-BEPQzse0r5R0lHe-qXQoG6vFtHG2AmFM-Y3oUasOH=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2021-01-23T11:16:28Z"
+        }
+      ]
+    },
+    {
+      "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE",
+      "id": "ChIJT6_UWbHRrjMRNy54Q3RmTdE",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 433 2088",
+      "internationalPhoneNumber": "+63 34 433 2088",
+      "formattedAddress": "MW8X+XV7, Lacson St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "MW8X+XV7",
+          "shortText": "MW8X+XV7",
+          "types": [
+            "plus_code"
+          ],
+          "languageCode": "en-US"
+        },
+        {
+          "longText": "Lacson Street",
+          "shortText": "Lacson St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "location": {
+        "latitude": 10.667400299999999,
+        "longitude": 122.9496677
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.666083819708497,
+          "longitude": 122.94823536970851
+        },
+        "high": {
+          "latitude": 10.668781780291502,
+          "longitude": 122.95093333029151
+        }
+      },
+      "rating": 3.9,
+      "googleMapsUri": "https://maps.google.com/?cid=15081823376667848247",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 15
+            },
+            "close": {
+              "day": 1,
+              "hour": 16,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 15
+            },
+            "close": {
+              "day": 2,
+              "hour": 16,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 15
+            },
+            "close": {
+              "day": 3,
+              "hour": 16,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 15
+            },
+            "close": {
+              "day": 4,
+              "hour": 16,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 15
+            },
+            "close": {
+              "day": 5,
+              "hour": 16,
+              "minute": 30
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 15
+            },
+            "close": {
+              "day": 6,
+              "hour": 16,
+              "minute": 30
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:15 AM – 4:30 PM",
+          "Tuesday: 8:15 AM – 4:30 PM",
+          "Wednesday: 8:15 AM – 4:30 PM",
+          "Thursday: 8:15 AM – 4:30 PM",
+          "Friday: 8:15 AM – 4:30 PM",
+          "Saturday: 8:15 AM – 4:30 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "MW8X+XV7, \u003cspan class=\"street-address\"\u003eLacson St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 7,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "NEGROS PIONEER ENTERPRISES, INC.",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 15,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 16,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 15,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 16,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 15,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 16,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 15,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 16,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 15,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 16,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 15,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 16,
+              "minute": 30,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:15 AM – 4:30 PM",
+          "Tuesday: 8:15 AM – 4:30 PM",
+          "Wednesday: 8:15 AM – 4:30 PM",
+          "Thursday: 8:15 AM – 4:30 PM",
+          "Friday: 8:15 AM – 4:30 PM",
+          "Saturday: 8:15 AM – 4:30 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "MW8X+XV7, Lacson St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE/reviews/ChdDSUhNMG9nS0VJQ0FnSUN4MktXX25nRRAB",
+          "relativePublishTimeDescription": "a year ago",
+          "rating": 2,
+          "text": {
+            "text": "Did not have the auto parts I need",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Did not have the auto parts I need",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Walt Coffman",
+            "uri": "https://www.google.com/maps/contrib/118319630934844233374/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjX8BwGN6Ce2MUIgCWe9o5wyLTuxsQSwcixBdjKlpLySyLwR39U=s128-c0x00000000-cc-rp-mo-ba5"
+          },
+          "publishTime": "2023-05-10T04:16:24Z"
+        },
+        {
+          "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE/reviews/ChZDSUhNMG9nS0VJQ0FnSURJMDZHTU53EAE",
+          "relativePublishTimeDescription": "5 years ago",
+          "rating": 4,
+          "text": {
+            "text": "Helpful people and wide range of available spare parts.",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Helpful people and wide range of available spare parts.",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Jonathan Delegencia",
+            "uri": "https://www.google.com/maps/contrib/109974737544558829116/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWJfrjHfNQQVviXp6nQnIka-GAjrdE6x3V4gu_0FicFUmGiE4QqMA=s128-c0x00000000-cc-rp-mo-ba6"
+          },
+          "publishTime": "2019-01-20T09:07:54Z"
+        },
+        {
+          "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE/reviews/ChdDSUhNMG9nS0VJQ0FnSUQwaXRURHNRRRAB",
+          "relativePublishTimeDescription": "4 years ago",
+          "rating": 5,
+          "text": {
+            "text": "Auto spares you needed you may find.",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Auto spares you needed you may find.",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Crisostomo Dequit",
+            "uri": "https://www.google.com/maps/contrib/113752524111977553626/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJUMvzMs7Tc61cMC-6k2eqraQ1HOZwCXhIS9M6WDCpyAeTi_A=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2019-10-31T03:46:09Z"
+        },
+        {
+          "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE/reviews/ChdDSUhNMG9nS0VJQ0FnSUR5LTVYNDFnRRAB",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Roberto Sanson",
+            "uri": "https://www.google.com/maps/contrib/101300650346682921700/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLET6Qh18afHo54z_OWjxiNj55ALuSW-r-EbKP8UEVX7dmK-w=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2021-03-19T08:40:50Z"
+        },
+        {
+          "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE/reviews/ChZDSUhNMG9nS0VJQ0FnSURVc3BTNFBREAE",
+          "relativePublishTimeDescription": "4 years ago",
+          "rating": 4,
+          "authorAttribution": {
+            "displayName": "Ernie Villa",
+            "uri": "https://www.google.com/maps/contrib/116421395152839440973/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWf5qF1g2BqNlsEfM27dWbgWYra8inKXCus7C6nU0XjzWb6trAB=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2019-08-19T03:44:50Z"
+        }
+      ],
+      "paymentOptions": {
+        "acceptsDebitCards": true,
+        "acceptsCashOnly": false
+      }
+    },
+    {
+      "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI",
+      "id": "ChIJFZ2L_bPRrjMR4uA8KKuCulI",
+      "types": [
+        "auto_parts_store",
+        "car_repair",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "nationalPhoneNumber": "(034) 434 8770",
+      "internationalPhoneNumber": "+63 34 434 8770",
+      "formattedAddress": "Gensoli Bldg, Lacson St, Bacolod, 6100 Negros Occidental, Philippines",
+      "addressComponents": [
+        {
+          "longText": "Gensoli Bldg",
+          "shortText": "Gensoli Bldg",
+          "types": [
+            "premise"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Lacson Street",
+          "shortText": "Lacson St",
+          "types": [
+            "route"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Bacolod",
+          "shortText": "Bacolod",
+          "types": [
+            "locality",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Negros Occidental",
+          "shortText": "Negros Occidental",
+          "types": [
+            "administrative_area_level_2",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Western Visayas",
+          "shortText": "Western Visayas",
+          "types": [
+            "administrative_area_level_1",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "Philippines",
+          "shortText": "PH",
+          "types": [
+            "country",
+            "political"
+          ],
+          "languageCode": "en"
+        },
+        {
+          "longText": "6100",
+          "shortText": "6100",
+          "types": [
+            "postal_code"
+          ],
+          "languageCode": "en-US"
+        }
+      ],
+      "plusCode": {
+        "globalCode": "7Q24MW8X+RQ",
+        "compoundCode": "MW8X+RQ Bacolod, Negros Occidental, Philippines"
+      },
+      "location": {
+        "latitude": 10.6670084,
+        "longitude": 122.94942559999998
+      },
+      "viewport": {
+        "low": {
+          "latitude": 10.665677219708497,
+          "longitude": 122.9480301697085
+        },
+        "high": {
+          "latitude": 10.668375180291502,
+          "longitude": 122.95072813029149
+        }
+      },
+      "rating": 4.3,
+      "googleMapsUri": "https://maps.google.com/?cid=5961220728404369634",
+      "regularOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 13,
+              "minute": 0
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Tuesday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Wednesday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Thursday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Friday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Saturday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "utcOffsetMinutes": 480,
+      "adrFormatAddress": "Gensoli Bldg, \u003cspan class=\"street-address\"\u003eLacson St\u003c/span\u003e, \u003cspan class=\"locality\"\u003eBacolod\u003c/span\u003e, \u003cspan class=\"postal-code\"\u003e6100\u003c/span\u003e \u003cspan class=\"region\"\u003eNegros Occidental\u003c/span\u003e, \u003cspan class=\"country-name\"\u003ePhilippines\u003c/span\u003e",
+      "businessStatus": "OPERATIONAL",
+      "userRatingCount": 4,
+      "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+      "iconBackgroundColor": "#4B96F3",
+      "displayName": {
+        "text": "Olympia Auto Supply Inc.",
+        "languageCode": "en"
+      },
+      "primaryTypeDisplayName": {
+        "text": "Auto parts store",
+        "languageCode": "en"
+      },
+      "delivery": true,
+      "currentOpeningHours": {
+        "openNow": true,
+        "periods": [
+          {
+            "open": {
+              "day": 1,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 1,
+              "hour": 13,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            },
+            "close": {
+              "day": 1,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 22
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 2,
+              "hour": 13,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            },
+            "close": {
+              "day": 2,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 23
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 3,
+              "hour": 13,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            },
+            "close": {
+              "day": 3,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 24
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 4,
+              "hour": 13,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            },
+            "close": {
+              "day": 4,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 18
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 5,
+              "hour": 13,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            },
+            "close": {
+              "day": 5,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 19
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 8,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 12,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          },
+          {
+            "open": {
+              "day": 6,
+              "hour": 13,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            },
+            "close": {
+              "day": 6,
+              "hour": 17,
+              "minute": 0,
+              "date": {
+                "year": 2024,
+                "month": 7,
+                "day": 20
+              }
+            }
+          }
+        ],
+        "weekdayDescriptions": [
+          "Monday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Tuesday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Wednesday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Thursday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Friday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Saturday: 8:00 AM – 12:00 PM, 1:00 – 5:00 PM",
+          "Sunday: Closed"
+        ]
+      },
+      "primaryType": "auto_parts_store",
+      "shortFormattedAddress": "Gensoli Bldg, Lacson St, Bacolod",
+      "reviews": [
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/reviews/ChdDSUhNMG9nS0VJQ0FnSUNSc0pXS19RRRAB",
+          "relativePublishTimeDescription": "a year ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Dennis Yam",
+            "uri": "https://www.google.com/maps/contrib/112321418436166792435/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXzpVTduzHFC6OxQOJ8Hwq5Bj-v87-VZgUaGDwlXz8lt7VpZUDI=s128-c0x00000000-cc-rp-mo-ba5"
+          },
+          "publishTime": "2023-03-23T10:04:04Z"
+        },
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/reviews/ChZDSUhNMG9nS0VJQ0FnSUQydVlPR2RREAE",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 4,
+          "authorAttribution": {
+            "displayName": "Mandy Alimon",
+            "uri": "https://www.google.com/maps/contrib/106272102269063270050/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXwmOzApkbQ65mK5Bd6Ur-zEUoWcBeqWVbQe_NPT_uc2NJ4Dy5CYw=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2022-05-19T12:27:17Z"
+        },
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/reviews/ChdDSUhNMG9nS0VJQ0FnSUQ2bUt5X3RRRRAB",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 5,
+          "authorAttribution": {
+            "displayName": "Janelle Caniedo",
+            "uri": "https://www.google.com/maps/contrib/101286797277899107160/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocKHwPCnil1CsggPMhMHnxgHf8Yez0J24w5Th1lX10nm3c5PCA=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2021-09-19T22:23:00Z"
+        },
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/reviews/ChdDSUhNMG9nS0VJQ0FnSUNnbmZiQTJRRRAB",
+          "relativePublishTimeDescription": "7 years ago",
+          "rating": 3,
+          "authorAttribution": {
+            "displayName": "Auto Mart Supply Pte Ltd",
+            "uri": "https://www.google.com/maps/contrib/114880136207082818829/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJ1BnGLZw_6uvHLrTKOgwYv_1LIo08ZQRMYmkAW6p-KaQaNVg=s128-c0x00000000-cc-rp-mo"
+          },
+          "publishTime": "2017-04-19T09:34:21Z"
+        }
+      ],
+      "photos": [
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/photos/AUc7tXXiBOLYWQ1RqYyBwL0iUxqqUbcLx64d9sPbVdwr0xvfayZxhrsy9lRpGSqWUY6DiqaQIWbfj0SGPS63-L2A9uar9_vjDyKTsXfYDmpT31iyQRAaTy6TI7V0Gzx1Ic2nSC9Ywlok-j6tcTHj7yLRC20rKuvUhkug1z4F",
+          "widthPx": 3000,
+          "heightPx": 4000,
+          "authorAttributions": [
+            {
+              "displayName": "Marigrace Tan",
+              "uri": "//maps.google.com/maps/contrib/101513076857017583237",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJs09p3CF-CX7af0fcJAcvH-6Plqi3sUvXMqyCTsePq6l-zeg=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/photos/AUc7tXV879U4xySyxjMwmue2rCsApIQqWw7sZkMy2-8bYFKXoHmBvDgrWVeIC1uqTSml2GdXCvkoyiHks1GqMGg1Gj1bnAK4QOMYJxBALfmO1lxMKLTuvWf4tojXAWMgdmVggBBb96l3OzNpF8_36rQCsnQ-vVQOuXG9mzSi",
+          "widthPx": 3468,
+          "heightPx": 4624,
+          "authorAttributions": [
+            {
+              "displayName": "Alex Perido",
+              "uri": "//maps.google.com/maps/contrib/108484318132579216602",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocIdJ7_pp3eYTVwSifO0jMSvx0DVDkFK0A3yOVhsPHgS_uoTRw=s100-p-k-no-mo"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "contextualContents": [
+    {
+      "reviews": [
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChdDSUhNMG9nS0VJQ0FnSUQ1b0pQbnJnRRAB",
+          "relativePublishTimeDescription": "9 months ago",
+          "rating": 5,
+          "text": {
+            "text": "Great and fast service! They get the Job done!",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Great and fast service! They get the Job done!",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Miguel Diaz",
+            "uri": "https://www.google.com/maps/contrib/118272667358716235349/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocLcPcOC3lJbhEdhrHiMd2HN1MntaGG7sstGLJrVMbb6qrKJsw=s128-c-c0x00000000-cc-rp-mo-br100"
+          },
+          "publishTime": "2023-10-18T13:40:55Z"
+        }
+      ],
+      "photos": [
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/photos/AUc7tXUsK6cub1P6BSVzxc77qSoz7eIXZWjNhXh5YHdN_2oWUAlz9JhFjHY9qPCZ4C9e3Kq61T0ipAVmSkLptPYQEzV4ijybv6RH9eRA3LvF7GjFu2tFAFrE7Ktach_zZlcnyed6F9-SWAdPfrvYk-eomxIq2DkJtBiGKub7",
+          "widthPx": 3456,
+          "heightPx": 4608,
+          "authorAttributions": [
+            {
+              "displayName": "blueplanetblue",
+              "uri": "//maps.google.com/maps/contrib/108795248370842228081",
+              "photoUri": "//lh3.googleusercontent.com/a-/ALV-UjXtgMDcfcefWYv4xpllQUsAGh77Ox5eVgQxuajxoDMjjeFNn4uIdg=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/photos/AUc7tXX64rCXc9WO2bDS8n5TVqgyulvZSVQOg0EeLMxIjQyzyKMOAnvnkF3kZj4ZZE6AYLl3KK1rfcq2uPsT81CJb27O62ALaoEg4YiaKr8QfLUqmnnV6e_l7FgYJ6rl1LhqnGgpkPZSXU3y4hqsErza_ARg9n7O4tytNWKe",
+          "widthPx": 3456,
+          "heightPx": 4608,
+          "authorAttributions": [
+            {
+              "displayName": "blueplanetblue",
+              "uri": "//maps.google.com/maps/contrib/108795248370842228081",
+              "photoUri": "//lh3.googleusercontent.com/a-/ALV-UjXtgMDcfcefWYv4xpllQUsAGh77Ox5eVgQxuajxoDMjjeFNn4uIdg=s100-p-k-no-mo"
+            }
+          ]
+        }
+      ],
+      "justifications": [
+        {
+          "reviewJustification": {
+            "highlightedText": {
+              "text": "\"Affordable car parts.\"",
+              "highlightedTextRanges": [
+                {
+                  "startIndex": 12,
+                  "endIndex": 21
+                }
+              ]
+            },
+            "review": {
+              "name": "places/ChIJUeUL1LPRrjMRNe5mzakD5ds/reviews/ChZDSUhNMG9nS0VJQ0FnSURnZzZiTWZ3EAE",
+              "relativePublishTimeDescription": "6 years ago",
+              "rating": 5,
+              "text": {
+                "text": "Thank you for the discount on a high quality product! 👍",
+                "languageCode": "en"
+              },
+              "originalText": {
+                "text": "Thank you for the discount on a high quality product! 👍",
+                "languageCode": "en"
+              },
+              "authorAttribution": {
+                "displayName": "Juco Yee",
+                "uri": "https://www.google.com/maps/contrib/103776439793861454950/reviews",
+                "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVuPLG34LjUjv5Zz5ICc_K3oZc97_mYB6lU9dRAKdxuo6S55Wri=s128-c0x00000000-cc-rp-mo"
+              },
+              "publishTime": "2017-12-08T08:57:33Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "reviews": [
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSURDa0tIMENnEAE",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 4,
+          "text": {
+            "text": "Can cater almost everything for your car parts needs",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Can cater almost everything for your car parts needs",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Flit Caldz",
+            "uri": "https://www.google.com/maps/contrib/108660166928704714203/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWDE4byLuVz7fYu_AUIsT-SGunDf7uY7iS1-L2DvhJPNMulSbo=s128-c-c0x00000000-cc-rp-mo-ba4-br100"
+          },
+          "publishTime": "2020-09-11T11:32:23Z"
+        },
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChdDSUhNMG9nS0VJQ0FnSURxOUlDNF9BRRAB",
+          "relativePublishTimeDescription": "3 years ago",
+          "rating": 4,
+          "text": {
+            "text": "Affordable price",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Affordable price",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Ramil Delacruz",
+            "uri": "https://www.google.com/maps/contrib/111150433181342219070/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIuVxmvQ_ePOn73Zw3jeFxDq3y0n3kouJh5iHYrdSLlc6Md5A=s128-c-c0x00000000-cc-rp-mo-ba2-br100"
+          },
+          "publishTime": "2021-06-30T11:29:55Z"
+        },
+        {
+          "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSURPNC1PaklnEAE",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 5,
+          "text": {
+            "text": "Cheaper price",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Cheaper price",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Antoni Adrian Fernandez",
+            "uri": "https://www.google.com/maps/contrib/106017551182348332907/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVHDV6ZlbCASLkX5ZPEGkVIdmS86DxkW8MHqcrrYlUgaBJVZWCO=s128-c-c0x00000000-cc-rp-mo-br100"
+          },
+          "publishTime": "2022-07-13T06:12:47Z"
+        }
+      ],
+      "justifications": [
+        {
+          "reviewJustification": {
+            "highlightedText": {
+              "text": "\"Can cater almost everything for your car parts needs\"",
+              "highlightedTextRanges": [
+                {
+                  "startIndex": 38,
+                  "endIndex": 47
+                }
+              ]
+            },
+            "review": {
+              "name": "places/ChIJjUcIz7PRrjMRQOTWS37KmhY/reviews/ChZDSUhNMG9nS0VJQ0FnSURDa0tIMENnEAE",
+              "relativePublishTimeDescription": "3 years ago",
+              "rating": 4,
+              "text": {
+                "text": "Can cater almost everything for your car parts needs",
+                "languageCode": "en"
+              },
+              "originalText": {
+                "text": "Can cater almost everything for your car parts needs",
+                "languageCode": "en"
+              },
+              "authorAttribution": {
+                "displayName": "Flit Caldz",
+                "uri": "https://www.google.com/maps/contrib/108660166928704714203/reviews",
+                "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWDE4byLuVz7fYu_AUIsT-SGunDf7uY7iS1-L2DvhJPNMulSbo=s128-c0x00000000-cc-rp-mo-ba4"
+              },
+              "publishTime": "2020-09-11T11:32:23Z"
+            }
+          }
+        }
+      ]
+    },
+    {},
+    {},
+    {
+      "justifications": [
+        {
+          "reviewJustification": {
+            "highlightedText": {
+              "text": "\"They got my cars parts.\"",
+              "highlightedTextRanges": [
+                {
+                  "startIndex": 13,
+                  "endIndex": 23
+                }
+              ]
+            },
+            "review": {
+              "name": "places/ChIJPzgqVrHRrjMR_yi-tV5gbg0/reviews/ChdDSUhNMG9nS0VJQ0FnSURMczlMZzN3RRAB",
+              "relativePublishTimeDescription": "2 weeks ago",
+              "rating": 5,
+              "text": {
+                "text": "Nice",
+                "languageCode": "en"
+              },
+              "originalText": {
+                "text": "Nice",
+                "languageCode": "en"
+              },
+              "authorAttribution": {
+                "displayName": "Apple Kiss",
+                "uri": "https://www.google.com/maps/contrib/103774753812855119317/reviews",
+                "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWMLN5UqrSRheGoetDkWxYHTEJxsiaOcLhZcfm5sgIT5MUCXKKOyQ=s128-c0x00000000-cc-rp-mo"
+              },
+              "publishTime": "2024-06-30T16:43:54Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "reviews": [
+        {
+          "name": "places/ChIJ7-sfULHRrjMRVPdarmojtdo/reviews/ChdDSUhNMG9nS0VJQ0FnSURteC1tNG5RRRAB",
+          "relativePublishTimeDescription": "2 years ago",
+          "rating": 3,
+          "text": {
+            "text": "anytime you want something is  so can go in this place ..",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "anytime you want something is  so can go in this place ..",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Miss Bloom",
+            "uri": "https://www.google.com/maps/contrib/103867829812812717139/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjV7Qfsd-57qQPKf9THEYwmYl2taX_aV5Na-QTvTiDngKBZ0HTOb=s128-c-c0x00000000-cc-rp-mo-ba3-br100"
+          },
+          "publishTime": "2022-02-11T07:14:46Z"
+        }
+      ]
+    },
+    {
+      "reviews": [
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/reviews/ChZDSUhNMG9nS0VJQ0FnSUQtZ0x6MVNnEAE",
+          "relativePublishTimeDescription": "a year ago",
+          "rating": 5,
+          "text": {
+            "text": "Bacolod Pet Accessories is inside the Spark Auto Parts",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Bacolod Pet Accessories is inside the Spark Auto Parts",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Aubrey Esteban",
+            "uri": "https://www.google.com/maps/contrib/114901129368612801969/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s128-c-c0x00000000-cc-rp-mo-br100"
+          },
+          "publishTime": "2023-01-01T04:25:22Z"
+        }
+      ],
+      "photos": [
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXUn14k5viO3lUMeGrik81v5cHjiRP3dTBCOA1JTaX3Ohk9zu2IULMq5bnbQuduyJuMmHhaGilPHljYf0kh6vMnmQR0Rq1rvwtrK9p4xpFZekLNQfjo0Rmd7ZILJQdgDAOurczfIm6A3IIo6hPfMd2tUk_TBnYRSLsmA",
+          "widthPx": 3120,
+          "heightPx": 4160,
+          "authorAttributions": [
+            {
+              "displayName": "A Google User",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXXKKrZt2RSV7D9IHT_N0wFHzFslPwbQkIyvYnqD4r2f-vLWpGF0pVNwG567gYyBqklf6Q5OE8SbahHQUsclncHYFKfJOiM6yMtfZfdhzg_X3JrRbT9RBW_mVdjO05qWZhTFU1wRkG4CjnKyMP7inqOE_8Wscq9Ou50_",
+          "widthPx": 1080,
+          "heightPx": 1920,
+          "authorAttributions": [
+            {
+              "displayName": "A Google User",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXW9BEPiLo4jgsoG4OWZ_HsWOyoBms8pm2qpHWZWjna8ABVZ5Un1QYEH86Wo_i8riwPt5BInIXbEqObF-MOYK1TANasiMwOymlmLJd2TsiZaqABMSGCpPgXNmmjYwTH22EYMqxdUzkwJ0NgUVjxTLptLMhBMZAVGDjoj",
+          "widthPx": 1080,
+          "heightPx": 1920,
+          "authorAttributions": [
+            {
+              "displayName": "A Google User",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/photos/AUc7tXWipyhItBYZBa9HYgrd-q9SPHdBBynhxe6xZzrUDnv0wf7IlEDA8bwGRqYfhDRqlfygYMlT_Pw8xFbFKeGQ_Pxi6G2jvSyL6J5Hbg7oZq20oBj4Vv4dQbvp8WviAYh8DxE6RGm9zNz4UNmzof0GXZkWnRp6tw_ei46w",
+          "widthPx": 3072,
+          "heightPx": 3072,
+          "authorAttributions": [
+            {
+              "displayName": "A Google User",
+              "uri": "//maps.google.com/maps/contrib/114901129368612801969",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s100-p-k-no-mo"
+            }
+          ]
+        }
+      ],
+      "justifications": [
+        {
+          "reviewJustification": {
+            "highlightedText": {
+              "text": "\"Bacolod Pet Accessories is inside the Spark Auto Parts\""
+            },
+            "review": {
+              "name": "places/ChIJc2zkNbHRrjMRNQj4KjFLq_4/reviews/ChZDSUhNMG9nS0VJQ0FnSUQtZ0x6MVNnEAE",
+              "relativePublishTimeDescription": "a year ago",
+              "rating": 5,
+              "text": {
+                "text": "Bacolod Pet Accessories is inside the Spark Auto Parts",
+                "languageCode": "en"
+              },
+              "originalText": {
+                "text": "Bacolod Pet Accessories is inside the Spark Auto Parts",
+                "languageCode": "en"
+              },
+              "authorAttribution": {
+                "displayName": "Aubrey Esteban",
+                "uri": "https://www.google.com/maps/contrib/114901129368612801969/reviews",
+                "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJ0xPW-Dy-iv6vjIZiFxOD6-burOkLPzMd2kOeYLlsVo52l-Q=s128-c0x00000000-cc-rp-mo"
+              },
+              "publishTime": "2023-01-01T04:25:22Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "reviews": [
+        {
+          "name": "places/ChIJuf0L4LPRrjMR-Q5QmGMBtgg/reviews/ChZDSUhNMG9nS0VJQ0FnSUROcHZ6c01nEAE",
+          "relativePublishTimeDescription": "5 months ago",
+          "rating": 5,
+          "text": {
+            "text": "Best place in Bacolod to get parts for your Dumptruck or 10 wheeler. Even car parts or generic filters. 10/10",
+            "languageCode": "en"
+          },
+          "originalText": {
+            "text": "Best place in Bacolod to get parts for your Dumptruck or 10 wheeler. Even car parts or generic filters. 10/10",
+            "languageCode": "en"
+          },
+          "authorAttribution": {
+            "displayName": "Jelle Korthuis",
+            "uri": "https://www.google.com/maps/contrib/109198945488109898095/reviews",
+            "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIcH2SEE7PkEonzAmLW0Kf0_OQ9umsduzFID1tm0NA7EaufQw=s128-c-c0x00000000-cc-rp-mo-ba4-br100"
+          },
+          "publishTime": "2024-01-22T03:34:33Z"
+        }
+      ],
+      "justifications": [
+        {
+          "reviewJustification": {
+            "highlightedText": {
+              "text": "\"Even car parts or generic filters.\"",
+              "highlightedTextRanges": [
+                {
+                  "startIndex": 6,
+                  "endIndex": 15
+                }
+              ]
+            },
+            "review": {
+              "name": "places/ChIJuf0L4LPRrjMR-Q5QmGMBtgg/reviews/ChZDSUhNMG9nS0VJQ0FnSUROcHZ6c01nEAE",
+              "relativePublishTimeDescription": "5 months ago",
+              "rating": 5,
+              "text": {
+                "text": "Best place in Bacolod to get parts for your Dumptruck or 10 wheeler. Even car parts or generic filters. 10/10",
+                "languageCode": "en"
+              },
+              "originalText": {
+                "text": "Best place in Bacolod to get parts for your Dumptruck or 10 wheeler. Even car parts or generic filters. 10/10",
+                "languageCode": "en"
+              },
+              "authorAttribution": {
+                "displayName": "Jelle Korthuis",
+                "uri": "https://www.google.com/maps/contrib/109198945488109898095/reviews",
+                "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIcH2SEE7PkEonzAmLW0Kf0_OQ9umsduzFID1tm0NA7EaufQw=s128-c0x00000000-cc-rp-mo-ba4"
+              },
+              "publishTime": "2024-01-22T03:34:33Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "justifications": [
+        {
+          "reviewJustification": {
+            "highlightedText": {
+              "text": "\"Did not have the auto parts I need\""
+            },
+            "review": {
+              "name": "places/ChIJT6_UWbHRrjMRNy54Q3RmTdE/reviews/ChdDSUhNMG9nS0VJQ0FnSUN4MktXX25nRRAB",
+              "relativePublishTimeDescription": "a year ago",
+              "rating": 2,
+              "text": {
+                "text": "Did not have the auto parts I need",
+                "languageCode": "en"
+              },
+              "originalText": {
+                "text": "Did not have the auto parts I need",
+                "languageCode": "en"
+              },
+              "authorAttribution": {
+                "displayName": "Walt Coffman",
+                "uri": "https://www.google.com/maps/contrib/118319630934844233374/reviews",
+                "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjX8BwGN6Ce2MUIgCWe9o5wyLTuxsQSwcixBdjKlpLySyLwR39U=s128-c0x00000000-cc-rp-mo-ba5"
+              },
+              "publishTime": "2023-05-10T04:16:24Z"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "photos": [
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/photos/AUc7tXVp-lpdUqeSycs59H90SkEPkQ-6uhVZhgLhl6ETrduJYvaYgC0YvJaSJStGMKo3u2ajzWylJ7ZGQgrG-YG5W7CoI7Qi2JLp5x1dZVB_JZKXHGxhQxo2xLkGj1Mi5HLAvJgkN7aXqR4IA-F6L_JgN9XLFlrT5GNEDLXl",
+          "widthPx": 3000,
+          "heightPx": 4000,
+          "authorAttributions": [
+            {
+              "displayName": "Marigrace Tan",
+              "uri": "//maps.google.com/maps/contrib/101513076857017583237",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocJs09p3CF-CX7af0fcJAcvH-6Plqi3sUvXMqyCTsePq6l-zeg=s100-p-k-no-mo"
+            }
+          ]
+        },
+        {
+          "name": "places/ChIJFZ2L_bPRrjMR4uA8KKuCulI/photos/AUc7tXX6VexafpXqHdcKbo66vR8lPJ0d4T6lQOSjb01MO_NcOSyAHEc2kB1wWxyhvCxqAAsLylBFjDkrlVG55gGGfiyW2jBp2IfeJ9-W7wlpG0F0jYRx1yhYv49NMzaYftF7lJQzlf0mbQDFV8CDFjZLQhpymZkCM_ECU64D",
+          "widthPx": 3468,
+          "heightPx": 4624,
+          "authorAttributions": [
+            {
+              "displayName": "A Google User",
+              "uri": "//maps.google.com/maps/contrib/108484318132579216602",
+              "photoUri": "//lh3.googleusercontent.com/a/ACg8ocIdJ7_pp3eYTVwSifO0jMSvx0DVDkFK0A3yOVhsPHgS_uoTRw=s100-p-k-no-mo"
+            }
+          ]
+        }
+      ],
+      "justifications": [
+        {
+          "businessAvailabilityAttributesJustification": {
+            "delivery": true
+          }
+        }
+      ]
+    }
+  ],
+  "nextPageToken": "AUc7tXUQGz2RlQ5XjYZ-Ktu8LNrPAJwKVTP07DMQxrjUEUustxKVSlT7K3f41KwbgO4TIvmtftMVS4o1Ezj67xipgj6Q_dCH1D7N1VMpdGohx6_J4fFBqva3GHaAi4LAsEb6frQbxDNDu_608NvxXQVcZPV8pZ4qsEHOx-tYNeOBx_M3zVZvia7dW1sACUUqMS-jaWCtNB91TChATTROFzm56fgjd6DorLO_cARclA_ZnsjVmz0qPsb8ylLGthtb7irYcI3tSLiYUkqr5d_-3CvwxAkyNGX1JWbq4yW8t5jIismIysCntpU9iS3WYjG4gsDfg8kVfJAN0Mad1oHJAJ4IF0M6EMMyjfpaYpb6UYjNVGKZhCgXiSHURy54WJWjhKycH6gqVyPjkC733TFDP_9qAchNWv9pnLTdmpoONBIZIdLEGPMd0im8FaSQgF41PmkLV_gtHaraKA"
+}
