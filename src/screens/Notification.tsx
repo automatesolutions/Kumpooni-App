@@ -6,34 +6,36 @@ import {
   ViewStyle,
   StyleSheet,
   RefreshControl,
-} from 'react-native';
-import React, {useCallback} from 'react';
+} from 'react-native'
+import React, {useCallback} from 'react'
 
-import {useSession} from '#/state/session';
-import {useNotifications} from '#/state/queries/notification';
-import {Text} from '#/components/Typography';
-import {colors, spacing} from '#/utils/theme';
-import {useDate} from '#/lib/hooks/useDate';
-import {NotificationCard} from '#/components/notification/NotificationCard';
-import {Loader} from '#/components/Loader';
-import {ParsedNotification} from '#/types/automate';
-import {EmptyNotification} from '#/components/notification/EmptyNotification';
-
+import {useSession} from '#/state/session'
+import {useNotifications} from '#/state/queries/notification'
+import {Text} from '#/components/Typography'
+import {colors, spacing} from '#/utils/theme'
+import {useDate} from '#/lib/hooks/useDate'
+import {NotificationCard} from '#/components/notification/NotificationCard'
+import {ParsedNotification} from '#/types/automate'
+import {EmptyNotification} from '#/components/notification/EmptyNotification'
+import {atoms as a} from '#/theme'
 export const NotificationScreen = () => {
-  const {session} = useSession();
+  const {session} = useSession()
   const {data, refetch, isRefetching, isLoading} = useNotifications(
     session?.user?.id,
-  );
-  const date = useDate();
+  )
+  const date = useDate()
 
   const renderItem = useCallback(
     ({item}: ListRenderItemInfo<ParsedNotification>) => {
-      return <NotificationCard notification={item} />;
+      return <NotificationCard notification={item} />
     },
     [],
-  );
+  )
 
-  if (isLoading) return <Loader style={{flex: 1, alignItems: 'center'}} />;
+  if (isLoading)
+    return (
+      <ActivityIndicator style={[a.flex_1, a.justify_center, a.align_center]} />
+    )
 
   return (
     <View style={$root}>
@@ -75,8 +77,8 @@ export const NotificationScreen = () => {
         }
       />
     </View>
-  );
-};
+  )
+}
 const styles = StyleSheet.create({
   heading: {
     textAlign: 'center',
@@ -85,8 +87,8 @@ const styles = StyleSheet.create({
     color: '#1e1e1e',
     paddingBottom: 4,
   },
-});
+})
 const $root: ViewStyle = {
   flex: 1,
   backgroundColor: '#f6f6f6',
-};
+}
