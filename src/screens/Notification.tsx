@@ -34,7 +34,10 @@ export const NotificationScreen = () => {
 
   if (isLoading)
     return (
-      <ActivityIndicator style={[a.flex_1, a.justify_center, a.align_center]} />
+      <ActivityIndicator
+        color={'#b61616'}
+        style={[a.flex_1, a.justify_center, a.align_center]}
+      />
     )
 
   return (

@@ -1,11 +1,11 @@
-import { StyleSheet, View } from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import VideoPlayer from 'react-native-media-console'
-import { atoms as a } from '#/theme'
+import {atoms as a} from '#/theme'
 import React from 'react'
 export function Video() {
   const player = React.useRef<any>(null)
   return (
-    <View style={[a.px_sm, a.flex_1, a.py_sm, { marginBottom: 100 }]}>
+    <View style={[a.px_sm, a.flex_1, a.py_sm]}>
       <VideoPlayer
         //@ts-ignore
         source={{
