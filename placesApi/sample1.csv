@@ -1,0 +1,16 @@
+﻿date,city,service_type,part_type,demand
+01/01/2024,Manila,Oil change,Oil filter,120
+01/01/2024,Cebu,Tire Replacement,Tires,80
+01/01/2024,Davao,Brake Service,Brake Pads,70
+01/02/2024,Manila,Oil change,Oil filter,130
+01/02/2024,Cebu,Tire Replacement,Tires,85
+01/02/2024,Davao,Brake Service,Brake Pads,75
+01/03/2024,Manila,Oil change,Oil filter,140
+01/03/2024,Cebu,Tire Replacement,Tires,90
+01/03/2024,Davao,Brake Service,Brake Pads,80
+01/04/2024,Manila,Oil change,Oil filter,150
+01/04/2024,Cebu,Tire Replacement,Tires,90
+01/04/2024,Davao,Brake Service,Brake Pads,85
+01/05/2024,Manila,Oil change,Oil filter,160
+01/05/2024,Cebu,Tire Replacement,Tires,100
+01/05/2024,Davao,Brake Service,Brake Pads,90

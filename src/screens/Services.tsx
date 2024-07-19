@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect } from 'react'
+import React, {useCallback, useEffect, useLayoutEffect} from 'react'
 import {
   ActivityIndicator,
   FlatList,
@@ -8,40 +8,39 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { useTheme, atoms as a } from '#/theme'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { CommonNavigatorParams, NavigationProp } from '#/lib/routes/types'
+import {useTheme, atoms as a} from '#/theme'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
 
-import { Service } from '#/types/automate'
-import { spacing } from '#/utils/theme'
+import {Service} from '#/types/automate'
+import {spacing} from '#/utils/theme'
 
-import { useRequireAuth, useSession } from '#/state/session'
+import {useRequireAuth, useSession} from '#/state/session'
 
-import { useNavigation } from '@react-navigation/native'
-import { useModalControls } from '#/state/modals'
+import {useNavigation} from '@react-navigation/native'
+import {useModalControls} from '#/state/modals'
 
-import { useCartStore } from '#/stores/cart'
-import { ServicesItem } from '#/components/services/ServicesItem'
-import { CartBottom } from '#/components/cart/CartBottom'
-import { useServicesByCategoryQuery } from '#/state/queries/services'
-import { Text } from '#/components/Typography'
-import { useShopCartStore } from '../stores/shop-cart'
+import {useCartStore} from '#/stores/cart'
+import {ServicesItem} from '#/components/services/ServicesItem'
+import {CartBottom} from '#/components/cart/CartBottom'
+import {useServicesByCategoryQuery} from '#/state/queries/services'
+import {Text} from '#/components/Typography'
+import {useShopCartStore} from '../stores/shop-cart'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Services'>
-export function ServicesScreen({ route }: Props) {
+export function ServicesScreen({route}: Props) {
   const t = useTheme()
   const navigation = useNavigation<NavigationProp>()
-  const { data: services, isLoading } = useServicesByCategoryQuery(
+  const {data: services, isLoading} = useServicesByCategoryQuery(
     route.params.categoryId,
   )
-  const { openModal } = useModalControls()
+  const {openModal} = useModalControls()
   const requireAuth = useRequireAuth()
 
   const cartItems = useCartStore(state => state.items)
   const cartsCount = cartItems.length
-  console.log('CartItems', cartItems)
 
-  const { addItem, removeItem } = useCartStore(state => ({
+  const {addItem, removeItem} = useCartStore(state => ({
     addItem: state.addItem,
     removeItem: state.removeItem,
   }))
@@ -49,7 +48,6 @@ export function ServicesScreen({ route }: Props) {
   const onAddToCartPress = useCallback(
     (service: Service) => () => {
       if (cartItems.find(cartItem => cartItem.id === service.id)) {
-        console.log('removeItem')
         removeItem(service.id)
       } else if (service.service_type === 'OrderDelivery') {
         openModal({
@@ -83,14 +81,14 @@ export function ServicesScreen({ route }: Props) {
         return
       } else {
         console.log('Add Item')
-        addItem({ ...service, quantity: 1 })
+        addItem({...service, quantity: 1})
       }
     },
     [addItem, removeItem, cartItems],
   )
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<Service>) => (
+    ({item}: ListRenderItemInfo<Service>) => (
       <ServicesItem
         service={item}
         onPress={onAddToCartPress(item)}
@@ -124,8 +122,8 @@ export function ServicesScreen({ route }: Props) {
           data={services ?? []}
           renderItem={renderItem}
           keyExtractor={key => key.id.toString()}
-          contentContainerStyle={{ marginHorizontal: 16 }}
-          ListFooterComponent={<View style={{ height: 50 }} />}
+          contentContainerStyle={{marginHorizontal: 16}}
+          ListFooterComponent={<View style={{height: 50}} />}
           ItemSeparatorComponent={() => (
             <View
               style={{
@@ -149,7 +147,7 @@ export function ServicesScreen({ route }: Props) {
               <Text>No Available Services Yet.</Text>
             </View>
           }
-          style={{ paddingTop: 20 }}
+          style={{paddingTop: 20}}
         />
       )}
       {cartsCount > 0 && (
@@ -174,8 +172,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.small,
     paddingHorizontal: spacing.small,
   },
-  title: { fontSize: 15, fontWeight: '600', color: '#000', lineHeight: 24 },
-  subtitle: { fontSize: 12, color: '#b61616' },
+  title: {fontSize: 15, fontWeight: '600', color: '#000', lineHeight: 24},
+  subtitle: {fontSize: 12, color: '#b61616'},
 
   footer: {
     flexDirection: 'row',

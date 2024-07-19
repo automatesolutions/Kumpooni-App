@@ -1,6 +1,6 @@
 import 'react-native-url-polyfill/auto'
 import 'view/icons'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   asyncStoragePersister,
   dehydrateOptions,
@@ -24,42 +24,14 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler'
 import {ThemeProvider} from '#/theme'
 import {useColorModeTheme} from './theme/util/useColorModeTheme'
 import {useLocationStore} from './stores/location'
-
 import {MenuProvider} from 'react-native-popup-menu'
-import * as notification from 'lib/notifications'
-import messaging from '@react-native-firebase/messaging'
+
 import {Shell} from 'view/shell'
 import {i18n} from './i18n'
+import {Splash} from './Splash'
 
 function InnerApp() {
   const theme = useColorModeTheme()
-
-  // React.useEffect(() => {
-  //   //On ForeGround
-
-  //   const unsubscribe = messaging().onMessage(async remoteMessage => {
-  //     await notification.onDisplayNotification(remoteMessage.notification);
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
-  return (
-    <SafeAreaProvider style={{backgroundColor: '#fff', flex: 1}}>
-      <LoggedOutViewProvider>
-        <ThemeProvider theme={theme}>
-          <RootSiblingParent>
-            <GestureHandlerRootView style={{height: '100%'}}>
-              <MenuProvider>
-                <Shell />
-              </MenuProvider>
-            </GestureHandlerRootView>
-          </RootSiblingParent>
-        </ThemeProvider>
-      </LoggedOutViewProvider>
-    </SafeAreaProvider>
-  )
-}
-function App() {
   const [isReady, setReady] = useState(false)
   React.useEffect(() => {
     Promise.all([
@@ -67,13 +39,30 @@ function App() {
       new Promise(resolve =>
         useLocationStore.persist.onFinishHydration(resolve),
       ),
-    ]).then(() => setReady(true))
+    ]).then(() => {
+      setReady(true)
+    })
   }, [])
 
-  if (!isReady) {
-    return null
-  }
-
+  return (
+    <SafeAreaProvider style={{backgroundColor: '#fff', flex: 1}}>
+      <ThemeProvider theme={theme}>
+        <Splash isReady={isReady}>
+          <RootSiblingParent>
+            <LoggedOutViewProvider>
+              <GestureHandlerRootView style={{height: '100%'}}>
+                <MenuProvider>
+                  <Shell />
+                </MenuProvider>
+              </GestureHandlerRootView>
+            </LoggedOutViewProvider>
+          </RootSiblingParent>
+        </Splash>
+      </ThemeProvider>
+    </SafeAreaProvider>
+  )
+}
+function App() {
   return (
     <PersistQueryClientProvider
       client={queryClient}

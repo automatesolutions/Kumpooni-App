@@ -1,19 +1,20 @@
-import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {Text} from '#/components/Typography';
-import {Header} from '#/components/Header';
-import {colors, images, spacing} from '#/utils/theme';
-import {useNavigation} from '@react-navigation/native';
-import {NavigationProp} from '#/lib/routes/types';
-import {useSessionApi} from '#/state/session';
-import {LoginWithPhone} from '#/components/forms/LoginWithPhone';
-import {useGlobalLoadingControls} from '#/state/shell/global-loading';
+import React from 'react'
+import {View, StyleSheet, Image} from 'react-native'
+import {Text} from '#/components/Typography'
+import {Header} from '#/components/Header'
+import {colors, images, spacing} from '#/utils/theme'
+import {useNavigation} from '@react-navigation/native'
+import {NavigationProp} from '#/lib/routes/types'
+import {useSessionApi} from '#/state/session'
+import {LoginWithPhone} from '#/components/forms/LoginWithPhone'
+import {useGlobalLoadingControls} from '#/state/shell/global-loading'
 
-import {useTheme} from '#/theme';
-import {useLoggedOutViewControls} from '#/state/shell/logged-out';
+import {useTheme} from '#/theme'
+import {useLoggedOutViewControls} from '#/state/shell/logged-out'
+import {logger} from '#/logger'
 
 const renderHeader = (props: any) => {
-  const {navigation} = props;
+  const {navigation} = props
   return (
     <Header
       titleStyle={{color: colors.black}}
@@ -21,28 +22,28 @@ const renderHeader = (props: any) => {
       leftIconColor={colors.black}
       onLeftPress={() => navigation.goBack()}
     />
-  );
-};
+  )
+}
 
 export function LoginScreen() {
-  const navigation = useNavigation<NavigationProp>();
-  const t = useTheme();
-  const {loginWithPhone} = useSessionApi();
-  const {setShowLoggedOut} = useLoggedOutViewControls();
-  const globalLoading = useGlobalLoadingControls();
+  const navigation = useNavigation<NavigationProp>()
+  const t = useTheme()
+  const {loginWithPhone} = useSessionApi()
+  const {setShowLoggedOut} = useLoggedOutViewControls()
+  const globalLoading = useGlobalLoadingControls()
 
   const handleSubmitPhoneNumber = async (phone: string) => {
     try {
-      globalLoading.show();
-      await loginWithPhone(phone);
-      setShowLoggedOut(false);
-      navigation.navigate('Otp', {phone: phone});
+      globalLoading.show()
+      await loginWithPhone(phone)
+      setShowLoggedOut(false)
+      navigation.navigate('Otp', {phone: phone})
     } catch (error) {
-      console.log('Error', error);
+      logger.error('handleSubmitPhoneNumber', {e: error})
     } finally {
-      globalLoading.hide();
+      globalLoading.hide()
     }
-  };
+  }
 
   return (
     <View style={styles.$root}>
@@ -57,7 +58,7 @@ export function LoginScreen() {
             By signing in you agree to our{' '}
             <Text
               onPress={() => {
-                navigation.navigate('Terms');
+                navigation.navigate('Terms')
               }}
               style={[styles.terms, styles.fontBold]}>
               Terms & Conditions
@@ -66,7 +67,7 @@ export function LoginScreen() {
         </View>
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -111,4 +112,4 @@ const styles = StyleSheet.create({
     width: 270,
     resizeMode: 'cover',
   },
-});
+})

@@ -25,15 +25,12 @@ export function useNotificationsHandler() {
   const onForegroundRemoteNotification = (
     payload: FirebaseMessagingTypes.RemoteMessage,
   ) => {
-    console.log('onForegroundRemoteNotification')
-
     notification.onDisplayNotification(payload)
   }
 
   const handleAppOpenedWithNotification = (
     payload: FirebaseMessagingTypes.RemoteMessage | null,
   ) => {
-    console.log('handleAppOpenedWithNotification', payload)
     if (!payload) return
 
     const notification: MinimalNotification = {
@@ -45,7 +42,6 @@ export function useNotificationsHandler() {
     handleOpenedNotification(notification)
   }
   const handleOpenedNotification = (payload?: MinimalNotification) => {
-    console.log('handleOpenedNotification', payload)
     if (!payload) return
     const type = payload?.data?.type
 

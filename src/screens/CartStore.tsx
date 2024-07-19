@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 
 import {
   View,
@@ -8,52 +8,52 @@ import {
   ScrollView,
 } from 'react-native'
 
-import { s } from '#/lib/styles'
+import {s} from '#/lib/styles'
 
-import { SegmentedControls } from '#/components/SegmentedControls'
+import {SegmentedControls} from '#/components/SegmentedControls'
 
 import * as Toggle from '#/components/forms/Toggle'
 
-import { Check_Stroke2_Corner0_Rounded as Check } from '#/components/icons/Check'
-import { CartItem } from '#/components/cart/CartItem'
-import { Pager, PagerRef } from '#/components/pager'
-import { useNavigation } from '@react-navigation/native'
+import {Check_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
+import {CartItem} from '#/components/cart/CartItem'
+import {Pager, PagerRef} from '#/components/pager'
+import {useNavigation} from '@react-navigation/native'
 
-import { LoginModal } from '#/components/modals/LoginModal'
-import { CarRequiredModal } from '#/components/modals/CarRequiredModal'
+import {LoginModal} from '#/components/modals/LoginModal'
+import {CarRequiredModal} from '#/components/modals/CarRequiredModal'
 
-import { NavigationProp } from '#/lib/routes/types'
+import {NavigationProp} from '#/lib/routes/types'
 
-import { CartStoreItem, useCartStore, useIsCarRequired } from '#/stores/cart'
-import { shadows } from '#/utils/theme'
-import { color } from '#/theme/tokens'
-import { Text } from '#/components/Typography'
-import { atoms as a, useTheme } from '#/theme'
+import {CartStoreItem, useCartStore, useIsCarRequired} from '#/stores/cart'
+import {shadows} from '#/utils/theme'
+import {color} from '#/theme/tokens'
+import {Text} from '#/components/Typography'
+import {atoms as a, useTheme} from '#/theme'
 import {
   BottomSheetModal,
   BottomSheetModalInstance,
 } from '#/components/BottomSheetModal'
-import { useSession } from '#/state/session'
-import { useVehiclesQuery } from '#/state/queries/vehicle'
-import { useVehicleStore } from '#/stores/vehicle'
-import { useShopCartStore } from '#/stores/shop-cart'
+import {useSession} from '#/state/session'
+import {useVehiclesQuery} from '#/state/queries/vehicle'
+import {useVehicleStore} from '#/stores/vehicle'
+import {useShopCartStore} from '#/stores/shop-cart'
 
 export function CartStoreScreen() {
   const [isOpen, setIsOpen] = useState(false)
   const pagerRef = useRef<PagerRef>(null)
 
   const t = useTheme()
-  const { carts } = useShopCartStore(state => ({
+  const {carts} = useShopCartStore(state => ({
     carts: state.carts,
   }))
-  const { session } = useSession()
+  const {session} = useSession()
   const {
     data: vehicles,
     isLoading,
     isRefetching,
   } = useVehiclesQuery(session?.user.id!)
   const setSelectedVehicle = useVehicleStore(state => state.setSelectedVehicle)
-  const { setServiceIds } = useCartStore(state => ({
+  const {setServiceIds} = useCartStore(state => ({
     setServiceIds: state.setServiceIds,
   }))
   const selectedVehicle = useVehicleStore(state => state.selectedVehicle)
@@ -90,7 +90,6 @@ export function CartStoreScreen() {
         bottomSheetRef?.current?.present()
         return
       }
-      console.log('isCarRequired', isCarRequired)
 
       if (isCarRequired && vehicles?.length === 0) {
         setIsOpen(() => true)
@@ -120,7 +119,7 @@ export function CartStoreScreen() {
   }, [])
 
   return (
-    <View style={[t.atoms.bg, { flex: 1 }]}>
+    <View style={[t.atoms.bg, {flex: 1}]}>
       <Pager
         ref={pagerRef}
         initialPage={0}
@@ -137,7 +136,7 @@ export function CartStoreScreen() {
           />
           // <Text>Hello World</Text>
         )}>
-        <View style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
           <MaintenanceService
             maintenance={maintenance}
             name="in store"
@@ -155,7 +154,7 @@ export function CartStoreScreen() {
 
       <CarRequiredModal isOpen={isOpen} closeModal={closeModal} />
       <BottomSheetModal
-        style={{ paddingHorizontal: 16 }}
+        style={{paddingHorizontal: 16}}
         ref={bottomSheetRef}
         index={0}
         //@ts-ignore
@@ -191,7 +190,7 @@ export function MaintenanceService({
 
   const navigation = useNavigation<NavigationProp>()
   const isCarRequired = useIsCarRequired(maintenance)
-  const { bulkDelete, setServiceIds } = useCartStore(state => ({
+  const {bulkDelete, setServiceIds} = useCartStore(state => ({
     bulkDelete: state.bulkDeleteItem,
     setServiceIds: state.setServiceIds,
   }))
@@ -240,7 +239,7 @@ export function MaintenanceService({
 
   if (maintenance.length === 0) {
     return (
-      <View style={{ flex: 1, paddingTop: 250, alignItems: 'center' }}>
+      <View style={{flex: 1, paddingTop: 250, alignItems: 'center'}}>
         <Text
           style={[
             a.text_lg,
@@ -268,13 +267,13 @@ export function MaintenanceService({
         flex: 1,
         // justifyContent: 'space-between',
       }}>
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{flex: 1}}>
         <CartHeader isEditing={isEditing} onPressEditing={onPressEditing} />
         <Toggle.Group
           values={selectedIds}
           onChange={setSelectedIds}
           label="Select your selected cart">
-          <View style={{ gap: 8, marginVertical: 10 }}>
+          <View style={{gap: 8, marginVertical: 10}}>
             {maintenance.map(cart => (
               <View
                 key={cart.id}
@@ -302,11 +301,11 @@ export function MaintenanceService({
           <View
             style={[
               s.flexRow,
-              { justifyContent: 'space-between', alignItems: 'center' },
+              {justifyContent: 'space-between', alignItems: 'center'},
             ]}>
             <Pressable
               onPress={onPressSelectAll}
-              style={[s.flexRow, { gap: 10, justifyContent: 'center' }]}>
+              style={[s.flexRow, {gap: 10, justifyContent: 'center'}]}>
               <View
                 style={[
                   {
@@ -334,7 +333,7 @@ export function MaintenanceService({
                 borderColor: color.red_500,
                 borderRadius: 4,
               }}>
-              <Text style={{ color: color.red_500, fontWeight: '600' }}>
+              <Text style={{color: color.red_500, fontWeight: '600'}}>
                 Remove
               </Text>
             </TouchableOpacity>
@@ -380,10 +379,9 @@ export function CartHeader({
         paddingHorizontal: 12,
       }}>
       <TouchableOpacity
-        style={{ justifyContent: 'flex-end' }}
+        style={{justifyContent: 'flex-end'}}
         onPress={onPressEditing}>
-        <Text
-          style={[isEditing ? { color: color.blue_500 } : { color: '#000' }]}>
+        <Text style={[isEditing ? {color: color.blue_500} : {color: '#000'}]}>
           {isEditing ? 'Done' : 'Edit'}
         </Text>
       </TouchableOpacity>

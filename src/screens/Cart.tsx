@@ -81,7 +81,6 @@ export function CartScreen() {
         bottomSheetRef?.current?.present()
         return
       }
-      console.log('isCarRequired', isCarRequired)
 
       if (isCarRequired && vehicles?.length === 0) {
         setIsOpen(() => true)

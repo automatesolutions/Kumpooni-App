@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, {useCallback, useState} from 'react'
 import {
   View,
   StyleSheet,
@@ -8,19 +8,19 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native'
-import { Text } from '#/components/Typography'
-import { useTheme, atoms as a } from '#/theme'
-import { Service } from '#/types/automate'
-import { currency } from '#/lib/strings/currency'
-import { useQuery } from '@tanstack/react-query'
-import { supabase } from '#/lib/supabase'
-import { logger } from '#/logger'
+import {Text} from '#/components/Typography'
+import {useTheme, atoms as a} from '#/theme'
+import {Service} from '#/types/automate'
+import {currency} from '#/lib/strings/currency'
+import {useQuery} from '@tanstack/react-query'
+import {supabase} from '#/lib/supabase'
+import {logger} from '#/logger'
 
-import { useShopCartStore } from '#/stores/shop-cart'
-import { useModalControls } from '#/state/modals'
+import {useShopCartStore} from '#/stores/shop-cart'
+import {useModalControls} from '#/state/modals'
 
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from '#/lib/routes/types'
+import {useNavigation} from '@react-navigation/native'
+import {NavigationProp} from '#/lib/routes/types'
 
 const ITEM_HEIGHT = 70
 
@@ -35,25 +35,25 @@ export function StoreServicesList({
 }: StoreServicesListProps) {
   const t = useTheme()
   const navigation = useNavigation<NavigationProp>()
-  const { addItem, carts, removeItem } = useShopCartStore(state => ({
+  const {addItem, carts, removeItem} = useShopCartStore(state => ({
     addItem: state.addItem,
     clearCart: state.clearCart,
     carts: state.carts,
     removeItem: state.removeItem,
     shopId: state.shopId,
   }))
-  const { openModal } = useModalControls()
-  const { data, isLoading } = useQuery({
-    queryKey: ['store-service', { storeId, categoryId }],
+  const {openModal} = useModalControls()
+  const {data, isLoading} = useQuery({
+    queryKey: ['store-service', {storeId, categoryId}],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const {data, error} = await supabase
         .from('service')
         .select('*')
-        .match({ store_id: storeId, category_id: categoryId })
-        .order('price', { ascending: true })
+        .match({store_id: storeId, category_id: categoryId})
+        .order('price', {ascending: true})
 
       if (error) {
-        logger.debug(`Store ${categoryId}`, { error })
+        logger.debug(`Store ${categoryId}`, {error})
         throw error
       }
       return data
@@ -63,7 +63,6 @@ export function StoreServicesList({
   const onAddToCartPress = useCallback(
     (service: Service) => () => {
       if (carts.find(cart => cart.id === service.id)) {
-        console.log('removeItem')
         removeItem(service.id)
       } else if (service.type === 'Product') {
         openModal({
@@ -76,7 +75,6 @@ export function StoreServicesList({
         })
         return
       } else {
-        console.log('Add Item')
         addItem({
           ...service,
           quantity: 1,
@@ -86,7 +84,7 @@ export function StoreServicesList({
     [carts, addItem],
   )
   const renderServices = useCallback(
-    ({ item, index }: ListRenderItemInfo<Service>) => {
+    ({item, index}: ListRenderItemInfo<Service>) => {
       return (
         <ServiceItem
           item={item}
@@ -113,8 +111,8 @@ export function StoreServicesList({
           renderItem={renderServices}
           contentContainerStyle={[a.gap_2xs]}
           keyExtractor={item => `${item.id}`}
-          ListFooterComponent={<View style={[{ height: 100 }]} />}
-          style={{ height: '100%' }}
+          ListFooterComponent={<View style={[{height: 100}]} />}
+          style={{height: '100%'}}
           scrollEnabled
         />
       </View>
@@ -140,7 +138,7 @@ function ServiceItem({
   const t = useTheme()
   return (
     <View style={[t.atoms.bg, a.flex_row, a.gap_2xs, a.p_2xs]}>
-      <Image source={{ uri: item.img_url! }} style={styles.image} />
+      <Image source={{uri: item.img_url!}} style={styles.image} />
       <View style={[a.justify_between]}>
         <Text style={[a.text_xs, a.font_bold]}>{item.name}</Text>
         <Text style={[a.pb_2xs]}>{currency.format(item.price ?? 0)}</Text>
@@ -163,10 +161,10 @@ function ServiceItem({
         ]}>
         <Text
           style={[
-            { color: t.palette.white },
+            {color: t.palette.white},
             a.text_xs,
             a.font_bold,
-            isInCartItem && { color: '#000' },
+            isInCartItem && {color: '#000'},
           ]}>
           {!isInCartItem ? 'Add' : 'Added'}
         </Text>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDialogStateContext } from '#/state/dialogs'
+import {useDialogStateContext} from '#/state/dialogs'
 import {
   DialogContextProps,
   DialogControlRefProps,
@@ -21,7 +21,7 @@ export function useDialogControl(): DialogOuterProps['control'] {
     open: () => {},
     close: () => {},
   })
-  const { activeDialogs } = useDialogStateContext()
+  const {activeDialogs} = useDialogStateContext()
 
   React.useEffect(() => {
     activeDialogs.current.set(id, control)
@@ -36,7 +36,6 @@ export function useDialogControl(): DialogOuterProps['control'] {
       id,
       ref: control,
       open: () => {
-        console.log('control OPen')
         control.current.open()
       },
       close: cb => {
