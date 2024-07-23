@@ -2,7 +2,7 @@ import {SearchBar} from '#/components/SearchBar'
 import React, {useCallback} from 'react'
 import {View, Image, FlatList, ListRenderItemInfo} from 'react-native'
 
-import {ChevronDown, Pin, Plus, PlusCircle, Star} from 'lucide-react-native'
+import {ChevronDown, Pin} from 'lucide-react-native'
 import {Text} from '#/components/Typography'
 import {useNavigation} from '@react-navigation/native'
 import {NavigationProp} from '#/lib/routes/types'
@@ -11,12 +11,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler'
 import {useLocationStore} from '#/stores/location'
 
 import {SearchNearbyStore, Store} from '#/types/automate'
-import {logger} from '#/logger'
-import {StoreRating} from '#/components/store/StoreRating'
+
 import {getRoundedKm} from '#/lib/utils'
 import {atoms as a, useTheme} from '#/theme'
 import {color} from '#/theme/tokens'
-import {StarRating} from '#/components/store/StarRating'
+
 import {Ratings} from '#/components/store/Ratings'
 import {useSearchStoresQuery} from '#/state/queries/stores'
 

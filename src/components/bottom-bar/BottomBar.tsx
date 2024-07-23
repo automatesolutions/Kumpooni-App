@@ -1,35 +1,29 @@
-import React, {ComponentProps, useLayoutEffect} from 'react';
-import {GestureResponderEvent, TouchableOpacity, View} from 'react-native';
-import Animated from 'react-native-reanimated';
-import {styles} from './BottomBarStyles';
+import React, {ComponentProps, useLayoutEffect} from 'react'
+import {GestureResponderEvent, TouchableOpacity, View} from 'react-native'
+import Animated from 'react-native-reanimated'
+import {styles} from './BottomBarStyles'
 import {
   HomeIcon,
   HomeIconSolid,
-  MagnifyingGlassIcon2,
-  MagnifyingGlassIcon2Solid,
   MyAccountIcon,
   MyAccountIconSolid,
-  OrderIcon,
-  OrderIconSolid,
   OrdersIcon,
   OrdersIconSolid,
   PartsIcon,
   PartsIconSolid,
-  ReceiptIcon,
-  ReceiptIconSolid,
   StoreIcon,
   StoreIconSolid,
-} from 'lib/icons';
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {useNavigationTabState} from '#/lib/hooks/useNavigationTabState';
-import {TabState, getTabState} from '#/lib/routes/helpers';
-import {StackActions} from '@react-navigation/native';
-import {useDedupe} from '#/lib/hooks/useDedupe';
-import {Text} from '../Typography';
-import {useTheme, atoms as a} from '#/theme';
-import {useSession} from '#/state/session';
+} from 'lib/icons'
+import {BottomTabBarProps} from '@react-navigation/bottom-tabs'
+import {useNavigationTabState} from '#/lib/hooks/useNavigationTabState'
+import {TabState, getTabState} from '#/lib/routes/helpers'
+import {StackActions} from '@react-navigation/native'
+import {useDedupe} from '#/lib/hooks/useDedupe'
+import {Text} from '../Typography'
+import {useTheme, atoms as a} from '#/theme'
+import {useSession} from '#/state/session'
 
-type TabOptions = 'Home' | 'Orders' | 'Parts' | 'Shops' | 'MyAccount';
+type TabOptions = 'Home' | 'Orders' | 'Parts' | 'Shops' | 'MyAccount'
 interface BtnProps
   extends Pick<
     ComponentProps<typeof TouchableOpacity>,
@@ -38,56 +32,56 @@ interface BtnProps
     | 'accessibilityHint'
     | 'accessibilityLabel'
   > {
-  testID?: string;
-  icon: JSX.Element;
-  label: string;
-  isActive: boolean;
-  notificationCount?: string;
-  onPress?: (event: GestureResponderEvent) => void;
-  onLongPress?: (event: GestureResponderEvent) => void;
+  testID?: string
+  icon: JSX.Element
+  label: string
+  isActive: boolean
+  notificationCount?: string
+  onPress?: (event: GestureResponderEvent) => void
+  onLongPress?: (event: GestureResponderEvent) => void
 }
 export function BottomBar({navigation}: BottomTabBarProps) {
-  const dedupe = useDedupe();
-  const {hasSession} = useSession();
+  const dedupe = useDedupe()
+  const {hasSession} = useSession()
 
   const {isAtHome, isAtOrders, isAtParts, isAtShops, isAtMyAccount} =
-    useNavigationTabState();
+    useNavigationTabState()
 
-  const hideBottomBar = (isAtOrders || isAtShops) && !hasSession;
+  const hideBottomBar = (isAtOrders || isAtShops || isAtParts) && !hasSession
 
   const onPressTab = React.useCallback(
     (tab: TabOptions) => {
-      const state = navigation.getState();
+      const state = navigation.getState()
 
-      const tabState = getTabState(state, tab);
+      const tabState = getTabState(state, tab)
 
       if (tabState === TabState.InsideAtRoot) {
       } else if (tabState === TabState.Inside) {
-        dedupe(() => navigation.dispatch(StackActions.popToTop()));
+        dedupe(() => navigation.dispatch(StackActions.popToTop()))
       } else {
-        dedupe(() => navigation.navigate(`${tab}Tab`));
+        dedupe(() => navigation.navigate(`${tab}Tab`))
       }
     },
     [navigation, dedupe],
-  );
-  const onPressHome = React.useCallback(() => onPressTab('Home'), [onPressTab]);
+  )
+  const onPressHome = React.useCallback(() => onPressTab('Home'), [onPressTab])
   const onPressOrders = React.useCallback(
     () => onPressTab('Orders'),
     [onPressTab],
-  );
+  )
   const onPressStore = React.useCallback(
     () => onPressTab('Shops'),
     [onPressTab],
-  );
+  )
   const onPressMyAccount = React.useCallback(
     () => onPressTab('MyAccount'),
     [onPressTab],
-  );
+  )
 
   const onPressParts = React.useCallback(
     () => onPressTab('Parts'),
     [onPressTab],
-  );
+  )
 
   return (
     <Animated.View
@@ -218,7 +212,7 @@ export function BottomBar({navigation}: BottomTabBarProps) {
         accessibilityHint=""
       />
     </Animated.View>
-  );
+  )
 }
 
 function Btn({
@@ -259,5 +253,5 @@ function Btn({
         {label}
       </Text>
     </TouchableOpacity>
-  );
+  )
 }

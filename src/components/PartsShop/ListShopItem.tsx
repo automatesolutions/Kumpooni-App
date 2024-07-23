@@ -116,8 +116,13 @@ export function ListShopItem({place}: {place: GooglePlaceDto}) {
   )
 }
 
-function BusinessHours({businessHours}: {businessHours: OpeningHours}) {
-  const openingHours = getBusinessHours(businessHours.weekdayDescriptions ?? [])
+function BusinessHours({businessHours}: {businessHours?: OpeningHours}) {
+  const openingHours = getBusinessHours(
+    businessHours?.weekdayDescriptions ?? [],
+  )
+  if (!openingHours.length) {
+    return <View />
+  }
   return (
     <View style={[a.pl_2xs]}>
       <Text style={[a.text_2xs]}>{openingHours[0]}</Text>

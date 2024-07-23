@@ -101,7 +101,7 @@ function BYDBanner() {
     return Linking.openURL('https://bydcarsphilippines.com/')
   }
   return (
-    <View style={[]}>
+    <View style={[{paddingBottom: 120}]}>
       <View
         style={[
           a.flex_row,

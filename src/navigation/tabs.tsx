@@ -110,7 +110,13 @@ function PartsTabNavigator() {
           ),
         }
       }}>
-      <PartsTab.Screen name="Parts" getComponent={() => PartsScreen} />
+      <PartsTab.Screen
+        name="Parts"
+        getComponent={() => PartsScreen}
+        options={{
+          requireAuth: true,
+        }}
+      />
     </PartsTab.Navigator>
   )
 }

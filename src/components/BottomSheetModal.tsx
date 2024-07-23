@@ -1,12 +1,12 @@
-import React, { useCallback, useImperativeHandle, useMemo, useRef } from 'react'
-import { StyleSheet } from 'react-native'
+import React, {useCallback, useImperativeHandle, useMemo, useRef} from 'react'
+import {StyleSheet} from 'react-native'
 import Animated, {
   Extrapolate,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated'
 
-import type { BottomSheetModalProps } from '@gorhom/bottom-sheet'
+import type {BottomSheetModalProps} from '@gorhom/bottom-sheet'
 import {
   BottomSheetModal as _BottomSheetModal,
   BottomSheetBackdrop,
@@ -49,16 +49,16 @@ export const BottomSheetModal = React.forwardRef<
   return (
     <_BottomSheetModal
       ref={bottomSheetModalRef}
-      handleIndicatorStyle={{ backgroundColor: subtitle }}
+      handleIndicatorStyle={{backgroundColor: subtitle}}
       handleStyle={styles.handleStyle}
       backdropComponent={renderBackdrop}
-      backgroundStyle={{ backgroundColor: '#fff' }}
+      backgroundStyle={{backgroundColor: '#fff'}}
       {...props}
     />
   )
 })
 
-const CustomBackdrop = ({ animatedIndex, style }: BottomSheetBackdropProps) => {
+const CustomBackdrop = ({animatedIndex, style}: BottomSheetBackdropProps) => {
   const containerAnimatedStyle = useAnimatedStyle(() => ({
     opacity: interpolate(
       animatedIndex.value,
