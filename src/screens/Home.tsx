@@ -126,9 +126,6 @@ function BYDBanner() {
           </TouchableOpacity>
         ))}
       </View>
-      {/* https://pnisqggcyxhdowtevdzu.supabase.co/storage/v1/object/public/image/byd-car-red.png
-      https://pnisqggcyxhdowtevdzu.supabase.co/storage/v1/object/public/image/byd-car-blue.png
-      https://pnisqggcyxhdowtevdzu.supabase.co/storage/v1/object/public/image/byd-car-white.png */}
     </View>
   )
 }
