@@ -66,11 +66,6 @@ const fetchPartsShops = async ({
 
     const hasNextPage = (responseTyped?.length || 0) >= PAGE_SIZE
     const nextPageToken = responseJson?.nextPageToken as string
-    // Filter based on types
-
-    // const filteredData = responseTyped.filter(
-    //   place => place.userRatingCount > 3,
-    // )
 
     return {
       places: responseTyped.map(data => ({

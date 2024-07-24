@@ -162,7 +162,6 @@ export function PartsScreen() {
           <ListFooter
             isFetchingNextPage={isFetching}
             error={cleanError(error)}
-            style={{borderColor: 'transparent'}}
             showEndMessage={true}
             endMessageText={`No more shops to show`}
           />

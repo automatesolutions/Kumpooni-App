@@ -65,7 +65,7 @@ export const useLocationStore = create(
                   set({isLoading: false})
                   resolve(true)
                 }
-
+                console.log('cooridnates', {latitude, longitude})
                 useReverseGeoCode({lat: latitude, lng: longitude})
                   .then(result => {
                     if (result) {
@@ -109,7 +109,7 @@ export const useLocationStore = create(
             )
           })
         }
-        logger.debug('Nothing happens')
+        logger.debug('Nothing happen')
         return false
       },
       clearLocation: () => set({location: null, address: null}),

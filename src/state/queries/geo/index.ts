@@ -31,12 +31,13 @@ export const useReverseGeoCode = ({
       url: `https://maps.googleapis.com/maps/api/geocode/json`,
       params: {
         latlng: `${lat},${lng}`,
-        result_type: 'street_address',
+        result_type:
+          'street_address|administrative_area_level_1|administrative_area_level_2',
         key: GOOGLE_MAP_KEY,
       },
     }).then(response => {
       const result: GeocodingResult = response.data.results[0]
-      console.log('Result', result)
+      // console.log('Result', result)
       if (!result) {
         return resolve(null)
       }

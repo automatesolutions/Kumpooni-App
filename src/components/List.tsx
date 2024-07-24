@@ -1,10 +1,10 @@
-import React from 'react';
-import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native';
-import {Text} from '#/components/Typography';
-import {useTheme, atoms as a, flatten} from '#/theme';
-import {cleanError} from '#/lib/strings/errors';
-import {Button, ButtonText} from '#/components/Button';
-import {Loader} from '#/components/Loader';
+import React from 'react'
+import {View, StyleSheet, StyleProp, ViewStyle} from 'react-native'
+import {Text} from '#/components/Typography'
+import {useTheme, atoms as a, flatten} from '#/theme'
+import {cleanError} from '#/lib/strings/errors'
+import {Button, ButtonText} from '#/components/Button'
+import {Loader} from '#/components/Loader'
 
 export function ListFooter({
   isFetchingNextPage,
@@ -16,16 +16,16 @@ export function ListFooter({
   showEndMessage,
   endMessageText,
 }: {
-  isFetchingNextPage?: boolean;
-  hasNextPage?: boolean;
-  error?: string;
-  onRetry?: () => Promise<unknown>;
-  height?: number;
-  style?: StyleProp<ViewStyle>;
-  showEndMessage?: boolean;
-  endMessageText?: string;
+  isFetchingNextPage?: boolean
+  hasNextPage?: boolean
+  error?: string
+  onRetry?: () => Promise<unknown>
+  height?: number
+  style?: StyleProp<ViewStyle>
+  showEndMessage?: boolean
+  endMessageText?: string
 }) {
-  const t = useTheme();
+  const t = useTheme()
 
   return (
     <View
@@ -48,19 +48,19 @@ export function ListFooter({
         </Text>
       ) : null}
     </View>
-  );
+  )
 }
 
 function ListFooterMaybeError({
   error,
   onRetry,
 }: {
-  error?: string;
-  onRetry?: () => Promise<unknown>;
+  error?: string
+  onRetry?: () => Promise<unknown>
 }) {
-  const t = useTheme();
+  const t = useTheme()
 
-  if (!error) return null;
+  if (!error) return null
 
   return (
     <View style={[a.w_full, a.px_lg]}>
@@ -94,5 +94,5 @@ function ListFooterMaybeError({
         </Button>
       </View>
     </View>
-  );
+  )
 }
