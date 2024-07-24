@@ -14,7 +14,7 @@ import {Text} from '#/components/Typography'
 import {NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useTheme, atoms as a} from '#/theme'
 import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
-import {SafeAreaView} from 'react-native-safe-area-context'
+
 import Animated, {
   FadeInRight,
   useAnimatedScrollHandler,
@@ -23,12 +23,17 @@ import {ChevronLeft, Search} from 'lucide-react-native'
 import {colors, spacing} from '#/utils/theme'
 import {useNavigation} from '@react-navigation/native'
 import {Separator} from '#/components/utils/Views'
-import {Service} from '#/types/automate'
-import {useServicesFeed} from '#/state/queries/services'
+
+import {ServiceFeed, useServicesFeed} from '#/state/queries/services'
 import {SkeletonServices} from '#/components/skeleton/SkeletonServices'
 import {debounce} from '#/lib/debounce'
-import {currency} from '#/lib/strings/currency'
+
 import {logger} from '#/logger'
+import {List} from '#/components/utils/List'
+
+import {ListFooter} from '#/components/List'
+import {cleanError} from '#/lib/strings/errors'
+import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Search'>
 export function SearchScreen({}: Props) {
@@ -37,7 +42,7 @@ export function SearchScreen({}: Props) {
   const [search, setSearch] = useState('')
   const wrappedSetSearch = debounce(setSearch, 500)
   return (
-    <SafeAreaView edges={['top']} style={{flex: 1, backgroundColor: '#fff'}}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <Animated.View entering={FadeInRight.duration(500)}>
         <View style={styles.container}>
           <Pressable onPress={() => navigation.goBack()}>
@@ -59,11 +64,12 @@ export function SearchScreen({}: Props) {
           </TouchableOpacity>
         </View>
       </Animated.View>
+
       <ServicesFeedList
         searchKeyword={search}
         onScroll={() => Keyboard.isVisible() && Keyboard.dismiss()}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -76,25 +82,43 @@ export function ServicesFeedList({
   searchKeyword,
   onScroll,
 }: ServicesFeedListProps) {
-  const {data: servicesFeed, isFetching} = useServicesFeed(searchKeyword)
+  const {
+    data: servicesFeed,
+    isFetching,
+    isError,
+    error,
+  } = useServicesFeed(searchKeyword)
+  const initialNumToRender = useInitialNumToRender()
   logger.debug('services', {servicesFeed})
-  const renderServiceItem: ListRenderItem<Service> = useCallback(({item}) => {
-    return <ServicesListItem service={item} />
-  }, [])
+  const renderServiceItem: ListRenderItem<ServiceFeed> = useCallback(
+    ({item}) => {
+      return <ServicesListItem service={item} />
+    },
+    [],
+  )
+
+  if (isError || !servicesFeed) {
+    return (
+      <>
+        <SkeletonServices style={{marginHorizontal: spacing.medium}} />
+        <SkeletonServices style={{marginHorizontal: spacing.medium}} />
+      </>
+    )
+  }
   return (
-    <FlatList
+    <List
+      style={{flex: 1}}
       contentContainerStyle={{
-        flex: 1,
         paddingHorizontal: spacing.extraSmall,
       }}
-      onScroll={onScroll}
       data={servicesFeed}
       renderItem={renderServiceItem}
-      keyExtractor={(item: Service) => item?.id?.toString()}
+      keyExtractor={(item: ServiceFeed, index) => item?.id?.toString() + index}
       ItemSeparatorComponent={() => (
         <Separator style={{marginVertical: 5, marginHorizontal: 8}} />
       )}
       scrollEventThrottle={16}
+      initialNumToRender={initialNumToRender}
       ListEmptyComponent={() =>
         isFetching ? (
           <>
@@ -103,11 +127,18 @@ export function ServicesFeedList({
           </>
         ) : null
       }
+      ListFooterComponent={
+        <ListFooter
+          error={cleanError(error)}
+          showEndMessage
+          endMessageText="End of result."
+        />
+      }
     />
   )
 }
 
-export function ServicesListItem({service}: {service: Service}) {
+export function ServicesListItem({service}: {service: ServiceFeed}) {
   const navigation = useNavigation<NavigationProp>()
 
   return (
@@ -134,20 +165,11 @@ export function ServicesListItem({service}: {service: Service}) {
         resizeMode="contain"
         style={{height: 70, width: 70, borderRadius: 5}}
       />
-      <View style={{flex: 1, paddingVertical: spacing.tiny}}>
+      <View style={{paddingVertical: spacing.tiny}}>
         <Text style={[a.text_md, a.font_bold]}>{service?.name}</Text>
         <Text style={[a.text_sm, {color: '#b61616'}]}>
           {service?.short_description}
         </Text>
-        {/* <Text
-          style={{
-            fontSize: 12,
-            color: '#000',
-            fontWeight: 'bold',
-            fontFamily: 'Inter-Medium',
-          }}>
-          {currency.format(service?.price ?? 0)}
-        </Text> */}
       </View>
     </Pressable>
   )

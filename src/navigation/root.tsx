@@ -1,37 +1,38 @@
-import {AllNavigatorParams, NavigationProp} from '#/lib/routes/types';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {ServicesScreen} from '#/screens/Services';
-import {DetailsScreen} from '#/screens/Details';
-import {LoginScreen} from '#/screens/Login';
-import {TermsScreen} from '#/screens/Terms';
-import {OtpScreen} from '#/screens/Otp';
-import {AddressListScreen} from '#/screens/AddressList';
-import {LocationScreen} from '#/screens/Location';
-import {SearchScreen} from '#/screens/Search';
-import {StoreSelectionScreen} from '#/screens/StoreSelection';
-import {CarsScreen} from '#/screens/Cars';
-import {CartScreen} from '#/screens/Cart';
-import {VehicleScreen} from '#/screens/Vehicle';
-import {SupportScreen} from '#/screens/SupportScreen';
-import {AboutScreen} from '#/screens/AboutScreen';
-import {CheckoutScreen} from '#/screens/Checkout';
-import {OrderDetailsScreen} from '#/screens/OrderDetails';
-import {SearchStoresScreen} from '#/screens/SearchStores';
-import {StoreScreen} from '#/screens/Store';
-import {CartStoreScreen} from '#/screens/CartStore';
-import {CreateAccountScreen} from '#/screens/CreateAccount';
-import {WriteReviewScreen} from '#/screens/WriteReview';
-import {StoryBook} from '#/screens/StoryBook';
-import {NotificationScreen} from '#/screens/Notification';
-import {createNativeStackNavigatorWithAuth} from '#/view/shell/createNativeStackNavigatorWithAuth';
-import {Header} from '#/components/Header';
-import {colors} from '#/utils/theme';
-import {TabsNavigator} from './tabs';
+import {AllNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {NavigationContainer, useNavigation} from '@react-navigation/native'
+import {ServicesScreen} from '#/screens/Services'
+import {DetailsScreen} from '#/screens/Details'
+import {LoginScreen} from '#/screens/Login'
+import {TermsScreen} from '#/screens/Terms'
+import {OtpScreen} from '#/screens/Otp'
+import {AddressListScreen} from '#/screens/AddressList'
+import {LocationScreen} from '#/screens/Location'
+import {SearchScreen} from '#/screens/Search'
+import {StoreSelectionScreen} from '#/screens/StoreSelection'
+import {CarsScreen} from '#/screens/Cars'
+import {CartScreen} from '#/screens/Cart'
+import {VehicleScreen} from '#/screens/Vehicle'
+import {SupportScreen} from '#/screens/SupportScreen'
+import {AboutScreen} from '#/screens/AboutScreen'
+import {CheckoutScreen} from '#/screens/Checkout'
+import {OrderDetailsScreen} from '#/screens/OrderDetails'
+import {SearchStoresScreen} from '#/screens/SearchStores'
+import {StoreScreen} from '#/screens/Store'
+import {CartStoreScreen} from '#/screens/CartStore'
+import {CreateAccountScreen} from '#/screens/CreateAccount'
+import {WriteReviewScreen} from '#/screens/WriteReview'
+import {StoryBook} from '#/screens/StoryBook'
+import {NotificationScreen} from '#/screens/Notification'
+import {createNativeStackNavigatorWithAuth} from '#/view/shell/createNativeStackNavigatorWithAuth'
+import {Header} from '#/components/Header'
+import {colors} from '#/utils/theme'
+import {TabsNavigator} from './tabs'
+import {SettingsScreen} from '#/screens/Settings'
 
-const RootStack = createNativeStackNavigatorWithAuth<AllNavigatorParams>();
+const RootStack = createNativeStackNavigatorWithAuth<AllNavigatorParams>()
 
 export function RootNavigator() {
-  const navigation = useNavigation<NavigationProp>();
+  const navigation = useNavigation<NavigationProp>()
   return (
     <RootStack.Navigator initialRouteName="RootTab">
       {/* Without header */}
@@ -106,7 +107,7 @@ export function RootNavigator() {
               leftIcon="back"
               leftIconColor={colors.black}
               onLeftPress={() => {
-                return navigation.goBack();
+                return navigation.goBack()
               }}
             />
           ),
@@ -197,13 +198,20 @@ export function RootNavigator() {
             title: 'Checkout',
           }}
         />
+        <RootStack.Screen
+          name="Settings"
+          getComponent={() => SettingsScreen}
+          options={{
+            title: 'Settings',
+          }}
+        />
       </RootStack.Group>
     </RootStack.Navigator>
-  );
+  )
 }
 
 function RoutesContainer({children}: React.PropsWithChildren<{}>) {
-  return <NavigationContainer>{children}</NavigationContainer>;
+  return <NavigationContainer>{children}</NavigationContainer>
 }
 
-export {RoutesContainer};
+export {RoutesContainer}

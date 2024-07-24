@@ -1,13 +1,21 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 
-import { AccountNavigationItem } from '../../types/automate'
-import { Icon } from '../utils/icon'
+import {AccountNavigationItem} from '../../types/automate'
+import {Icon} from '../utils/icon'
 
 type SectionItemProps = {
   section: AccountNavigationItem
   hasIconRight?: boolean
   onPress: () => void
   textColor?: string
+  textStyle?: StyleProp<TextStyle>
 }
 
 const SectionItem = ({
@@ -15,6 +23,7 @@ const SectionItem = ({
   hasIconRight,
   onPress,
   textColor,
+  textStyle,
 }: SectionItemProps) => (
   <TouchableOpacity
     onPress={onPress}
@@ -25,15 +34,18 @@ const SectionItem = ({
         alignItems: 'center',
       },
     ]}>
-    <View style={{ marginRight: 24 }}>{section.iconElement}</View>
+    <View style={{marginRight: 24}}>{section.iconElement}</View>
 
-    <View style={{ flexGrow: 1, justifyContent: 'center' }}>
+    <View style={{flexGrow: 1, justifyContent: 'center'}}>
       <Text
-        style={{
-          fontSize: 16,
-          fontWeight: 'bold',
-          color: textColor ? textColor : '#000',
-        }}>
+        style={[
+          {
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: textColor ? textColor : '#000',
+          },
+          textStyle,
+        ]}>
         {section.title}
       </Text>
       {section?.subTitle && (
@@ -49,19 +61,19 @@ const SectionItem = ({
     </View>
 
     {hasIconRight && (
-      <View style={{ marginLeft: 'auto' }}>
+      <View style={{marginLeft: 'auto'}}>
         <Icon icon={'caretRight'} size={22} color={'#000'} />
       </View>
     )}
   </TouchableOpacity>
 )
-export { SectionItem }
+export {SectionItem}
 
 const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
   },
-  flexCenter: { alignItems: 'center', justifyContent: 'center' },
+  flexCenter: {alignItems: 'center', justifyContent: 'center'},
   spacing: {
     marginVertical: 14,
   },

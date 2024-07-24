@@ -88,7 +88,6 @@ export function HomeScreen() {
 }
 
 function BYDBanner() {
-  const t = useTheme()
   const [bydPictures] = useState([
     'https://pnisqggcyxhdowtevdzu.supabase.co/storage/v1/object/public/image/byd-car-white.png',
     'https://pnisqggcyxhdowtevdzu.supabase.co/storage/v1/object/public/image/byd-car-blue.png',

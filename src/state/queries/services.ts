@@ -1,11 +1,11 @@
-import { useQuery } from '@tanstack/react-query'
+import {useQuery} from '@tanstack/react-query'
 
-import { supabase } from '#/lib/supabase'
-import { logger } from '#/logger'
-import { SupabaseClient } from '@supabase/supabase-js'
-import { Database } from '#/types/supabase'
+import {supabase} from '#/lib/supabase'
+import {logger} from '#/logger'
+import {SupabaseClient} from '@supabase/supabase-js'
+import {Database} from '#/types/supabase'
 
-type ServiceFeed = Service & {
+export type ServiceFeed = Service & {
   category: {
     id: number
     name: string
@@ -16,7 +16,7 @@ export const useServicesFeed = (searchKeyword: string) => {
   return useQuery({
     queryKey: ['services', searchKeyword],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const {data, error} = await supabase
         .from('service')
         .select('*, category:category_id(id, name)')
         .is('store_id', null)
@@ -24,6 +24,7 @@ export const useServicesFeed = (searchKeyword: string) => {
           type: 'websearch',
           config: 'english',
         })
+        .order('name')
       console.log('Error', error)
       if (error) throw error
       //@ts-ignore
@@ -35,14 +36,14 @@ export const useServicesFeed = (searchKeyword: string) => {
 
 export function useServicesByCategoryQuery(categoryId: number) {
   return useQuery({
-    queryKey: ['services', { categoryId }],
+    queryKey: ['services', {categoryId}],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const {data, error} = await supabase
         .from('service')
         .select('*')
-        .match({ category_id: categoryId, is_active: true })
+        .match({category_id: categoryId, is_active: true})
         .filter('store_id', 'is', null)
-        .order('price', { ascending: true })
+        .order('price', {ascending: true})
 
       if (error) {
         logger.error('useServicesByCategoryQuery', error)
@@ -59,4 +60,4 @@ export async function getServicesByCategory(client: SupabaseClient<Database>) {
 }
 export type Service = NonNullable<
   Awaited<ReturnType<typeof getServicesByCategory>>['data']
->
+>[0]
