@@ -494,11 +494,12 @@ export type Database = {
       }
       notifications: {
         Row: {
-          content: string | null
           created_at: string
+          description: string | null
           id: string
           is_public: boolean | null
           is_read: boolean
+          metadata: Json | null
           read_at: string | null
           repair_order_id: string | null
           store_id: string | null
@@ -506,11 +507,12 @@ export type Database = {
           user_id: string | null
         }
         Insert: {
-          content?: string | null
           created_at?: string
+          description?: string | null
           id?: string
           is_public?: boolean | null
           is_read?: boolean
+          metadata?: Json | null
           read_at?: string | null
           repair_order_id?: string | null
           store_id?: string | null
@@ -518,11 +520,12 @@ export type Database = {
           user_id?: string | null
         }
         Update: {
-          content?: string | null
           created_at?: string
+          description?: string | null
           id?: string
           is_public?: boolean | null
           is_read?: boolean
+          metadata?: Json | null
           read_at?: string | null
           repair_order_id?: string | null
           store_id?: string | null
@@ -892,7 +895,7 @@ export type Database = {
           invoice_status: Database["public"]["Enums"]["invoice_status"] | null
           priority: string | null
           reference_no: number
-          status: Database["public"]["Enums"]["repair_order_status"]
+          status: Database["public"]["Enums"]["notification_type"] | null
           store_id: string
           total_cost: number | null
           updated_at: string | null
@@ -909,7 +912,7 @@ export type Database = {
           invoice_status?: Database["public"]["Enums"]["invoice_status"] | null
           priority?: string | null
           reference_no?: number
-          status?: Database["public"]["Enums"]["repair_order_status"]
+          status?: Database["public"]["Enums"]["notification_type"] | null
           store_id: string
           total_cost?: number | null
           updated_at?: string | null
@@ -926,7 +929,7 @@ export type Database = {
           invoice_status?: Database["public"]["Enums"]["invoice_status"] | null
           priority?: string | null
           reference_no?: number
-          status?: Database["public"]["Enums"]["repair_order_status"]
+          status?: Database["public"]["Enums"]["notification_type"] | null
           store_id?: string
           total_cost?: number | null
           updated_at?: string | null
@@ -1964,7 +1967,7 @@ export type Database = {
           phone: string | null
           reference_no: number | null
           services_total: number | null
-          status: Database["public"]["Enums"]["repair_order_status"] | null
+          status: Database["public"]["Enums"]["notification_type"] | null
           store_id: string | null
           total_cost: number | null
           user_id: string | null
@@ -2060,12 +2063,6 @@ export type Database = {
           user_id: string
         }
         Returns: undefined
-      }
-      count_unread_notifications: {
-        Args: {
-          user_id_param: string
-        }
-        Returns: number
       }
       create_repair_order: {
         Args: {
@@ -2256,16 +2253,6 @@ export type Database = {
           week_day: string
         }[]
       }
-      get_store_performance: {
-        Args: {
-          store_id: string
-        }
-        Returns: {
-          order_count: number
-          total: number
-          cars_serviced: number
-        }[]
-      }
       is_slot_available: {
         Args: {
           storeid: string
@@ -2397,7 +2384,7 @@ export type Database = {
         | "services"
         | "updates"
         | "default"
-      payment_method_type: "Cash" | "GCash" | "Bank" | "Maya" | "Online Banking"
+      payment_method_type: "Cash" | "Gcash" | "Bank" | "Maya" | "Online Banking"
       platform_type: "ios" | "android" | "web"
       repair_order_status:
         | "Scheduled"

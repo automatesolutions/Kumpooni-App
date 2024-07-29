@@ -26,28 +26,28 @@ export const BACK_HITSLOP = HITSLOP_30
 export const MAX_POST_LINES = 25
 
 export type TransactionTabTypes =
-  | 'Scheduled'
-  | 'Completed'
-  | 'Canceled'
-  | 'In Progress|Awaiting Parts'
+  | 'scheduled'
+  | 'completed'
+  | 'canceled'
+  | 'inprogress|awaiting-parts'
 export const tabs: Array<{
   key: TransactionTabTypes
   label: string
 }> = [
   {
-    key: 'Scheduled',
+    key: 'scheduled',
     label: 'Upcoming',
   },
   {
-    key: 'In Progress|Awaiting Parts',
+    key: 'inprogress|awaiting-parts',
     label: 'Ongoing',
   },
   {
-    key: 'Completed',
+    key: 'completed',
     label: 'Completed',
   },
   {
-    key: 'Canceled',
+    key: 'canceled',
     label: 'Canceled',
   },
 ]

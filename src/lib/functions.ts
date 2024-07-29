@@ -1,5 +1,5 @@
-import { RepairStatus } from '../types/automate'
-import { colors } from './styles'
+import {colors} from '#/utils/theme'
+import {RepairStatus} from '../types/automate'
 
 //https://github.com/bluesky-social/social-app/blob/main/src/view/com/util/forms/Button.tsx#L163
 export function choose<U, T extends Record<string, U>>(
@@ -19,10 +19,10 @@ export function getRepairOrderStatusColor(status: RepairStatus) {
     color: '#000',
   }
   switch (status) {
-    case 'Cancelled':
+    case 'canceled':
       statusStyle.color = colors.error
       break
-    case 'Completed':
+    case 'completed':
       statusStyle.color = colors.green
       break
     default:
@@ -30,33 +30,43 @@ export function getRepairOrderStatusColor(status: RepairStatus) {
   }
   return statusStyle
 }
+export function convertRepairStatusText(status: RepairStatus) {
+  if (status == 'inprogress') {
+    return 'In Progress'
+  }
+  return capitalize(status)
+}
+
+function capitalize(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
 
 export function buttonStyle(status: RepairStatus) {
   let buttonColor, textColor, title
   switch (status) {
-    case 'Scheduled':
+    case 'scheduled':
       buttonColor = '#16CA5E'
       textColor = '#000'
       title = 'Upcoming Appointments'
       break
-    case 'Awaiting Parts':
+    case 'awaiting-parts':
       buttonColor = colors.orange
       textColor = colors.orange
       title = 'Ongoing Services'
       // Set the text color for INFO status
       break
-    case 'In Progress':
+    case 'inprogress':
       buttonColor = colors.info
       textColor = colors.info
       title = 'Ongoing Services'
       // Set the text color for INFO status
       break
-    case 'Completed':
+    case 'completed':
       buttonColor = colors.green
       textColor = colors.green
       title = 'Completed Service'
       break
-    case 'Cancelled':
+    case 'canceled':
       buttonColor = colors.primary
       textColor = colors.primary
       title = 'Cancelled Service'
@@ -69,5 +79,5 @@ export function buttonStyle(status: RepairStatus) {
     // Set the text color for other statuses
   }
 
-  return { buttonColor, textColor, title }
+  return {buttonColor, textColor, title}
 }

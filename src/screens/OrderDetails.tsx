@@ -1,42 +1,45 @@
-import React, {FC, useLayoutEffect} from 'react';
-import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React, {FC, useLayoutEffect} from 'react'
+import {ActivityIndicator, ScrollView, StyleSheet, View} from 'react-native'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
 
-import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types';
-import {useSession} from '#/state/session';
-import {useNavigation} from '@react-navigation/native';
-import {colors, spacing} from '#/utils/theme';
-import {useGetRepairOrderId} from '#/state/queries/order';
-import {Header} from '#/components/Header';
-import {Text} from '#/components/Typography';
-import {getRepairOrderStatusColor} from '#/lib/functions';
-import {atoms as a, useTheme} from '#/theme';
-import {currency} from '#/lib/strings/currency';
-import {ServiceAppointment} from '#/components/order/ServiceAppointment';
-import {ServiceCenter} from '#/components/order/ServiceCenter';
-import {RepairServices} from '#/components/order/RepairServices';
-import {RepairParts} from '#/components/order/RepairParts';
-import {OrderDetails} from '#/components/order/OrderDetails';
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {useSession} from '#/state/session'
+import {useNavigation} from '@react-navigation/native'
+import {colors, spacing} from '#/utils/theme'
+import {useGetRepairOrderId} from '#/state/queries/order'
+import {Header} from '#/components/Header'
+import {Text} from '#/components/Typography'
+import {
+  convertRepairStatusText,
+  getRepairOrderStatusColor,
+} from '#/lib/functions'
+import {atoms as a, useTheme} from '#/theme'
+import {currency} from '#/lib/strings/currency'
+import {ServiceAppointment} from '#/components/order/ServiceAppointment'
+import {ServiceCenter} from '#/components/order/ServiceCenter'
+import {RepairServices} from '#/components/order/RepairServices'
+import {RepairParts} from '#/components/order/RepairParts'
+import {OrderDetails} from '#/components/order/OrderDetails'
 
-type Props = NativeStackScreenProps<CommonNavigatorParams, 'OrderDetails'>;
+type Props = NativeStackScreenProps<CommonNavigatorParams, 'OrderDetails'>
 
 export function OrderDetailsScreen({route}: Props) {
-  const {params} = route;
-  const {repairOrderId} = params;
+  const {params} = route
+  const {repairOrderId} = params
 
-  const {session} = useSession();
-  const navigation = useNavigation<NavigationProp>();
+  const {session} = useSession()
+  const navigation = useNavigation<NavigationProp>()
 
   const {data: repair_order, error: repairError} = useGetRepairOrderId({
     user_id: session?.user.id,
     repair_order_id: repairOrderId,
-  });
+  })
 
   const isCancelled =
     repair_order?.status === 'Cancelled' ||
-    repair_order?.status === 'In Progress';
+    repair_order?.status === 'In Progress'
 
-  const isCompleted = repair_order?.status === 'Completed';
+  const isCompleted = repair_order?.status === 'Completed'
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -55,8 +58,8 @@ export function OrderDetailsScreen({route}: Props) {
           onLeftPress={() => navigation.goBack()}
         />
       ),
-    });
-  }, []);
+    })
+  }, [])
 
   if (!repair_order)
     return (
@@ -69,7 +72,7 @@ export function OrderDetailsScreen({route}: Props) {
           alignItems: 'center',
         }}
       />
-    );
+    )
 
   return (
     <View style={styles.container}>
@@ -85,7 +88,7 @@ export function OrderDetailsScreen({route}: Props) {
         <View style={[styles.orderStatus, styles.flexBetween]}>
           <Text>Status</Text>
           <Text style={getRepairOrderStatusColor(repair_order.status)}>
-            {repair_order.status}
+            {convertRepairStatusText(repair_order.status)}
           </Text>
         </View>
         <View style={styles.serviceSummary}>
@@ -134,7 +137,7 @@ export function OrderDetailsScreen({route}: Props) {
         )}
       </View> */}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -195,4 +198,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-});
+})

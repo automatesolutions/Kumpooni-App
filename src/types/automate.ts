@@ -84,7 +84,7 @@ export interface TransactionOrderTypes
   reviews: Reviews[]
 }
 //ENUM
-export type RepairStatus = Enums<'repair_order_status'>
+export type RepairStatus = Enums<'notification_type'>
 
 export type AccountNavigationItem = {
   id: number
