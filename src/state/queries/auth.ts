@@ -1,8 +1,9 @@
-import { supabase } from '#/lib/supabase'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import {supabase} from '#/lib/supabase'
+import {logger} from '#/logger'
+import {useMutation, useQueryClient} from '@tanstack/react-query'
 
 export const isProfileIncomplete = async (id: string) => {
-  const { data } = await supabase
+  const {data} = await supabase
     .from('users')
     .select('first_name, phone')
     .eq('id', id)
@@ -26,7 +27,7 @@ export const useUpdateProfile = () => {
 
   return useMutation({
     mutationFn: async (input: UpdateProfile) => {
-      const { error } = await supabase
+      const {error} = await supabase
         .from('users')
         .update(input.changes)
         .eq('id', input.id)
@@ -36,7 +37,10 @@ export const useUpdateProfile = () => {
         data: input.changes,
       })
 
-      if (error) throw error
+      if (error) {
+        logger.error('useUpdateProfile', {message: error})
+        throw error
+      }
 
       return null
     },

@@ -29,6 +29,7 @@ import {NavigationProp} from 'lib/routes/types'
 import {Text} from '#/components/Typography'
 import {color} from '#/theme/tokens'
 import * as Toggle from '#/components/forms/Toggle'
+import {Button, ButtonText} from '#/components/Button'
 
 export function CartScreen() {
   const [isOpen, setIsOpen] = useState(false)
@@ -111,7 +112,7 @@ export function CartScreen() {
 
   return (
     <View style={[t.atoms.bg, {flex: 1}]}>
-      <Pager
+      {/* <Pager
         ref={pagerRef}
         initialPage={0}
         scrollEnabled={false}
@@ -126,22 +127,22 @@ export function CartScreen() {
             }}
           />
           // <Text>Hello World</Text>
-        )}>
-        <View style={{flex: 1}}>
-          <MaintenanceService
-            maintenance={maintenance}
-            name="in store"
-            onPress={onPressQuote}
-          />
-        </View>
-        <View>
+        )}> */}
+      <View style={{flex: 1}}>
+        <MaintenanceService
+          maintenance={maintenance}
+          name="in store"
+          onPress={onPressQuote}
+        />
+      </View>
+      {/* <View>
           <MaintenanceService
             maintenance={homeService}
             name="home service"
             onPress={onPressQuote}
           />
-        </View>
-      </Pager>
+        </View> */}
+      {/* </Pager> */}
 
       <CarRequiredModal isOpen={isOpen} closeModal={closeModal} />
       <BottomSheetModal
@@ -220,12 +221,18 @@ export function MaintenanceService({
   if (maintenance.length === 0) {
     return (
       <View style={{flex: 1, paddingTop: 250, alignItems: 'center'}}>
-        <Text
-          style={[
-            a.text_lg,
-            a.font_bold,
-          ]}>{`Your cart for ${name} is empty`}</Text>
+        <Text style={[a.text_lg, a.font_bold]}>{`Your cart is empty`}</Text>
 
+        <Button
+          onPress={() => navigation.navigate('HomeTab')}
+          style={[a.mt_md]}
+          label="Add Services"
+          color="primary"
+          variant="solid"
+          size="small">
+          <ButtonText>Add Services</ButtonText>
+        </Button>
+        {/* 
         <Pressable
           style={{
             backgroundColor: color.gray_100,
@@ -236,7 +243,7 @@ export function MaintenanceService({
           }}
           onPress={() => navigation.navigate('HomeTab')}>
           <Text style={[a.font_bold, a.text_md]}>Add services</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
     )
   }

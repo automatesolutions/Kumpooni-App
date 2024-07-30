@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
-import { useNavigation } from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native'
 import Modal from 'react-native-modal'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { NavigationProp } from '#/lib/routes/types'
-import { colors } from '#/utils/theme'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {NavigationProp} from '#/lib/routes/types'
+import {colors} from '#/utils/theme'
 
 export function CarRequiredModal({
   isOpen,
@@ -20,7 +20,7 @@ export function CarRequiredModal({
     setTimeout(
       () =>
         navigation.navigate('Vehicle', {
-          isFirstVehicle: true,
+          redirect: 'Cart',
         }),
       500,
     )
@@ -65,7 +65,7 @@ export function CarRequiredModal({
             <Text
               style={[
                 styles.btnLabel,
-                { fontWeight: '400', color: colors.orange },
+                {fontWeight: '400', color: colors.orange},
               ]}>
               Close
             </Text>
@@ -77,7 +77,7 @@ export function CarRequiredModal({
             <Text
               style={[
                 styles.btnLabel,
-                { fontWeight: '700', color: colors.black },
+                {fontWeight: '700', color: colors.black},
               ]}>
               Add
             </Text>

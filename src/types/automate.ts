@@ -18,6 +18,7 @@ export type DbResultOk<T> = T extends PromiseLike<{data: infer U}>
 export type DbResultErr = PostgrestError
 
 export type Vehicle = Tables<'vehicle'>
+
 export type Service = Tables<'service'> & {
   quantity: number
   category: {id: number; name: string}

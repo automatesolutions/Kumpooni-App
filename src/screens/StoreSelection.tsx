@@ -28,7 +28,6 @@ import {ListFooter} from '#/components/List'
 import {cleanError} from '#/lib/strings/errors'
 import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender'
 
-import {logger} from '#/logger'
 import {
   useGetNearbyStoreQuery,
   useListGooglePlacesQuery,
@@ -51,10 +50,11 @@ export function StoreSelectionScreen(props: Props) {
   }))
   const initialNumToRender = useInitialNumToRender()
 
-  const {data: stores, isLoading: isLoadingStores} = useGetNearbyStoreQuery(
-    location,
-    serviceIds,
-  )
+  const {
+    data: stores,
+    isLoading: isLoadingStores,
+    isFetching: isFetchingStores,
+  } = useGetNearbyStoreQuery(location, serviceIds)
 
   const {
     data,
@@ -62,6 +62,7 @@ export function StoreSelectionScreen(props: Props) {
     fetchNextPage,
     hasNextPage,
     error,
+    isLoading: isLoadingPlaces,
     isFetchingNextPage,
   } = useListGooglePlacesQuery({
     textQuery: 'auto repair shop, car repair and maintenance service',
@@ -110,16 +111,16 @@ export function StoreSelectionScreen(props: Props) {
     [setShopCartItems, navigation],
   )
 
-  const renderItem = useCallback(
-    ({item}: ListRenderItemInfo<NearbyStoresServices>) => (
-      <StoreCard
-        store={item}
-        onPressBookAppointment={onPressBookAppointment(item)}
-        cartItems={cartItems}
-      />
-    ),
-    [onPressBookAppointment],
-  )
+  // const renderItem = useCallback(
+  //   ({item}: ListRenderItemInfo<NearbyStoresServices>) => (
+  //     <StoreCard
+  //       store={item}
+  //       onPressBookAppointment={onPressBookAppointment(item)}
+  //       cartItems={cartItems}
+  //     />
+  //   ),
+  //   [onPressBookAppointment],
+  // )
 
   useEffect(() => {
     if (isScreenFocused && !location) {
@@ -129,10 +130,11 @@ export function StoreSelectionScreen(props: Props) {
     }
   }, [location, isScreenFocused])
 
-  if (isLoadingStores)
+  if (isLoadingStores || isLoadingPlaces)
     return (
       <ActivityIndicator
         size={'large'}
+        color={'red'}
         style={[a.flex_1, a.justify_center, a.align_center]}
       />
     )
@@ -167,14 +169,22 @@ export function StoreSelectionScreen(props: Props) {
             isFetchingNextPage={isFetchingNextPage}
             error={cleanError(error)}
             onRetry={fetchNextPage}
-            style={{borderColor: 'transparent'}}
+            style={{borderColor: 'transparent', paddingTop: 20}}
             hasNextPage={hasNextPage}
             showEndMessage={true}
             endMessageText={`No more shops to show`}
           />
         }
         initialNumToRender={initialNumToRender}
-        ListEmptyComponent={<EmptyStore />}
+        ListEmptyComponent={
+          isLoadingStores || isLoadingPlaces ? (
+            <View style={[a.flex_1, a.justify_center, a.align_center]}>
+              <ActivityIndicator size={'large'} color="red" />
+            </View>
+          ) : (
+            <EmptyStore />
+          )
+        }
       />
     </View>
   )

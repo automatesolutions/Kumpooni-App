@@ -1,3 +1,4 @@
+import {CarDetails} from '#/state/queries/vehicle'
 import {Service, Vehicle} from '#/types/automate'
 import {NavigationState, PartialState} from '@react-navigation/native'
 import {NativeStackNavigationProp} from '@react-navigation/native-stack'
@@ -24,7 +25,7 @@ export type CommonNavigatorParams = {
   Cars: undefined
   Cart: undefined
   Quote: undefined
-  Vehicle: {vehicle?: Vehicle; isFirstVehicle?: boolean}
+  Vehicle: {vehicle?: CarDetails; redirect?: 'Cars' | 'Cart' | 'Home'}
   Checkout: {store: Store}
   OrderDetails: {repairOrderId: string}
   SearchStores: undefined

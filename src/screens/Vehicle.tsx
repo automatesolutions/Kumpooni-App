@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from 'react'
+import React, {FC, useMemo, useState} from 'react'
 import {
   StyleSheet,
   Text,
@@ -9,35 +9,35 @@ import {
   SafeAreaView,
 } from 'react-native'
 
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import {Controller, SubmitHandler, useForm} from 'react-hook-form'
+import {z} from 'zod'
+import {zodResolver} from '@hookform/resolvers/zod'
 import dayjs from 'dayjs'
 
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { vehicleFormSchema } from '#/lib/validations/user'
-import { CommonNavigatorParams, NavigationProp } from '#/lib/routes/types'
-import { useSession } from '#/state/session'
-import { useNavigation } from '@react-navigation/native'
-import { useGlobalLoadingControls } from '#/state/shell/global-loading'
-import { useVehicleStore } from '#/stores/vehicle'
-import { useGetBrands, useGetModels } from '#/state/queries/cars'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {vehicleFormSchema} from '#/lib/validations/user'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {useSession} from '#/state/session'
+import {useNavigation} from '@react-navigation/native'
+import {useGlobalLoadingControls} from '#/state/shell/global-loading'
+import {useVehicleStore} from '#/stores/vehicle'
+import {useGetBrands, useGetModels} from '#/state/queries/cars'
 import {
   useVehiclesAddMutation,
   useVehiclesEditMutation,
 } from '#/state/queries/vehicle'
-import { Select } from '#/components/select/Select'
-import { colors } from '#/utils/theme'
-import { logger } from '#/logger'
+import {Select} from '#/components/select/Select'
+import {colors} from '#/utils/theme'
+import {logger} from '#/logger'
 
 type Inputs = z.infer<typeof vehicleFormSchema>
 type VehicleScreenProps = NativeStackScreenProps<
   CommonNavigatorParams,
   'Vehicle'
 >
-export function VehicleScreen({ route }: VehicleScreenProps) {
+export function VehicleScreen({route}: VehicleScreenProps) {
   const vehicle = route.params?.vehicle
-  const { session } = useSession()
+  const {session} = useSession()
   const navigation = useNavigation<NavigationProp>()
   const globalLoading = useGlobalLoadingControls()
   const defaultValues = useMemo(() => {
@@ -49,18 +49,18 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
       plate_no: vehicle?.plate_no ?? '',
     }
   }, [route.params])
-
+  const redirect = route.params?.redirect
   const addVehicle = useVehicleStore(state => state.addVehicle)
   const editVehicle = useVehicleStore(state => state.editVehicle)
 
-  const { control, handleSubmit, watch } = useForm({
+  const {control, handleSubmit, watch} = useForm({
     resolver: zodResolver(vehicleFormSchema),
     defaultValues,
   })
 
-  const { brand_id: brandWatch, model_id: modelWatch } = watch()
-  const { data: brands, isLoading } = useGetBrands()
-  const { data: models } = useGetModels(brandWatch)
+  const {brand_id: brandWatch, model_id: modelWatch} = watch()
+  const {data: brands, isLoading} = useGetBrands()
+  const {data: models} = useGetModels(brandWatch)
 
   const addVehicleMutation = useVehiclesAddMutation()
   const editVehicleMutation = useVehiclesEditMutation()
@@ -97,20 +97,22 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
     }
     console.log('addVehicle')
     addVehicleMutation.mutate(
-      { ...data, userId: session?.user?.id! },
+      {...data, userId: session?.user?.id!},
       {
         onSuccess: data => {
           addVehicle(data)
           setSelectedVehicle(data)
-
-          //@ts-ignore
-          navigation.navigate('Cart')
+          if (redirect) {
+            navigation.navigate(redirect)
+            return
+          }
+          navigation.navigate('Home')
         },
         onSettled: () => {
           globalLoading.hide()
         },
         onError: e => {
-          logger.error('Failed to insert data', e)
+          logger.error('Failed to insert data', {message: e})
         },
       },
     )
@@ -119,7 +121,7 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
 
   if (isLoading)
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator size="large" color={'#b61616'} />
       </View>
     )
@@ -135,8 +137,8 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
           control={control}
           name="brand_id"
           render={({
-            field: { value, onChange },
-            fieldState: { invalid, error },
+            field: {value, onChange},
+            fieldState: {invalid, error},
           }) => {
             return (
               <View style={styles.formController}>
@@ -146,12 +148,10 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
                   value={value}
                   placeholder="Select Brand"
                   invalid={invalid}
-                  options={brands?.map(
-                    (item: { id: number; name: string }) => ({
-                      label: item.name,
-                      value: item.id,
-                    }),
-                  )}
+                  options={brands?.map((item: {id: number; name: string}) => ({
+                    label: item.name,
+                    value: item.id,
+                  }))}
                 />
               </View>
             )
@@ -161,7 +161,7 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
         <Controller
           control={control}
           name="model_id"
-          render={({ field: { value, onChange }, fieldState: { invalid } }) => {
+          render={({field: {value, onChange}, fieldState: {invalid}}) => {
             return (
               <View style={styles.formController}>
                 <Text style={styles.label}>Model</Text>
@@ -184,7 +184,7 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
         <Controller
           control={control}
           name="year_model"
-          render={({ field: { value, onChange }, fieldState: { invalid } }) => {
+          render={({field: {value, onChange}, fieldState: {invalid}}) => {
             return (
               <View style={styles.formController}>
                 <Text style={styles.label}>Year</Text>
@@ -208,8 +208,8 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
         <Controller
           control={control}
           render={({
-            field: { value, onChange, onBlur },
-            fieldState: { invalid },
+            field: {value, onChange, onBlur},
+            fieldState: {invalid},
           }) => {
             return (
               <View style={styles.formController}>
@@ -218,7 +218,7 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
                 <View
                   style={[
                     styles.picker,
-                    { borderColor: invalid ? '#ff0000' : '#625C58' },
+                    {borderColor: invalid ? '#ff0000' : '#625C58'},
                   ]}>
                   <TextInput
                     placeholder="Plate Number"
@@ -238,10 +238,7 @@ export function VehicleScreen({ route }: VehicleScreenProps) {
         />
         <Pressable
           onPress={handleSubmit(onSubmit)}
-          style={({ pressed }) => [
-            styles.button,
-            { opacity: pressed ? 0.7 : 1 },
-          ]}
+          style={({pressed}) => [styles.button, {opacity: pressed ? 0.7 : 1}]}
           accessibilityRole="button"
           accessibilityLabel={`Submit your car information`}
           accessibilityHint="">

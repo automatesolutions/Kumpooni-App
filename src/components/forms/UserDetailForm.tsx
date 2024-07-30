@@ -7,23 +7,23 @@ import {
   ActivityIndicator,
 } from 'react-native'
 
-import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { personalInfoSchema } from '../../lib/validations/user'
-import { z } from 'zod'
+import {Controller, useForm} from 'react-hook-form'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {personalInfoSchema} from '../../lib/validations/user'
+import {z} from 'zod'
 
-import { colors, spacing } from '#/utils/theme'
-import { useNavigation } from '@react-navigation/native'
-import { NavigationProp } from '#/lib/routes/types'
-import { InputOutline } from './InputOutline'
-import { useUpdateProfile } from '#/state/queries/auth'
-
+import {colors, spacing} from '#/utils/theme'
+import {useNavigation} from '@react-navigation/native'
+import {NavigationProp} from '#/lib/routes/types'
+import {InputOutline} from './InputOutline'
+import {useUpdateProfile} from '#/state/queries/auth'
+import * as Toast from '#/components/utils/Toast'
 type Inputs = z.infer<typeof personalInfoSchema>
 
 const activeColor = colors.black
 const inactiveColor = colors.palette.neutral400
 
-export const UserDetailForm = ({ userId }: { userId: string }) => {
+export const UserDetailForm = ({userId}: {userId: string}) => {
   const navigation = useNavigation<NavigationProp>()
 
   const form = useForm<Inputs>({
@@ -33,43 +33,39 @@ export const UserDetailForm = ({ userId }: { userId: string }) => {
       last_name: '',
     },
   })
-  const { mutate: updateProfile, isPending } = useUpdateProfile()
+  const {mutate: updateProfile, isPending} = useUpdateProfile()
 
   function onSubmit(data: Inputs) {
+    console.log('onSubmit Data', {...data, userId})
     updateProfile(
-      { id: userId, changes: data },
+      {id: userId, changes: data},
       {
         onSuccess: () => {
-          navigation.navigate('Vehicle', { vehicle: undefined })
+          navigation.navigate('Vehicle', {vehicle: undefined})
         },
-        onError: () => {
-          // toast({
-          //   title: '',
-          //   preset: 'error',
-          //   message: 'Failed to save',
-          //   position: 'bottom',
-          // });
+        onError: e => {
+          Toast.show(`Something went wrong! Try Again`)
         },
       },
     )
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} style={{flex: 1}}>
       <View style={styles.heading}>
         <Text style={styles.headingTitle}>Tell us about your details.</Text>
 
-        <Text style={{ color: '#625C58', fontSize: 16, marginBottom: 8 }}>
+        <Text style={{color: '#625C58', fontSize: 16, marginBottom: 8}}>
           Please fill your details
         </Text>
       </View>
-      <View style={{ gap: 24 }}>
+      <View style={{gap: 24}}>
         <Controller
           control={form.control}
           name="first_name"
           render={({
-            field: { onChange, onBlur, value },
-            fieldState: { invalid, error },
+            field: {onChange, onBlur, value},
+            fieldState: {invalid, error},
           }) => (
             <InputOutline
               activeColor={activeColor}
@@ -91,8 +87,8 @@ export const UserDetailForm = ({ userId }: { userId: string }) => {
           control={form.control}
           name="last_name"
           render={({
-            field: { onChange, onBlur, value },
-            fieldState: { invalid, error },
+            field: {onChange, onBlur, value},
+            fieldState: {invalid, error},
           }) => (
             <InputOutline
               activeColor={activeColor}
@@ -113,7 +109,7 @@ export const UserDetailForm = ({ userId }: { userId: string }) => {
       </View>
       <Pressable
         onPress={form.handleSubmit(onSubmit)}
-        style={[styles.confirmButton, { opacity: isPending ? 0.6 : 1 }]}
+        style={[styles.confirmButton, {opacity: isPending ? 0.6 : 1}]}
         disabled={isPending}>
         {isPending && <ActivityIndicator color={'#fff'} />}
         <Text style={styles.btnText}>Confirm</Text>
@@ -125,7 +121,7 @@ export const UserDetailForm = ({ userId }: { userId: string }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    marginTop: 120,
     paddingHorizontal: spacing.large,
   },
   confirmButton: {

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, {useCallback} from 'react'
 import {
   ActivityIndicator,
   FlatList,
@@ -10,36 +10,37 @@ import {
   View,
 } from 'react-native'
 
-import { s, colors } from 'lib/styles'
+import {s, colors} from 'lib/styles'
 
-import { useNavigation } from '@react-navigation/native'
-import { MoreHorizontal, Trash2, TrashIcon } from 'lucide-react-native'
-import { useSession } from '#/state/session'
+import {useNavigation} from '@react-navigation/native'
+import {MoreHorizontal, Trash2, TrashIcon} from 'lucide-react-native'
+import {useSession} from '#/state/session'
 import {
+  CarDetails,
   useVehiclesDeleteMutation,
   useVehiclesQuery,
 } from '#/state/queries/vehicle'
-import { Vehicle } from '#/types/automate'
-import { CenteredView } from '#/components/utils/Views'
-import { Text } from '#/components/Typography'
-import { shadows, spacing } from '#/utils/theme'
-import { useVehicleStore } from '#/stores/vehicle'
-import { NavigationProp } from '#/lib/routes/types'
-import { useGlobalLoadingControls } from '#/state/shell/global-loading'
+import {Vehicle} from '#/types/automate'
+import {CenteredView} from '#/components/utils/Views'
+import {Text} from '#/components/Typography'
+import {shadows, spacing} from '#/utils/theme'
+import {useVehicleStore} from '#/stores/vehicle'
+import {NavigationProp} from '#/lib/routes/types'
+import {useGlobalLoadingControls} from '#/state/shell/global-loading'
 // import {
 //   NativeDropdown,
 //   DropdownItem as NativeDropdownItem,
 // } from '#/components/util/forms/NativeDropdown'
 
 export function CarsScreen() {
-  const { session } = useSession()
+  const {session} = useSession()
   const {
     data: vehicles,
     isLoading,
     error: vehiclesError,
   } = useVehiclesQuery(session?.user.id!)
 
-  const renderItem: ListRenderItem<Vehicle> = useCallback(({ item }) => {
+  const renderItem: ListRenderItem<CarDetails> = useCallback(({item}) => {
     return <CarCard vehicle={item} />
   }, [])
 
@@ -59,7 +60,7 @@ export function CarsScreen() {
   }
 
   return (
-    <View style={[{ backgroundColor: '#fff' }, styles.root]}>
+    <View style={[{backgroundColor: '#fff'}, styles.root]}>
       <Text style={styles.title}>
         {(vehicles?.length ?? 1) > 1 ? 'My Vehicles' : 'My Vehicle'}
       </Text>
@@ -83,11 +84,9 @@ function AddCarComp() {
 
   return (
     <TouchableOpacity
-      style={[styles.carCard, { marginBottom: 20 }]}
-      onPress={() =>
-        navigation.navigate('Vehicle', { isFirstVehicle: undefined })
-      }>
-      <View style={[styles.imageBox, { backgroundColor: colors.gray1 }]}>
+      style={[styles.carCard, {marginBottom: 20}]}
+      onPress={() => navigation.navigate('Vehicle', {redirect: 'Cars'})}>
+      <View style={[styles.imageBox, {backgroundColor: colors.gray1}]}>
         <Image
           source={{
             uri: 'https://vheyzzpdmmyiejsxerzg.supabase.co/storage/v1/object/public/image/add-car-placeholder.png?t=2024-02-05T03%3A38%3A09.738Z',
@@ -99,7 +98,7 @@ function AddCarComp() {
           resizeMode="contain"
         />
       </View>
-      <View style={{ flex: 1, justifyContent: 'center', marginTop: -10 }}>
+      <View style={{flex: 1, justifyContent: 'center', marginTop: -10}}>
         <Text
           style={{
             fontSize: 14,
@@ -114,13 +113,9 @@ function AddCarComp() {
   )
 }
 
-function CarCard({ vehicle }: { vehicle: Vehicle }) {
-  const navigation = useNavigation<NavigationProp>()
-  const { mutate: deleteVehicleMutation } = useVehiclesDeleteMutation()
+function CarCard({vehicle}: {vehicle: CarDetails}) {
+  const {mutate: deleteVehicleMutation} = useVehiclesDeleteMutation()
   const deleteVehicle = useVehicleStore(state => state.deleteVehicle)
-  const onEdit = () => {
-    navigation.navigate('Vehicle', { vehicle: vehicle })
-  }
 
   const globalLoading = useGlobalLoadingControls()
   const onDelete = () => {
@@ -135,39 +130,11 @@ function CarCard({ vehicle }: { vehicle: Vehicle }) {
     })
   }
 
-  // const dropdownitems: NativeDropdownItem[] = [
-  //   {
-  //     label: 'Edit',
-  //     onPress: onEdit,
-  //     testID: 'CarEdit',
-  //     icon: {
-  //       ios: {
-  //         name: 'character.book.closed',
-  //       },
-  //       android: 'ic_menu_sort_alphabetically',
-  //     },
-  //   },
-  //   {
-  //     label: 'separator',
-  //   },
-  //   {
-  //     label: 'Delete',
-  //     onPress: onDelete,
-  //     testID: 'Car Delete',
-  //     icon: {
-  //       ios: {
-  //         name: 'character.book.closed',
-  //       },
-  //       android: 'ic_menu_sort_alphabetically',
-  //     },
-  //   },
-  // ]
-
   return (
     <TouchableOpacity style={[styles.carCard]} disabled={true}>
-      <View style={[styles.imageBox, { backgroundColor: colors.gray1 }]}>
+      <View style={[styles.imageBox, {backgroundColor: colors.gray1}]}>
         <Image
-          source={{ uri: vehicle?.brand?.img_url! }}
+          source={{uri: vehicle?.brand?.img_url!}}
           style={{
             height: 70,
             width: 70,
@@ -175,7 +142,7 @@ function CarCard({ vehicle }: { vehicle: Vehicle }) {
           resizeMode="contain"
         />
       </View>
-      <View style={{ flex: 1, justifyContent: 'center', marginTop: -10 }}>
+      <View style={{flex: 1, justifyContent: 'center', marginTop: -10}}>
         <Text
           style={{
             fontSize: 14,

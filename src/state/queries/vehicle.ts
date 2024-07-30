@@ -1,21 +1,38 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
-import { supabase } from '../../lib/supabase'
-import { STALE } from '#/state/queries'
+import {supabase} from '../../lib/supabase'
+import {STALE} from '#/state/queries'
 
-import { z } from 'zod'
-import { vehicleFormSchema } from '#/lib/validations/user'
-import { Vehicle } from '#/stores/vehicle'
+import {z} from 'zod'
+import {vehicleFormSchema} from '#/lib/validations/user'
+import {Vehicle} from '#/stores/vehicle'
+import {SupabaseClient} from '@supabase/supabase-js'
+import {Database} from '#/types/supabase'
+
+export type CarDetails = NonNullable<
+  Awaited<ReturnType<typeof getVehicle>>['data']
+>[number]
 
 export const RQKEY = () => ['my-vehicles']
 
+export async function getVehicle(
+  client: SupabaseClient<Database>,
+  sessionId: string,
+) {
+  return client
+    .from('vehicle')
+    .select(
+      'id, year_model, plate_no, brand(id, name, img_url), model(id, name)',
+    )
+    .eq('user_id', sessionId)
+}
 export function useVehiclesQuery(sessionId: string) {
   return useQuery({
     staleTime: STALE.HOURS.ONE,
     enabled: !!sessionId,
     queryKey: RQKEY(),
     queryFn: async () => {
-      const { data, error } = await supabase
+      const {data, error} = await supabase
         .from('vehicle')
         .select(
           'id, year_model, plate_no, brand(id, name, img_url), model(id, name)',
@@ -38,7 +55,7 @@ export function useVehiclesDeleteMutation() {
       await supabase.from('vehicle').delete().eq('id', vehicleId)
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: RQKEY() })
+      queryClient.invalidateQueries({queryKey: RQKEY()})
     },
   })
 }
@@ -48,12 +65,12 @@ export function useVehiclesEditMutation() {
   return useMutation<
     Vehicle,
     Error,
-    z.infer<typeof vehicleFormSchema> & { userId: string }
+    z.infer<typeof vehicleFormSchema> & {userId: string}
   >({
-    mutationFn: async ({ userId, ...item }) => {
-      const { data, error } = await supabase
+    mutationFn: async ({userId, ...item}) => {
+      const {data, error} = await supabase
         .from('vehicle')
-        .update({ ...item, user_id: userId })
+        .update({...item, user_id: userId})
         .eq('id', item.id)
         .select('id, year_model, brand(id, name), model(id, name), plate_no')
         .single()
@@ -72,7 +89,7 @@ export function useVehiclesEditMutation() {
     },
     // Always refetch after error or success:
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: RQKEY() })
+      queryClient.invalidateQueries({queryKey: RQKEY()})
     },
   })
 }
@@ -81,12 +98,12 @@ export function useVehiclesAddMutation() {
   return useMutation<
     Vehicle,
     Error,
-    z.infer<typeof vehicleFormSchema> & { userId: string }
+    z.infer<typeof vehicleFormSchema> & {userId: string}
   >({
-    mutationFn: async ({ userId, id, ...item }) => {
-      const { data, error } = await supabase
+    mutationFn: async ({userId, id, ...item}) => {
+      const {data, error} = await supabase
         .from('vehicle')
-        .insert({ ...item, user_id: userId })
+        .insert({...item, user_id: userId})
         .select('id, year_model, brand(id, name), model(id, name)')
         .single()
 
@@ -94,9 +111,9 @@ export function useVehiclesAddMutation() {
       return data as Vehicle
     },
     onMutate: async newVehicle => {
-      await queryClient.cancelQueries({ queryKey: RQKEY() })
-      const prevVehicles = queryClient.getQueriesData({ queryKey: RQKEY() })
-      return { prevVehicles, newVehicle }
+      await queryClient.cancelQueries({queryKey: RQKEY()})
+      const prevVehicles = queryClient.getQueriesData({queryKey: RQKEY()})
+      return {prevVehicles, newVehicle}
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -109,7 +126,7 @@ export function useVehiclesAddMutation() {
     },
     // Always refetch after error or success:
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: RQKEY() })
+      queryClient.invalidateQueries({queryKey: RQKEY()})
     },
   })
 }

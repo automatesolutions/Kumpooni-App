@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react'
-import { AuthError, AuthResponse, Session } from '@supabase/supabase-js'
+import React, {useCallback} from 'react'
+import {AuthError, AuthResponse, Session} from '@supabase/supabase-js'
 import * as persisted from 'state/persisted'
-import { useQueryClient } from '@tanstack/react-query'
-import { supabase } from '#/lib/supabase'
-import { logger } from '#/logger'
-import { useLoggedOutViewControls } from '../shell/logged-out'
+import {useQueryClient} from '@tanstack/react-query'
+import {supabase} from '#/lib/supabase'
+import {logger} from '#/logger'
+import {useLoggedOutViewControls} from '../shell/logged-out'
 
 export type SessionState = {
   isInitialLoad: boolean
@@ -23,16 +23,18 @@ const StateContext = React.createContext<StateContext>({
 export type ApiContext = {
   createAccount: (props: {}) => Promise<void>
   loginWithPhone: (phone: string) => Promise<void>
+  loginWithEmailPassword: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
 }
 
 const ApiContext = React.createContext<ApiContext>({
   createAccount: async () => {},
   loginWithPhone: async () => {},
+  loginWithEmailPassword: async () => {},
   logout: async () => {},
 })
 
-export function Provider({ children }: React.PropsWithChildren<{}>) {
+export function Provider({children}: React.PropsWithChildren<{}>) {
   const [state, setState] = React.useState<SessionState>({
     isInitialLoad: true,
     session: null, // assume logged out to start
@@ -47,7 +49,7 @@ export function Provider({ children }: React.PropsWithChildren<{}>) {
   const loginWithPhone = useCallback<ApiContext['loginWithPhone']>(
     async phone => {
       try {
-        await supabase.auth.signInWithOtp({ phone })
+        await supabase.auth.signInWithOtp({phone})
       } catch (error) {
         throw new Error('Failed to login with your phone number')
       }
@@ -55,10 +57,22 @@ export function Provider({ children }: React.PropsWithChildren<{}>) {
     [supabase],
   )
 
+  const loginWithEmailPassword = useCallback<
+    ApiContext['loginWithEmailPassword']
+  >(async (email: string, password: string) => {
+    try {
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+    } catch (error) {
+      throw new Error('Failed to login with your email')
+    }
+  }, [])
   const logout = useCallback<ApiContext['logout']>(async () => {
     try {
       await supabase.auth.signOut()
-      setState(prev => ({ ...prev, session: null }))
+      setState(prev => ({...prev, session: null}))
     } catch (error) {
       throw new Error('Failed to logout')
     }
@@ -72,14 +86,14 @@ export function Provider({ children }: React.PropsWithChildren<{}>) {
     [state],
   )
   const api = React.useMemo(
-    () => ({ createAccount, loginWithPhone, logout }),
-    [createAccount, loginWithPhone, logout],
+    () => ({createAccount, loginWithPhone, loginWithEmailPassword, logout}),
+    [createAccount, loginWithPhone, loginWithEmailPassword, logout],
   )
 
   React.useEffect(() => {
     supabase.auth
       .getSession()
-      .then(({ data: { session } }) => {
+      .then(({data: {session}}) => {
         logger.debug('setting state in getSession')
         setState(s => ({
           ...s,
@@ -96,7 +110,7 @@ export function Provider({ children }: React.PropsWithChildren<{}>) {
 
   React.useEffect(() => {
     const {
-      data: { subscription },
+      data: {subscription},
     } = supabase.auth.onAuthStateChange((_event, session) => {
       logger.debug('setting state in AuthStateChange', {
         event: _event,
@@ -128,8 +142,8 @@ export function useSessionApi() {
 }
 
 export function useRequireAuth() {
-  const { hasSession } = useSession()
-  const { setShowLoggedOut } = useLoggedOutViewControls()
+  const {hasSession} = useSession()
+  const {setShowLoggedOut} = useLoggedOutViewControls()
 
   return React.useCallback(
     (fn: () => void) => {
