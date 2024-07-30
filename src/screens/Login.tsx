@@ -79,7 +79,7 @@ export function LoginScreen() {
       <View style={styles.container}>
         <View style={styles.flexColumn}>
           <LoginWithPhone handleSubmitPhoneNumber={handleSubmitPhoneNumber} />
-          <Button title="Login Test User" onPress={loginAlice} />
+          {/* <Button title="Login Test User" onPress={loginAlice} /> */}
 
           <Text style={styles.terms}>
             By signing in you agree to our{' '}
