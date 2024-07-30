@@ -1,6 +1,12 @@
 import {SearchBar} from '#/components/SearchBar'
 import React, {useCallback} from 'react'
-import {View, Image, FlatList, ListRenderItemInfo} from 'react-native'
+import {
+  View,
+  Image,
+  FlatList,
+  ListRenderItemInfo,
+  ActivityIndicator,
+} from 'react-native'
 
 import {ChevronDown, Pin} from 'lucide-react-native'
 import {Text} from '#/components/Typography'
@@ -37,7 +43,6 @@ export function ShopsScreen() {
     keyword: '',
   })
 
-  console.log('useSearchStoresQuery', data)
   const onPressStore =
     ({id, order_total, store_rating, review_count}: SearchNearbyStore) =>
     () => {
@@ -54,6 +59,13 @@ export function ShopsScreen() {
     ),
     [],
   )
+  if (isLoading) {
+    return (
+      <View style={[a.flex_1, a.justify_center, a.align_center]}>
+        <ActivityIndicator size={'large'} color={'red'} />
+      </View>
+    )
+  }
   return (
     <View style={[t.atoms.bg, a.flex_1]}>
       <View style={[a.mt_sm, a.flex_row, a.align_center, a.gap_3xs, a.mx_2xs]}>
