@@ -163,7 +163,7 @@ export function CheckoutScreen({route}: Props) {
   if (isLoading)
     return (
       <View style={[a.flex_1, a.justify_center, a.align_center]}>
-        <ActivityIndicator color={'red'} size={'large'} />;
+        <ActivityIndicator color={'red'} size={'large'} />
       </View>
     )
 
@@ -184,7 +184,7 @@ export function CheckoutScreen({route}: Props) {
         <Text style={[a.font_bold, a.text_xs, {color: color.red_400}]}>
           Note:
           <Text style={[a.font_normal, a.text_xs]}>
-            {` This estimate is based on the information submitted. Estimates may be subject to change upon further inspection of the vehicle.`}
+            {`This estimate is based on the information submitted. Estimates may be subject to change upon further inspection of the vehicle.`}
           </Text>
         </Text>
       </View>
