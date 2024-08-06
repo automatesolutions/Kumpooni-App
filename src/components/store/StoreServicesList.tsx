@@ -120,7 +120,7 @@ export function StoreServicesList({
   } else {
     return (
       <View style={[a.flex_1, a.justify_center, a.align_center]}>
-        <ActivityIndicator size={'small'} />
+        <ActivityIndicator size={'small'} color="red" />
       </View>
     )
   }

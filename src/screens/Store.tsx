@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState} from 'react'
 import {
   View,
   StyleSheet,
@@ -6,49 +6,44 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Linking,
-} from 'react-native';
-import {Text} from '#/components/Typography';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useTheme, atoms as a} from '#/theme';
-import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types';
-import {logger} from '#/logger';
-import {useStoreQuery} from '#/state/queries/stores';
-import {color} from '#/theme/tokens';
-import {Clock, MapPin, Star} from 'lucide-react-native';
-import LinearGradient from 'react-native-linear-gradient';
+} from 'react-native'
+import {Text} from '#/components/Typography'
+import {useNavigation} from '@react-navigation/native'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {useTheme, atoms as a} from '#/theme'
+import {Clock, MapPin, Star} from 'lucide-react-native'
+import {logger} from '#/logger'
+import {useStoreQuery} from '#/state/queries/stores'
+import {color} from '#/theme/tokens'
+import {StoreCategory} from '#/types/automate'
+import {StoreServicesList} from '#/components/store/StoreServicesList'
+import {useShopCartStore} from '#/stores/shop-cart'
+import {StoreCategoryList} from '#/components/category/StoreCategoryList'
+import {currency} from '#/lib/strings/currency'
+import {ViewHeader} from '#/view/com/util/ViewHeader'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import LinearGradient from 'react-native-linear-gradient'
+type Props = NativeStackScreenProps<CommonNavigatorParams, 'Store'>
 
-import {StoreCategory} from '#/types/automate';
-
-import {StoreServicesList} from '#/components/store/StoreServicesList';
-import {useShopCartStore} from '#/stores/shop-cart';
-import {StoreCategoryList} from '#/components/category/StoreCategoryList';
-
-import {useNavigation} from '@react-navigation/native';
-
-import {currency} from '#/lib/strings/currency';
-import {ViewHeader} from '#/view/com/util/ViewHeader';
-
-type Props = NativeStackScreenProps<CommonNavigatorParams, 'Store'>;
-
-const ITEM_HEIGHT = 70;
+const ITEM_HEIGHT = 70
 
 export function StoreScreen(props: Props) {
   const {
     data: store,
     isLoading: isStoreLoading,
     isError,
-  } = useStoreQuery(props.route.params.storeId);
-  logger.debug('storeScreen', {store});
-  logger.debug('store', props.route.params);
+  } = useStoreQuery(props.route.params.storeId)
+  logger.debug('storeScreen', {store})
+  logger.debug('store', props.route.params)
 
   if (store && !isStoreLoading) {
-    return <StoreScreenReady {...props} store={store} />;
+    return <StoreScreenReady {...props} store={store} />
   } else {
     return (
       <View style={styles.loading}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="red" />
       </View>
-    );
+    )
   }
 }
 
@@ -56,17 +51,17 @@ function StoreScreenReady({
   route,
   store,
 }: Props & {
-  store: StoreCategory;
+  store: StoreCategory
 }) {
-  const t = useTheme();
-  const navigation = useNavigation<NavigationProp>();
+  const t = useTheme()
+  const navigation = useNavigation<NavigationProp>()
   const [selectedCategory, setSelectedCategory] = useState(
     store?.categories[0]?.id ?? 0,
-  );
+  )
 
   const onPressCart = useCallback(() => {
-    navigation.navigate('CartStore');
-  }, [navigation]);
+    navigation.navigate('CartStore')
+  }, [navigation])
 
   return (
     <View style={[a.flex_1, t.atoms.bg, a.pt_2xs]}>
@@ -117,23 +112,23 @@ function StoreScreenReady({
         <CartBottom cartCount={carts.length} floating onPress={onPressCart} />
       ) : undefined} */}
     </View>
-  );
+  )
 }
 
 function CheckoutBtn({storeId, name}: {storeId: string; name: string}) {
   const {carts} = useShopCartStore(state => ({
     carts: state.carts,
-  }));
-  const navigation = useNavigation<NavigationProp>();
+  }))
+  const navigation = useNavigation<NavigationProp>()
   const total = carts.reduce(
     (acc, cart) => acc + cart.price * (cart.quantity ?? 0),
     0,
-  );
+  )
   const onPressCheckout = useCallback(() => {
-    navigation.navigate('Checkout', {store: {id: storeId, name}});
-  }, [navigation, storeId]);
+    navigation.navigate('Checkout', {store: {id: storeId, name}})
+  }, [navigation, storeId])
 
-  if (carts.length < 1) return undefined;
+  if (carts.length < 1) return undefined
   return (
     <View style={[{borderTopWidth: 0.5, borderColor: color.gray_300}]}>
       <View style={[a.flex_row, a.justify_between, a.p_2xs]}>
@@ -156,7 +151,7 @@ function CheckoutBtn({storeId, name}: {storeId: string; name: string}) {
         <Text style={[a.font_bold, a.text_lg, {color: '#fff'}]}>Checkout</Text>
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 function ShopDetails({
@@ -165,13 +160,13 @@ function ShopDetails({
   order_total,
   review_count,
 }: {
-  store: StoreCategory;
-  store_rating?: number;
-  order_total?: number;
-  review_count?: number;
+  store: StoreCategory
+  store_rating?: number
+  order_total?: number
+  review_count?: number
 }) {
-  const t = useTheme();
-  console.log('store', store);
+  const t = useTheme()
+  console.log('store', store)
   return (
     <View style={[a.p_xs]}>
       <Text style={[a.text_md, a.font_bold]}>{store.name}</Text>
@@ -196,7 +191,7 @@ function ShopDetails({
         })`}</Text>
       </View>
     </View>
-  );
+  )
 }
 
 function LocationAndBusinessHours({
@@ -204,13 +199,13 @@ function LocationAndBusinessHours({
   business_hours,
   phoneNumber,
 }: {
-  address: string;
-  business_hours: string;
-  phoneNumber: string;
+  address: string
+  business_hours: string
+  phoneNumber: string
 }) {
   const onPhoneLink = useCallback(() => {
-    Linking.openURL(`tel:${phoneNumber}`);
-  }, [phoneNumber]);
+    Linking.openURL(`tel:${phoneNumber}`)
+  }, [phoneNumber])
   return (
     <View style={[a.mx_sm, a.gap_3xs]}>
       <View style={[a.flex_row, a.gap_3xs]}>
@@ -243,7 +238,7 @@ function LocationAndBusinessHours({
         <Text style={[a.font_bold]}>Call Now</Text>
       </TouchableOpacity>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -258,4 +253,4 @@ const styles = StyleSheet.create({
     aspectRatio: 1 / 1,
     borderRadius: 5,
   },
-});
+})

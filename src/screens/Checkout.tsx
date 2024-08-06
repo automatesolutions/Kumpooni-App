@@ -4,7 +4,7 @@ import React, {
   useLayoutEffect,
   useMemo,
   useState,
-} from 'react';
+} from 'react'
 import {
   View,
   StyleSheet,
@@ -12,52 +12,52 @@ import {
   TouchableOpacity,
   TextStyle,
   ActivityIndicator,
-} from 'react-native';
-import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types';
-import {Text} from '#/components/Typography';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useTheme, atoms as a} from '#/theme';
-import {Service} from '#/types/automate';
+} from 'react-native'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {Text} from '#/components/Typography'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
+import {useTheme, atoms as a} from '#/theme'
+import {Service} from '#/types/automate'
 
-import {color} from '#/theme/tokens';
-import {colors} from '#/utils/theme';
-import {DateSelection} from '#/components/checkout/DateSelection';
-import {TimeSelection} from '#/components/checkout/TimeSelection';
-import {useGetStoreOpenDaysQuery} from '#/state/queries/stores';
-import {Separator} from '#/components/utils/Views';
+import {color} from '#/theme/tokens'
+import {colors} from '#/utils/theme'
+import {DateSelection} from '#/components/checkout/DateSelection'
+import {TimeSelection} from '#/components/checkout/TimeSelection'
+import {useGetStoreOpenDaysQuery} from '#/state/queries/stores'
+import {Separator} from '#/components/utils/Views'
 
-import {currency} from '#/lib/strings/currency';
+import {currency} from '#/lib/strings/currency'
 
-import {useNavigation} from '@react-navigation/native';
-import {Header} from '#/components/Header';
-import {useRepairOrderMutation} from '#/state/queries/appointment';
-import {useGlobalLoadingControls} from '#/state/shell/global-loading';
-import {useSession} from '#/state/session';
-import {useCartStore, useIsCarRequired} from '#/stores/cart';
-import {useVehicleStore} from '#/stores/vehicle';
-import {RepairServices} from '#/components/order/RepairServices';
-import {useShopCartStore} from '#/stores/shop-cart';
-import {CustomerLocation} from '#/components/checkout/CustomerLocation';
+import {useNavigation} from '@react-navigation/native'
+import {Header} from '#/components/Header'
+import {useRepairOrderMutation} from '#/state/queries/appointment'
+import {useGlobalLoadingControls} from '#/state/shell/global-loading'
+import {useSession} from '#/state/session'
+import {useCartStore, useIsCarRequired} from '#/stores/cart'
+import {useVehicleStore} from '#/stores/vehicle'
+import {RepairServices} from '#/components/order/RepairServices'
+import {useShopCartStore} from '#/stores/shop-cart'
+import {CustomerLocation} from '#/components/checkout/CustomerLocation'
 
-import {StoreDetails} from '../components/store/StoreDetails';
-type Props = NativeStackScreenProps<CommonNavigatorParams, 'Checkout'>;
+import {StoreDetails} from '../components/store/StoreDetails'
+type Props = NativeStackScreenProps<CommonNavigatorParams, 'Checkout'>
 
 type TimeSlots = {
-  available_date: string;
-  available_timeslots: string[];
-  week_day: string;
-};
+  available_date: string
+  available_timeslots: string[]
+  week_day: string
+}
 export function CheckoutScreen({route}: Props) {
-  const navigation = useNavigation<NavigationProp>();
-  const t = useTheme();
+  const navigation = useNavigation<NavigationProp>()
+  const t = useTheme()
   const {
     params: {store},
-  } = route;
+  } = route
 
-  const {session} = useSession();
-  const globalLoading = useGlobalLoadingControls();
+  const {session} = useSession()
+  const globalLoading = useGlobalLoadingControls()
 
-  const selectedVehicle = useVehicleStore(state => state.selectedVehicle);
+  const selectedVehicle = useVehicleStore(state => state.selectedVehicle)
 
   const {
     data: dateSlots,
@@ -65,60 +65,60 @@ export function CheckoutScreen({route}: Props) {
     isError,
   } = useGetStoreOpenDaysQuery({
     id: store.id,
-  });
+  })
 
-  const [date, setDate] = useState<string | null>(null);
+  const [date, setDate] = useState<string | null>(null)
 
-  const [time, setTime] = useState('');
-  const disabled = !date || !time;
+  const [time, setTime] = useState('')
+  const disabled = !date || !time
 
   const memoDateTimeSlots: TimeSlots | undefined = useMemo(() => {
     if (dateSlots && date) {
-      return dateSlots.find(dates => dates.available_date === date);
+      return dateSlots.find(dates => dates.available_date === date)
     }
-    return undefined;
-  }, [dateSlots, isError, date]);
+    return undefined
+  }, [dateSlots, isError, date])
 
   const {removeItems} = useCartStore(state => ({
     removeItems: state.removeItems,
-  }));
+  }))
 
   const {carts, clearCart} = useShopCartStore(state => ({
     carts: state.carts,
     clearCart: state.clearCart,
-  }));
+  }))
 
-  const isCarRequired = useIsCarRequired(carts);
-  const {mutate: createRepairOrder} = useRepairOrderMutation();
+  const isCarRequired = useIsCarRequired(carts)
+  const {mutate: createRepairOrder} = useRepairOrderMutation()
 
   const total = useMemo(() => {
     return carts.reduce(
       (acc, service) => acc + service.price * Number(service.quantity),
       0,
-    );
-  }, [carts]);
+    )
+  }, [carts])
 
   const onDateChanged = (newDate: string) => {
-    setTime('');
-    setDate(newDate);
-  };
+    setTime('')
+    setDate(newDate)
+  }
 
   const onPressPlaceOrder = useCallback(() => {
-    globalLoading.show();
-    if (!date || !time) return;
+    globalLoading.show()
+    if (!date || !time) return
     const booking = {
       user_id: session?.user.id!,
       vehicle_id: isCarRequired ? selectedVehicle?.id : undefined,
       store_id: store.id,
       appointment_date: date,
       appointment_time: time,
-    };
+    }
 
     const requestedService = carts.map(item => ({
       service_id: item.id,
       quantity: item.quantity,
-    }));
-    const sourceIds = carts.map(item => item.source_id ?? 0);
+    }))
+    const sourceIds = carts.map(item => item.source_id ?? 0)
 
     createRepairOrder(
       {
@@ -127,17 +127,17 @@ export function CheckoutScreen({route}: Props) {
       },
       {
         onSuccess: async () => {
-          removeItems(sourceIds);
-          clearCart();
+          removeItems(sourceIds)
+          clearCart()
           //@ts-ignore
-          navigation.navigate('OrdersTab');
+          navigation.navigate('OrdersTab')
         },
         onSettled: () => {
-          globalLoading.hide();
+          globalLoading.hide()
         },
       },
-    );
-  }, [date, time, carts, selectedVehicle, isCarRequired]);
+    )
+  }, [date, time, carts, selectedVehicle, isCarRequired])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -151,16 +151,21 @@ export function CheckoutScreen({route}: Props) {
           onLeftPress={() => navigation.goBack()}
         />
       ),
-    });
-  }, []);
+    })
+  }, [])
 
   useEffect(() => {
     if (dateSlots && dateSlots.length > 0) {
-      setDate(dateSlots[0].available_date);
+      setDate(dateSlots[0].available_date)
     }
-  }, [dateSlots]);
+  }, [dateSlots])
 
-  if (isLoading) return <ActivityIndicator />;
+  if (isLoading)
+    return (
+      <View style={[a.flex_1, a.justify_center, a.align_center]}>
+        <ActivityIndicator color={'red'} size={'large'} />;
+      </View>
+    )
 
   return (
     <View style={[a.flex_1, t.atoms.bg]}>
@@ -223,7 +228,7 @@ export function CheckoutScreen({route}: Props) {
         </TouchableOpacity>
       </View>
     </View>
-  );
+  )
 }
 
 export function OrderSummary({
@@ -231,9 +236,9 @@ export function OrderSummary({
   services,
   total,
 }: {
-  store: {id: string; name: string};
-  services: Service[];
-  total: number;
+  store: {id: string; name: string}
+  services: Service[]
+  total: number
 }) {
   return (
     <View style={[a.p_xs]}>
@@ -244,7 +249,7 @@ export function OrderSummary({
         <Text>{currency.format(total)}</Text>
       </View>
     </View>
-  );
+  )
 }
 
 const $header: TextStyle = {
@@ -252,4 +257,4 @@ const $header: TextStyle = {
   fontWeight: 'bold',
   fontSize: 18,
   fontFamily: 'Inter-Bold',
-};
+}

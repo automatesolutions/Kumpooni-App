@@ -134,7 +134,6 @@ async function searchGooglePlacesRepairShop({
   location: Coords | null
   pageToken: string | null
 }) {
-  logger.debug('Hello World')
   if (!location) throw new Error('Missing location fields')
   if (!GOOGLE_MAP_KEY) {
     throw new Error('Missing Google API Key')
