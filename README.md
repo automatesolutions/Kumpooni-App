@@ -1,3 +1,5 @@
+An O2O platform that not only provides convenience to car owners and businesses involved but also builds an ecosystem of trust, transparency, and quality in the vehicle services industry in the Philippines.
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
