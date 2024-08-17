@@ -1,28 +1,28 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, {FC, useEffect, useRef, useState} from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import {NativeStackScreenProps} from '@react-navigation/native-stack'
 
 import OTPInputView from '@twotalltotems/react-native-otp-input'
-import { useForm } from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { CommonNavigatorParams, NavigationProp } from '#/lib/routes/types'
-import { otpSchema } from '#/modules/account/account.model'
-import { useSessionApi } from '#/state/session'
-import { colors } from '#/utils/theme'
-import { useNavigation } from '@react-navigation/native'
-import { supabase } from '#/lib/supabase'
-import { isProfileIncomplete } from '#/state/queries/auth'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {otpSchema} from '#/modules/account/account.model'
+import {useSessionApi} from '#/state/session'
+import {colors} from '#/utils/theme'
+import {useNavigation} from '@react-navigation/native'
+import {supabase} from '#/lib/supabase'
+import {isProfileIncomplete} from '#/state/queries/auth'
 import * as Toast from '#/components/utils/Toast'
-import { useGlobalLoadingControls } from '#/state/shell/global-loading'
+import {useGlobalLoadingControls} from '#/state/shell/global-loading'
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'Otp'>
 
-export function OtpScreen({ route }: Props) {
-  const { phone } = route.params
+export function OtpScreen({route}: Props) {
+  const {phone} = route.params
   const navigation = useNavigation<NavigationProp>()
   const globalLoading = useGlobalLoadingControls()
-  const { loginWithPhone } = useSessionApi()
+  const {loginWithPhone} = useSessionApi()
 
   const [countDown, setCountDown] = useState(60)
   // const [otp, setOtp] = useState<string>('')
@@ -39,7 +39,7 @@ export function OtpScreen({ route }: Props) {
   const handleVerifyOtp = async (code: string) => {
     try {
       globalLoading.show()
-      const { data, error } = await supabase.auth.verifyOtp({
+      const {data, error} = await supabase.auth.verifyOtp({
         phone,
         token: code,
         type: 'sms',
@@ -48,7 +48,7 @@ export function OtpScreen({ route }: Props) {
         const userExist = await isProfileIncomplete(data.user.id)
         if (userExist) {
           //@ts-ignore
-          navigation.navigate('HomeTab')
+          navigation.goBack()
         } else {
           navigation.navigate('CreateAccount')
         }
@@ -76,7 +76,7 @@ export function OtpScreen({ route }: Props) {
       <Text style={styles.title}>Verification Code</Text>
       <OTPInputView
         pinCount={6}
-        style={{ height: 100 }}
+        style={{height: 100}}
         // code={otp}
         // onCodeChanged={code => setOtp(code)}
         autoFocusOnLoad={true}

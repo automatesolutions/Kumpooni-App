@@ -29,7 +29,7 @@ export function HomeScreen() {
   const navigation = useNavigation<NavigationProp>()
 
   const {data: category, isLoading} = useCategoryQuery()
-
+  console.log('category', category)
   const {cartItems} = useCartStore(state => ({
     clearItem: state.clearItem,
     cartItems: state.items,
