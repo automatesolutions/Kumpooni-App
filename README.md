@@ -1,4 +1,19 @@
-An O2O platform that not only provides convenience to car owners and businesses involved but also builds an ecosystem of trust, transparency, and quality in the vehicle services industry in the Philippines.
+# KUMPOONI MOBILE APP
+
+![App Screenshot](assets/logo.png)
+
+
+An O2O platform in the Philippines, built with React Native and JavaScript, offers car owners a convenient mobile app to access vehicle service shops while fostering an ecosystem of trust, transparency, and quality in the industry.
+
+# VIDEOS
+
+## Presentation
+[![Watch the video](https://img.youtube.com/vi/FsuZuMubFpk/0.jpg)](https://www.youtube.com/watch?v=FsuZuMubFpk)
+
+## Pitch Deck
+[![Watch the video](https://img.youtube.com/vi/ZCs8tcghA64/0.jpg)](https://www.youtube.com/watch?v=ZCs8tcghA64)
+
+
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
