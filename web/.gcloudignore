@@ -1,0 +1,11 @@
+.git
+.git/**
+node_modules
+dist
+docs
+*.tsbuildinfo
+.env
+.env.local
+README.md
+DESIGN.md
+cloudbuild.yaml

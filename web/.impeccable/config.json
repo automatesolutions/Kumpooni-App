@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "createdAt": "2026-10-03T15:06:39.958Z",
+        "reason": "Brand display font. Switzer was tested (2026-10-03): no peso sign, and its licence blocks the font files in a public repo."
+      }
+    ]
+  }
+}
