@@ -74,16 +74,6 @@ npm run dev            # http://localhost:5173
 The full setup, including the database scripts, the Google Maps key, and
 deployment, is in [web/README.md](web/README.md).
 
-## Earlier version
-
-These videos show the original booking app.
-
-### Presentation
-[![Watch the video](https://img.youtube.com/vi/FsuZuMubFpk/0.jpg)](https://www.youtube.com/watch?v=FsuZuMubFpk)
-
-### Pitch deck
-[![Watch the video](https://img.youtube.com/vi/ZCs8tcghA64/0.jpg)](https://www.youtube.com/watch?v=ZCs8tcghA64)
-
 ## Contributing
 
 Contributions are welcome. To fix a bug or add a feature, fork the repository,
