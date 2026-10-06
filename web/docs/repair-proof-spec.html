@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kumpooni Repair Proof — specification and ship plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #b61616;
+      --brand-strong: #951111;
+      --brand-soft: #fbebea;
+      --ink: #1a1714;
+      --ink-2: #4b453f;
+      --ink-3: #6b645c;
+      --paper: #f7f4f0;
+      --surface: #ffffff;
+      --surface-2: #f1ede7;
+      --line: #e6e0d8;
+      --line-strong: #d3cbc0;
+      --ok: #1f7a4d;
+      --ok-soft: #e6f4ec;
+      --warn: #a65d00;
+      --warn-soft: #fdf1df;
+      --info: #1d5fbf;
+      --info-soft: #e8f0fc;
+      --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+      --font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    a { color: var(--brand); }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    .frame {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+      padding: 28px 20px;
+      border-right: 1px solid var(--line);
+      background: var(--surface);
+    }
+    nav .mark {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      margin: 0 0 4px;
+    }
+    nav .mark span { color: var(--brand); }
+    nav p.tiny {
+      margin: 0 0 20px;
+      font-size: 13px;
+      color: var(--ink-3);
+    }
+    nav a {
+      display: block;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: 14px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--surface-2);
+    }
+    nav a:hover { color: var(--brand); }
+
+    main { padding: 40px 48px 80px; max-width: 880px; }
+
+    .job-head {
+      border: 2px solid var(--ink);
+      background: var(--surface);
+      padding: 22px 24px 18px;
+      margin-bottom: 36px;
+    }
+    .job-head .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .stamp {
+      border: 2px solid var(--brand);
+      color: var(--brand);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      transform: rotate(-4deg);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin: 10px 0 8px;
+    }
+    .lead {
+      font-size: 20px;
+      color: var(--ink-2);
+      margin: 0 0 12px;
+      max-width: 40rem;
+    }
+    .meta { font-size: 14px; color: var(--ink-3); margin: 0; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      margin: 48px 0 12px;
+      padding-top: 8px;
+      border-top: 2px solid var(--ink);
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      margin: 28px 0 8px;
+    }
+    p { margin: 0 0 12px; max-width: 42rem; }
+    ul, ol { margin: 0 0 16px; padding-left: 1.25rem; max-width: 42rem; }
+    li { margin-bottom: 6px; }
+    strong { font-weight: 600; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      margin: 12px 0 20px;
+      font-size: 15px;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+    }
+    th {
+      background: var(--surface-2);
+      font-weight: 600;
+      width: 28%;
+    }
+
+    .plain {
+      background: var(--surface);
+      border-left: 4px solid var(--brand);
+      padding: 14px 16px;
+      margin: 16px 0 20px;
+      max-width: 42rem;
+    }
+    .plain p:last-child { margin-bottom: 0; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0 20px;
+    }
+    .tile {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+    }
+    .tile h3 { margin-top: 0; }
+    .tile p:last-child { margin-bottom: 0; }
+
+    .phase {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .phase .when {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 14px 12px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .phase .body { padding: 12px 14px 14px; }
+    .phase .body h3 { margin: 0 0 6px; }
+    .phase .body p { margin: 0; }
+
+    .warn {
+      background: var(--warn-soft);
+      border: 1px solid #efd4a4;
+      padding: 12px 14px;
+      margin: 16px 0;
+      max-width: 42rem;
+    }
+    .ok {
+      background: var(--ok-soft);
+      border: 1px solid #b8dcc8;
+      padding: 12px 14px;
+      margin: 16px 0;
+      max-width: 42rem;
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--ink-3);
+    }
+
+    @media (max-width: 800px) {
+      .frame { grid-template-columns: 1fr; }
+      nav { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+      nav a { display: inline-block; border: 0; padding-right: 12px; }
+      main { padding: 24px 16px 56px; }
+      .grid-2, .phase { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      nav { display: none; }
+      .frame { display: block; }
+      main { max-width: none; padding: 0; }
+      .job-head, .tile, .phase, table { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <nav aria-label="On this page">
+      <p class="mark">Kumpooni <span>Repair Proof</span></p>
+      <p class="tiny">Specification and ship plan · 5 Oct 2026</p>
+      <a href="#what">1. What this app is</a>
+      <a href="#not">2. What we will not build</a>
+      <a href="#one-file">3. One repair file</a>
+      <a href="#features">4. The seven parts</a>
+      <a href="#screens">5. Screens</a>
+      <a href="#flows">6. How a person uses it</a>
+      <a href="#data">7. What we save</a>
+      <a href="#ai">8. AI complaint letter</a>
+      <a href="#offices">9. Nearby offices</a>
+      <a href="#guide">10. Price and checklist</a>
+      <a href="#rules">11. Product rules</a>
+      <a href="#plan">12. Ship plan</a>
+      <a href="#done">13. Done when</a>
+    </nav>
+
+    <main>
+      <header class="job-head">
+        <div class="row">
+          <p class="meta">Auto-Mate Solutions Inc. · Philippines · Web app only</p>
+          <p class="stamp">SPEC · v1</p>
+        </div>
+        <h1>Kumpooni Repair Proof</h1>
+        <p class="lead">A web app for car and motorcycle owners in the Philippines. You keep proof of one repair, count return visits, lock the job before work starts, and write a DTI-ready complaint when the shop fails.</p>
+        <p class="meta">Audience: you (the builder) and anyone who later builds from this page. Status: approved direction. Old booking and shop-cart work is out of scope.</p>
+      </header>
+
+      <section id="what">
+        <h2>1. What this app is</h2>
+        <div class="plain">
+          <p><strong>Home page line:</strong> Save the quote, the photos, and every visit, so you have proof if the repair fails.</p>
+        </div>
+        <p>People do not come here to find a shop. They come here because a repair already went wrong, or they are about to hand over the keys and they want a paper trail.</p>
+        <p>You do not own a shop. You do not sign up partners. You ship a public web app that stores the owner’s records and helps them complain in the right place.</p>
+        <p>The five ideas plus two extras live in <strong>one repair file</strong>, not five separate apps.</p>
+        <table>
+          <tr><th>Idea</th><td>Name in the app</td></tr>
+          <tr><th>1. Folder for one repair</th><td>Repair file</td></tr>
+          <tr><th>2. Same-problem counter</th><td>Visit log and clocks</td></tr>
+          <tr><th>3. Permission slip</th><td>Job slip (share link)</td></tr>
+          <tr><th>4. Price and checklist</th><td>Fair job guide</td></tr>
+          <tr><th>5. Motorcycle visit log</th><td>Same visit log, with dealer phrases</td></tr>
+          <tr><th>Extra A</th><td>Automatic map of nearby complaint offices (Earth view)</td></tr>
+          <tr><th>Extra B</th><td>Draft complaint letter (AI, from the file + the office the map picked)</td></tr>
+        </table>
+      </section>
+
+      <section id="not">
+        <h2>2. What we will not build</h2>
+        <p>These stay out so the product stays a web app, not a company you have to operate.</p>
+        <ul>
+          <li>Shop search, quotes, cart, checkout, and shop accounts</li>
+          <li>Taking money for a repair</li>
+          <li>Messaging shops inside the app</li>
+          <li>Ratings of shops as the main product</li>
+          <li>A promise that Kumpooni will file the case for the owner</li>
+          <li>Legal advice. The letter is a draft. The owner reads it and files it.</li>
+        </ul>
+        <p>Keep the Kumpooni name, mascot, and look. Change the job of the product.</p>
+      </section>
+
+      <section id="one-file">
+        <h2>3. One repair file</h2>
+        <p>Everything hangs off one file. A file is one problem on one vehicle at one shop (or dealer).</p>
+        <p><strong>Example:</strong> 2019 Toyota Vios · rattling under the dash · Toyota Pasong Tamo · started 12 March 2026.</p>
+        <p>Inside that file the owner can:</p>
+        <ol>
+          <li>Save the quote, receipts, and photos (folder).</li>
+          <li>Add each visit and see attempt count and days in the shop (counter).</li>
+          <li>Write a job slip before work starts (permission slip).</li>
+          <li>Open the fair job guide for that kind of work (price page).</li>
+          <li>Mark dealer lines like “warranty lang” or “come back next week” (motorcycle log).</li>
+          <li>See DTI and other offices near them.</li>
+          <li>Make a complaint letter from the file.</li>
+        </ol>
+        <p>A person can own more than one vehicle. A vehicle can have more than one open file. A closed file stays readable.</p>
+      </section>
+
+      <section id="features">
+        <h2>4. The seven parts (plain spec)</h2>
+
+        <h3>4.1 Repair file (idea 1)</h3>
+        <p>The owner creates a file in under two minutes.</p>
+        <table>
+          <tr><th>Must save</th><td>Vehicle (car or motorcycle), plate or last 6 of VIN if they have it, shop or dealer name, city, the problem in one sentence, date started.</td></tr>
+          <tr><th>Can attach</th><td>Written quote or estimate (photo or PDF), receipts, photos of the vehicle before drop-off, photos of old parts, chat screenshots, job orders from the shop.</td></tr>
+          <tr><th>Toggles</th><td>“I asked for my old parts back” (yes / no / they refused).</td></tr>
+          <tr><th>Export</th><td>One PDF pack: cover sheet, timeline, photos as a list, and the letter if they made one.</td></tr>
+        </table>
+
+        <h3>4.2 Visit log and clocks (idea 2)</h3>
+        <p>Each time they go back, they add a visit.</p>
+        <table>
+          <tr><th>Per visit</th><td>Date in, date out (or “still inside”), what they told the shop, what the shop did, peso paid, result: fixed / not fixed / worse / waiting for parts.</td></tr>
+          <tr><th>Counters on the file</th><td>Attempt count (visits for the same problem). Days the vehicle sat at the shop (sum of in-to-out, plus running days if still inside). Days since first report.</td></tr>
+          <tr><th>Hints</th><td>If attempts reach 4, show a note about Lemon Law for cars (RA 10642). If days in shop pass 30, show the 30-day note. If the vehicle is a motorcycle, say Lemon Law usually does not cover bikes, and point to the Consumer Act and warranty papers.</td></tr>
+        </table>
+        <div class="warn">
+          <p>Hints are guides, not a verdict. Copy: “This may help a complaint. It is not a legal finding.”</p>
+        </div>
+
+        <h3>4.3 Job slip (idea 3)</h3>
+        <p>Before they leave the vehicle, they fill a short slip and get a link they can show the shop.</p>
+        <table>
+          <tr><th>Fields</th><td>Job in one sentence. “Do this only.” Peso cap (“do not go past ₱X”). Photos of existing scratches and dents. Owner name and mobile. Date and time of drop-off.</td></tr>
+          <tr><th>Share link</th><td>Public read-only page. No login for the shop. Shows the lock: extra work needs a new yes from the owner.</td></tr>
+          <tr><th>Extra work</th><td>Owner can add a line later: new job, new cap, yes/no. Timestamp each yes.</td></tr>
+          <tr><th>If they skip it</th><td>The file still works. The slip is optional but recommended on the first visit.</td></tr>
+        </table>
+
+        <h3>4.4 Fair job guide (idea 4)</h3>
+        <p>A public page. No account needed. Pick a job. Read the range and the checklist. See section 10 for the first eight jobs.</p>
+
+        <h3>4.5 Motorcycle phrases (idea 5)</h3>
+        <p>Same visit form. If the vehicle type is motorcycle, show extra chips the owner can tap:</p>
+        <ul>
+          <li>“Service warranty lang”</li>
+          <li>“No return, no exchange”</li>
+          <li>“Come back next week” (no real diagnosis)</li>
+          <li>Sold as brand-new but looked used or repaired</li>
+          <li>Waiting for parts, no date given</li>
+        </ul>
+        <p>Each chip saves as a dated line. That is the motorcycle diary. Cars do not see those chips, unless the owner turns on “show dealer phrases.”</p>
+
+        <h3>4.6 Nearby complaint offices (extra A)</h3>
+        <p>See section 9. The phone finds where you are. A Google Earth-style map shows the nearest DTI office on the ground, so you can see the building and the road. You do not type a city first.</p>
+
+        <h3>4.7 Draft complaint letter (extra B)</h3>
+        <p>See section 8. Button on the file: “Draft my complaint.” The AI may only use facts already in the file, plus the office the map picked. The owner edits, then copies or downloads. This is not legal advice.</p>
+      </section>
+
+      <section id="screens">
+        <h2>5. Screens</h2>
+        <p>Keep the list short. Phone first. Desktop is the same pages, wider.</p>
+        <table>
+          <tr><th>URL</th><th>Who</th><th>What it does</th></tr>
+          <tr><td><code>/</code></td><td>Anyone</td><td>Promise, start a file, open the fair job guide.</td></tr>
+          <tr><td><code>/guide</code></td><td>Anyone</td><td>Pick a job. See peso range, includes, padded extras, questions to ask.</td></tr>
+          <tr><td><code>/guide/:job</code></td><td>Anyone</td><td>One job in full.</td></tr>
+          <tr><td><code>/login</code></td><td>Anyone</td><td>Phone sign-in (keep current Kumpooni auth if it still works).</td></tr>
+          <tr><td><code>/vehicles</code></td><td>Signed in</td><td>Cars and motorcycles they own.</td></tr>
+          <tr><td><code>/files</code></td><td>Signed in</td><td>List of repair files. Open and closed.</td></tr>
+          <tr><td><code>/files/new</code></td><td>Signed in</td><td>Create a file.</td></tr>
+          <tr><td><code>/files/:id</code></td><td>Signed in</td><td>The folder: clocks, visits, attachments, slip, offices, letter.</td></tr>
+          <tr><td><code>/files/:id/slip</code></td><td>Signed in</td><td>Write or edit the job slip.</td></tr>
+          <tr><td><code>/s/:code</code></td><td>Anyone with the link</td><td>Read-only job slip for the shop.</td></tr>
+          <tr><td><code>/files/:id/letter</code></td><td>Signed in</td><td>Draft, edit, copy, download the complaint.</td></tr>
+          <tr><td><code>/offices</code></td><td>Anyone</td><td>Full-screen Earth map: your pin, nearest DTI pins, satellite view, directions.</td></tr>
+          <tr><td><code>/about</code>, <code>/terms</code></td><td>Anyone</td><td>What Kumpooni is now. Disclaimer. Privacy.</td></tr>
+        </table>
+        <p>Drop from the old web app: search, services, cart, quotes, checkout, shops, parts, orders, reviews. Vehicles and account stay, with a new job.</p>
+      </section>
+
+      <section id="flows">
+        <h2>6. How a person uses it</h2>
+
+        <h3>Flow A — About to leave the car</h3>
+        <ol>
+          <li>Sign in. Add the vehicle if needed.</li>
+          <li>Create a repair file. Write the job in one sentence. Set a peso cap.</li>
+          <li>Photo the scratches. Save the slip. Open the share link at the counter.</li>
+          <li>Optional: open the fair job guide for that job and ask the listed questions.</li>
+        </ol>
+
+        <h3>Flow B — The problem came back</h3>
+        <ol>
+          <li>Open the same file. Add a visit. Mark “not fixed.”</li>
+          <li>Attach the new job order and any receipt.</li>
+          <li>Read the attempt count and days in shop.</li>
+        </ol>
+
+        <h3>Flow C — Motorcycle dealer stall</h3>
+        <ol>
+          <li>Create a file with vehicle type motorcycle.</li>
+          <li>On each visit, tap the phrase they used.</li>
+          <li>When they are ready, draft the letter and open nearby DTI.</li>
+        </ol>
+
+        <h3>Flow D — File a complaint</h3>
+        <ol>
+          <li>On the file, tap “Draft my complaint.” The phone asks once for location.</li>
+          <li>The map opens in Earth (satellite) view, with you and the nearest DTI office marked.</li>
+          <li>The letter “To” line fills with that office name and address. You can tap another pin if it is the wrong branch.</li>
+          <li>Edit the letter. Download PDF. Open walking or driving directions on the same map.</li>
+          <li>Owner files it. Kumpooni does not file it for them.</li>
+        </ol>
+      </section>
+
+      <section id="data">
+        <h2>7. What we save</h2>
+        <p>Use the existing Supabase project. New tables. Do not keep shop catalog tables as the product core.</p>
+        <table>
+          <tr><th>profiles</th><td>Already exist. Name, mobile. Keep.</td></tr>
+          <tr><th>vehicles</th><td>Already exist. Add <code>kind</code>: car or motorcycle. Keep plate, year, make, model.</td></tr>
+          <tr><th>repair_files</th><td>New. Owner, vehicle, shop name, shop city, problem, started_at, status (open / closed), old_parts_asked, peso_cap, lemon_hints_seen.</td></tr>
+          <tr><th>visits</th><td>New. File, date_in, date_out, story, shop_said, result, amount_paid, phrases[] (motorcycle chips).</td></tr>
+          <tr><th>attachments</th><td>New. File, kind (estimate, receipt, before_photo, old_part, chat, job_order), storage path, caption, taken_at.</td></tr>
+          <tr><th>job_slips</th><td>New. File, public_code, job_text, peso_cap, dropoff_at, extras[] with yes timestamps.</td></tr>
+          <tr><th>letters</th><td>New. File, office_id (the pin they used), office_type, owner_lat, owner_lng, draft_text, model used, created_at, edited_text (what they saved).</td></tr>
+          <tr><th>offices</th><td>New, curated. Name, kind (DTI region, DTI provincial, other), address, city, province, lat, lng, phone, hours, handles (repair shops, motorcycles, appliances), source_url, updated_at.</td></tr>
+          <tr><th>guide_jobs</th><td>New, curated. Slug, title, vehicle_kind, peso_low, peso_high, includes[], padded[], ask[], safety_notes[], disclaimer.</td></tr>
+        </table>
+        <p>Photos go to Supabase Storage, private bucket, owner-only. The job-slip page may show only the slip photos, via a signed or public-but-unguessable code.</p>
+        <p>Row Level Security: a person reads and writes only their files. The slip page reads one slip by code. Offices and guide jobs are public read.</p>
+      </section>
+
+      <section id="ai">
+        <h2>8. AI complaint letter</h2>
+        <p>The letter is the “smart” part. It is still a form with a model on top, not a free chat lawyer.</p>
+
+        <h3>What happens with no extra typing</h3>
+        <ul>
+          <li>The app reads the phone’s location (GPS). The owner does not type a city first.</li>
+          <li>The nearest DTI office is picked for them. That name and street address go into the letter “To” line and the heading.</li>
+          <li>A map sits next to the draft: Earth (satellite) view, so they can see the building, the street, and how to get there.</li>
+          <li>If they tap another pin, the letter “To” line updates. The AI does not invent an office.</li>
+        </ul>
+
+        <h3>What the owner still picks</h3>
+        <ul>
+          <li>Kind of letter: DTI (default), or “shop first” (demand letter to the shop), or “note for my records.”</li>
+          <li>Ask for: repair again, replacement, refund, or “they decide.”</li>
+          <li>Language: English or Filipino.</li>
+        </ul>
+        <p>If they pick “shop first,” the letter goes to the shop name already in the file. The map still shows the nearest DTI office under “If the shop does not answer.”</p>
+
+        <h3>What the model may use</h3>
+        <ul>
+          <li>Only fields and visit lines already saved on that file.</li>
+          <li>The office the map selected (name, address, city). That office is a fact from the directory + GPS, not a guess by the model.</li>
+          <li>A fixed template: facts, timeline, what was paid, what they want, list of attachments, where they will file.</li>
+          <li>A short note on Lemon Law (cars) or Consumer Act / warranty (motorcycles), as a citation the owner can keep or delete.</li>
+        </ul>
+
+        <h3>What the model must not do</h3>
+        <ul>
+          <li>Invent dates, amounts, shop names, office addresses, or laws that are not in the file, the map pick, or the fixed notes.</li>
+          <li>Pick a far office when a nearer verified office exists.</li>
+          <li>Say “you will win” or “the shop is guilty.”</li>
+          <li>Tell them to skip DTI mediation.</li>
+          <li>Write insults.</li>
+        </ul>
+
+        <h3>On-screen disclaimer (always)</h3>
+        <div class="plain">
+          <p>This is a draft from your repair file. It is not legal advice. Read it. Change anything that is wrong. You file it yourself.</p>
+        </div>
+
+        <h3>If the file is thin</h3>
+        <p>If there is no shop name, no dates, and no visits, do not call the model. Show: “Add the shop name and at least one visit first.”</p>
+
+        <h3>Technical</h3>
+        <p>Server-side call only (Supabase Edge Function or a small API). The browser never holds the model key. Log that a letter was made. Do not log the full letter body longer than needed for abuse review. Cap: 2 drafts per file per day in v1.</p>
+      </section>
+
+      <section id="offices">
+        <h2>9. Nearby government offices (automatic Earth map)</h2>
+        <p>The owner should look at the map and know, in one glance, “that building, that street, that far.” Think Google Earth: satellite ground, your pin, the office pin, then directions. The office list is still a directory you maintain. The map is how they find it. We do not scrape government sites live.</p>
+
+        <h3>Automatic location</h3>
+        <ol>
+          <li>When they open “Where to complain” or “Draft my complaint,” the app asks the browser for location once.</li>
+          <li>If they allow it, the map centers on them. Nearest verified DTI office is selected. Distance shows in km and in minutes of typical travel if Google Directions returns it.</li>
+          <li>They do not type a city first. City type-in is only the fallback.</li>
+          <li>If they block location, the map still opens on the Philippines. They drop a pin or type a city. Then the same nearest-office pick runs.</li>
+          <li>Save the last allowed point on the profile so the next visit does not ask again unless they tap “Use my location again.”</li>
+        </ol>
+
+        <h3>What the map must look and feel like</h3>
+        <ul>
+          <li>Default view: Google Maps satellite (Earth). Not a blank list with a text link.</li>
+          <li>3D tilt where the Maps API allows it (photorealistic or 45-degree tilt), so buildings read as buildings.</li>
+          <li>Two pins at all times: “You” and the selected office. Other nearby offices are smaller pins.</li>
+          <li>Card on the map: office name, address, phone, hours, km away. Buttons: “Use this office in my letter,” “Get directions.”</li>
+          <li>Directions draw the path on the same map (walk and drive). “Open in Google Maps” is extra, not the only way to see the place.</li>
+          <li>Street View or a “Look around” control when Google has coverage, so they can recognize the gate or the building face.</li>
+        </ul>
+
+        <h3>What we show in words next to the map</h3>
+        <ul>
+          <li>One line: “DTI mediation is the usual first step for a repair shop complaint.”</li>
+          <li>If motorcycle: Lemon Law is usually for cars. They still use this DTI office under the Consumer Act.</li>
+          <li>If the nearest row is a regional office that may not cover their city: “Call first. Confirm they handle your city.”</li>
+        </ul>
+
+        <h3>How the letter and the map stay in sync</h3>
+        <table>
+          <tr><th>Map pick</th><td>That office’s official name and street address are facts on the file for this draft.</td></tr>
+          <tr><th>AI letter</th><td>Must copy those fields. Must not write a different address.</td></tr>
+          <tr><th>PDF pack</th><td>Includes a static map image or a maps link plus the same address, so they can find the building without the app.</td></tr>
+        </table>
+
+        <h3>v1 data job</h3>
+        <p>Seed about 16 DTI regional offices with address, phone, lat, and lng from official DTI pages. Pins need real coordinates, not a city center guess, or Earth view will point at the wrong lot. Add provincial offices as you confirm them. Each row needs a source URL and a “checked on” date. Wrong pin data is worse than a short list.</p>
+        <div class="ok">
+          <p>On the file screen, a compact map (same Earth view) sits above “Draft my complaint,” so they see the place before they write.</p>
+        </div>
+      </section>
+
+      <section id="guide">
+        <h2>10. Fair job guide — first eight jobs</h2>
+        <p>Static content you write once. Ranges are “usual in Metro Manila / large cities, 2026, labor plus common parts, not a quote.” Always show: “Ask your shop for a written estimate. Your car or bike may cost more.”</p>
+        <table>
+          <tr>
+            <th>Job</th>
+            <th>Kind</th>
+            <th>Page must include</th>
+          </tr>
+          <tr>
+            <td>Oil and filter change</td>
+            <td>Car</td>
+            <td>What oil spec means, drain plug / filter, what “flush” upsells look like, questions to ask.</td>
+          </tr>
+          <tr>
+            <td>Brake pads (axle)</td>
+            <td>Car</td>
+            <td>Pads vs rotors, test drive after, safety check, common add-ons.</td>
+          </tr>
+          <tr>
+            <td>Battery test and replace</td>
+            <td>Car</td>
+            <td>Load test first, old battery return, warranty months.</td>
+          </tr>
+          <tr>
+            <td>Aircon not cold</td>
+            <td>Car</td>
+            <td>Diagnose before recharge, leak vs gas only, what “full cleaning” often adds.</td>
+          </tr>
+          <tr>
+            <td>Engine check (noise, light, no start)</td>
+            <td>Car</td>
+            <td>Pay for diagnosis first. Do not approve a rebuild from a guess. What to write on the job slip.</td>
+          </tr>
+          <tr>
+            <td>Body scratch or dent / paint</td>
+            <td>Car</td>
+            <td>Panel vs blend, color match, photos before and after, alignment of doors.</td>
+          </tr>
+          <tr>
+            <td>Periodic maintenance (PMI)</td>
+            <td>Motorcycle</td>
+            <td>What a PMI ticket should list, “warranty lang” trap, ask for the job order.</td>
+          </tr>
+          <tr>
+            <td>Brake and tire work</td>
+            <td>Motorcycle</td>
+            <td>Safety: both brakes, torque, test ride. If they refuse a test, write it on the visit.</td>
+          </tr>
+        </table>
+        <p>Each page has four blocks, always in this order: usual peso range, what a complete job includes, what shops add to raise the bill, what to ask before you say yes.</p>
+      </section>
+
+      <section id="rules">
+        <h2>11. Product rules</h2>
+        <div class="grid-2">
+          <div class="tile">
+            <h3>Copy</h3>
+            <p>Sentence case. Buttons are verbs: “Start a repair file,” “Add a visit,” “Draft my complaint,” “Use this office,” “Get directions.” Money in ₱. No “users.” Say “car owners,” “motorcycle owners,” or “you.”</p>
+          </div>
+          <div class="tile">
+            <h3>Trust</h3>
+            <p>Never hide the disclaimer on letters or Lemon Law hints. Never sell shop ads on a complaint screen. Photos stay private except the slip link they chose to share.</p>
+          </div>
+          <div class="tile">
+            <h3>Empty and error</h3>
+            <p>Every list has empty, loading, and error. Empty file list: “No repair file yet.” Button: “Start a repair file.”</p>
+          </div>
+          <div class="tile">
+            <h3>Look</h3>
+            <p>Keep Kumpooni tokens in <code>web/DESIGN.md</code>. Tap targets 44px. Check 375px and 1280px, light and dark.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="plan">
+        <h2>12. Ship plan</h2>
+        <p>One web app. Ship in four slices. Each slice can go live on the same host (Vercel or equal). Do not wait for all seven parts.</p>
+
+        <div class="phase">
+          <div class="when">Slice 1<br />Weeks 1–3</div>
+          <div class="body">
+            <h3>Repair file + job slip</h3>
+            <p>Sign in, vehicles with car/motorcycle, create file, attachments, old-parts toggle, job slip and public link. Home and About rewritten. Old cart and shop routes removed or redirected to home. This ships idea 1 and idea 3.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="when">Slice 2<br />Weeks 4–5</div>
+          <div class="body">
+            <h3>Visit log, clocks, motorcycle chips</h3>
+            <p>Add visit form, attempt count, days-in-shop, 30-day and repeat-attempt notes, motorcycle phrases. PDF export of the timeline. This ships idea 2 and idea 5.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="when">Slice 3<br />Week 6</div>
+          <div class="body">
+            <h3>Fair job guide</h3>
+            <p>Eight job pages, public, no login. Link from home and from a file when the problem matches a job. This ships idea 4.</p>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="when">Slice 4<br />Weeks 7–8</div>
+          <div class="body">
+            <h3>Offices + AI letter</h3>
+            <p>Seed DTI offices with real lat/lng. Automatic GPS. Earth (satellite) map with you, the office, path, and Street View when Google has it. The letter “To” line fills from the selected pin. Edge function for the letter. Edit, copy, download. Cap drafts. Disclaimers on screen.</p>
+          </div>
+        </div>
+
+        <h3>Build notes (keep current stack)</h3>
+        <ul>
+          <li>Vite + React + TypeScript in <code>web/</code></li>
+          <li>Supabase for auth, tables, storage, RLS</li>
+          <li>Google Maps JavaScript API is required for v1 offices and letters: satellite / Earth view, tilt, pins, Directions, Street View. Enable Maps JavaScript API, Places, Geocoding, and Directions on the existing <code>VITE_GOOGLE_MAPS_KEY</code>. Typed city is fallback only when they block GPS.</li>
+          <li>Letter model: one hosted chat model behind an Edge Function. Template in, letter out.</li>
+        </ul>
+
+        <h3>You (Jonel) still do by hand</h3>
+        <ul>
+          <li>Write or approve the eight guide pages (peso ranges you are willing to stand behind).</li>
+          <li>Confirm DTI office addresses from official pages before seed.</li>
+          <li>Decide English-only first or English + Filipino for the letter.</li>
+        </ul>
+      </section>
+
+      <section id="done">
+        <h2>13. Done when</h2>
+        <p>v1 is done when a motorcycle owner in Quezon City can:</p>
+        <ol>
+          <li>Create a file for a bike that the dealer will not diagnose.</li>
+          <li>Log two visits and tap “come back next week.”</li>
+          <li>See attempt count and days.</li>
+          <li>Allow location. See themselves and the nearest DTI office on an Earth (satellite) map, with the building visible and a path to the door.</li>
+          <li>Get a draft letter that uses those two visits, puts that office address in the “To” line, and does not invent a third visit or a different office.</li>
+          <li>Download the file pack as PDF.</li>
+        </ol>
+        <p>And a car owner in the same week can lock a job slip with a ₱ cap and before-photos, then add a visit when the rattle comes back.</p>
+
+        <h3>Out of v1 (later, only if people use it)</h3>
+        <ul>
+          <li>Appliance and phone repair files (complaint 10)</li>
+          <li>More than eight guide jobs</li>
+          <li>Provincial office coverage beyond the regional set</li>
+          <li>Shop-facing accounts</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p>Kumpooni Repair Proof · Specification and ship plan · 5 October 2026 · Auto-Mate Solutions Inc.</p>
+        <p>This page is the product brief. It is not the live app. Open it in a browser. Print to PDF if you want a file to send.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
