@@ -116,10 +116,15 @@ export function OfficeMap({
   const near = React.useMemo(() => nearestOffices(offices, location), [offices, location])
   const selected = near.find(o => o.id === selectedId) ?? null
 
+  // Re-pick the nearest office whenever the location changes, e.g. Manila default → allowed GPS.
+  const locKey = location ? `${location.lat},${location.lng}` : ''
+  const lastLocKey = React.useRef(locKey)
   React.useEffect(() => {
     if (!near.length) return
-    if (selectedId == null || (location && !near.some(o => o.id === selectedId))) onSelect(near[0].id)
-  }, [near, selectedId, location, onSelect])
+    const moved = lastLocKey.current !== locKey
+    lastLocKey.current = locKey
+    if (selectedId == null || moved || !near.some(o => o.id === selectedId)) onSelect(near[0].id)
+  }, [near, selectedId, locKey, onSelect])
 
   const [mapFailed, setMapFailed] = React.useState(!HAS_MAPS)
   React.useEffect(() => onMapsAuthFailure(() => setMapFailed(true)), [])
@@ -237,7 +242,7 @@ function PlaceFallback({
 
   return (
     <div className="card card--pad stack" style={{gap: 'var(--space-3)'}}>
-      <Alert>{error || "We couldn't get your location."}</Alert>
+      <Alert>{error || "We couldn't get your location."} We're showing the Manila office for now.</Alert>
       <form className="row" onSubmit={find} style={{flexWrap: 'wrap'}}>
         <label htmlFor={id} className="visually-hidden">
           Your city or barangay

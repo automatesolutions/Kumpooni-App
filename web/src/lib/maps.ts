@@ -52,8 +52,17 @@ export function loadGoogleMaps(): Promise<typeof google.maps> {
 
 export type NearOffice = OfficeRow & {km: number}
 
+/** Used to order offices before we know where the person is. */
+export const MANILA: Coords = {lat: 14.5995, lng: 120.9842}
+
 export function nearestOffices(offices: OfficeRow[], from: Coords | null): NearOffice[] {
-  if (!from) return offices.map(o => ({...o, km: NaN}))
+  if (!from) {
+    // No location yet: Manila's office first, km unknown so no distance is shown.
+    return offices
+      .map(o => ({...o, km: haversine([MANILA.lat, MANILA.lng], [o.lat, o.lng])}))
+      .sort((a, b) => a.km - b.km)
+      .map(o => ({...o, km: NaN}))
+  }
   return offices
     .map(o => ({...o, km: haversine([from.lat, from.lng], [o.lat, o.lng])}))
     .sort((a, b) => a.km - b.km)
