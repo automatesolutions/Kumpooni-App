@@ -14,11 +14,9 @@ import {Alert, Button, CardSkeletons, Dialog, EmptyState, ErrorState, PageHead} 
 
 export function AccountPage() {
   const navigate = useNavigate()
-  const {session, isGuest, signOut} = useSession()
+  const {session, signOut} = useSession()
   const meta = session?.user.user_metadata ?? {}
-  const name = isGuest
-    ? 'Trying it'
-    : meta.full_name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || 'Your account'
+  const name = meta.full_name || [meta.first_name, meta.last_name].filter(Boolean).join(' ') || 'Your account'
   const initial = (meta.first_name?.[0] ?? name[0] ?? 'K').toUpperCase()
   const [confirmDelete, setConfirmDelete] = React.useState(false)
   const [deleting, setDeleting] = React.useState(false)
@@ -50,16 +48,12 @@ export function AccountPage() {
     <div className="container page" style={{maxWidth: 720}}>
       <div className="row" style={{gap: 'var(--space-4)', marginBottom: 'var(--space-8)'}}>
         <div className="avatar" aria-hidden>
-          {meta.img_url ? <img src={meta.img_url} alt="" /> : initial}
+          {meta.img_url || meta.avatar_url ? <img src={meta.img_url || meta.avatar_url} alt="" referrerPolicy="no-referrer" /> : initial}
         </div>
         <div>
           <h1 style={{fontSize: 'var(--text-xl)'}}>{name}</h1>
           <p className="muted small">
-            {isGuest
-              ? 'Notes stay on this browser until you add a mobile number later.'
-              : session?.user.phone
-                ? `+${session.user.phone}`
-                : session?.user.email}
+            {session?.user.phone ? `+${session.user.phone}` : session?.user.email}
           </p>
         </div>
       </div>
@@ -83,8 +77,7 @@ export function AccountPage() {
         <li>
           <button type="button" onClick={onSignOut}>
             <LogOut size={20} aria-hidden />
-            {/* A guest can't sign back in, so say what signing out costs. */}
-            {isGuest ? 'Sign out and lose these notes' : 'Sign out'}
+            Sign out
           </button>
         </li>
         <li>

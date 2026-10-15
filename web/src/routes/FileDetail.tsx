@@ -242,7 +242,7 @@ function FileView({file}: {file: RepairFileDetail}) {
             <Link to={`/ask?file=${file.id}`} className="card card--pad card--link row ask-link">
               <Sparkles size={20} aria-hidden />
               <span>
-                <span className="strong">Ask this file</span>
+                <span className="strong">Ask Pooni about this file</span>
                 <span className="small muted" style={{display: 'block'}}>
                   Answers from your visits and photo notes only.
                 </span>

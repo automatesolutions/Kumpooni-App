@@ -176,20 +176,3 @@ export function retrieveChunks(chunks: RagChunk[], question: string, limit = 6) 
     .slice(0, limit)
     .map(row => row.chunk)
 }
-
-/** Answers only from retrieved chunks. No invented pesos, dates, or laws. */
-export function answerFromChunks(question: string, hits: RagChunk[]) {
-  if (!hits.length) {
-    return {
-      text: 'That is not in your saved files or document notes yet. Add the visit or write a note on the photo, then ask again.',
-      sources: [] as RagChunk[],
-    }
-  }
-  const lines = hits.map(h => h.text)
-  const text = [
-    `From what you saved about "${question.trim()}":`,
-    ...lines.map(line => `• ${line}`),
-    'I only use your files and the notes on your documents. I do not read the pixels in photos unless you wrote a note.',
-  ].join('\n')
-  return {text, sources: hits}
-}

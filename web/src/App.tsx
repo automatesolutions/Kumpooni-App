@@ -5,7 +5,7 @@ import {SessionProvider} from '@/state/session'
 import {Layout} from '@/components/Layout'
 import {RequireAuth} from '@/components/RequireAuth'
 import {HomePage} from '@/routes/Home'
-import {LoginPage, VerifyPage, WelcomePage} from '@/routes/Auth'
+import {AuthCallbackPage, LoginPage, VerifyPage, WelcomePage} from '@/routes/Auth'
 import {VehicleFormPage, VehiclesPage} from '@/routes/Vehicles'
 import {AccountPage} from '@/routes/Account'
 import {AboutPage, NotFoundPage, TermsPage} from '@/routes/Info'
@@ -51,6 +51,7 @@ const router = createBrowserRouter([
       {path: '/s/:code', element: <PublicSlipPage />},
       {path: '/login', element: <LoginPage />},
       {path: '/login/verify', element: <VerifyPage />},
+      {path: '/auth/callback', element: <AuthCallbackPage />},
       {path: '/terms', element: <TermsPage />},
       {path: '/about', element: <AboutPage />},
       {path: '/vehicles', element: <Navigate to="/account/vehicles" replace />},

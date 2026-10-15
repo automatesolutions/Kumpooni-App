@@ -2,10 +2,11 @@ import React from 'react'
 import {Link, Navigate, useNavigate, useSearchParams} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import {useSession} from '@/state/session'
+import {NEXT_KEY, useSession} from '@/state/session'
 import {hasCompleteProfile, profileSchema, useUpdateProfileMutation, type ProfileForm} from '@/state/queries/profile'
 import {errorMessage} from '@/lib/format'
-import {Alert, Button} from '@/components/ui'
+import {Alert, Button, Spinner} from '@/components/ui'
+import {BrandGoogle} from '@/components/icons'
 import {safeNext} from '@/components/RequireAuth'
 
 function AuthCard({children}: React.PropsWithChildren) {
@@ -20,24 +21,22 @@ function AuthCard({children}: React.PropsWithChildren) {
 }
 
 export function LoginPage() {
-  const navigate = useNavigate()
   const [params] = useSearchParams()
-  const next = safeNext(params.get('next'), '/files/new')
-  const {session, tryAsGuest} = useSession()
+  const next = safeNext(params.get('next'), '/files')
+  const {session, isGuest, signInWithGoogle} = useSession()
   const [error, setError] = React.useState('')
   const [busy, setBusy] = React.useState(false)
 
-  if (session) return <Navigate to={next} replace />
+  if (session && !isGuest) return <Navigate to={next} replace />
 
-  const start = async () => {
+  const google = async () => {
     setError('')
     setBusy(true)
     try {
-      await tryAsGuest()
-      navigate(next, {replace: true})
+      await signInWithGoogle(next)
+      // The browser now leaves for Google, so keep the spinner on.
     } catch (e) {
       setError(errorMessage(e))
-    } finally {
       setBusy(false)
     }
   }
@@ -45,20 +44,92 @@ export function LoginPage() {
   return (
     <AuthCard>
       <div>
-        <h1 style={{fontSize: 'var(--text-xl)'}}>Try the app</h1>
+        <h1 style={{fontSize: 'var(--text-xl)'}}>Sign in to Kumpooni</h1>
         <p className="muted" style={{marginTop: 'var(--space-2)'}}>
-          No phone or password. Open a repair file, add a visit, and see the letter and map.
+          Sign in to see your repairs. Your files stay safe and open on any phone or computer.
         </p>
       </div>
       {error && <Alert>{error}</Alert>}
-      <Button type="button" size="lg" block loading={busy} onClick={start}>
-        Start without an account
+      <Button type="button" size="lg" block loading={busy} onClick={google}>
+        <BrandGoogle size={20} aria-hidden />
+        Continue with Google
       </Button>
-      <p className="xsmall muted" style={{textAlign: 'center'}}>
-        Phone sign-in comes later. For now this is so you can see how it works.
-      </p>
     </AuthCard>
   )
+}
+
+/** Google sends people back here. Go on to the page they wanted, or ask their name first. */
+export function AuthCallbackPage() {
+  const navigate = useNavigate()
+  const [params] = useSearchParams()
+  const [next] = React.useState(() => {
+    try {
+      return safeNext(sessionStorage.getItem(NEXT_KEY), '/files')
+    } catch {
+      return '/files'
+    }
+  })
+  const {session, isLoading, signInWithGoogle} = useSession()
+  const [failed] = React.useState(() => readAuthError(params))
+  const [busy, setBusy] = React.useState(false)
+  const [error, setError] = React.useState('')
+
+  React.useEffect(() => {
+    if (failed || isLoading || !session || session.user.is_anonymous) return
+    let live = true
+    hasCompleteProfile(session.user.id).then(complete => {
+      if (live) navigate(complete ? next : `/welcome?next=${encodeURIComponent(next)}`, {replace: true})
+    })
+    return () => {
+      live = false
+    }
+  }, [failed, isLoading, session, next, navigate])
+
+  // Still swapping the code for a session.
+  if (!failed && (isLoading || (session && !session.user.is_anonymous))) return <Spinner />
+
+  const taken = failed?.code === 'identity_already_exists' || /already linked/i.test(failed?.message ?? '')
+
+  const retry = async () => {
+    setError('')
+    setBusy(true)
+    try {
+      await signInWithGoogle(next, {fresh: taken})
+    } catch (e) {
+      setError(errorMessage(e))
+      setBusy(false)
+    }
+  }
+
+  return (
+    <AuthCard>
+      <div>
+        <h1 style={{fontSize: 'var(--text-xl)'}}>{taken ? 'You already have an account' : "We couldn't sign you in"}</h1>
+        <p className="muted" style={{marginTop: 'var(--space-2)'}}>
+          {taken
+            ? 'This Google account already has Kumpooni files. If you sign in to it, the files you made while trying the app stay behind.'
+            : failed?.message || 'Google sign-in did not finish. Try again.'}
+        </p>
+      </div>
+      {error && <Alert>{error}</Alert>}
+      <Button type="button" size="lg" block loading={busy} onClick={retry}>
+        <BrandGoogle size={20} aria-hidden />
+        {taken ? 'Sign in to that account' : 'Try Google again'}
+      </Button>
+      <Link to="/" className="btn btn--secondary btn--lg">
+        Back to Home
+      </Link>
+    </AuthCard>
+  )
+}
+
+/** Supabase puts OAuth errors in the query string, or in the hash for older flows. */
+function readAuthError(query: URLSearchParams) {
+  const hash = new URLSearchParams(window.location.hash.slice(1))
+  const pick = (key: string) => query.get(key) ?? hash.get(key)
+  const code = pick('error_code') ?? pick('error')
+  if (!code) return null
+  return {code, message: pick('error_description') ?? ''}
 }
 
 export function VerifyPage() {
@@ -177,7 +248,7 @@ export function WelcomePage() {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm<ProfileForm>({resolver: zodResolver(profileSchema)})
+  } = useForm<ProfileForm>({resolver: zodResolver(profileSchema), defaultValues: namesFromGoogle(session?.user.user_metadata)})
 
   const onSubmit = handleSubmit(values => {
     update.mutate(
@@ -234,4 +305,13 @@ export function WelcomePage() {
       </form>
     </AuthCard>
   )
+}
+
+/** Google gives one full name. Guess first and last so the form is filled in, and let people fix it. */
+function namesFromGoogle(meta: Record<string, unknown> | undefined): Partial<ProfileForm> {
+  const full = String(meta?.full_name ?? meta?.name ?? '').trim()
+  if (!full) return {}
+  const parts = full.split(/\s+/)
+  if (parts.length === 1) return {first_name: parts[0]}
+  return {first_name: parts.slice(0, -1).join(' '), last_name: parts[parts.length - 1]}
 }

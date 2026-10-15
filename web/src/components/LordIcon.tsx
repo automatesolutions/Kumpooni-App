@@ -15,8 +15,7 @@ type Props = {
  * Colours come from the design tokens (--ink outline, --brand accent), so the icon
  * follows light and dark mode. With reduced motion it shows the last frame only.
  *
- * Licence: Lordicon free icons are CC BY-ND 4.0. Keep the credit link in the footer
- * and on the About page.
+ * Licence: Lordicon free icons are CC BY-ND 4.0. Keep the credit link on the About page.
  */
 export default function LordIcon({icon, state, size = 56}: Props) {
   const wrap = React.useRef<HTMLSpanElement>(null)

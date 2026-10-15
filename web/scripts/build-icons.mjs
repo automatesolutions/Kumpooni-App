@@ -12,6 +12,7 @@ const ICONS = {
   AirConditioning: 'air-conditioning',
   AlertCircle: 'alert-circle',
   Bolt: 'bolt',
+  BrandGoogle: 'brand-google',
   Crane: 'crane',
   Laptop: 'device-laptop',
   Smartphone: 'device-mobile',

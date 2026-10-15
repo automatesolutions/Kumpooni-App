@@ -11,7 +11,9 @@ export const supabase = createClient<AppDatabase>(
     auth: {
       persistSession: true,
       autoRefreshToken: true,
-      detectSessionInUrl: false,
+      // Google sign-in comes back to /auth/callback with ?code=. The client swaps it for a session.
+      detectSessionInUrl: true,
+      flowType: 'pkce',
     },
   },
 )

@@ -37,6 +37,8 @@ export function Layout() {
 
 function Header() {
   const {session, isGuest} = useSession()
+  const email = session?.user.email ?? ''
+  const avatar: string | undefined = session?.user.user_metadata.avatar_url
 
   return (
     <header className="header">
@@ -55,16 +57,22 @@ function Header() {
         </nav>
 
         <div className="header__actions">
-          {!session ? (
-            <Link to="/files/new" className="btn btn--secondary btn--sm">
-              Try the app
+          {session && !isGuest ? (
+            <Link to="/account" className="user-chip" aria-label={`Signed in as ${email}. Open your account.`}>
+              {avatar ? (
+                <img src={avatar} alt="" width={28} height={28} referrerPolicy="no-referrer" />
+              ) : (
+                <span className="user-chip__initial" aria-hidden>
+                  {(email[0] ?? 'K').toUpperCase()}
+                </span>
+              )}
+              <span className="user-chip__email">{email}</span>
             </Link>
-          ) : isGuest ? (
-            <Link to="/account" className="trying-pill" aria-label="Trying it. Open your account.">
-              <span className="trying-pill__dot" aria-hidden />
-              Trying it
+          ) : (
+            <Link to="/login" className="btn btn--secondary btn--sm">
+              Sign in
             </Link>
-          ) : null}
+          )}
         </div>
       </div>
     </header>
@@ -88,15 +96,10 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <span>© {new Date().getFullYear()} Auto-Mate Solutions Inc.</span>
         <nav aria-label="Footer">
           <Link to="/about">About</Link>
           <Link to="/terms">Terms &amp; conditions</Link>
           <a href="mailto:appdev@automatesolutionsinc.com">Contact</a>
-          {/* Required by the Lordicon free licence (CC BY-ND 4.0). */}
-          <a href="https://lordicon.com/" target="_blank" rel="noreferrer">
-            Animated icons by Lordicon
-          </a>
         </nav>
       </div>
     </footer>

@@ -9,15 +9,21 @@ import {useVehicleStore} from '@/stores/vehicle'
 type SessionContext = {
   session: Session | null
   isLoading: boolean
-  /** True for a guest session (Supabase anonymous sign-in). */
+  /** True for an old guest session (Supabase anonymous sign-in). Guests must sign in with Google. */
   isGuest: boolean
-  /** Starts a guest session so you can try files without a phone. */
-  tryAsGuest: () => Promise<Session>
+  /**
+   * Leaves for Google, then comes back to /auth/callback. A guest keeps their files,
+   * because Google is linked to the guest account instead of starting a new one.
+   */
+  signInWithGoogle: (next: string, opts?: {fresh?: boolean}) => Promise<void>
   /** Sends a one-time code by SMS. `phone` includes the country code, for example 639171234567. */
   sendCode: (phone: string) => Promise<void>
   verifyCode: (phone: string, code: string) => Promise<Session>
   signOut: () => Promise<void>
 }
+
+/** Where to go after Google sends you back. Read by the /auth/callback page. */
+export const NEXT_KEY = 'kumpooni.auth.next'
 
 const Context = React.createContext<SessionContext | null>(null)
 
@@ -44,16 +50,24 @@ export function SessionProvider({children}: React.PropsWithChildren) {
       session,
       isLoading,
       isGuest: !!session?.user.is_anonymous,
-      tryAsGuest: async () => {
-        const {data, error} = await supabase.auth.signInAnonymously()
-        if (error || !data.session) {
-          throw new Error(
-            error?.message?.match(/anonymous/i)
-              ? 'Turn on Anonymous in Supabase: Authentication, Sign In / Providers. Then try again.'
-              : `We couldn't start a guest session. ${error?.message ?? ''}`.trim(),
-          )
+      signInWithGoogle: async (next, opts) => {
+        // Supabase only accepts redirect URLs on its allow list, and a query string breaks an exact match.
+        // So the return URL stays plain, and the page to open next waits in this tab's storage.
+        const redirectTo = `${window.location.origin}/auth/callback`
+        try {
+          sessionStorage.setItem(NEXT_KEY, next)
+        } catch {
+          // Storage is blocked. The callback falls back to Repairs.
         }
-        return data.session
+        const signIn = () => supabase.auth.signInWithOAuth({provider: 'google', options: {redirectTo}})
+        let {error} =
+          session?.user.is_anonymous && !opts?.fresh
+            ? await supabase.auth.linkIdentity({provider: 'google', options: {redirectTo}})
+            : await signIn()
+        // Linking keeps a guest's files, but needs Manual linking on in Supabase.
+        // When it's off, sign in normally. The guest files stay behind.
+        if (error?.code === 'manual_linking_disabled') ({error} = await signIn())
+        if (error) throw new Error(`We couldn't open Google sign-in. ${error.message}`)
       },
       sendCode: async phone => {
         const {error} = await supabase.auth.signInWithOtp({phone})

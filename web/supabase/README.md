@@ -23,6 +23,21 @@ Pins come from OpenStreetMap. Only the Region 4B and Region 9 pins are on the
 building; the rest are on the street or in the area, and the app says so.
 After you confirm an office yourself, update its pin and set `verified = true`.
 
+## Pooni (Ask about your repairs)
+
+Pooni works without any setup: the app answers in the browser from the saved
+files. With `functions/ask-pooni` deployed, an AI model writes friendlier
+answers from the same data, and only from that data. It uses the same secrets
+as the letter function.
+
+```bash
+npx supabase functions deploy ask-pooni --project-ref <your-project-ref>
+```
+
+With no repairs saved, Pooni says there is no data and asks you to add a
+repair. The AI is not called. An answer that mentions a peso amount that is not
+in the files is rejected, and the app answers instead.
+
 ## AI letter function
 
 `functions/draft-complaint` writes the letter body from one repair file. Without

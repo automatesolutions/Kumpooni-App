@@ -40,10 +40,19 @@ around". Restrict the key to your web domain.
 
 ### Sign-in
 
+- **Google:** in Google Cloud Console, create an OAuth client ID (Web
+  application). Add `https://<project-ref>.supabase.co/auth/v1/callback` as an
+  authorized redirect URI. In Supabase, open Authentication, Sign In /
+  Providers, turn on Google, and paste the client ID and secret.
+  Under Authentication, URL configuration, add `http://localhost:5173/auth/callback`
+  and `https://<your-domain>/auth/callback` to the redirect URLs.
+- **Earlier guests keep their files when they sign in with Google:** turn on **Manual linking**
+  in Authentication, Sign In / Providers. Without it, a guest gets an error.
 - **Phone:** turn on the Phone provider in Supabase (Authentication, Sign In /
   Providers). Add your web domain under Authentication, URL configuration.
-- **Try it without a phone:** turn on the Anonymous provider in the same place.
-  Guests see a "Trying it" label in the header.
+- **Repairs and Account need a Google sign-in.** Signed-out visitors go to
+  `/login` first. Guest sessions from earlier versions also go there, and their
+  files move to the Google account when they sign in.
 
 ## Set up Supabase
 
@@ -65,6 +74,7 @@ the plain template.
 | `/` | Home: what Kumpooni does, and your next step on your latest open file | No |
 | `/offices` | DTI offices: the nearest one on a satellite map | No |
 | `/s/:code` | The job slip the shop sees, read-only | No |
+| `/login`, `/auth/callback` | Sign in with Google, and where Google sends you back | No |
 | `/files` | Your repair files, newest first | Yes |
 | `/files/new`, `/files/:id/edit` | Start or edit a file | Yes |
 | `/files/:id` | The file: counters, hints, visits, proof, slip, and where to complain | Yes |

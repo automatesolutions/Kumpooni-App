@@ -1,14 +1,8 @@
 import React from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Building, Check, FileText, Folder, Mail, MessageCircle, Scale, Sparkles} from '@/components/icons'
 import {VehicleIcon} from '@/routes/Vehicles'
 import {ITEM_KINDS, kindLabel} from '@/lib/kinds'
-import {useSession, useUserId} from '@/state/session'
-import {Coach} from '@/components/NextStep'
-import {NO_FILE_STEP, nextStep} from '@/lib/next-step'
-import {errorMessage} from '@/lib/format'
-import {useFilesQuery, useSaveFileMutation, useUploadAttachmentMutation} from '@/state/queries/repair'
-import {toast} from '@/stores/ui'
 import {gsap, MQ, SplitText, useGSAP} from '@/lib/gsap'
 import {useSmoothScroll} from '@/lib/useSmoothScroll'
 import {ParticleReveal} from '@/components/canvasui/ParticleReveal'
@@ -145,7 +139,6 @@ export function HomePage() {
             Save the quote, the photos, and every visit. Look back any time, ask what happened, and have proof if the
             repair fails.
           </p>
-          <HeroCoach />
           <p className="hero__fine">Free. For cars, motorcycles, homes, aircon, appliances, computers, and phones in the Philippines.</p>
         </div>
         <div className="hero__art">
@@ -257,86 +250,6 @@ export function HomePage() {
 }
 
 /**
- * The one next step on Home. No file yet: open the camera for the quote.
- * An open file: whatever that file needs next.
- */
-function HeroCoach() {
-  const navigate = useNavigate()
-  const {session, isLoading: sessionLoading} = useSession()
-  const userId = useUserId()
-  const {data: files, isLoading} = useFilesQuery(userId)
-  // The list comes newest first, so this is the repair you touched last.
-  const file = files?.find(f => f.status === 'open')
-  const step = file ? nextStep(file) : NO_FILE_STEP
-  const upload = useUploadAttachmentMutation(file?.id ?? '')
-  const save = useSaveFileMutation()
-
-  if (sessionLoading || (session && isLoading) || !step) {
-    return <div className="hero__actions" aria-hidden style={{minHeight: 120}} />
-  }
-
-  const href = !file
-    ? undefined
-    : step.id === 'complaint'
-      ? `/files/${file.id}/letter`
-      : step.id === 'trip' || step.id === 'another' || step.id === 'pickup'
-        ? `/files/${file.id}?do=visit`
-        : undefined
-
-  return (
-    <div className="hero__actions">
-      <Coach
-        tone="hero"
-        step={step}
-        busy={upload.isPending || save.isPending}
-        title={
-          file ? (
-            <Link to={`/files/${file.id}`} className="coach__file">
-              {file.problem}
-            </Link>
-          ) : undefined
-        }
-        to={href}
-        onPhoto={
-          step.id !== 'quote'
-            ? undefined
-            : photo =>
-                file
-                  ? upload.mutate(
-                      {userId, files: [photo], kind: 'estimate', caption: null},
-                      {
-                        onSuccess: () => {
-                          toast('Quote saved to the file.')
-                          navigate(`/files/${file.id}`)
-                        },
-                        onError: e => toast(errorMessage(e, "We couldn't save the photo. Try again."), 'error'),
-                      },
-                    )
-                  : navigate('/files/new', {state: {photo}})
-        }
-        onAction={
-          step.id === 'close' && file
-            ? () =>
-                save.mutate(
-                  {id: file.id, values: {status: 'closed'}},
-                  {
-                    onSuccess: () => toast('File closed. You can reopen it any time.'),
-                    onError: e => toast(errorMessage(e), 'error'),
-                  },
-                )
-            : undefined
-        }
-      />
-      <div className="hero__links">
-        <Link to={file ? '/files' : '/files/new'} className="btn hero__ghost">
-          {file ? 'See all repairs' : 'Start with a sentence'}
-        </Link>
-      </div>
-    </div>
-  )
-}
-
-/**
  * Canvas UI Particle Reveal on the hero heading, for mouse and trackpad users.
  * It needs Chrome's html-in-canvas API. Other browsers, touch screens and reduced
  * motion get the plain heading.
@@ -367,7 +280,6 @@ function useHomeMotion(root: React.RefObject<HTMLDivElement>) {
         })
         intro
           .from('.hero__lead', {y: 16, autoAlpha: 0}, 0.35)
-          .from('.hero__actions', {y: 16, autoAlpha: 0}, 0.45)
           .from('.hero__art img', {y: 40, scale: 0.9, autoAlpha: 0, duration: 1.2}, 0.2)
         gsap.to('.hero__art img', {y: -10, duration: 3, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.4})
 

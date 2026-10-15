@@ -951,51 +951,6 @@
   display: grid;
   gap: 2px;
 }
-.ask__shell {
-  display: grid;
-  gap: var(--space-4);
-  max-width: 68ch;
-}
-.ask__log {
-  display: grid;
-  gap: var(--space-3);
-  min-height: 12rem;
-}
-.ask__hints {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  align-items: center;
-}
-.ask__turn {
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-md);
-  white-space: pre-wrap;
-}
-.ask__turn--user {
-  justify-self: end;
-  background: var(--brand-soft);
-  max-width: 36rem;
-}
-.ask__turn--assistant {
-  background: var(--surface);
-  border: 1px solid var(--line);
-}
-.ask__sources {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
-}
-.ask__row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--space-2);
-  align-items: center;
-}
-.ask__form .input {
-  min-height: var(--tap);
-}
 
 /* ---------- Print: the letter and the timeline as PDF ---------- */
 
@@ -1246,22 +1201,156 @@
   overflow-wrap: anywhere;
 }
 
-/* Header: guest session */
-.trying-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-height: var(--tap);
-  padding: 0 var(--space-4);
-  border-radius: var(--radius-pill);
-  background: var(--warn-soft);
-  color: var(--ink);
-  font-size: var(--text-sm);
-  font-weight: 600;
+/* ---------- Pooni: the mascot answers questions about your repairs ---------- */
+
+.pooni {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  margin-bottom: var(--space-7);
 }
-.trying-pill__dot {
-  width: 8px;
-  height: 8px;
+@media (min-width: 760px) {
+  .pooni {
+    grid-template-columns: 180px 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+}
+.pooni__side {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+@media (min-width: 760px) {
+  .pooni__side {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+.pooni__name {
+  font-size: var(--text-lg);
+}
+.pooni__mascot {
+  position: relative;
+  flex: none;
+  width: 72px;
+}
+@media (min-width: 760px) {
+  .pooni__mascot {
+    width: 150px;
+  }
+}
+.pooni__mascot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  will-change: transform;
+}
+.pooni__bubble {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: var(--warn);
+  background: var(--brand);
+  color: var(--on-brand);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+.pooni__chat {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.pooni__log {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  max-height: 22rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: var(--space-1);
+}
+.pooni__msg {
+  max-width: 42rem;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.pooni__msg--assistant {
+  justify-self: start;
+  background: var(--surface-2);
+  border-bottom-left-radius: var(--space-1);
+}
+.pooni__msg--user {
+  justify-self: end;
+  background: var(--brand-soft);
+  border-bottom-right-radius: var(--space-1);
+}
+.pooni__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+}
+.pooni__cta {
+  margin-top: var(--space-3);
+}
+.pooni__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.pooni__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2);
+}
+.pooni__form .input {
+  min-height: var(--tap);
+}
+.pooni__clear {
+  justify-self: start;
+  min-height: var(--tap);
+}
+.pooni__dots {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.pooni__dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  animation: pooni-dot 1s infinite ease-in-out;
+}
+.pooni__dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.pooni__dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes pooni-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pooni__dots span {
+    animation: none;
+    opacity: 0.6;
+  }
 }

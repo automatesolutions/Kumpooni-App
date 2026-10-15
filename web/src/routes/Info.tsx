@@ -91,7 +91,7 @@ export function AboutPage() {
         <h2>How to use it</h2>
         <ol>
           <li>
-            <strong>Sign in</strong> with your mobile number. Only you can see your files.
+            <strong>Sign in</strong> with your Google account. Only you can see your files.
           </li>
           <li>
             <strong>Start a repair file.</strong> Go to <Link className="link" to="/files">Repairs</Link> and tap
@@ -133,6 +133,16 @@ export function AboutPage() {
         <p>
           We don't do repairs, book shops, or take payments. We are not a law office and not part of DTI. The letter
           is a draft, not legal advice. You read it, fix it, and file it yourself.
+        </p>
+
+        <h2>Credits</h2>
+        <p>
+          {/* Required by the Lordicon free licence (CC BY-ND 4.0). */}
+          Animated icons by{' '}
+          <a className="link" href="https://lordicon.com/" target="_blank" rel="noreferrer">
+            Lordicon
+          </a>
+          .
         </p>
       </article>
     </div>

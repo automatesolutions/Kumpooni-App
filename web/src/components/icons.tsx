@@ -40,6 +40,9 @@ export const AlertCircle = icon('AlertCircle', '0 0 24 24', <><path d="M3 12a9 9
 /** tabler:bolt */
 export const Bolt = icon('Bolt', '0 0 24 24', <><path d="M13 3v7h6l-8 11v-7H5z"/></>)
 
+/** tabler:brand-google */
+export const BrandGoogle = icon('BrandGoogle', '0 0 24 24', <><path d="M20.945 11a9 9 0 1 1-3.284-5.997l-2.655 2.392A5.5 5.5 0 1 0 17.125 14H13v-3z"/></>)
+
 /** tabler:crane */
 export const Crane = icon('Crane', '0 0 24 24', <><path d="M6 21h6m-3 0V3L3 9h18M9 3l10 6"/><path d="M17 9v4a2 2 0 1 1-2 2"/></>)
 

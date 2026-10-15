@@ -4,7 +4,8 @@ import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {z} from 'zod'
 import dayjs from 'dayjs'
-import {FileText, Folder, Plus, Sparkles} from '@/components/icons'
+import {FileText, Folder, Plus} from '@/components/icons'
+import {Pooni} from '@/components/Pooni'
 import {PhotoButton} from '@/components/NextStep'
 import {Alert, Button, CardSkeletons, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
 import {ItemFields, VehicleIcon, emptyItem} from '@/routes/Vehicles'
@@ -22,6 +23,7 @@ import {
 import {
   useFileQuery,
   useFilesQuery,
+  useRepairPacksQuery,
   useSaveFileMutation,
   useStartFileMutation,
   type RepairFileListItem,
@@ -34,7 +36,7 @@ export function FilesPage() {
   const sorted = [...(files ?? [])].sort((a, b) => lastActivity(b).localeCompare(lastActivity(a)))
   const open = sorted.filter(f => f.status === 'open')
   const closed = sorted.filter(f => f.status === 'closed')
-  const canAsk = sorted.some(f => f.visits.length > 0)
+  const {data: packs, isLoading: packsLoading} = useRepairPacksQuery(userId)
 
   return (
     <div className="container page">
@@ -43,19 +45,13 @@ export function FilesPage() {
         description="One file per problem. Newest trip first."
         actions={
           files?.length ? (
-            <span className="row" style={{gap: 'var(--space-2)', flexWrap: 'wrap'}}>
-              {canAsk && (
-                <Link to="/ask" className="btn btn--secondary">
-                  <Sparkles size={18} aria-hidden /> Ask your notes
-                </Link>
-              )}
-              <Link to="/files/new" className="btn btn--primary">
-                <Plus size={18} aria-hidden /> Start a repair file
-              </Link>
-            </span>
+            <Link to="/files/new" className="btn btn--primary">
+              <Plus size={18} aria-hidden /> Start a repair file
+            </Link>
           ) : null
         }
       />
+      {!error && !isLoading && !packsLoading && <Pooni userId={userId} files={packs ?? []} />}
       {isLoading ? (
         <CardSkeletons count={3} height={132} />
       ) : error ? (
