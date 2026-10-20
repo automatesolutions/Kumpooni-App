@@ -4,7 +4,7 @@ export const termsMarkdown = `
   - **Not a shop, not a law office:** We don't do repairs, book shops, take payments, or give legal advice. We are not part of DTI or any government office.
 
 **Your account (18+)**
-  - **Who can sign up:** You need to be of legal age. Sign in with your own mobile number and keep it secure.
+  - **Who can sign up:** You need to be of legal age. Sign in with your own Google account and keep it secure.
   - **What you save:** You are responsible for what you put in your files. Write what happened, as it happened.
 
 **Draft letters**
@@ -22,6 +22,7 @@ export const termsMarkdown = `
 
 **Privacy**
   - **Your files are private:** Only you can see your repair files, photos, and letters, except what you put on a job slip.
+  - **Google sign-in:** We use your Google name, email, and photo only to open your account. The full Privacy Policy has the rest.
   - **Deleting:** You can delete a file, a photo, or your whole account at any time.
 
 **Be respectful**

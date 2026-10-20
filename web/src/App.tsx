@@ -8,7 +8,7 @@ import {HomePage} from '@/routes/Home'
 import {AuthCallbackPage, LoginPage, VerifyPage, WelcomePage} from '@/routes/Auth'
 import {VehicleFormPage, VehiclesPage} from '@/routes/Vehicles'
 import {AccountPage} from '@/routes/Account'
-import {AboutPage, NotFoundPage, TermsPage} from '@/routes/Info'
+import {AboutPage, NotFoundPage, PrivacyPage, TermsPage} from '@/routes/Info'
 import {FileFormPage, FilesPage, StartFilePage} from '@/routes/Files'
 import {FileDetailPage} from '@/routes/FileDetail'
 import {PublicSlipPage, SlipEditorPage} from '@/routes/Slip'
@@ -53,6 +53,7 @@ const router = createBrowserRouter([
       {path: '/login/verify', element: <VerifyPage />},
       {path: '/auth/callback', element: <AuthCallbackPage />},
       {path: '/terms', element: <TermsPage />},
+      {path: '/privacy', element: <PrivacyPage />},
       {path: '/about', element: <AboutPage />},
       {path: '/vehicles', element: <Navigate to="/account/vehicles" replace />},
       // History now lives in Repairs, newest trip first.

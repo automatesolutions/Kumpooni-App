@@ -54,6 +54,17 @@ export function LoginPage() {
         <BrandGoogle size={20} aria-hidden />
         Continue with Google
       </Button>
+      <p className="small muted" style={{textAlign: 'center'}}>
+        By continuing you accept the{' '}
+        <Link className="link" to="/terms">
+          terms
+        </Link>{' '}
+        and the{' '}
+        <Link className="link" to="/privacy">
+          privacy policy
+        </Link>
+        .
+      </p>
     </AuthCard>
   )
 }

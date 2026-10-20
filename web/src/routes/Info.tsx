@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {privacyMarkdown} from '@/lib/privacy'
 import {termsMarkdown} from '@/lib/terms'
 import {EmptyState, PageHead} from '@/components/ui'
 
@@ -45,6 +46,32 @@ export function TermsPage() {
     <div className="container page">
       <PageHead title="Terms and conditions" description="The rules for using Kumpooni." />
       <article className="prose">{renderTerms(termsMarkdown)}</article>
+      <p className="muted" style={{marginTop: 'var(--space-6)'}}>
+        How we handle your information is in the{' '}
+        <Link className="link" to="/privacy">
+          privacy policy
+        </Link>
+        .
+      </p>
+    </div>
+  )
+}
+
+export function PrivacyPage() {
+  return (
+    <div className="container page">
+      <PageHead
+        title="Privacy policy"
+        description="How Kumpooni uses your Google account and the files you save."
+      />
+      <article className="prose">{renderTerms(privacyMarkdown)}</article>
+      <p className="muted" style={{marginTop: 'var(--space-6)'}}>
+        The rules for using Kumpooni are in the{' '}
+        <Link className="link" to="/terms">
+          terms and conditions
+        </Link>
+        .
+      </p>
     </div>
   )
 }

@@ -99,6 +99,7 @@ function Footer() {
         <nav aria-label="Footer">
           <Link to="/about">About</Link>
           <Link to="/terms">Terms &amp; conditions</Link>
+          <Link to="/privacy">Privacy</Link>
           <a href="mailto:appdev@automatesolutionsinc.com">Contact</a>
         </nav>
       </div>

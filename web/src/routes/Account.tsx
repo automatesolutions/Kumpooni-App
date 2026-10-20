@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import {Bell, ChevronRight, FileText, Folder, Info, LogOut, Trash2, Wrench} from '@/components/icons'
+import {Bell, ChevronRight, FileText, Folder, Info, Lock, LogOut, Trash2, Wrench} from '@/components/icons'
 import {useSession, useUserId} from '@/state/session'
 import {deleteAccount} from '@/state/queries/profile'
 import {deleteAllProof} from '@/state/queries/repair'
@@ -70,6 +70,7 @@ export function AccountPage() {
 
       <ul className="card menu" style={{marginTop: 'var(--space-4)'}}>
         <MenuLink to="/terms" icon={<FileText size={20} />} title="Terms and conditions" />
+        <MenuLink to="/privacy" icon={<Lock size={20} />} title="Privacy policy" />
         <MenuLink to="/about" icon={<Info size={20} />} title="About Kumpooni" />
       </ul>
 
