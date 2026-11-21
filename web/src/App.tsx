@@ -16,6 +16,7 @@ import {LetterPage} from '@/routes/Letter'
 import {PackPage} from '@/routes/Pack'
 import {OfficesPage} from '@/routes/Offices'
 import {AskPage} from '@/routes/Ask'
+import {NearbyPage} from '@/routes/Nearby'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,8 @@ const router = createBrowserRouter([
       {path: '/guide', element: <Navigate to="/" replace />},
       {path: '/guide/:job', element: <Navigate to="/" replace />},
       {path: '/offices', element: <OfficesPage />},
+      // Top shops nearby. Public: looking needs no account. Starting a file from it does.
+      {path: '/nearby', element: <NearbyPage />},
       {path: '/s/:code', element: <PublicSlipPage />},
       {path: '/login', element: <LoginPage />},
       {path: '/login/verify', element: <VerifyPage />},

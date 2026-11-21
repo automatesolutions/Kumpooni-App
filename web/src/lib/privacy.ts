@@ -12,7 +12,7 @@ export const privacyMarkdown = `
   - **Repair files:** Quotes, photos, receipts, visit notes, job slips, and letters you add to a file. Only you can see them, except what you put on a job slip.
   - **Job slips:** Anyone with the slip link can see the job, your price limit, the name and mobile you put on it, and your before photos.
   - **What you repair:** Cars, homes, aircon, appliances, and gadgets you add under Account.
-  - **Location:** We use your location to find the nearest DTI office. If you are signed in, we save the last point so you do not have to share it again.
+  - **Location:** We use your location to find the nearest DTI office and to show repair shops near you. To look up shops, we send a rounded point about 2 km across, not your exact spot. If you are signed in, we save the last point so you do not have to share it again.
 
 **AI drafts**
   - **File facts only:** When you ask for an AI complaint draft, we send the facts in that file to an AI service to write the letter body. We do not send your Google password. You still need to read every line.

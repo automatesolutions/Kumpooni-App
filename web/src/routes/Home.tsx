@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Building, Check, FileText, Folder, Mail, MessageCircle, Scale, Sparkles} from '@/components/icons'
+import {Building, Check, FileText, Folder, Mail, MessageCircle, Scale, Sparkles, Store} from '@/components/icons'
 import {VehicleIcon} from '@/routes/Vehicles'
 import {ITEM_KINDS, kindLabel} from '@/lib/kinds'
 import {gsap, MQ, SplitText, useGSAP} from '@/lib/gsap'
@@ -222,6 +222,20 @@ export function HomePage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="section card card--pad home-dti" aria-labelledby="nearby-title">
+        <Store size={28} aria-hidden />
+        <div>
+          <h2 id="nearby-title">Top shops nearby</h2>
+          <p>
+            See the top shops nearby, ranked by distance and proof, not paid placement. Pick a category, then start a
+            repair file with the shop you choose.
+          </p>
+        </div>
+        <Link to="/nearby" className="btn btn--secondary">
+          See top shops nearby
+        </Link>
       </section>
 
       <section className="section card card--pad home-dti" aria-labelledby="dti-title">

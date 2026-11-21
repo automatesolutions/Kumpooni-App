@@ -17,7 +17,7 @@ export const termsMarkdown = `
   - **Turning it off:** Deleting the repair file deletes the slip, and the link stops working.
 
 **Maps and offices**
-  - **Your location:** We use your location to find the nearest DTI office. If you're signed in, we save the last point so you don't have to share it again.
+  - **Your location:** We use your location to find the nearest DTI office and to show repair shops near you. If you're signed in, we save the last point so you don't have to share it again.
   - **Office details:** Addresses come from official DTI pages. Pins can be off by a street. Call the office before you go.
 
 **Privacy**

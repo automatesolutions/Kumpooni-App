@@ -132,6 +132,8 @@ export type FileInput = {
   vehicle_id: string | null
   shop_name: string
   shop_city: string | null
+  /** Only sent when the file was started from /nearby (needs 6-top-shops.sql). */
+  shop_place_id?: string
   problem: string
   started_at: string
   peso_cap: number | null
