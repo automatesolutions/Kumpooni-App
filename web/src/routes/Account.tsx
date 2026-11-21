@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import {Bell, ChevronRight, FileText, Folder, Info, Lock, LogOut, Trash2, Wrench} from '@/components/icons'
+import {Bell, ChevronRight, FileText, Folder, Info, Lock, LogOut, Store, Trash2, Wrench} from '@/components/icons'
 import {useSession, useUserId} from '@/state/session'
 import {deleteAccount} from '@/state/queries/profile'
 import {deleteAllProof} from '@/state/queries/repair'
@@ -66,6 +66,7 @@ export function AccountPage() {
           title="What you repair"
           sub="Cars, homes, aircon, appliances, gadgets"
         />
+        <MenuLink to="/nearby" icon={<Store size={20} />} title="Top shops nearby" sub="Ranked by distance and proof" />
       </ul>
 
       <ul className="card menu" style={{marginTop: 'var(--space-4)'}}>

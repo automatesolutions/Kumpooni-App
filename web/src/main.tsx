@@ -4,6 +4,7 @@ import './styles/tokens.css'
 import './styles/base.css'
 import './styles/components.css'
 import './styles/repair.css'
+import './styles/nearby.css'
 import {App} from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

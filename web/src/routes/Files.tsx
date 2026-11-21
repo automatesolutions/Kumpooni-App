@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, useLocation, useNavigate, useParams} from 'react-router-dom'
+import {Link, useLocation, useNavigate, useParams, useSearchParams} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {z} from 'zod'
@@ -163,7 +163,13 @@ export function StartFilePage() {
   const handed = (location.state as {photo?: File} | null)?.photo ?? null
   const [photo, setPhoto] = React.useState<File | null>(handed)
   const [problem, setProblem] = React.useState('')
-  const [shop, setShop] = React.useState('')
+  // From /nearby: ?shop=&city=&placeId=&kind= fill the form in. Nothing is saved until submit.
+  const [params] = useSearchParams()
+  const fromShop = (params.get('shop') ?? '').trim().slice(0, 120)
+  const fromCity = (params.get('city') ?? '').trim().slice(0, 80) || null
+  const fromPlaceId = (params.get('placeId') ?? '').trim().slice(0, 300) || null
+  const fromKind = (ITEM_KINDS as readonly string[]).includes(params.get('kind') ?? '') ? (params.get('kind') as ItemKind) : null
+  const [shop, setShop] = React.useState(fromShop)
   const [error, setError] = React.useState('')
   const preview = React.useMemo(() => (photo && photo.type.startsWith('image/') ? URL.createObjectURL(photo) : null), [photo])
   React.useEffect(() => () => void (preview && URL.revokeObjectURL(preview)), [preview])
@@ -190,7 +196,8 @@ export function StartFilePage() {
   React.useEffect(() => {
     if (autoPicked.current || !vehicles) return
     autoPicked.current = true
-    if (vehicles.length === 1) pickKind(vehicles[0].kind)
+    if (fromKind) pickKind(fromKind)
+    else if (vehicles.length === 1) pickKind(vehicles[0].kind)
   }, [vehicles, pickKind])
 
   const busy = start.isPending || saveItem.isPending
@@ -226,7 +233,9 @@ export function StartFilePage() {
           values: {
             vehicle_id: vehicleId,
             shop_name: shop.trim() || SHOP_LATER,
-            shop_city: null,
+            // Keep the city and place id only while the name is still the shop picked on /nearby.
+            shop_city: fromShop && shop.trim() === fromShop ? fromCity : null,
+            ...(fromPlaceId && fromShop && shop.trim() === fromShop ? {shop_place_id: fromPlaceId} : {}),
             problem: problem.trim() || PROBLEM_LATER,
             started_at: today(),
             peso_cap: null,
@@ -343,7 +352,9 @@ export function StartFilePage() {
             aria-describedby="shop-help"
           />
           <p id="shop-help" className="help">
-            Not sure yet? Leave it blank and add it later.
+            {fromShop && shop.trim() === fromShop
+              ? `From top shops nearby${fromCity ? `, in ${fromCity}` : ''}. Change it if you go somewhere else.`
+              : 'Not sure yet? Leave it blank and add it later.'}
           </p>
         </div>
 

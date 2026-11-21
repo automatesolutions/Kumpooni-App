@@ -63,9 +63,19 @@ a time and in order:
 2. `2-seed.sql`
 3. `3-repair-proof.sql`
 4. `4-more-repairs.sql`
+5. `5-vehicle-log.sql` (reserved for the vehicle log; skip it if it isn't there yet)
+6. `6-top-shops.sql`
 
 Deploying the `draft-complaint` function is optional. Without it, letters use
-the plain template.
+the plain template. The top shops page (`/nearby`) needs the `nearby-shops`
+function. For now, that function returns sample shops only.
+
+## Tests
+
+```bash
+npm test         # Vitest: cache key, radius buckets, and ranking rules
+npm run typecheck
+```
 
 ## Screens
 
@@ -73,6 +83,7 @@ the plain template.
 | --- | --- | --- |
 | `/` | Home: what Kumpooni does, and your next step on your latest open file | No |
 | `/offices` | DTI offices: the nearest one on a satellite map | No |
+| `/nearby` | Top shops nearby for each category, ranked by distance and proof, not paid placement. It doesn't book the shop. | No |
 | `/s/:code` | The job slip the shop sees, read-only | No |
 | `/login`, `/auth/callback` | Sign in with Google, and where Google sends you back | No |
 | `/files` | Your repair files, newest first | Yes |
@@ -140,7 +151,10 @@ supabase/
   1-schema.sql, 2-seed.sql    base tables and sample data
   3-repair-proof.sql          repair files, visits, proof, slips, letters, storage, DTI offices
   4-more-repairs.sql          repair kinds beyond cars and motorcycles
+  6-top-shops.sql             search cache for /nearby, shop_place_id, my_shop_proof()
   functions/draft-complaint   AI letter body, facts from the file only
+  functions/nearby-shops      shops near a point for /nearby (sample data for now)
+  functions/_shared           cache-key rules shared by the function and the app
 ```
 
 Read `DESIGN.md` before changing the look. It holds the colours, type,

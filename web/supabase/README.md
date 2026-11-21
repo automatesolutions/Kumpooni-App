@@ -10,9 +10,15 @@ Run these as **separate queries**, in order. Do not paste them into one editor.
 4. New query → paste `4-more-repairs.sql` → **Run**. This lets repair files
    cover homes, construction, electrical, aircon, appliances, computers and
    phones, not only cars and motorcycles.
-5. Refresh the web app.
+5. `5-vehicle-log.sql` is reserved for the vehicle log. If it isn't in the
+   folder yet, skip it. Step 6 doesn't need it.
+6. New query → paste `6-top-shops.sql` → **Run**. This adds the search cache
+   for the top shops page (`/nearby`), an optional `shop_place_id` on repair
+   files, and `my_shop_proof()`, which returns only your own repair facts for
+   the Proof Score.
+7. Refresh the web app.
 
-`3-repair-proof.sql` and `4-more-repairs.sql` are safe to run again. They skip what already exists.
+`3-repair-proof.sql`, `4-more-repairs.sql`, and `6-top-shops.sql` are safe to run again. They skip what already exists.
 
 `finish-seed.sql` and a single-file `bootstrap.sql` are leftovers. Use 1, 2, 3, then 4.
 
@@ -37,6 +43,34 @@ npx supabase functions deploy ask-pooni --project-ref <your-project-ref>
 With no repairs saved, Pooni says there is no data and asks you to add a
 repair. The AI is not called. An answer that mentions a peso amount that is not
 in the files is rejected, and the app answers instead.
+
+## Top shops function
+
+`functions/nearby-shops` returns up to 12 shops for one category near a point.
+The `/nearby` page filters them to your radius and ranks the top 10.
+
+Today it returns **sample shops** with made-up names. It does not call Google
+and needs no secrets. Deploying it is free on the Supabase free plan.
+
+```bash
+npx supabase functions deploy nearby-shops --project-ref <your-project-ref>
+```
+
+How it works:
+
+1. It rounds your point to a 0.02° grid (about 2.2 km) and your radius up to
+   5, 10, 15, or 25 km. That gives a cache key like `car:730:6049:10`.
+2. If `nearby_cache` has a fresh row for that key (under 24 hours old), it
+   returns that row.
+3. If not, it makes sample shops, saves them to `nearby_cache`, and returns them.
+4. It deletes cache rows older than 30 days.
+
+The browser can't read or write `nearby_cache`. Only the function can.
+
+Live Google results come later, with a separate server-only key saved as the
+Supabase secret `GOOGLE_PLACES_KEY`. Never put that key in a `VITE_` variable.
+Google lets us keep place ids and coordinates, not names, ratings, or hours,
+so the cache keeps only ids and coordinates for live results.
 
 ## AI letter function
 

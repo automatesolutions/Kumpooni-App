@@ -20,6 +20,8 @@ export type RepairFileRow = {
   vehicle_id: string | null
   shop_name: string
   shop_city: string | null
+  /** Google place id, set when the file was started from /nearby (6-top-shops.sql). */
+  shop_place_id?: string | null
   problem: string
   started_at: string
   status: FileStatus
