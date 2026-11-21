@@ -1,12 +1,16 @@
 import {Link, NavLink, Outlet, ScrollRestoration} from 'react-router-dom'
-import {Building, CircleCheck, CircleUser, Folder, Home, Info} from '@/components/icons'
+import {Building, CircleCheck, CircleUser, Folder, Home, Info, Store} from '@/components/icons'
 import {useSession} from '@/state/session'
 import {useUiStore} from '@/stores/ui'
 
-/** Same four places on phone and desktop. History is inside Repairs, and Ask lives on a file. */
+/**
+ * Four places on phones, five on desktop. History is inside Repairs, and Ask lives on a file.
+ * Top shops stays out of the phone tab bar; phones reach it from Home and Account.
+ */
 const NAV = [
   {to: '/', label: 'Home', icon: Home, end: true},
   {to: '/files', label: 'Repairs', icon: Folder},
+  {to: '/nearby', label: 'Top shops', icon: Store, headerOnly: true},
   {to: '/offices', label: 'DTI offices', icon: Building},
   {to: '/account', label: 'Account', icon: CircleUser},
 ]
@@ -82,7 +86,7 @@ function Header() {
 function TabBar() {
   return (
     <nav className="tabbar" aria-label="Main">
-      {NAV.map(({to, label, icon: Icon, end}) => (
+      {NAV.filter(item => !item.headerOnly).map(({to, label, icon: Icon, end}) => (
         <NavLink key={to} to={to} end={end}>
           <Icon size={22} aria-hidden />
           {label}
