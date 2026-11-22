@@ -86,6 +86,7 @@ npm run typecheck
 | `/nearby` | Top shops nearby for each category, ranked by distance and proof, not paid placement. It doesn't book the shop. | No |
 | `/s/:code` | The job slip the shop sees, read-only | No |
 | `/login`, `/auth/callback` | Sign in with Google, and where Google sends you back | No |
+| `/login/verify`, `/welcome` | Phone sign-in | No |
 | `/files` | Your repair files, newest first | Yes |
 | `/files/new`, `/files/:id/edit` | Start or edit a file | Yes |
 | `/files/:id` | The file: counters, hints, visits, proof, slip, and where to complain | Yes |
@@ -94,11 +95,12 @@ npm run typecheck
 | `/files/:id/pack` | Timeline of the whole file, to save as PDF | Yes |
 | `/ask` | Ask your files. Add `?file=<id>` to ask about one file. | Yes |
 | `/account`, `/account/vehicles…` | Account, and what you repair (cars, homes, gadgets…) | Yes |
-| `/login`, `/login/verify`, `/welcome` | Phone sign-in | No |
-| `/terms`, `/about` | Terms, About | No |
+| `/terms`, `/privacy`, `/about` | Terms, Privacy, About | No |
 
-The header and the phone tab bar have the same four places: Home, Repairs,
-DTI offices, and Account.
+The desktop header has five places: Home, Repairs, Top shops, DTI offices,
+and Account. The phone tab bar has four and leaves out Top shops, which phones
+reach from the Home card and the Account menu. Both come from `NAV` in
+`src/components/Layout.tsx`.
 
 Old links still go somewhere useful:
 
@@ -157,7 +159,7 @@ supabase/
   functions/_shared           cache-key rules shared by the function and the app
 ```
 
-Read `DESIGN.md` before changing the look. It holds the colours, type,
+Read `DESIGN.md` before changing the look. It holds the colors, type,
 spacing, components, and copy rules.
 
 ## Deploy
@@ -171,6 +173,21 @@ The repo also has a container setup:
 - `Dockerfile` builds the app with Node, then serves `dist/` with nginx on
   port 8080 (`nginx.conf`).
 - `cloudbuild.yaml` builds the image on Google Cloud Build.
+
+kumpooni.com runs on Cloud Run. To deploy what's in `main`, run this from `web/`
+with `web/.env.production` in place:
+
+```bash
+gcloud run deploy kumpooni-web --source . --project <gcp-project-id> --region asia-southeast1
+```
+
+Pass `--project` every time, because your gcloud default project may be a
+different one. Each deploy makes a new revision. To roll back, send traffic to
+an earlier one:
+
+```bash
+gcloud run services update-traffic kumpooni-web --to-revisions <revision>=100 --project <gcp-project-id> --region asia-southeast1
+```
 
 Vite bakes the `VITE_` values into the build. The Docker build reads them from
 `web/.env.production`, which is git-ignored, so create it before you build.
