@@ -1235,6 +1235,9 @@
   color: var(--ink);
   box-shadow: var(--shadow-lg);
 }
+.dlg--wide {
+  width: min(880px, calc(100vw - 32px));
+}
 .dlg[open] {
   animation: dlg-in var(--dur-slow) var(--ease);
 }

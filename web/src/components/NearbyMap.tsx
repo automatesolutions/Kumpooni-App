@@ -20,12 +20,15 @@ export function NearbyMap({
   shops,
   selectedId,
   onSelect,
+  note,
 }: {
   you: Coords
   radiusKm: number
   shops: ShopWithKm[]
   selectedId: string | null
   onSelect: (id: string) => void
+  /** A short line shown over the map, such as why there are no pins. */
+  note?: string
 }) {
   const el = React.useRef<HTMLDivElement>(null)
   const map = React.useRef<google.maps.Map | null>(null)
@@ -149,6 +152,7 @@ export function NearbyMap({
     <div className="nearby-map">
       <div ref={el} className="nearby-map__canvas" aria-label="Map of the shops below" role="region" />
       {!ready && <div className="skel nearby-map__loading" aria-hidden />}
+      {note && ready && <p className="nearby-map__note small">{note}</p>}
     </div>
   )
 }

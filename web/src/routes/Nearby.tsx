@@ -171,12 +171,14 @@ export function NearbyPage() {
   const podium = ranked.slice(0, 3)
   const rest = ranked.slice(3)
   const widening = query.isPlaceholderData && query.isFetching
+  // Sample shops have made-up spots, so some would land in the sea. Only real shops get pins.
+  const isSample = query.data?.source === 'sample'
 
   return (
     <div className="container page nearby">
       <PageHead
         title="Top shops nearby"
-        description="Your repairs have a memory now. See the top shops nearby, ranked by distance and proof, not paid placement."
+        description="Pick a kind of repair to see the 10 top shops near you. Compare up to three, then start a repair file with the one you choose."
       />
 
       <section className="nearby-where card card--pad" aria-label="Where to look">
@@ -260,22 +262,14 @@ export function NearbyPage() {
         <ErrorState error={query.error} onRetry={() => query.refetch()} />
       ) : (
         <>
-          <NearbyMap you={location} radiusKm={km} shops={ranked} selectedId={selectedId} onSelect={selectFromMap} />
-          {ranked.length > 0 && (
-            <ol className="pin-row" aria-label="Jump to a shop">
-              {ranked.map((s, i) => (
-                <li key={s.id}>
-                  <button
-                    type="button"
-                    aria-label={`Rank ${i + 1}: ${s.name}`}
-                    aria-pressed={s.id === selectedId}
-                    onClick={() => selectFromMap(s.id)}>
-                    {i + 1}
-                  </button>
-                </li>
-              ))}
-            </ol>
-          )}
+          <NearbyMap
+            you={location}
+            radiusKm={km}
+            shops={isSample ? [] : ranked}
+            selectedId={selectedId}
+            onSelect={selectFromMap}
+            note={isSample ? "Sample shops aren't on the map because their places are made up." : undefined}
+          />
 
           <div ref={board} className="nearby-board">
             {ranked.length === 0 ? (
@@ -373,11 +367,16 @@ export function NearbyPage() {
         </div>
       )}
 
-      <Dialog open={compareOpen} onClose={() => setCompareOpen(false)} title="Compare shops">
+      <Dialog open={compareOpen} onClose={() => setCompareOpen(false)} title="Compare shops" wide>
         {compare.length < 2 ? (
           <p>Pick 2 or 3 shops to compare.</p>
         ) : (
-          <CompareTable shops={compare} kind={kind} you={location} />
+          <CompareTable
+            shops={compare}
+            ranks={new Map(ranked.map((s, i) => [s.id, i + 1]))}
+            kind={kind}
+            you={location}
+          />
         )}
       </Dialog>
 
@@ -499,104 +498,127 @@ function ShopCard({
           </p>
         </div>
         <ScoreRing score={null} />
+        <label className="shop-card__compare small">
+          <input type="checkbox" checked={compared} onChange={onCompare} />
+          Compare
+          <span className="visually-hidden"> {shop.name}</span>
+        </label>
       </div>
 
       {standout && <p className="shop-card__standout small">{standout}</p>}
 
       {(podium || selected) && <ShopActions shop={shop} kind={kind} you={you} />}
-
-      <label className="shop-card__compare small">
-        <input type="checkbox" checked={compared} onChange={onCompare} />
-        Compare
-        <span className="visually-hidden"> {shop.name}</span>
-      </label>
     </li>
   )
 }
 
-function ShopActions({shop, kind, you}: {shop: ShopWithKm; kind: NearbyKind; you: Coords | null}) {
+function ShopActions({
+  shop,
+  kind,
+  you,
+  compact,
+}: {
+  shop: ShopWithKm
+  kind: NearbyKind
+  you: Coords | null
+  /** Shorter button label, for narrow columns. */
+  compact?: boolean
+}) {
   const tel = telUrl(shop.phone)
   return (
-    <div className="shop-card__actions">
-      <Link to={startFileUrl(shop, kind)} className="btn btn--primary btn--sm">
-        Start a repair file with this shop
+    <div className="shop-actions">
+      <Link to={startFileUrl(shop, kind)} className="btn btn--primary btn--sm shop-actions__main">
+        {compact ? 'Start a repair file' : 'Start a repair file with this shop'}
+        {compact && <span className="visually-hidden"> with {shop.name}</span>}
       </Link>
-      {tel && (
-        <a className="btn btn--secondary btn--sm" href={tel}>
-          <Phone size={16} aria-hidden /> Call
+      <div className="shop-actions__more">
+        {tel && (
+          <a className="btn btn--secondary btn--sm" href={tel}>
+            <Phone size={16} aria-hidden /> Call<span className="visually-hidden"> {shop.name}</span>
+          </a>
+        )}
+        <a className="btn btn--secondary btn--sm" href={shopDirectionsUrl(shop, you)} target="_blank" rel="noreferrer">
+          <Route size={16} aria-hidden /> Directions<span className="visually-hidden"> to {shop.name}</span>
         </a>
-      )}
-      <a className="btn btn--secondary btn--sm" href={shopDirectionsUrl(shop, you)} target="_blank" rel="noreferrer">
-        <Route size={16} aria-hidden /> Directions
-      </a>
+      </div>
     </div>
   )
 }
 
 /** Proof Score ring. The real score and its breakdown come with lib/proof-score.ts. */
 function ScoreRing({score}: {score: number | null}) {
+  if (score == null) return null
   const r = 18
   const c = 2 * Math.PI * r
   return (
-    <span className="score-ring" role="img" aria-label={score == null ? 'Proof Score not worked out yet' : `Proof Score ${score} out of 100`}>
+    <span className="score-ring" role="img" aria-label={`Proof Score ${score} out of 100`}>
       <svg viewBox="0 0 44 44" width="44" height="44" aria-hidden>
         <circle cx="22" cy="22" r={r} className="score-ring__track" />
-        {score != null && (
-          <circle
-            cx="22"
-            cy="22"
-            r={r}
-            className="score-ring__arc"
-            strokeDasharray={`${(score / 100) * c} ${c}`}
-            transform="rotate(-90 22 22)"
-          />
-        )}
+        <circle
+          cx="22"
+          cy="22"
+          r={r}
+          className="score-ring__arc"
+          strokeDasharray={`${(score / 100) * c} ${c}`}
+          transform="rotate(-90 22 22)"
+        />
       </svg>
-      {score != null && <span className="score-ring__value">{score}</span>}
+      <span className="score-ring__value">{score}</span>
     </span>
   )
 }
 
-function CompareTable({shops, kind, you}: {shops: ShopWithKm[]; kind: NearbyKind; you: Coords | null}) {
+/**
+ * One column per shop. Every value carries its own label, so nothing scrolls sideways
+ * and phones can stack the shops. On wide screens the rows line up across columns (subgrid).
+ */
+function CompareTable({
+  shops,
+  ranks,
+  kind,
+  you,
+}: {
+  shops: ShopWithKm[]
+  ranks: Map<string, number>
+  kind: NearbyKind
+  you: Coords | null
+}) {
+  const closest = Math.min(...shops.map(s => s.km))
   const rows: {label: string; cell: (s: ShopWithKm) => React.ReactNode}[] = [
-    {label: 'Distance', cell: s => `${formatDistance(s.km)} away`},
+    {
+      label: 'Distance',
+      cell: s => (
+        <>
+          {formatDistance(s.km)} away
+          {s.km === closest && <span className="compare__flag">Closest</span>}
+        </>
+      ),
+    },
     {
       label: 'Public rating',
-      cell: s => (s.rating != null ? <Rating value={s.rating} count={s.reviews} /> : 'No public ratings'),
+      cell: s => (s.rating != null ? <Rating value={s.rating} count={s.reviews} /> : 'No ratings yet'),
     },
-    {label: 'Proof Score', cell: () => 'Not worked out yet'},
-    {
-      label: 'Hours',
-      cell: s => [openLabel(s.openNow), todaysHours(s.hours)].filter(Boolean).join('. ') || 'Hours not listed',
-    },
-    {label: 'Badges', cell: () => 'None'},
+    {label: 'Open now', cell: s => openLabel(s.openNow) || 'Hours not listed'},
+    {label: 'Hours today', cell: s => todaysHours(s.hours)?.replace(/^\w+:\s*/, '') || 'Not listed'},
+    {label: 'Phone', cell: s => s.phone || 'Not listed'},
   ]
   return (
-    <div className="compare-table" style={{['--cols' as string]: shops.length}}>
-      <div className="compare-table__row compare-table__head">
-        <span />
-        {shops.map(s => (
-          <span key={s.id} className="strong">
+    <div className="compare" style={{['--cols' as string]: shops.length, ['--rows' as string]: rows.length + 2}}>
+      {shops.map(s => (
+        <section key={s.id} className="compare__shop" aria-label={s.name}>
+          <h3 className="compare__name">
+            {ranks.has(s.id) && <span className="compare__rank">Rank {ranks.get(s.id)}</span>}
             {s.name}
-          </span>
-        ))}
-      </div>
-      {rows.map(row => (
-        <div key={row.label} className="compare-table__row">
-          <span className="small muted">{row.label}</span>
-          {shops.map(s => (
-            <span key={s.id} className="small">
-              {row.cell(s)}
-            </span>
+          </h3>
+          {rows.map(row => (
+            <div key={row.label} className="compare__cell">
+              <span className="compare__label">{row.label}</span>
+              <span className="compare__value">{row.cell(s)}</span>
+            </div>
           ))}
-        </div>
+          <ShopActions shop={s} kind={kind} you={you} compact />
+        </section>
       ))}
-      <div className="compare-table__row">
-        <span className="small muted">Actions</span>
-        {shops.map(s => (
-          <ShopActions key={s.id} shop={s} kind={kind} you={you} />
-        ))}
-      </div>
     </div>
   )
 }

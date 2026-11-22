@@ -238,12 +238,15 @@ export function Dialog({
   title,
   children,
   labelledBy,
+  wide,
 }: {
   open: boolean
   onClose: () => void
   title: string
   children: React.ReactNode
   labelledBy?: string
+  /** Up to 880px on wide screens, for side-by-side content. */
+  wide?: boolean
 }) {
   const ref = React.useRef<HTMLDialogElement>(null)
   const titleId = React.useId()
@@ -258,7 +261,7 @@ export function Dialog({
   return (
     <dialog
       ref={ref}
-      className="dlg"
+      className={wide ? 'dlg dlg--wide' : 'dlg'}
       aria-labelledby={labelledBy ?? titleId}
       onClose={onClose}
       onClick={e => {
