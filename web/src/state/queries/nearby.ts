@@ -50,6 +50,10 @@ export function nearbyErrorMessage(code: string) {
       return "Shop search isn't set up yet. Deploy the nearby-shops function, then try again."
     case 'outside_ph':
       return 'Shop search covers the Philippines only. Choose a town in the Philippines.'
+    case 'not_ready':
+      return "Live shop search isn't ready yet. Try again later."
+    case 'places_failed':
+      return "Google didn't answer this time. Try again in a minute."
     case 'bad_kind':
     case 'bad_radius':
       return "We couldn't read that search. Pick a category and a distance, then try again."

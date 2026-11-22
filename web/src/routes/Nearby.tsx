@@ -18,6 +18,7 @@ import {
   asNearbyKind,
   clampRadius,
   formatDistance,
+  mapsSearchUrl,
   openLabel,
   rankByDistance,
   shopDirectionsUrl,
@@ -173,6 +174,8 @@ export function NearbyPage() {
   const widening = query.isPlaceholderData && query.isFetching
   // Sample shops have made-up spots, so some would land in the sea. Only real shops get pins.
   const isSample = query.data?.source === 'sample'
+  const paused = query.data?.paused
+  const attributions = query.data?.attributions ?? []
 
   return (
     <div className="container page nearby">
@@ -272,7 +275,20 @@ export function NearbyPage() {
           />
 
           <div ref={board} className="nearby-board">
-            {ranked.length === 0 ? (
+            {paused ? (
+              <EmptyState
+                icon={<MapPin size={28} />}
+                title={paused === 'month_cap' ? 'Live shop results are paused for this month' : 'Too many searches for now'}
+                action={
+                  <a className="btn btn--secondary" href={mapsSearchUrl(kind, location)} target="_blank" rel="noreferrer">
+                    <Search size={18} aria-hidden /> Search Google Maps instead
+                  </a>
+                }>
+                {paused === 'month_cap'
+                  ? "This month's free shop searches are used up. They start again on the 1st."
+                  : 'You searched a lot in the last hour. Try again in an hour.'}
+              </EmptyState>
+            ) : ranked.length === 0 ? (
               <EmptyState
                 icon={<MapPin size={28} />}
                 title={`No ${label.toLowerCase()} shops within ${km} km`}
@@ -330,6 +346,9 @@ export function NearbyPage() {
                 )}
                 {compare.length === 0 && (
                   <p className="small muted">Tick Compare on 2 or 3 shops to see them side by side.</p>
+                )}
+                {attributions.length > 0 && (
+                  <p className="small muted nearby-source">Shop details from {attributions.join(', ')}.</p>
                 )}
               </>
             )}

@@ -60,6 +60,15 @@ export const CACHE_TTL_HOURS = 24
 /** Google allows coordinates to be kept for up to 30 days. Rows older than this are deleted. */
 export const CACHE_MAX_AGE_DAYS = 30
 
+/**
+ * Live Google searches allowed per month, for the whole site. 1,000 is Google's free amount
+ * for the search SKU we use, so the cost stays at $0. Raise it only after a yes on the cost.
+ */
+export const LIVE_MONTH_CAP = 1000
+
+/** Live searches one visitor can start in an hour. Stops one person or a bot using up the month. */
+export const LIVE_HOUR_CAP_PER_VISITOR = 20
+
 /** A rough box around the Philippines. Requests outside it are refused. */
 export const PH_BOUNDS = {minLat: 4, maxLat: 22, minLng: 116, maxLng: 127.5}
 
@@ -142,4 +151,9 @@ export type NearbyResponse = {
   fetchedAt: string
   /** Attribution lines the page must show for this data. Empty for sample data. */
   attributions: string[]
+  /**
+   * Why live results aren't shown, when they aren't: this month's free searches are used up,
+   * or this visitor searched too often. Sample shops are not sent in that case.
+   */
+  paused?: 'month_cap' | 'visitor_cap'
 }

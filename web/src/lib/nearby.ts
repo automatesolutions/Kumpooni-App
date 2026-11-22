@@ -3,7 +3,7 @@
 // and the app always agree on them.
 import type {ItemKind} from './kinds'
 import {haversine, type Coords} from './geo'
-import {NEARBY_KINDS, type NearbyKind, type NearbyShop} from '../../supabase/functions/_shared/nearby-key'
+import {NEARBY_KINDS, gridCell, type NearbyKind, type NearbyShop} from '../../supabase/functions/_shared/nearby-key'
 
 export * from '../../supabase/functions/_shared/nearby-key'
 
@@ -83,6 +83,25 @@ export function startFileUrl(shop: NearbyShop, kind: NearbyKind) {
   if (city) params.set('city', city)
   if (!isSampleShop(shop)) params.set('placeId', shop.id)
   return `/files/new?${params}`
+}
+
+/** Words to search Google Maps with when live results are paused. */
+const MAPS_WORDS: Record<NearbyKind, string> = {
+  car: 'car repair shop',
+  motorcycle: 'motorcycle repair shop',
+  home: 'home repair contractor',
+  construction: 'construction contractor',
+  electrical: 'electrician',
+  aircon: 'aircon repair',
+  appliance: 'appliance repair shop',
+  computer: 'computer repair shop',
+  phone: 'cellphone repair shop',
+}
+
+/** Google Maps, searching this kind of shop around the rounded grid point (not the exact one). */
+export function mapsSearchUrl(kind: NearbyKind, from: Coords) {
+  const {center} = gridCell(from.lat, from.lng)
+  return `https://www.google.com/maps/search/${encodeURIComponent(MAPS_WORDS[kind])}/@${center.lat},${center.lng},14z`
 }
 
 /** The phone number as a tel: link, or null when the shop has none. */
