@@ -407,6 +407,35 @@
 .tabbar a[aria-current='page'] svg {
   stroke-width: 2.4;
 }
+.tabbar__icon {
+  position: relative;
+  display: inline-flex;
+}
+
+/* "New" on a place in the nav, until the person opens it once. */
+.nav-new {
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--space-2);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: var(--text-xs);
+  line-height: 18px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.tabbar .nav-new {
+  position: absolute;
+  top: -9px;
+  left: 17px;
+  margin: 0;
+  padding: 0 6px;
+  font-size: 10px;
+  line-height: 16px;
+  box-shadow: 0 0 0 2px var(--surface);
+}
 
 /* ---------- Footer ---------- */
 

@@ -97,10 +97,10 @@ npm run typecheck
 | `/account`, `/account/vehicles…` | Account, and what you repair (cars, homes, gadgets…) | Yes |
 | `/terms`, `/privacy`, `/about` | Terms, Privacy, About | No |
 
-The desktop header has five places: Home, Repairs, Top shops, DTI offices,
-and Account. The phone tab bar has four and leaves out Top shops, which phones
-reach from the Home card and the Account menu. Both come from `NAV` in
-`src/components/Layout.tsx`.
+The header and the phone tab bar have the same five places: Home, Repairs,
+Top shops, DTI offices, and Account. Both come from `NAV` in
+`src/components/Layout.tsx`. Top shops shows a "New" badge until the person
+opens it once on that device.
 
 Old links still go somewhere useful:
 

@@ -1,19 +1,48 @@
-import {Link, NavLink, Outlet, ScrollRestoration} from 'react-router-dom'
+import React from 'react'
+import {Link, NavLink, Outlet, ScrollRestoration, useLocation} from 'react-router-dom'
 import {Building, CircleCheck, CircleUser, Folder, Home, Info, Store} from '@/components/icons'
 import {useSession} from '@/state/session'
 import {useUiStore} from '@/stores/ui'
 
-/**
- * Four places on phones, five on desktop. History is inside Repairs, and Ask lives on a file.
- * Top shops stays out of the phone tab bar; phones reach it from Home and Account.
- */
+/** Same five places on phone and desktop. History is inside Repairs, and Ask lives on a file. */
 const NAV = [
   {to: '/', label: 'Home', icon: Home, end: true},
   {to: '/files', label: 'Repairs', icon: Folder},
-  {to: '/nearby', label: 'Top shops', icon: Store, headerOnly: true},
+  {to: '/nearby', label: 'Top shops', icon: Store, isNew: true},
   {to: '/offices', label: 'DTI offices', icon: Building},
   {to: '/account', label: 'Account', icon: CircleUser},
 ]
+
+const SEEN_NEARBY = 'kumpooni.seen-nearby'
+
+/**
+ * True until the person opens /nearby once on this device, so the "New" badge
+ * points people to the page and then gets out of the way.
+ */
+function useShowNewBadge() {
+  const {pathname} = useLocation()
+  const [seen, setSeen] = React.useState(() => {
+    try {
+      return localStorage.getItem(SEEN_NEARBY) === '1'
+    } catch {
+      return false
+    }
+  })
+  React.useEffect(() => {
+    if (seen || !pathname.startsWith('/nearby')) return
+    setSeen(true)
+    try {
+      localStorage.setItem(SEEN_NEARBY, '1')
+    } catch {
+      // Private mode: the badge comes back next visit. That's fine.
+    }
+  }, [pathname, seen])
+  return !seen
+}
+
+function NewBadge() {
+  return <span className="nav-new">New</span>
+}
 
 export function Layout() {
   return (
@@ -43,6 +72,7 @@ function Header() {
   const {session, isGuest} = useSession()
   const email = session?.user.email ?? ''
   const avatar: string | undefined = session?.user.user_metadata.avatar_url
+  const showNew = useShowNewBadge()
 
   return (
     <header className="header">
@@ -56,6 +86,7 @@ function Header() {
           {NAV.map(item => (
             <NavLink key={item.to} to={item.to} end={item.end}>
               {item.label}
+              {item.isNew && showNew && <NewBadge />}
             </NavLink>
           ))}
         </nav>
@@ -84,11 +115,15 @@ function Header() {
 }
 
 function TabBar() {
+  const showNew = useShowNewBadge()
   return (
     <nav className="tabbar" aria-label="Main">
-      {NAV.filter(item => !item.headerOnly).map(({to, label, icon: Icon, end}) => (
+      {NAV.map(({to, label, icon: Icon, end, isNew}) => (
         <NavLink key={to} to={to} end={end}>
-          <Icon size={22} aria-hidden />
+          <span className="tabbar__icon">
+            <Icon size={22} aria-hidden />
+            {isNew && showNew && <NewBadge />}
+          </span>
           {label}
         </NavLink>
       ))}
