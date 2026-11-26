@@ -79,8 +79,8 @@ font must include ₱ and allow open redistribution (OFL).
 
 - **Navigation is the same everywhere:** Home, Repairs, Top shops, DTI offices,
   Account. From 768px up it sits in the sticky top bar. Under 768px it is a bottom
-  tab bar. Top shops carries a "New" badge until the person opens it once on that
-  device.
+  tab bar. Top shops is always highlighted: bold red text, with a soft red pill
+  behind it in the top bar and behind its icon in the tab bar.
   History lives inside Repairs (newest trip first). Ask lives on a file and on
   Repairs, and only shows once there is something to search.
 - A guest session shows a "Trying it" pill in the top bar instead of a blank account.

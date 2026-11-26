@@ -99,8 +99,8 @@ npm run typecheck
 
 The header and the phone tab bar have the same five places: Home, Repairs,
 Top shops, DTI offices, and Account. Both come from `NAV` in
-`src/components/Layout.tsx`. Top shops shows a "New" badge until the person
-opens it once on that device.
+`src/components/Layout.tsx`. Top shops is always highlighted: bold, in red,
+on a soft red pill.
 
 Old links still go somewhere useful:
 
