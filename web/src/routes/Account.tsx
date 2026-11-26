@@ -12,6 +12,7 @@ import {errorMessage, formatDate, timeAgo} from '@/lib/format'
 import {toast} from '@/stores/ui'
 import type {AppNotification} from '@/types/app'
 import {Alert, Button, CardSkeletons, Dialog, EmptyState, ErrorState, PageHead} from '@/components/ui'
+import {InstallAppButton} from '@/components/InstallAppButton'
 
 export function AccountPage() {
   const navigate = useNavigate()
@@ -69,6 +70,8 @@ export function AccountPage() {
         />
         <MenuLink to="/nearby" icon={<Store size={20} />} title="Top shops nearby" sub="Ranked by distance and proof" />
       </ul>
+
+      <InstallAppButton variant="row" />
 
       <ForShops />
 

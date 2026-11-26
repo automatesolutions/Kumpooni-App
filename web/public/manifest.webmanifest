@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "Kumpooni",
+  "short_name": "Kumpooni",
+  "description": "Keep the history of every repair: cars, homes, aircon, appliances, and gadgets. Save the quote, photos, and visits, ask what happened, and have proof if the repair fails.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f4f0",
+  "theme_color": "#ffffff",
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

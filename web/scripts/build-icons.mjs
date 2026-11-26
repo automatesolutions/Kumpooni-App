@@ -80,6 +80,13 @@ const ICONS = {
   Wind: 'wind',
   Wrench: 'tool',
   X: 'x',
+  // Installing the app (InstallAppButton).
+  Share: 'share-2',
+  SquarePlus: 'square-plus',
+  Dots: 'dots',
+  PhoneDown: 'device-mobile-down',
+  Tablet: 'device-tablet',
+  DesktopDown: 'device-desktop-down',
 }
 
 const missing = []

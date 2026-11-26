@@ -7,6 +7,7 @@ import {gsap, MQ, SplitText, useGSAP} from '@/lib/gsap'
 import {useSmoothScroll} from '@/lib/useSmoothScroll'
 import {ParticleReveal} from '@/components/canvasui/ParticleReveal'
 import calendarIcon from '@/assets/lordicon/calendar.json'
+import {InstallAppButton} from '@/components/InstallAppButton'
 
 // lottie-web is large, so the Lordicon player loads after the page.
 const LordIcon = React.lazy(() => import('@/components/LordIcon'))
@@ -145,6 +146,10 @@ export function HomePage() {
           <img src="/images/mascot.png" alt="" width={260} height={420} />
         </div>
       </section>
+
+      <div style={{marginTop: 'var(--space-6)'}}>
+        <InstallAppButton variant="card" />
+      </div>
 
       <section className="section" aria-labelledby="why-title">
         <div className="section-head">

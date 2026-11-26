@@ -243,3 +243,21 @@ export const Wrench = icon('Wrench', '0 0 24 24', <><path d="M7 10h3V7L6.5 3.5a6
 
 /** tabler:x */
 export const X = icon('X', '0 0 24 24', <><path d="M18 6L6 18M6 6l12 12"/></>)
+
+/** tabler:share-2 */
+export const Share = icon('Share', '0 0 24 24', <><path d="M8 9H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1m-4 5V3M9 6l3-3l3 3"/></>)
+
+/** tabler:square-plus */
+export const SquarePlus = icon('SquarePlus', '0 0 24 24', <><path d="M9 12h6m-3-3v6M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></>)
+
+/** tabler:dots */
+export const Dots = icon('Dots', '0 0 24 24', <><path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0m7 0a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></>)
+
+/** tabler:device-mobile-down */
+export const PhoneDown = icon('PhoneDown', '0 0 24 24', <><path d="M12.5 21H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v7m-7-8h2m-1 13v.01M19 16v6m3-3l-3 3l-3-3"/></>)
+
+/** tabler:device-tablet */
+export const Tablet = icon('Tablet', '0 0 24 24', <><path d="M5 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M11 17a1 1 0 1 0 2 0a1 1 0 0 0-2 0"/></>)
+
+/** tabler:device-desktop-down */
+export const DesktopDown = icon('DesktopDown', '0 0 24 24', <><path d="M13.5 16H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7.5M7 20h5m-3-4v4m10-4v6m3-3l-3 3l-3-3"/></>)
