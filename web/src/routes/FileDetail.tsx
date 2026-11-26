@@ -22,6 +22,7 @@ import {
 import {Alert, Button, Dialog, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
 import {OfficeMap} from '@/components/OfficeMap'
 import {Coach} from '@/components/NextStep'
+import {ShareWithShop} from '@/components/ShareWithShop'
 import {failedVisits, nextStep, problemKnown, shopKnown} from '@/lib/next-step'
 import {VehicleIcon} from '@/routes/Vehicles'
 import {
@@ -238,6 +239,7 @@ function FileView({file}: {file: RepairFileDetail}) {
         <aside className="stack" style={{gap: 'var(--space-5)'}} aria-label="More for this file">
           {complaintTime && complain}
           {slipTime && slip}
+          <ShareWithShop file={file} />
           {canAsk && (
             <Link to={`/ask?file=${file.id}`} className="card card--pad card--link row ask-link">
               <Sparkles size={20} aria-hidden />

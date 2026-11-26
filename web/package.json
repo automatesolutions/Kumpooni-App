@@ -27,6 +27,7 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.6.0",
     "@iconify-json/tabler": "^1.2.41",
     "@iconify/utils": "^3.1.7",
     "@types/google.maps": "^3.66.5",

@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import {Bell, ChevronRight, FileText, Folder, Info, Lock, LogOut, Store, Trash2, Wrench} from '@/components/icons'
+import {Bell, Briefcase, ChevronRight, FileText, Folder, Info, Lock, LogOut, Store, Trash2, Wrench} from '@/components/icons'
 import {useSession, useUserId} from '@/state/session'
+import {useMyShopsQuery} from '@/state/queries/business'
 import {deleteAccount} from '@/state/queries/profile'
 import {deleteAllProof} from '@/state/queries/repair'
 import {useMarkAsReadMutation, useNotificationsQuery} from '@/state/queries/notifications'
@@ -69,6 +70,8 @@ export function AccountPage() {
         <MenuLink to="/nearby" icon={<Store size={20} />} title="Top shops nearby" sub="Ranked by distance and proof" />
       </ul>
 
+      <ForShops />
+
       <ul className="card menu" style={{marginTop: 'var(--space-4)'}}>
         <MenuLink to="/terms" icon={<FileText size={20} />} title="Terms and conditions" />
         <MenuLink to="/privacy" icon={<Lock size={20} />} title="Privacy policy" />
@@ -110,6 +113,28 @@ export function AccountPage() {
         </div>
       </Dialog>
     </div>
+  )
+}
+
+/** For shops: your shops, or a way to add one. */
+function ForShops() {
+  const userId = useUserId()
+  const {data: shops} = useMyShopsQuery(userId)
+  const count = shops?.length ?? 0
+  return (
+    <section aria-labelledby="for-shops" style={{marginTop: 'var(--space-4)'}}>
+      <h2 id="for-shops" className="small muted" style={{fontFamily: 'var(--font-body)', fontWeight: 600, marginBottom: 'var(--space-2)'}}>
+        For shops
+      </h2>
+      <ul className="card menu">
+        <MenuLink
+          to="/business"
+          icon={<Briefcase size={20} />}
+          title={count === 0 ? 'Add your shop' : count === 1 ? shops![0].name : `Your ${count} shops`}
+          sub={count === 0 ? 'Prove the shop is yours and invite your team' : 'Team, claims, and your shop details'}
+        />
+      </ul>
+    </section>
   )
 }
 

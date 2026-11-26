@@ -18,6 +18,7 @@ import {
   asNearbyKind,
   clampRadius,
   formatDistance,
+  isSampleShop,
   mapsSearchUrl,
   openLabel,
   rankByDistance,
@@ -560,6 +561,14 @@ function ShopActions({
           <Route size={16} aria-hidden /> Directions<span className="visually-hidden"> to {shop.name}</span>
         </a>
       </div>
+      {!isSampleShop(shop) && (
+        <Link
+          to={`/business/claim?${new URLSearchParams({placeId: shop.id, kind})}`}
+          className="link small"
+          style={{display: 'inline-flex', alignItems: 'center', minHeight: 'var(--tap)'}}>
+          Is this your shop? Add it to Kumpooni<span className="visually-hidden">: {shop.name}</span>
+        </Link>
+      )}
     </div>
   )
 }

@@ -6,6 +6,7 @@ import {z} from 'zod'
 import dayjs from 'dayjs'
 import {Camera, Check, Copy, ExternalLink, Lock, MessageCircle, Plus, Trash2, Upload, X} from '@/components/icons'
 import {Alert, Button, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
+import {ShareWithShop} from '@/components/ShareWithShop'
 import {copyText, messengerText, slipLink} from '@/routes/FileDetail'
 import {itemTitle, ownerOf} from '@/lib/repair'
 import {errorMessage, formatDate, formatPrice} from '@/lib/format'
@@ -116,6 +117,7 @@ function SlipEditor({file}: {file: RepairFileDetail}) {
       />
 
       {slip && <ShareBox file={file} slip={slip} />}
+      {slip && <ShareWithShop file={file} />}
 
       <form className="card card--pad stack" onSubmit={onSubmit} noValidate style={{gap: 'var(--space-5)'}}>
         <div className="field">

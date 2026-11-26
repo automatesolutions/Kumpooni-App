@@ -115,6 +115,9 @@ export const Eye = icon('Eye', '0 0 24 24', <><path d="M10 12a2 2 0 1 0 4 0a2 2 
 /** tabler:battery-2 */
 export const Battery = icon('Battery', '0 0 24 24', <><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5.5 0 0 0 .5.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5a.5.5 0 0 0-.5.5v.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2m1 3v4m3-4v4"/></>)
 
+/** tabler:briefcase */
+export const Briefcase = icon('Briefcase', '0 0 24 24', <><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zm5-2V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-4 5v.01"/><path d="M3 13a20 20 0 0 0 18 0"/></>)
+
 /** tabler:bell */
 export const Bell = icon('Bell', '0 0 24 24', <><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3H4a4 4 0 0 0 2-3v-3a7 7 0 0 1 4-6M9 17v1a3 3 0 0 0 6 0v-1"/></>)
 
@@ -222,6 +225,15 @@ export const Store = icon('Store', '0 0 24 24', <><path d="M3 21h18M3 7v1a3 3 0 
 
 /** tabler:trash */
 export const Trash2 = icon('Trash2', '0 0 24 24', <><path d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></>)
+
+/** tabler:shield-check */
+export const ShieldCheck = icon('ShieldCheck', '0 0 24 24', <><path d="M11.46 20.846A12 12 0 0 1 3.5 6A12 12 0 0 0 12 3a12 12 0 0 0 8.5 3a12 12 0 0 1-.09 7.06M15 19l2 2l4-4"/></>)
+
+/** tabler:user-plus */
+export const UserPlus = icon('UserPlus', '0 0 24 24', <><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"/></>)
+
+/** tabler:users */
+export const Users = icon('Users', '0 0 24 24', <><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2m1-17.87a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.85"/></>)
 
 /** tabler:wind */
 export const Wind = icon('Wind', '0 0 24 24', <><path d="M5 8h8.5a2.5 2.5 0 1 0-2.34-3.24M3 12h15.5a2.5 2.5 0 1 1-2.34 3.24M4 16h5.5a2.5 2.5 0 1 1-2.34 3.24"/></>)

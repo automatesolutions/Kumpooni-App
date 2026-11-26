@@ -16,9 +16,16 @@ Run these as **separate queries**, in order. Do not paste them into one editor.
    for the top shops page (`/nearby`), an optional `shop_place_id` on repair
    files, and `my_shop_proof()`, which returns only your own repair facts for
    the Proof Score.
-7. Refresh the web app.
+7. New query → paste `7-business.sql` → **Run**. This adds business accounts
+   for shops (`/business`): shops, team members and roles, invite links, shop
+   claims, and a private `shop-claims` storage bucket for DTI certificates.
+   It doesn't change any repair file table, and shops can't read repair files.
+8. New query → paste `8-business-crm.sql` → **Run**. This adds the shop CRM:
+   pipeline stages (seven defaults for every shop), customers, leads, the lead
+   timeline, follow-ups, and sharing a repair file with a verified shop.
+9. Refresh the web app.
 
-`3-repair-proof.sql`, `4-more-repairs.sql`, and `6-top-shops.sql` are safe to run again. They skip what already exists.
+`3-repair-proof.sql`, `4-more-repairs.sql`, `6-top-shops.sql`, `7-business.sql`, and `8-business-crm.sql` are safe to run again. They skip what already exists.
 
 `finish-seed.sql` and a single-file `bootstrap.sql` are leftovers. Use 1, 2, 3, then 4.
 
@@ -89,3 +96,58 @@ npx supabase secrets set AI_BASE_URL=https://api.openai.com/v1 AI_MODEL=gpt-4o-m
 The function runs as the signed-in person, so row level security limits it to
 their own files. It rejects a draft that mentions a peso amount or law that is
 not in the file, and the database allows two AI drafts per file per day.
+
+## Shop accounts (`7-business.sql`)
+
+A shop starts unverified. It gets the Verified badge when a claim is approved:
+
+- **Code to the shop phone or email.** Off for now: sending codes costs money,
+  so nothing is sent until the cost is approved. For a test, turn on sample
+  codes. The code then shows on screen, and anyone can verify their own shop.
+  Use this only in a test project, and turn it off after:
+
+  ```sql
+  update public.business_settings set claim_codes_sample = true;   -- test on
+  update public.business_settings set claim_codes_sample = false;  -- test off
+  -- Undo shops verified by a sample code:
+  update public.shop_orgs set verification_status = 'unverified', verified_at = null, verified_method = null
+  where verified_method = 'sample_code';
+  ```
+
+- **DTI business name number** and **Ask for a review.** A Kumpooni admin
+  checks them at `/business/admin/claims`. To make someone an admin, run this,
+  then have them sign out and back in:
+
+  ```sql
+  update auth.users set raw_app_meta_data = raw_app_meta_data || '{"role": "admin"}'
+  where email = '<their email>';
+  ```
+
+Team invites are links to copy and send. No email is sent. A link works once,
+for 7 days, and only for someone signed in with the invited email.
+
+Google Places: a shop stores only its `place_id`. The owner types the name and
+town. Nothing else from Google is saved.
+
+### Tests
+
+`npm test` checks the SQL files without a database (RLS on every table, no
+Google content columns, pinned `search_path`). The row level security tests in
+`tests/business.rls.test.ts` run `7-business.sql` in PGlite, an in-memory
+Postgres, as each test person. They skip until PGlite is installed:
+`npm install -D @electric-sql/pglite`.
+
+## Shop CRM and sharing (`8-business-crm.sql`)
+
+- **Sharing is the only door.** A shop never reads `repair_files`, `visits`,
+  `attachments`, `job_slips`, or `letters`. When a person taps "Send to this
+  shop" on a file whose shop is verified, they tick what to share and agree.
+  That makes a lead in New. The shop reads the file only through
+  `shared_file()`, which returns only the ticked parts, and nothing once the
+  person taps Stop sharing.
+- **Photo links** for a shop last 5 minutes, because a link keeps working until
+  it expires, even after sharing stops.
+- **The timeline is written by the database.** Stage, quote, assignee, and
+  follow-up changes are logged by triggers. People can add notes, and nobody can
+  edit or delete the timeline.
+- **Guests** see only leads assigned to them, read-only, and never a shared file.

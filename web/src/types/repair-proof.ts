@@ -1,5 +1,19 @@
 import type {Database, Json} from './supabase'
 import type {ItemKind} from '@/lib/kinds'
+import type {
+  CustomerRow,
+  FileShareRow,
+  FollowUpRow,
+  LeadActivityRow,
+  LeadRow,
+  MyFileShare,
+  PipelineStageRow,
+  ShopClaimRow,
+  ShopInviteRow,
+  ShopMemberListItem,
+  ShopMemberRow,
+  ShopOrgRow,
+} from './business'
 
 /** What the repair is for. See src/lib/kinds.ts. */
 export type VehicleKind = ItemKind
@@ -157,9 +171,42 @@ export type AppDatabase = {
       job_slips: Table<JsonCompatible<JobSlipRow>, 'file_id' | 'job_text'>
       offices: Table<OfficeRow, 'slug' | 'name' | 'address' | 'lat' | 'lng' | 'source_url' | 'checked_on'>
       letters: Table<LetterRow, 'file_id' | 'draft_text' | 'model'>
+      shop_orgs: Table<ShopOrgRow, 'name' | 'categories'>
+      shop_members: Table<ShopMemberRow, 'org_id' | 'user_id' | 'role'>
+      shop_invites: Table<ShopInviteRow, 'org_id' | 'email' | 'role'>
+      shop_claims: Table<ShopClaimRow, 'org_id' | 'method'>
+      pipeline_stages: Table<PipelineStageRow, 'org_id' | 'name' | 'position'>
+      customers: Table<CustomerRow, 'org_id' | 'name' | 'consent_version'>
+      file_shares: Table<FileShareRow, 'file_id' | 'org_id' | 'fields' | 'consent_version'>
+      leads: Table<LeadRow, 'org_id' | 'customer_id' | 'stage_id' | 'title'>
+      lead_activities: Table<LeadActivityRow, 'lead_id' | 'type'>
+      follow_ups: Table<FollowUpRow, 'lead_id' | 'due_on'>
     }
     Functions: Base['Functions'] & {
       get_job_slip: {Args: {code: string}; Returns: Json}
+      create_shop: {Args: {p_name: string; p_city: string | null; p_categories: string[]; p_place_id?: string | null}; Returns: string}
+      shop_member_list: {Args: {org: string}; Returns: ShopMemberListItem[]}
+      create_shop_invite: {Args: {org: string; p_email: string; p_role: string}; Returns: string}
+      shop_invite_preview: {Args: {token: string}; Returns: Json}
+      accept_shop_invite: {Args: {token: string}; Returns: string}
+      request_shop_claim: {
+        Args: {
+          org: string
+          p_method: string
+          p_bn?: string | null
+          p_document_path?: string | null
+          p_note?: string | null
+          p_disputed_place_id?: string | null
+        }
+        Returns: Json
+      }
+      verify_claim_code: {Args: {claim: string; code: string}; Returns: string}
+      review_shop_claim: {Args: {claim: string; approve: boolean; p_note?: string | null}; Returns: undefined}
+      cancel_shop_claim: {Args: {claim: string}; Returns: undefined}
+      shop_place_taken: {Args: {p_place_id: string}; Returns: boolean}
+      shared_file: {Args: {p_share: string}; Returns: Json}
+      verified_shop_for_place: {Args: {p_place_id: string}; Returns: {id: string; name: string; city: string | null}[]}
+      my_file_shares: {Args: {p_file: string}; Returns: MyFileShare[]}
     }
   }
 }

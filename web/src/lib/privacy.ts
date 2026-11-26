@@ -14,6 +14,16 @@ export const privacyMarkdown = `
   - **What you repair:** Cars, homes, aircon, appliances, and gadgets you add under Account.
   - **Location:** We use your location to find the nearest DTI office and to show repair shops near you. To look up shops, we send a rounded point about 2 km across, not your exact spot. If you are signed in, we save the last point so you do not have to share it again.
 
+**Sharing a repair with a shop**
+  - **Only when you choose:** A shop can't see your repair files. If the shop is verified on Kumpooni, you can send it one repair file. You tick what it sees, like the problem, photos, visits, or your name and mobile.
+  - **You can stop at any time:** Tap Stop sharing on the file. The shop loses access right away. Notes the shop wrote about your job stay with the shop.
+  - **What we record:** When you shared, with which shop, what you ticked, and the consent wording you agreed to.
+
+**If you run a shop**
+  - **Your team and customers:** We keep your shop's name, town, team members, and the customers and jobs your team adds. You're responsible for using customer details only for their repair, and for deleting them when the customer asks.
+  - **Proving your shop:** A DTI certificate you upload is private. Only your shop's owners and admins and our review team can open it.
+  - **Google:** We keep only the Google place id of your shop, not Google's name, photos, ratings, or reviews.
+
 **AI drafts**
   - **File facts only:** When you ask for an AI complaint draft, we send the facts in that file to an AI service to write the letter body. We do not send your Google password. You still need to read every line.
 

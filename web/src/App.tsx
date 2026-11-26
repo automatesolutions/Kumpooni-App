@@ -17,6 +17,14 @@ import {PackPage} from '@/routes/Pack'
 import {OfficesPage} from '@/routes/Offices'
 import {AskPage} from '@/routes/Ask'
 import {NearbyPage} from '@/routes/Nearby'
+import {BusinessPage} from '@/routes/business/Business'
+import {ClaimPage} from '@/routes/business/Claim'
+import {TeamPage} from '@/routes/business/Team'
+import {InvitePage} from '@/routes/business/Invite'
+import {AdminClaimsPage} from '@/routes/business/AdminClaims'
+import {LeadsPage} from '@/routes/business/Leads'
+import {LeadDetailPage} from '@/routes/business/LeadDetail'
+import {CustomersPage} from '@/routes/business/Customers'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -78,6 +86,15 @@ const router = createBrowserRouter([
           {path: '/account/vehicles', element: <VehiclesPage />},
           {path: '/account/vehicles/new', element: <VehicleFormPage />},
           {path: '/account/vehicles/:vehicleId', element: <VehicleFormPage />},
+          // For shops. Shops see only their own data. Repair files stay private unless shared.
+          {path: '/business', element: <BusinessPage />},
+          {path: '/business/claim', element: <ClaimPage />},
+          {path: '/business/team', element: <TeamPage />},
+          {path: '/business/invite/:token', element: <InvitePage />},
+          {path: '/business/admin/claims', element: <AdminClaimsPage />},
+          {path: '/business/leads', element: <LeadsPage />},
+          {path: '/business/leads/:id', element: <LeadDetailPage />},
+          {path: '/business/customers', element: <CustomersPage />},
         ],
       },
       {path: '*', element: <NotFoundPage />},
