@@ -150,7 +150,13 @@ function AddShop() {
           <label className="label" htmlFor="shop-city">
             Town or city <span className="muted">(optional)</span>
           </label>
-          <input id="shop-city" className="input" placeholder="Bacolod" aria-invalid={!!formState.errors.city} {...register('city')} />
+          <input
+            id="shop-city"
+            className="input"
+            placeholder="Bacolod"
+            aria-invalid={!!formState.errors.city}
+            {...register('city')}
+          />
           {formState.errors.city && <p className="error-text">{formState.errors.city.message}</p>}
         </div>
 
@@ -160,7 +166,12 @@ function AddShop() {
           </legend>
           <div className="chips chips--wrap">
             {SHOP_CATEGORIES.map(k => (
-              <button key={k} type="button" className="chip" aria-pressed={picked.includes(k)} onClick={() => toggle(k)}>
+              <button
+                key={k}
+                type="button"
+                className="chip"
+                aria-pressed={picked.includes(k)}
+                onClick={() => toggle(k)}>
                 {categoryLabel(k)}
               </button>
             ))}
@@ -276,10 +287,12 @@ function StartClaim({
 }) {
   const userId = useUserId()
   const request = useRequestClaimMutation(shop.id, userId)
-  const methods = (Object.keys(CLAIM_METHODS) as ClaimMethod[]).filter(m =>
-    disputedPlaceId ? !CLAIM_METHODS[m].needsPlace : true,
+  // Codes go to the phone or email on the shop's Google listing, so a shop without a map pin
+  // only sees the ways that work for it.
+  const methods = (Object.keys(CLAIM_METHODS) as ClaimMethod[]).filter(
+    m => !CLAIM_METHODS[m].needsPlace || (!disputedPlaceId && !!shop.place_id),
   )
-  const [method, setMethod] = React.useState<ClaimMethod>(methods[0])
+  const [method, setMethod] = React.useState<ClaimMethod>(shop.place_id ? methods[0] : 'manual')
   const [bn, setBn] = React.useState('')
   const [file, setFile] = React.useState<File | null>(null)
   const [note, setNote] = React.useState('')
@@ -290,9 +303,11 @@ function StartClaim({
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setProblem('')
-    if (method === 'dti_bn' && !isDtiBnNumber(bn)) return setProblem('Enter the number on your DTI certificate, digits only.')
+    if (method === 'dti_bn' && !isDtiBnNumber(bn))
+      return setProblem('Enter the number on your DTI certificate, digits only.')
     if (method === 'dti_bn' && !file) return setProblem('Add a photo or PDF of your DTI certificate.')
-    if (method === 'manual' && note.trim().length < 10) return setProblem('Tell us how we can confirm the shop is yours.')
+    if (method === 'manual' && note.trim().length < 10)
+      return setProblem('Tell us how we can confirm the shop is yours.')
     if (file && file.size > 10 * 1024 * 1024) return setProblem('The file is over 10 MB. Try a smaller photo.')
     request.mutate(
       {method, bn, document: method === 'dti_bn' ? file : null, note, disputedPlaceId},
@@ -314,7 +329,13 @@ function StartClaim({
         </legend>
         <div className="chips chips--wrap" role="radiogroup">
           {methods.map(m => (
-            <button key={m} type="button" role="radio" className="chip" aria-checked={method === m} onClick={() => setMethod(m)}>
+            <button
+              key={m}
+              type="button"
+              role="radio"
+              className="chip"
+              aria-checked={method === m}
+              onClick={() => setMethod(m)}>
               {CLAIM_METHODS[m].label}
             </button>
           ))}
@@ -322,13 +343,13 @@ function StartClaim({
         <p className="help">{info.hint}</p>
       </fieldset>
 
-      {noPlace && (
-        <p className="note small">
-          Codes need your shop's map pin. Find your shop on{' '}
+      {!shop.place_id && !disputedPlaceId && (
+        <p className="help">
+          Want a code to the shop phone or email instead? Find your shop on{' '}
           <Link to="/nearby" className="link">
             Top shops nearby
           </Link>{' '}
-          and tap "Is this your shop?", or pick another way.
+          and tap "Is this your shop?" first.
         </p>
       )}
 
