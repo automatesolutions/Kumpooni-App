@@ -261,3 +261,15 @@ export const Tablet = icon('Tablet', '0 0 24 24', <><path d="M5 4a1 1 0 0 1 1-1h
 
 /** tabler:device-desktop-down */
 export const DesktopDown = icon('DesktopDown', '0 0 24 24', <><path d="M13.5 16H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7.5M7 20h5m-3-4v4m10-4v6m3-3l-3 3l-3-3"/></>)
+
+/** tabler:send */
+export const Send = icon('Send', '0 0 24 24', <><path d="M10 14L21 3m0 0l-6.5 18a.55.55 0 0 1-1 0L10 14l-7-3.5a.55.55 0 0 1 0-1z"/></>)
+
+/** tabler:hash */
+export const Hash = icon('Hash', '0 0 24 24', <><path d="M5 9h14M5 15h14M11 4L7 20M17 4l-4 16"/></>)
+
+/** tabler:archive */
+export const Archive = icon('Archive', '0 0 24 24', <><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2m2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8m-9 4h4"/></>)
+
+/** tabler:messages */
+export const Messages = icon('Messages', '0 0 24 24', <><path d="m21 14l-3-3h-7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm-7 1v2a1 1 0 0 1-1 1H6l-3 3V11a1 1 0 0 1 1-1h2"/></>)

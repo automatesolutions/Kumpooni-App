@@ -207,7 +207,7 @@ export function useDeleteVisitMutation(fileId: string) {
 const MAX_SIDE = 2000
 
 /** Phone photos are large. Shrink big images to 2000px JPEG before upload. */
-async function shrinkImage(file: File): Promise<Blob> {
+export async function shrinkImage(file: File): Promise<Blob> {
   if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 1_500_000) return file
   try {
     const bitmap = await createImageBitmap(file)

@@ -1,6 +1,17 @@
 # Kumpooni Business Suite: plan (Checkpoint 0)
 
-Status: plan only. No code, SQL, or secrets yet. Written 2026-11-26 from main at 46bfa8a.
+Status: Checkpoints 1 and 2 are built and live. Written 2026-11-26 from main at 46bfa8a.
+
+> **Update 2026-11-27: no Cloqui.** Jonel decided to build the workspace inside Kumpooni instead of
+> handing off to Cloqui. Sections 7 and the Cloqui parts of 6 and 8 no longer apply. The new order:
+>
+> - **Checkpoint 3: team chat** (`9-business-chat.sql`, `/business/chat`): channels, private channels,
+>   direct messages, and a chat on every lead, live through Supabase Realtime.
+> - **Checkpoint 4: tasks**: a board with To do, Doing, and Done, assignees, due dates, and links to leads.
+> - **Checkpoint 5: huddles**: voice and camera calls for up to 4 people, browser to browser (WebRTC),
+>   with Supabase Realtime for setup. A relay (TURN) server only after a cost estimate.
+> - **Checkpoint 6: video recording**: clips of up to 2 minutes in a private bucket, with a storage cap per shop.
+> - **Checkpoint 7: live**: plan and cost estimate only (needs a paid media server such as LiveKit).
 
 Kumpooni today is a consumer repair-proof tool. This plan adds business accounts for repair shops and
 mechanics without weakening one rule: **a shop never sees a consumer's repair file unless that person

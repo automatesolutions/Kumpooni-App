@@ -198,3 +198,62 @@ export type MyFileShare = {
   consented_at: string
   revoked_at: string | null
 }
+
+// ---------- Team chat (supabase/9-business-chat.sql) ----------
+
+export type ChatKind = 'channel' | 'dm' | 'lead'
+
+export type ChatChannelRow = {
+  id: string
+  created_at: string
+  org_id: string
+  kind: ChatKind
+  name: string | null
+  topic: string | null
+  is_private: boolean
+  lead_id: string | null
+  dm_key: string | null
+  created_by: string | null
+  archived_at: string | null
+  last_message_at: string | null
+}
+
+export type ChatMemberRow = {
+  channel_id: string
+  user_id: string
+  org_id: string
+  added_at: string
+  added_by: string | null
+}
+
+export type ChatMessageRow = {
+  id: string
+  created_at: string
+  channel_id: string
+  org_id: string
+  author_id: string | null
+  body: string | null
+  attachment_path: string | null
+  edited_at: string | null
+  deleted_at: string | null
+}
+
+export type ChatReadRow = {channel_id: string; user_id: string; last_read_at: string}
+
+/** One row of my_chat_channels(). */
+export type MyChatChannel = {
+  id: string
+  kind: ChatKind
+  name: string | null
+  topic: string | null
+  is_private: boolean
+  lead_id: string | null
+  lead_title: string | null
+  other_user_id: string | null
+  archived_at: string | null
+  last_message_at: string | null
+  unread: number
+}
+
+/** One row of chat_people(). */
+export type ChatPerson = {user_id: string; role: ShopRole; name: string; avatar_url: string | null}

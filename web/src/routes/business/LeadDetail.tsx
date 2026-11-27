@@ -7,6 +7,8 @@ import {formatDate, formatPrice, timeAgo} from '@/lib/format'
 import {ITEM_KINDS, kindLabel, type ItemKind} from '@/lib/kinds'
 import {toast} from '@/stores/ui'
 import {useMembersQuery, type MyShop} from '@/state/queries/business'
+import {useChatPeopleQuery, useChatRealtime, useLeadChatQuery} from '@/state/queries/chat'
+import {ChatThread} from '@/components/ChatThread'
 import {
   useAddFollowUpMutation,
   useAddNoteMutation,
@@ -83,6 +85,7 @@ function Lead({shop}: {shop: MyShop}) {
       <div className="lead-layout">
         <div className="stack" style={{gap: 'var(--space-5)'}}>
           <JobCard shop={shop} detail={data} stages={ordered} canEdit={canEdit} members={members ?? []} />
+          <LeadChat shop={shop} leadId={data.lead.id} />
           {data.lead.share_id && <SharedFileCard shareId={data.lead.share_id} canRead={canEdit} />}
           <Timeline shop={shop} detail={data} canEdit={canEdit} stageName={stageName} personName={personName} />
         </div>
@@ -93,6 +96,43 @@ function Lead({shop}: {shop: MyShop}) {
         </div>
       </div>
     </div>
+  )
+}
+
+/** The team's chat about this job. Everyone who can see the lead can read and write here. */
+function LeadChat({shop, leadId}: {shop: MyShop; leadId: string}) {
+  const chat = useLeadChatQuery(leadId)
+  const {data: people = []} = useChatPeopleQuery(shop.id)
+  useChatRealtime(shop.id)
+  return (
+    <section className="card card--pad stack lead-chat" aria-labelledby="lead-chat-title" style={{gap: 'var(--space-3)'}}>
+      <div className="row row--between">
+        <h2 id="lead-chat-title" style={{fontSize: 'var(--text-lg)'}}>
+          Team chat
+        </h2>
+        {chat.data && (
+          <Link to={`${shopLink('/business/chat', shop.id)}&c=${chat.data}`} className="link small">
+            Open in Chat
+          </Link>
+        )}
+      </div>
+      {chat.isLoading ? (
+        <CardSkeletons count={2} height={56} />
+      ) : chat.error ? (
+        <ErrorState error={chat.error} onRetry={chat.refetch} />
+      ) : (
+        chat.data && (
+          <ChatThread
+            orgId={shop.id}
+            channelId={chat.data}
+            people={people}
+            canModerate={roleAtLeast(shop.role, 'admin')}
+            placeholder="Message the team about this job"
+            emptyText="No messages yet. Everyone who can see this lead can read them."
+          />
+        )
+      )}
+    </section>
   )
 }
 

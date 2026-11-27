@@ -1,8 +1,10 @@
 import {Link, useNavigate} from 'react-router-dom'
-import {CalendarDays, ChevronRight, ClipboardList, ShieldCheck, Store, Users} from '@/components/icons'
+import {CalendarDays, ChevronRight, ClipboardList, Messages, ShieldCheck, Store, Users} from '@/components/icons'
 import {canManageTeam, categoryLabel, ROLE_INFO} from '@/lib/business'
+import {totalUnread} from '@/lib/chat'
 import {dueState} from '@/lib/crm'
 import {formatDate} from '@/lib/format'
+import {useChatChannelsQuery} from '@/state/queries/chat'
 import {useDueFollowUpsQuery} from '@/state/queries/crm'
 import {CardSkeletons, EmptyState, ErrorState, PageHead} from '@/components/ui'
 import {shopLink, useCurrentShop, useIsKumpooniAdmin, VerificationBadge} from './shared'
@@ -97,6 +99,7 @@ export function BusinessPage() {
           <DueFollowUps orgId={shop.id} />
 
           <ul className="card menu">
+            <ChatLink orgId={shop.id} />
             <MenuLink
               to={shopLink('/business/leads', shop.id)}
               icon={<ClipboardList size={20} />}
@@ -178,6 +181,20 @@ function DueFollowUps({orgId}: {orgId: string}) {
         ))}
       </ul>
     </section>
+  )
+}
+
+/** Chat, with how many messages you haven't read. */
+function ChatLink({orgId}: {orgId: string}) {
+  const {data} = useChatChannelsQuery(orgId)
+  const unread = totalUnread(data)
+  return (
+    <MenuLink
+      to={shopLink('/business/chat', orgId)}
+      icon={<Messages size={20} />}
+      title="Chat"
+      sub={unread ? `${unread} unread ${unread === 1 ? 'message' : 'messages'}` : 'Channels, direct messages, and lead chats'}
+    />
   )
 }
 

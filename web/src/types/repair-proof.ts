@@ -1,11 +1,17 @@
 import type {Database, Json} from './supabase'
 import type {ItemKind} from '@/lib/kinds'
 import type {
+  ChatChannelRow,
+  ChatMemberRow,
+  ChatMessageRow,
+  ChatPerson,
+  ChatReadRow,
   CustomerRow,
   FileShareRow,
   FollowUpRow,
   LeadActivityRow,
   LeadRow,
+  MyChatChannel,
   MyFileShare,
   PipelineStageRow,
   ShopClaimRow,
@@ -181,6 +187,10 @@ export type AppDatabase = {
       leads: Table<LeadRow, 'org_id' | 'customer_id' | 'stage_id' | 'title'>
       lead_activities: Table<LeadActivityRow, 'lead_id' | 'type'>
       follow_ups: Table<FollowUpRow, 'lead_id' | 'due_on'>
+      chat_channels: Table<ChatChannelRow, 'org_id' | 'kind'>
+      chat_members: Table<ChatMemberRow, 'channel_id' | 'user_id'>
+      chat_messages: Table<ChatMessageRow, 'channel_id'>
+      chat_reads: Table<ChatReadRow, 'channel_id'>
     }
     Functions: Base['Functions'] & {
       get_job_slip: {Args: {code: string}; Returns: Json}
@@ -207,6 +217,15 @@ export type AppDatabase = {
       shared_file: {Args: {p_share: string}; Returns: Json}
       verified_shop_for_place: {Args: {p_place_id: string}; Returns: {id: string; name: string; city: string | null}[]}
       my_file_shares: {Args: {p_file: string}; Returns: MyFileShare[]}
+      my_chat_channels: {Args: {org: string}; Returns: MyChatChannel[]}
+      chat_people: {Args: {org: string}; Returns: ChatPerson[]}
+      open_dm: {Args: {org: string; p_user: string}; Returns: string}
+      lead_chat: {Args: {p_lead: string}; Returns: string}
+      create_chat_channel: {
+        Args: {org: string; p_name: string; p_topic: string | null; p_private: boolean; p_members: string[] | null}
+        Returns: string
+      }
+      mark_chat_read: {Args: {p_channel: string}; Returns: undefined}
     }
   }
 }

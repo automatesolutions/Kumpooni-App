@@ -87,6 +87,11 @@ const ICONS = {
   PhoneDown: 'device-mobile-down',
   Tablet: 'device-tablet',
   DesktopDown: 'device-desktop-down',
+  // Team chat.
+  Send: 'send',
+  Hash: 'hash',
+  Archive: 'archive',
+  Messages: 'messages',
 }
 
 const missing = []

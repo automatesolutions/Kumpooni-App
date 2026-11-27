@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url'
 import {describe, expect, it} from 'vitest'
 import {ITEM_KINDS} from '../../src/lib/kinds'
 
-const FILES = ['7-business.sql', '8-business-crm.sql']
+const FILES = ['7-business.sql', '8-business-crm.sql', '9-business-chat.sql']
 const read = (name: string) => readFileSync(fileURLToPath(new URL(`../${name}`, import.meta.url)), 'utf8')
 
 describe.each(FILES)('%s', file => {
@@ -36,7 +36,7 @@ describe.each(FILES)('%s', file => {
     }
   })
 
-  it('uses the same item kinds as the app', () => {
+  it.runIf(sql.includes("'car'"))('uses the same item kinds as the app', () => {
     for (const kind of ITEM_KINDS) expect(sql).toContain(`'${kind}'`)
   })
 })

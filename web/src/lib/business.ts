@@ -127,6 +127,15 @@ const ERRORS: Record<string, string> = {
   dispute_needs_review: 'A shop someone else added is checked by a person. Use your DTI number or ask for a review.',
   not_a_code_claim: 'This claim doesn’t use a code.',
   claim_not_open: 'This claim is already closed.',
+  not_in_shop: 'That person isn’t on your team. Invite them to the shop first.',
+  dm_self: 'Pick someone else to message.',
+  bad_name: 'Use 1 to 40 letters, numbers, or dashes for the channel name.',
+  name_taken: 'Your shop already has a channel with that name.',
+  general_locked: 'Everyone uses #general, so it can’t be renamed or archived.',
+  channel_archived: 'This channel is archived, so you can’t send messages here.',
+  not_yours: 'You can only edit your own messages.',
+  message_deleted: 'This message was deleted.',
+  bad_attachment: 'Add the photo again.',
 }
 
 export function businessError(error: unknown, fallback = 'Something went wrong. Try again.') {

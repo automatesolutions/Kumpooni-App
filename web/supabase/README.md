@@ -23,9 +23,13 @@ Run these as **separate queries**, in order. Do not paste them into one editor.
 8. New query → paste `8-business-crm.sql` → **Run**. This adds the shop CRM:
    pipeline stages (seven defaults for every shop), customers, leads, the lead
    timeline, follow-ups, and sharing a repair file with a verified shop.
-9. Refresh the web app.
+9. New query → paste `9-business-chat.sql` → **Run**. This adds team chat for
+   shops (`/business/chat`): #general for every shop, more channels, private
+   channels, direct messages, a chat on every lead, and a private `shop-chat`
+   storage bucket for photos. It turns on Realtime for `chat_messages`.
+10. Refresh the web app.
 
-`3-repair-proof.sql`, `4-more-repairs.sql`, `6-top-shops.sql`, `7-business.sql`, and `8-business-crm.sql` are safe to run again. They skip what already exists.
+`3-repair-proof.sql`, `4-more-repairs.sql`, `6-top-shops.sql`, `7-business.sql`, `8-business-crm.sql`, and `9-business-chat.sql` are safe to run again. They skip what already exists.
 
 `finish-seed.sql` and a single-file `bootstrap.sql` are leftovers. Use 1, 2, 3, then 4.
 
@@ -151,3 +155,21 @@ Postgres, as each test person. They skip until PGlite is installed:
   follow-up changes are logged by triggers. People can add notes, and nobody can
   edit or delete the timeline.
 - **Guests** see only leads assigned to them, read-only, and never a shared file.
+
+## Team chat (`9-business-chat.sql`)
+
+- **Who reads what.** Public channels: members, admins, and owners. Private
+  channels and direct messages: only the people in them, so an owner can't
+  read two teammates' direct messages. Lead chats: whoever can see the lead.
+  Guests see only private channels they're added to and chats on leads
+  assigned to them. Leaving the shop takes every channel away at once.
+- **Live messages** use Supabase Realtime on `chat_messages`. Realtime checks
+  the same policies for each person, so nobody gets a message they can't read.
+- **Editing.** People edit and delete their own messages. Owners and admins can
+  delete anyone's, but not edit them. A deleted message keeps its place and
+  loses its words.
+- **Photos** go to the private `shop-chat` bucket as
+  `<shop id>/<channel id>/<file>`. Links last 5 minutes.
+- **Cost.** Chat stays inside the Free plan's limits for a small team: 200
+  people connected at once and 2 million Realtime messages a month. Photos
+  count toward the 1 GB of storage.

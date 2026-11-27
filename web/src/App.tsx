@@ -25,6 +25,7 @@ import {AdminClaimsPage} from '@/routes/business/AdminClaims'
 import {LeadsPage} from '@/routes/business/Leads'
 import {LeadDetailPage} from '@/routes/business/LeadDetail'
 import {CustomersPage} from '@/routes/business/Customers'
+import {ChatPage} from '@/routes/business/Chat'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -95,6 +96,7 @@ const router = createBrowserRouter([
           {path: '/business/leads', element: <LeadsPage />},
           {path: '/business/leads/:id', element: <LeadDetailPage />},
           {path: '/business/customers', element: <CustomersPage />},
+          {path: '/business/chat', element: <ChatPage />},
         ],
       },
       {path: '*', element: <NotFoundPage />},
