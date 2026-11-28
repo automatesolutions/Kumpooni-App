@@ -27,9 +27,18 @@ Run these as **separate queries**, in order. Do not paste them into one editor.
    shops (`/business/chat`): #general for every shop, more channels, private
    channels, direct messages, a chat on every lead, and a private `shop-chat`
    storage bucket for photos. It turns on Realtime for `chat_messages`.
-10. Refresh the web app.
+10. New query → paste `10-business-tasks.sql` → **Run**. This adds the task
+    board (`/business/tasks`) with To do, Doing, and Done, and turns on
+    Realtime for `shop_tasks`.
+11. New query → paste `11-business-huddles.sql` → **Run**. This adds huddles:
+    voice and camera calls for up to 4 people in any chat channel. It turns on
+    Realtime for `huddle_signals` and `huddle_people`.
+12. New query → paste `12-business-clips.sql` → **Run**. This adds video clips
+    in chat, the private `shop-clips` bucket (25 MB per clip), and a storage
+    cap of 300 MB per shop.
+13. Refresh the web app.
 
-`3-repair-proof.sql`, `4-more-repairs.sql`, `6-top-shops.sql`, `7-business.sql`, `8-business-crm.sql`, and `9-business-chat.sql` are safe to run again. They skip what already exists.
+`3-repair-proof.sql`, `4-more-repairs.sql`, `6-top-shops.sql`, `7-business.sql`, `8-business-crm.sql`, `9-business-chat.sql`, `10-business-tasks.sql`, `11-business-huddles.sql`, and `12-business-clips.sql` are safe to run again. They skip what already exists.
 
 `finish-seed.sql` and a single-file `bootstrap.sql` are leftovers. Use 1, 2, 3, then 4.
 
@@ -173,3 +182,40 @@ Postgres, as each test person. They skip until PGlite is installed:
 - **Cost.** Chat stays inside the Free plan's limits for a small team: 200
   people connected at once and 2 million Realtime messages a month. Photos
   count toward the 1 GB of storage.
+
+## Tasks (`10-business-tasks.sql`)
+
+- **Who sees what.** Members, admins, and owners see and change every task.
+  Guests see only tasks given to them, and can only move them between columns.
+  Owners, admins, and the person who made a task can delete it.
+- A task can link to a lead in the same shop, and the lead page lists its tasks.
+- **Live board** uses Supabase Realtime on `shop_tasks`.
+
+## Huddles (`11-business-huddles.sql`)
+
+- **How a call works.** Each browser connects straight to the others (WebRTC),
+  so sound and video never pass through Supabase or Kumpooni, and nothing is
+  recorded. The database only passes short setup messages and keeps the list of
+  who is in each call. Up to 4 people per call.
+- **Who can join.** Anyone who can read the channel (`chat_can_read`).
+- **Leaving.** Each browser checks in every 15 seconds. Someone who stops for
+  45 seconds counts as gone, and the call ends when the last person leaves.
+  Old setup messages are cleared after 10 minutes.
+- **Networks.** Browsers find each other with Google's free STUN server. Some
+  strict networks (some offices and mobile carriers) block direct calls. Those
+  need a relay (TURN) server, which costs money, so it's off until you approve
+  a cost estimate.
+- **Cost.** Free. Setup messages are a few dozen Realtime messages per call.
+
+## Video clips (`12-business-clips.sql`)
+
+- **Recording** happens in the browser: camera, screen, or screen with the
+  camera in a corner. Up to 2 minutes and 25 MB per clip.
+- **Storage.** Clips go to the private `shop-clips` bucket as
+  `<shop id>/<channel id>/<clip id>.webm` (or `.mp4` from Safari). Each shop
+  gets 300 MB to start (`business_settings.clip_cap_mb`). `reserve_clip()`
+  checks the cap before the upload, and deleting the message frees the space.
+- **Who watches.** The same people who can read the channel.
+- **Cost.** Clips count toward the Free plan's 1 GB of storage and 5 GB of
+  monthly downloads. A 2-minute clip is about 15 MB, so 300 MB is about 20
+  full-length clips per shop.

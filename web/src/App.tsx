@@ -26,6 +26,7 @@ import {LeadsPage} from '@/routes/business/Leads'
 import {LeadDetailPage} from '@/routes/business/LeadDetail'
 import {CustomersPage} from '@/routes/business/Customers'
 import {ChatPage} from '@/routes/business/Chat'
+import {TasksPage} from '@/routes/business/Tasks'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -97,6 +98,7 @@ const router = createBrowserRouter([
           {path: '/business/leads/:id', element: <LeadDetailPage />},
           {path: '/business/customers', element: <CustomersPage />},
           {path: '/business/chat', element: <ChatPage />},
+          {path: '/business/tasks', element: <TasksPage />},
         ],
       },
       {path: '*', element: <NotFoundPage />},

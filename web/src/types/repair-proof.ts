@@ -2,23 +2,30 @@ import type {Database, Json} from './supabase'
 import type {ItemKind} from '@/lib/kinds'
 import type {
   ChatChannelRow,
+  ChatClipRow,
   ChatMemberRow,
   ChatMessageRow,
   ChatPerson,
   ChatReadRow,
+  ClipUsage,
   CustomerRow,
   FileShareRow,
   FollowUpRow,
+  HuddlePersonRow,
+  HuddleRow,
+  HuddleSignalRow,
   LeadActivityRow,
   LeadRow,
   MyChatChannel,
   MyFileShare,
   PipelineStageRow,
   ShopClaimRow,
+  ShopHuddle,
   ShopInviteRow,
   ShopMemberListItem,
   ShopMemberRow,
   ShopOrgRow,
+  ShopTaskRow,
 } from './business'
 
 /** What the repair is for. See src/lib/kinds.ts. */
@@ -191,6 +198,11 @@ export type AppDatabase = {
       chat_members: Table<ChatMemberRow, 'channel_id' | 'user_id'>
       chat_messages: Table<ChatMessageRow, 'channel_id'>
       chat_reads: Table<ChatReadRow, 'channel_id'>
+      shop_tasks: Table<ShopTaskRow, 'org_id' | 'title'>
+      huddles: Table<HuddleRow, 'org_id' | 'channel_id'>
+      huddle_people: Table<HuddlePersonRow, 'huddle_id' | 'user_id'>
+      huddle_signals: Table<HuddleSignalRow, 'huddle_id' | 'to_user' | 'kind' | 'payload'>
+      chat_clips: Table<ChatClipRow, 'path'>
     }
     Functions: Base['Functions'] & {
       get_job_slip: {Args: {code: string}; Returns: Json}
@@ -226,6 +238,12 @@ export type AppDatabase = {
         Returns: string
       }
       mark_chat_read: {Args: {p_channel: string}; Returns: undefined}
+      join_huddle: {Args: {p_channel: string}; Returns: {huddle_id: string; others: string[]}[]}
+      leave_huddle: {Args: {p_huddle: string}; Returns: undefined}
+      huddle_ping: {Args: {p_huddle: string}; Returns: boolean}
+      shop_huddles: {Args: {org: string}; Returns: ShopHuddle[]}
+      reserve_clip: {Args: {p_channel: string; p_bytes: number; p_seconds: number; p_ext: string}; Returns: string}
+      shop_clip_usage: {Args: {org: string}; Returns: ClipUsage[]}
     }
   }
 }

@@ -234,6 +234,8 @@ export type ChatMessageRow = {
   author_id: string | null
   body: string | null
   attachment_path: string | null
+  /** 'photo' or 'clip' (supabase/12-business-clips.sql). Null when there's no attachment. */
+  attachment_kind: 'photo' | 'clip' | null
   edited_at: string | null
   deleted_at: string | null
 }
@@ -257,3 +259,75 @@ export type MyChatChannel = {
 
 /** One row of chat_people(). */
 export type ChatPerson = {user_id: string; role: ShopRole; name: string; avatar_url: string | null}
+
+// ---------- Tasks (supabase/10-business-tasks.sql) ----------
+
+export type TaskStatus = 'todo' | 'doing' | 'done'
+
+export type ShopTaskRow = {
+  id: string
+  created_at: string
+  updated_at: string
+  org_id: string
+  title: string
+  notes: string | null
+  status: TaskStatus
+  position: number
+  assignee_id: string | null
+  due_on: string | null
+  lead_id: string | null
+  created_by: string | null
+  done_at: string | null
+}
+
+// ---------- Huddles (supabase/11-business-huddles.sql) ----------
+
+export type HuddleRow = {
+  id: string
+  org_id: string
+  channel_id: string
+  started_by: string | null
+  started_at: string
+  ended_at: string | null
+}
+
+export type HuddlePersonRow = {
+  huddle_id: string
+  user_id: string
+  org_id: string
+  joined_at: string
+  seen_at: string
+  left_at: string | null
+}
+
+export type HuddleSignalKind = 'offer' | 'answer' | 'ice' | 'state'
+
+export type HuddleSignalRow = {
+  id: number
+  created_at: string
+  huddle_id: string
+  org_id: string
+  from_user: string
+  to_user: string
+  kind: HuddleSignalKind
+  payload: Record<string, unknown>
+}
+
+/** One row of shop_huddles(). */
+export type ShopHuddle = {huddle_id: string; channel_id: string; started_at: string; people: string[]}
+
+// ---------- Clips (supabase/12-business-clips.sql) ----------
+
+export type ChatClipRow = {
+  id: string
+  created_at: string
+  org_id: string
+  channel_id: string
+  path: string
+  bytes: number
+  seconds: number
+  created_by: string | null
+}
+
+/** One row of shop_clip_usage(). */
+export type ClipUsage = {used_bytes: number; cap_bytes: number; clips: number}

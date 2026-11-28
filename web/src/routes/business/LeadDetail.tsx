@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, useNavigate, useParams} from 'react-router-dom'
-import {CalendarDays, Check, Lock, Photo, Trash2} from '@/components/icons'
+import {CalendarDays, Check, CircleCheck, ListCheck, Lock, Photo, Plus, Trash2} from '@/components/icons'
 import {businessError, roleAtLeast} from '@/lib/business'
 import {activityText, dueState, SHARE_FIELD_INFO, sortStages, todayManila, warrantyFollowUpDate} from '@/lib/crm'
 import {formatDate, formatPrice, timeAgo} from '@/lib/format'
@@ -24,6 +24,9 @@ import {
 } from '@/state/queries/crm'
 import type {PipelineStageRow, SharedFile} from '@/types/business'
 import {Alert, Button, CardSkeletons, Dialog, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
+import {taskDue} from '@/lib/tasks'
+import {useTasksQuery, useUpdateTaskMutation} from '@/state/queries/tasks'
+import {TaskForm} from './Tasks'
 import {shopLink, useCurrentShop} from './shared'
 
 export function LeadDetailPage() {
@@ -92,6 +95,7 @@ function Lead({shop}: {shop: MyShop}) {
         <div className="stack" style={{gap: 'var(--space-5)'}}>
           <CustomerCard shop={shop} detail={data} canEdit={canEdit} />
           <FollowUps shop={shop} detail={data} canEdit={canEdit} />
+          <LeadTasks shop={shop} leadId={data.lead.id} />
           {roleAtLeast(shop.role, 'admin') && <DeleteLead shop={shop} leadId={data.lead.id} />}
         </div>
       </div>
@@ -131,6 +135,77 @@ function LeadChat({shop, leadId}: {shop: MyShop; leadId: string}) {
             emptyText="No messages yet. Everyone who can see this lead can read them."
           />
         )
+      )}
+    </section>
+  )
+}
+
+/** Tasks linked to this lead, with a box to add one. */
+function LeadTasks({shop, leadId}: {shop: MyShop; leadId: string}) {
+  const {data, isLoading, error, refetch} = useTasksQuery(shop.id)
+  const {data: people = []} = useChatPeopleQuery(shop.id)
+  const update = useUpdateTaskMutation(shop.id)
+  const [adding, setAdding] = React.useState(false)
+  const canEdit = roleAtLeast(shop.role, 'member')
+  const tasks = (data ?? [])
+    .filter(t => t.lead_id === leadId)
+    .sort((a, b) => Number(a.status === 'done') - Number(b.status === 'done'))
+  return (
+    <section className="card card--pad stack" aria-labelledby="lead-tasks-title" style={{gap: 'var(--space-3)'}}>
+      <div className="row row--between">
+        <h2 id="lead-tasks-title" style={{fontSize: 'var(--text-lg)'}} className="row">
+          <ListCheck size={20} aria-hidden /> Tasks
+        </h2>
+        {canEdit && (
+          <Button size="sm" variant="ghost" onClick={() => setAdding(true)}>
+            <Plus size={16} aria-hidden /> Add
+          </Button>
+        )}
+      </div>
+      {isLoading ? (
+        <CardSkeletons count={1} height={44} />
+      ) : error ? (
+        <ErrorState error={error} onRetry={refetch} />
+      ) : !tasks.length ? (
+        <p className="small muted">No tasks for this job yet.</p>
+      ) : (
+        <ul className="lead-tasks">
+          {tasks.map(t => {
+            const done = t.status === 'done'
+            const who = people.find(p => p.user_id === t.assignee_id)
+            return (
+              <li key={t.id} className={done ? 'lead-tasks__done' : undefined}>
+                <button
+                  type="button"
+                  className="task-card__check"
+                  aria-pressed={done}
+                  aria-label={done ? `Mark ${t.title} as not done` : `Mark ${t.title} as done`}
+                  onClick={() => update.mutate({id: t.id, patch: {status: done ? 'todo' : 'done'}})}>
+                  <CircleCheck size={22} aria-hidden />
+                </button>
+                <span className="lead-tasks__text">
+                  {t.title}
+                  <span className="xsmall muted">
+                    {[
+                      who?.name,
+                      t.due_on && `${taskDue(t) === 'overdue' ? 'overdue, ' : ''}${formatDate(t.due_on, 'D MMM')}`,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </span>
+                </span>
+              </li>
+            )
+          })}
+        </ul>
+      )}
+      <Link to={shopLink('/business/tasks', shop.id)} className="link small">
+        Open the task board
+      </Link>
+      {canEdit && (
+        <Dialog open={adding} onClose={() => setAdding(false)} title="New task for this lead">
+          {adding && <TaskForm shop={shop} people={people} leadId={leadId} onDone={() => setAdding(false)} />}
+        </Dialog>
       )}
     </section>
   )

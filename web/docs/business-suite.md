@@ -12,6 +12,11 @@ Status: Checkpoints 1 and 2 are built and live. Written 2026-11-26 from main at 
 >   with Supabase Realtime for setup. A relay (TURN) server only after a cost estimate.
 > - **Checkpoint 6: video recording**: clips of up to 2 minutes in a private bucket, with a storage cap per shop.
 > - **Checkpoint 7: live**: plan and cost estimate only (needs a paid media server such as LiveKit).
+>
+> **Update 2026-11-28:** Checkpoints 4 to 6 are built: tasks (`10-business-tasks.sql`, `/business/tasks`),
+> huddles (`11-business-huddles.sql`, WebRTC mesh with STUN only, no TURN), and video clips
+> (`12-business-clips.sql`, 300 MB per shop). Every shop page now has one menu bar, and the shop home
+> shows unread messages, your tasks, follow-ups due, and live huddles.
 
 Kumpooni today is a consumer repair-proof tool. This plan adds business accounts for repair shops and
 mechanics without weakening one rule: **a shop never sees a consumer's repair file unless that person

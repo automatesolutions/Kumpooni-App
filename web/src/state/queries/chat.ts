@@ -4,7 +4,8 @@ import React from 'react'
 import {useMutation, useQuery, useQueryClient, type QueryClient} from '@tanstack/react-query'
 import {supabase} from '@/lib/supabase'
 import {CHAT_BUCKET, chatPhotoPath, upsertMessage} from '@/lib/chat'
-import type {ChatMemberRow, ChatMessageRow, MyChatChannel} from '@/types/business'
+import {CLIP_BUCKET, CLIP_MAX_BYTES, type ClipType} from '@/lib/recorder'
+import type {ChatMemberRow, ChatMessageRow, ClipUsage, MyChatChannel} from '@/types/business'
 import {shrinkImage} from './repair'
 
 const keys = {
@@ -184,7 +185,9 @@ export function useEditMessageMutation() {
 export function useDeleteMessageMutation() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: async (id: string) => {
+    mutationFn: async ({id, clipPath}: {id: string; clipPath?: string | null}) => {
+      // The file goes first. Deleting the message then frees the space in the shop's cap.
+      if (clipPath) await supabase.storage.from(CLIP_BUCKET).remove([clipPath])
       const {data, error} = await supabase
         .from('chat_messages')
         .update({deleted_at: new Date().toISOString()})
@@ -194,7 +197,10 @@ export function useDeleteMessageMutation() {
       if (error) throw error
       return data
     },
-    onSuccess: message => putMessage(qc, message),
+    onSuccess: message => {
+      putMessage(qc, message)
+      if (message.attachment_kind === 'clip') void qc.invalidateQueries({queryKey: ['clip-usage', message.org_id]})
+    },
   })
 }
 
@@ -314,19 +320,72 @@ export function useChannelMemberMutation(orgId: string, channelId: string) {
 }
 
 /** Short-lived links to chat photos. A link keeps working until it expires, so 5 minutes. */
-export function useChatPhotoUrls(paths: string[]) {
+export function useChatPhotoUrls(paths: string[], bucket: string = CHAT_BUCKET) {
   const key = [...new Set(paths)].sort()
   return useQuery({
-    queryKey: ['chat-urls', key],
+    queryKey: ['chat-urls', bucket, key],
     enabled: key.length > 0,
     staleTime: 4 * 60 * 1000,
     gcTime: 4 * 60 * 1000,
     queryFn: async () => {
-      const {data, error} = await supabase.storage.from(CHAT_BUCKET).createSignedUrls(key, 300)
+      const {data, error} = await supabase.storage.from(bucket).createSignedUrls(key, 300)
       if (error) throw error
       const map: Record<string, string> = {}
       for (const item of data ?? []) if (item.path && item.signedUrl) map[item.path] = item.signedUrl
       return map
+    },
+  })
+}
+
+/** How much of the shop's clip storage is used. */
+export function useClipUsageQuery(orgId: string) {
+  return useQuery({
+    queryKey: ['clip-usage', orgId],
+    enabled: !!orgId,
+    queryFn: async (): Promise<ClipUsage | null> => {
+      const {data, error} = await supabase.rpc('shop_clip_usage', {org: orgId})
+      if (error) throw error
+      const row = data?.[0]
+      return row ? {used_bytes: Number(row.used_bytes), cap_bytes: Number(row.cap_bytes), clips: row.clips} : null
+    },
+  })
+}
+
+type ClipInput = {blob: Blob; seconds: number; type: ClipType; body: string}
+
+/** Saves room in the shop's cap, uploads the clip, then posts the message. */
+export function useSendClipMutation(orgId: string, channelId: string) {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: async ({blob, seconds, type, body}: ClipInput) => {
+      if (blob.size > CLIP_MAX_BYTES) throw new Error('clip_too_big')
+      const {data: path, error: reserveError} = await supabase.rpc('reserve_clip', {
+        p_channel: channelId,
+        p_bytes: blob.size,
+        p_seconds: Math.min(120, Math.max(1, Math.round(seconds))),
+        p_ext: type.ext,
+      })
+      if (reserveError) throw reserveError
+      const up = await supabase.storage.from(CLIP_BUCKET).upload(path, blob, {contentType: type.base, upsert: false})
+      if (up.error)
+        throw new Error(/exceeded|too large|size/i.test(up.error.message) ? 'clip_too_big' : up.error.message)
+      const {data, error} = await supabase
+        .from('chat_messages')
+        .insert({channel_id: channelId, body: body.trim() || null, attachment_path: path, attachment_kind: 'clip'})
+        .select('*')
+        .single()
+      if (error) {
+        // Give the space back if the message didn't go out.
+        await supabase.storage.from(CLIP_BUCKET).remove([path])
+        await supabase.from('chat_clips').delete().eq('path', path)
+        throw error
+      }
+      return data
+    },
+    onSuccess: message => {
+      putMessage(qc, message)
+      void qc.invalidateQueries({queryKey: keys.channels(orgId)})
+      void qc.invalidateQueries({queryKey: ['clip-usage', orgId]})
     },
   })
 }

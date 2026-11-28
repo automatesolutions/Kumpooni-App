@@ -5,7 +5,6 @@ import {VehicleIcon} from '@/routes/Vehicles'
 import {ITEM_KINDS, kindLabel} from '@/lib/kinds'
 import {gsap, MQ, SplitText, useGSAP} from '@/lib/gsap'
 import {useSmoothScroll} from '@/lib/useSmoothScroll'
-import {ParticleReveal} from '@/components/canvasui/ParticleReveal'
 import calendarIcon from '@/assets/lordicon/calendar.json'
 import {InstallAppButton} from '@/components/InstallAppButton'
 
@@ -132,15 +131,16 @@ export function HomePage() {
         <div className="hero__copy">
           <HeroHeading>
             <h1 id="hero-title">
-              <span className="hero__line">Your repairs</span>{' '}
-              <em className="hero__line">have a memory now.</em>
+              <span className="hero__line">Your repairs</span> <em className="hero__line">have a memory now.</em>
             </h1>
           </HeroHeading>
           <p className="hero__lead">
             Save the quote, the photos, and every visit. Look back any time, ask what happened, and have proof if the
             repair fails.
           </p>
-          <p className="hero__fine">Free. For cars, motorcycles, homes, aircon, appliances, computers, and phones in the Philippines.</p>
+          <p className="hero__fine">
+            Free. For cars, motorcycles, homes, aircon, appliances, computers, and phones in the Philippines.
+          </p>
         </div>
         <div className="hero__art">
           <img src="/images/mascot.png" alt="" width={260} height={420} />
@@ -269,19 +269,11 @@ export function HomePage() {
 }
 
 /**
- * Canvas UI Particle Reveal on the hero heading, for mouse and trackpad users.
- * It needs Chrome's html-in-canvas API. Other browsers, touch screens and reduced
- * motion get the plain heading.
+ * The hero heading. The Canvas UI Particle Reveal effect used to run here, but it left the
+ * heading scrambled in Chrome, so the plain heading shows everywhere now.
  */
 function HeroHeading({children}: {children: React.ReactNode}) {
-  const [fx] = React.useState(() => matchMedia(`${MQ.fine} and ${MQ.motion}`).matches)
-  const [bg] = React.useState(() => getComputedStyle(document.documentElement).getPropertyValue('--hero').trim())
-  if (!fx) return <>{children}</>
-  return (
-    <ParticleReveal className="hero__fx" background={bg} radius={260} scatter={14} aberration={18} bend={24}>
-      {children}
-    </ParticleReveal>
-  )
+  return <>{children}</>
 }
 
 /** Hero intro and scroll reveals for headings, steps, and tools. */

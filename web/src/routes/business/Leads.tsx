@@ -20,6 +20,7 @@ import {
 } from '@/state/queries/crm'
 import type {PipelineStageRow} from '@/types/business'
 import {Alert, Button, CardSkeletons, Dialog, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
+import {BusinessNav} from './BusinessNav'
 import {shopLink, useCurrentShop} from './shared'
 
 type View = 'board' | 'list'
@@ -63,8 +64,8 @@ function Leads({shop}: {shop: MyShop}) {
 
   return (
     <div className="container page">
+      <BusinessNav shop={shop} />
       <PageHead
-        back={{to: shopLink('/business', shop.id), label: shop.name}}
         title="Leads"
         description={
           canEdit

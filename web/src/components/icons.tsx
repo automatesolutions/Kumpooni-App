@@ -273,3 +273,42 @@ export const Archive = icon('Archive', '0 0 24 24', <><path d="M3 6a2 2 0 0 1 2-
 
 /** tabler:messages */
 export const Messages = icon('Messages', '0 0 24 24', <><path d="m21 14l-3-3h-7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm-7 1v2a1 1 0 0 1-1 1H6l-3 3V11a1 1 0 0 1 1-1h2"/></>)
+
+/** tabler:list-check */
+export const ListCheck = icon('ListCheck', '0 0 24 24', <><path d="M3.5 5.5L5 7l2.5-2.5m-4 7L5 13l2.5-2.5m-4 7L5 19l2.5-2.5M11 6h9m-9 6h9m-9 6h9"/></>)
+
+/** tabler:headphones */
+export const Headphones = icon('Headphones', '0 0 24 24', <><path d="M4 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm11 0a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2z"/><path d="M4 15v-3a8 8 0 0 1 16 0v3"/></>)
+
+/** tabler:microphone */
+export const Microphone = icon('Microphone', '0 0 24 24', <><path d="M9 5a3 3 0 0 1 3-3a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3a3 3 0 0 1-3-3z"/><path d="M5 10a7 7 0 0 0 14 0M8 21h8m-4-4v4"/></>)
+
+/** tabler:microphone-off */
+export const MicrophoneOff = icon('MicrophoneOff', '0 0 24 24', <><path d="m3 3l18 18M9 5a3 3 0 0 1 6 0v5a3 3 0 0 1-.13.874m-2 2A3 3 0 0 1 9 10.002v-1"/><path d="M5 10a7 7 0 0 0 10.846 5.85m2-2A6.97 6.97 0 0 0 18.998 10M8 21h8m-4-4v4"/></>)
+
+/** tabler:video */
+export const Video = icon('Video', '0 0 24 24', <><path d="m15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14zM3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></>)
+
+/** tabler:video-off */
+export const VideoOff = icon('VideoOff', '0 0 24 24', <><path d="m3 3l18 18m-6-10v-1l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-.675.946"/><path d="M10 6h3a2 2 0 0 1 2 2v3m0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1"/></>)
+
+/** tabler:screen-share */
+export const ScreenShare = icon('ScreenShare', '0 0 24 24', <><path d="M21 12v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9M7 20h10m-8-4v4m6-4v4m2-16h4v4m-5 1l5-5"/></>)
+
+/** tabler:screen-share-off */
+export const ScreenShareOff = icon('ScreenShareOff', '0 0 24 24', <><path d="M21 12v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9M7 20h10m-8-4v4m6-4v4m2-12l4-4m-4 0l4 4"/></>)
+
+/** tabler:phone-off */
+export const PhoneOff = icon('PhoneOff', '0 0 24 24', <><path d="M3 21L21 3M5.831 14.161A15.95 15.95 0 0 1 3 6a2 2 0 0 1 2-2h4l2 5l-2.5 1.5q.162.33.345.645m1.751 2.277A11 11 0 0 0 13.5 15.5L15 13l5 2v4a2 2 0 0 1-2 2a15.96 15.96 0 0 1-10.344-4.657"/></>)
+
+/** tabler:player-record */
+export const Record = icon('Record', '0 0 24 24', <><path d="M5 12a7 7 0 1 0 14 0a7 7 0 1 0-14 0"/></>)
+
+/** tabler:player-stop */
+export const PlayerStop = icon('PlayerStop', '0 0 24 24', <><path d="M5 7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/></>)
+
+/** tabler:refresh */
+export const Refresh = icon('Refresh', '0 0 24 24', <><path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4m-4 4a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></>)
+
+/** tabler:smart-home */
+export const Home2 = icon('Home2', '0 0 24 24', <><path d="m19 8.71l-5.333-4.148a2.666 2.666 0 0 0-3.274 0L5.059 8.71a2.67 2.67 0 0 0-1.029 2.105v7.2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.2c0-.823-.38-1.6-1.03-2.105"/><path d="M16 15c-2.21 1.333-5.792 1.333-8 0"/></>)

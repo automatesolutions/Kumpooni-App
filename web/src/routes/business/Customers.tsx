@@ -6,6 +6,7 @@ import {timeAgo} from '@/lib/format'
 import type {MyShop} from '@/state/queries/business'
 import {useCustomersQuery, useStagesQuery} from '@/state/queries/crm'
 import {CardSkeletons, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
+import {BusinessNav} from './BusinessNav'
 import {shopLink, useCurrentShop} from './shared'
 
 export function CustomersPage() {
@@ -42,8 +43,8 @@ function Customers({shop}: {shop: MyShop}) {
 
   return (
     <div className="container page" style={{maxWidth: 720}}>
+      <BusinessNav shop={shop} />
       <PageHead
-        back={{to: shopLink('/business', shop.id), label: shop.name}}
         title="Customers"
         description={guest ? 'Customers on the jobs given to you.' : 'Everyone your shop has a lead for.'}
       />

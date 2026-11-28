@@ -27,7 +27,8 @@ import {
 } from '@/state/queries/business'
 import type {ShopMemberListItem} from '@/types/business'
 import {Alert, Button, CardSkeletons, Dialog, EmptyState, ErrorState, PageHead, Spinner} from '@/components/ui'
-import {shopLink, useCurrentShop} from './shared'
+import {BusinessNav} from './BusinessNav'
+import {useCurrentShop} from './shared'
 
 export function TeamPage() {
   const {shop, isLoading, error, refetch} = useCurrentShop()
@@ -74,8 +75,8 @@ function Team({shop}: {shop: MyShop}) {
 
   return (
     <div className="container page" style={{maxWidth: 720}}>
+      <BusinessNav shop={shop} />
       <PageHead
-        back={{to: shopLink('/business', shop.id), label: shop.name}}
         title="Team"
         description={manager ? 'Invite people and choose what they can do.' : 'The people who work at this shop.'}
       />

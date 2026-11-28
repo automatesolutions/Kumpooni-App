@@ -1,4 +1,5 @@
 import {Link, NavLink, Outlet, ScrollRestoration} from 'react-router-dom'
+import {HuddleDock} from './Huddle'
 import {Building, CircleCheck, CircleUser, Folder, Home, Info, Store} from '@/components/icons'
 import {useSession} from '@/state/session'
 import {useUiStore} from '@/stores/ui'
@@ -30,6 +31,7 @@ export function Layout() {
         </div>
       </div>
       <TabBar />
+      <HuddleDock />
       <Toasts />
       <ScrollRestoration />
     </div>

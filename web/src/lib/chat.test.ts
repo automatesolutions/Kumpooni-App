@@ -10,6 +10,7 @@ const msg = (id: string, author: string, at: string, extra: Partial<ChatMessageR
   author_id: author,
   body: 'Hi',
   attachment_path: null,
+  attachment_kind: null,
   edited_at: null,
   deleted_at: null,
   ...extra,

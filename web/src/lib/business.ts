@@ -135,7 +135,15 @@ const ERRORS: Record<string, string> = {
   channel_archived: 'This channel is archived, so you can’t send messages here.',
   not_yours: 'You can only edit your own messages.',
   message_deleted: 'This message was deleted.',
-  bad_attachment: 'Add the photo again.',
+  bad_attachment: 'Add the photo or clip again.',
+  task_locked: 'This part of the task can’t change.',
+  guest_status_only: 'Guests can move their tasks between columns. Ask a teammate to change anything else.',
+  bad_lead: 'Pick a lead from this shop.',
+  huddle_full: 'This huddle is full. A huddle has room for 4 people.',
+  not_in_huddle: 'You’re not in this huddle anymore. Join it again.',
+  clip_storage_full: 'Your shop’s clip storage is full. Delete old clips to make room.',
+  clip_too_big: 'This clip is larger than 25 MB. Record a shorter one.',
+  clip_too_long: 'A clip can be up to 2 minutes.',
 }
 
 export function businessError(error: unknown, fallback = 'Something went wrong. Try again.') {

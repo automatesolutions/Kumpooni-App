@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link, useNavigate, useSearchParams} from 'react-router-dom'
-import {Archive, ChevronLeft, ClipboardList, Hash, Lock, Messages, Plus, Users} from '@/components/icons'
+import {Archive, ClipboardList, ChevronLeft, Hash, Headphones, Lock, Messages, Plus, Users} from '@/components/icons'
 import {ChatThread} from '@/components/ChatThread'
+import {HuddleButton} from '@/components/Huddle'
 import {businessError, canManageTeam} from '@/lib/business'
 import {channelLabel, slugChannelName, sortChannels} from '@/lib/chat'
 import {toast} from '@/stores/ui'
@@ -16,8 +17,10 @@ import {
   useOpenDmMutation,
   useUpdateChannelMutation,
 } from '@/state/queries/chat'
+import {useShopHuddlesQuery} from '@/state/queries/huddles'
 import type {ChatPerson, MyChatChannel} from '@/types/business'
 import {Alert, Button, CardSkeletons, Checkbox, Dialog, EmptyState, ErrorState, Spinner} from '@/components/ui'
+import {BusinessNav} from './BusinessNav'
 import {shopLink, useCurrentShop} from './shared'
 
 export function ChatPage() {
@@ -44,6 +47,8 @@ export function ChatPage() {
 function Chat({shop}: {shop: MyShop}) {
   const [params, setParams] = useSearchParams()
   const channels = useChatChannelsQuery(shop.id)
+  const {data: huddles} = useShopHuddlesQuery(shop.id)
+  const liveIn = new Set(huddles?.map(h => h.channel_id))
   const {data: people = []} = useChatPeopleQuery(shop.id)
   useChatRealtime(shop.id)
   const list = sortChannels(channels.data ?? [])
@@ -65,9 +70,7 @@ function Chat({shop}: {shop: MyShop}) {
     <div className={`container page chat-page${open ? ' chat-page--open' : ''}`}>
       <aside className="chat-side" aria-label="Channels">
         <div className="chat-side__head">
-          <Link to={shopLink('/business', shop.id)} className="back-link">
-            <ChevronLeft size={18} aria-hidden /> {shop.name}
-          </Link>
+          <BusinessNav shop={shop} />
           <h1 style={{fontSize: 'var(--text-xl)'}}>Chat</h1>
         </div>
         {channels.isLoading ? (
@@ -82,6 +85,7 @@ function Chat({shop}: {shop: MyShop}) {
               people={people}
               openId={openId}
               onOpen={go}
+              liveIn={liveIn}
               action={
                 admin && (
                   <button
@@ -101,6 +105,7 @@ function Chat({shop}: {shop: MyShop}) {
               people={people}
               openId={openId}
               onOpen={go}
+              liveIn={liveIn}
               action={
                 <button
                   type="button"
@@ -118,6 +123,7 @@ function Chat({shop}: {shop: MyShop}) {
               people={people}
               openId={openId}
               onOpen={go}
+              liveIn={liveIn}
               empty="Open a lead to talk about that job."
             />
           </>
@@ -141,6 +147,12 @@ function Chat({shop}: {shop: MyShop}) {
                 </h2>
                 {open.topic && <p className="small muted">{open.topic}</p>}
               </div>
+              <HuddleButton
+                orgId={shop.id}
+                channelId={open.id}
+                label={channelLabel(open, people)}
+                archived={!!open.archived_at}
+              />
               {open.kind === 'lead' && open.lead_id && (
                 <Link to={shopLink(`/business/leads/${open.lead_id}`, shop.id)} className="btn btn--ghost btn--sm">
                   Open lead
@@ -221,12 +233,14 @@ function ChannelGroup({
   onOpen,
   action,
   empty,
+  liveIn,
 }: {
   title: string
   items: MyChatChannel[]
   people: ChatPerson[]
   openId: string | null
   onOpen: (id: string) => void
+  liveIn: Set<string>
   action?: React.ReactNode
   empty?: string
 }) {
@@ -248,6 +262,12 @@ function ChannelGroup({
                 onClick={() => onOpen(c.id)}>
                 <ChannelIcon channel={c} />
                 <span className="chat-item__name">{channelLabel(c, people)}</span>
+                {liveIn.has(c.id) && (
+                  <span className="chat-item__live">
+                    <Headphones size={14} aria-hidden />
+                    <span className="visually-hidden">Huddle going on</span>
+                  </span>
+                )}
                 {c.archived_at && <Archive size={16} aria-label="Archived" role="img" />}
                 {c.unread > 0 && (
                   <span className="chat-item__count">

@@ -4,7 +4,14 @@ import {fileURLToPath} from 'node:url'
 import {describe, expect, it} from 'vitest'
 import {ITEM_KINDS} from '../../src/lib/kinds'
 
-const FILES = ['7-business.sql', '8-business-crm.sql', '9-business-chat.sql']
+const FILES = [
+  '7-business.sql',
+  '8-business-crm.sql',
+  '9-business-chat.sql',
+  '10-business-tasks.sql',
+  '11-business-huddles.sql',
+  '12-business-clips.sql',
+]
 const read = (name: string) => readFileSync(fileURLToPath(new URL(`../${name}`, import.meta.url)), 'utf8')
 
 describe.each(FILES)('%s', file => {

@@ -92,6 +92,20 @@ const ICONS = {
   Hash: 'hash',
   Archive: 'archive',
   Messages: 'messages',
+  // Tasks, huddles, and clips.
+  ListCheck: 'list-check',
+  Headphones: 'headphones',
+  Microphone: 'microphone',
+  MicrophoneOff: 'microphone-off',
+  Video: 'video',
+  VideoOff: 'video-off',
+  ScreenShare: 'screen-share',
+  ScreenShareOff: 'screen-share-off',
+  PhoneOff: 'phone-off',
+  Record: 'player-record',
+  PlayerStop: 'player-stop',
+  Refresh: 'refresh',
+  Home2: 'smart-home',
 }
 
 const missing = []

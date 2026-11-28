@@ -1,7 +1,8 @@
 import React from 'react'
-import {Dots, Pencil, Photo, Send, Trash2, X} from '@/components/icons'
+import {Dots, Pencil, Photo, Send, Trash2, Video, X} from '@/components/icons'
 import {businessError} from '@/lib/business'
 import {groupMessages, MESSAGE_MAX} from '@/lib/chat'
+import {canRecord, CLIP_BUCKET} from '@/lib/recorder'
 import {formatDate} from '@/lib/format'
 import {useUserId} from '@/state/session'
 import {
@@ -14,6 +15,7 @@ import {
   useSendMessageMutation,
 } from '@/state/queries/chat'
 import type {ChatMessageRow, ChatPerson} from '@/types/business'
+import {ClipPlayer, RecordClipDialog} from './RecordClip'
 import {Alert, Button, CardSkeletons, ErrorState} from './ui'
 
 type Props = {
@@ -42,8 +44,15 @@ export function ChatThread({orgId, channelId, people, canModerate, archived, emp
   const atBottom = React.useRef(true)
   const messages = data?.messages ?? []
   const lastId = messages[messages.length - 1]?.id
-  const paths = messages.filter(m => m.attachment_path && !m.deleted_at).map(m => m.attachment_path!)
-  const {data: urls} = useChatPhotoUrls(paths)
+  const shown = messages.filter(m => m.attachment_path && !m.deleted_at)
+  const {data: photoUrls} = useChatPhotoUrls(
+    shown.filter(m => m.attachment_kind !== 'clip').map(m => m.attachment_path!),
+  )
+  const {data: clipUrls} = useChatPhotoUrls(
+    shown.filter(m => m.attachment_kind === 'clip').map(m => m.attachment_path!),
+    CLIP_BUCKET,
+  )
+  const urls = React.useMemo(() => ({...photoUrls, ...clipUrls}), [photoUrls, clipUrls])
 
   // Read on open, and again when a new message comes in while you're looking.
   const {mutate: markReadNow} = markRead
@@ -116,6 +125,7 @@ export function ChatThread({orgId, channelId, people, canModerate, archived, emp
           orgId={orgId}
           channelId={channelId}
           placeholder={placeholder}
+          label={placeholder.replace(/^Message /, '')}
           onSent={() => (atBottom.current = true)}
         />
       )}
@@ -212,14 +222,22 @@ function Message({
                 {message.edited_at && <span className="small muted"> (edited)</span>}
               </p>
             )}
-            {message.attachment_path &&
+            {message.attachment_path && message.attachment_kind === 'clip' ? (
+              photoUrl ? (
+                <ClipPlayer src={photoUrl} label={`Clip from ${name}`} />
+              ) : (
+                <span className="chat__clip chat__photo--loading" aria-label="Loading clip" />
+              )
+            ) : (
+              message.attachment_path &&
               (photoUrl ? (
                 <a href={photoUrl} target="_blank" rel="noreferrer" className="chat__photo">
                   <img src={photoUrl} alt={`Photo from ${name}`} loading="lazy" />
                 </a>
               ) : (
                 <span className="chat__photo chat__photo--loading" aria-label="Loading photo" />
-              ))}
+              ))
+            )}
           </>
         )}
         {remove.error && <Alert>{businessError(remove.error)}</Alert>}
@@ -253,7 +271,12 @@ function Message({
                   size="sm"
                   variant="ghost"
                   loading={remove.isPending}
-                  onClick={() => remove.mutate(message.id, {onSuccess: () => setMenu(false)})}>
+                  onClick={() =>
+                    remove.mutate(
+                      {id: message.id, clipPath: message.attachment_kind === 'clip' ? message.attachment_path : null},
+                      {onSuccess: () => setMenu(false)},
+                    )
+                  }>
                   <Trash2 size={16} aria-hidden /> Delete
                 </Button>
               )}
@@ -269,13 +292,16 @@ function Composer({
   orgId,
   channelId,
   placeholder,
+  label,
   onSent,
 }: {
   orgId: string
   channelId: string
   placeholder: string
+  label: string
   onSent: () => void
 }) {
+  const [recording, setRecording] = React.useState(false)
   const send = useSendMessageMutation(orgId, channelId)
   const [body, setBody] = React.useState('')
   const [photo, setPhoto] = React.useState<File | null>(null)
@@ -305,59 +331,81 @@ function Composer({
   }
 
   return (
-    <form
-      className="chat__composer"
-      onSubmit={e => {
-        e.preventDefault()
-        submit()
-      }}>
-      {send.error && <Alert>{businessError(send.error, "We couldn't send it. Try again.")}</Alert>}
-      {preview && (
-        <div className="chat__preview">
-          <img src={preview} alt="Photo to send" />
-          <button type="button" className="icon-btn" aria-label="Remove the photo" onClick={() => setPhoto(null)}>
-            <X size={18} />
+    <>
+      <form
+        className="chat__composer"
+        onSubmit={e => {
+          e.preventDefault()
+          submit()
+        }}>
+        {send.error && <Alert>{businessError(send.error, "We couldn't send it. Try again.")}</Alert>}
+        {preview && (
+          <div className="chat__preview">
+            <img src={preview} alt="Photo to send" />
+            <button type="button" className="icon-btn" aria-label="Remove the photo" onClick={() => setPhoto(null)}>
+              <X size={18} />
+            </button>
+          </div>
+        )}
+        <div className="chat__box">
+          <input
+            ref={fileInput}
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            className="visually-hidden"
+            tabIndex={-1}
+            onChange={e => {
+              setPhoto(e.target.files?.[0] ?? null)
+              e.target.value = ''
+            }}
+          />
+          <button
+            type="button"
+            className="icon-btn"
+            aria-label="Add a photo"
+            onClick={() => fileInput.current?.click()}>
+            <Photo size={20} />
+          </button>
+          {canRecord() && (
+            <button type="button" className="icon-btn" aria-label="Record a clip" onClick={() => setRecording(true)}>
+              <Video size={20} />
+            </button>
+          )}
+          <label htmlFor={id} className="visually-hidden">
+            {placeholder}
+          </label>
+          <textarea
+            id={id}
+            className="chat__input"
+            rows={1}
+            maxLength={MESSAGE_MAX}
+            placeholder={placeholder}
+            value={body}
+            onChange={e => setBody(e.target.value)}
+            onKeyDown={e => {
+              // Enter sends on a keyboard. Shift+Enter starts a new line.
+              if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
+                e.preventDefault()
+                submit()
+              }
+            }}
+          />
+          <button type="submit" className="icon-btn chat__send" aria-label="Send" disabled={!canSend}>
+            {send.isPending ? <span className="spinner" aria-hidden /> : <Send size={20} />}
           </button>
         </div>
-      )}
-      <div className="chat__box">
-        <input
-          ref={fileInput}
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          className="visually-hidden"
-          tabIndex={-1}
-          onChange={e => {
-            setPhoto(e.target.files?.[0] ?? null)
-            e.target.value = ''
-          }}
-        />
-        <button type="button" className="icon-btn" aria-label="Add a photo" onClick={() => fileInput.current?.click()}>
-          <Photo size={20} />
-        </button>
-        <label htmlFor={id} className="visually-hidden">
-          {placeholder}
-        </label>
-        <textarea
-          id={id}
-          className="chat__input"
-          rows={1}
-          maxLength={MESSAGE_MAX}
-          placeholder={placeholder}
-          value={body}
-          onChange={e => setBody(e.target.value)}
-          onKeyDown={e => {
-            // Enter sends on a keyboard. Shift+Enter starts a new line.
-            if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
-              e.preventDefault()
-              submit()
-            }
-          }}
-        />
-        <button type="submit" className="icon-btn chat__send" aria-label="Send" disabled={!canSend}>
-          {send.isPending ? <span className="spinner" aria-hidden /> : <Send size={20} />}
-        </button>
-      </div>
-    </form>
+      </form>
+      {/* Outside the form, because the recorder has its own form. */}
+      <RecordClipDialog
+        open={recording}
+        onClose={() => {
+          setRecording(false)
+          onSent()
+        }}
+        orgId={orgId}
+        channelId={channelId}
+        label={label}
+      />
+    </>
   )
 }

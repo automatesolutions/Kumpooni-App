@@ -22,6 +22,9 @@ export const privacyMarkdown = `
 **If you run a shop**
   - **Your team and customers:** We keep your shop's name, town, team members, and the customers and jobs your team adds. You're responsible for using customer details only for their repair, and for deleting them when the customer asks.
   - **Team chat:** Messages and photos your team sends in chat stay inside your shop. Direct messages are only for the two people in them. Someone who leaves the shop can't read the chat anymore.
+  - **Tasks:** Tasks your team adds stay inside your shop. Guests see only the tasks given to them.
+  - **Huddles:** Calls go straight between the people in them, so we never carry or record the sound or video. To connect, each browser shares its network address with the others in the call.
+  - **Video clips:** Clips you record are saved only when you send them, and only people who can read the channel can watch them. Deleting the message deletes the clip.
   - **Proving your shop:** A DTI certificate you upload is private. Only your shop's owners and admins and our review team can open it.
   - **Google:** We keep only the Google place id of your shop, not Google's name, photos, ratings, or reviews.
 

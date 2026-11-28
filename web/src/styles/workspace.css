@@ -1,0 +1,684 @@
+/* For shops: the menu bar, the shop home, tasks, huddles, and clips. Tokens only. */
+
+/* ---------- Shop menu bar (every /business page) ---------- */
+
+.biz-nav {
+  margin: 0 calc(-1 * var(--space-1)) var(--space-5);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.biz-nav::-webkit-scrollbar {
+  display: none;
+}
+.biz-nav ul {
+  list-style: none;
+  padding: 0 var(--space-1);
+  display: flex;
+  gap: var(--space-1);
+}
+.biz-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  color: var(--ink-2);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  transition:
+    background var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+.biz-nav__link:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.biz-nav__link.active {
+  background: var(--brand-soft);
+  color: var(--brand-text);
+}
+.biz-nav__count {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: var(--text-xs);
+  line-height: 20px;
+  text-align: center;
+}
+.chat-side .biz-nav {
+  margin-bottom: 0;
+}
+
+/* ---------- Shop home ---------- */
+
+.biz-section-title {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.biz-callout {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--tap);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, var(--line));
+  background: var(--brand-soft);
+  color: var(--ink);
+}
+.biz-callout > svg:first-child {
+  flex: none;
+  color: var(--brand-text);
+}
+.biz-callout > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.biz-callout small {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.biz-callout:hover {
+  border-color: var(--brand);
+}
+.biz-callout--live > svg:first-child {
+  animation: huddle-pulse 1.6s var(--ease) infinite;
+}
+
+.biz-stats {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.biz-stat {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  height: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  transition:
+    border-color var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+}
+.biz-stat:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-1px);
+}
+.biz-stat__icon {
+  color: var(--ink-3);
+}
+.biz-stat__value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.biz-stat__label {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.biz-stat--hot .biz-stat__icon,
+.biz-stat--hot .biz-stat__value {
+  color: var(--brand-text);
+}
+@media (max-width: 479px) {
+  .biz-stats {
+    gap: var(--space-2);
+  }
+  .biz-stat {
+    padding: var(--space-3);
+  }
+  .biz-stat__label {
+    font-size: var(--text-xs);
+  }
+}
+
+.biz-tools {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+@media (min-width: 600px) {
+  .biz-tools {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.biz-tool {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: 100%;
+  min-height: 72px;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.biz-tool:hover {
+  border-color: var(--line-strong);
+}
+.biz-tool__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border-radius: var(--radius-sm);
+  background: var(--brand-soft);
+  color: var(--brand-text);
+}
+.biz-tool__text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.biz-tool__text small {
+  color: var(--ink-3);
+  font-size: var(--text-sm);
+}
+.biz-tool .chev {
+  color: var(--ink-3);
+}
+
+/* ---------- Tasks ---------- */
+
+.board--tasks {
+  grid-auto-columns: minmax(260px, 1fr);
+}
+.board__empty {
+  padding: var(--space-3) var(--space-1);
+}
+.task-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-3);
+}
+.task-dot--doing {
+  background: var(--info);
+}
+.task-dot--done {
+  background: var(--ok);
+}
+.task-quick {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-3);
+}
+.task-quick:focus-within {
+  border-style: solid;
+  border-color: var(--brand);
+  box-shadow: var(--focus);
+}
+.task-quick__input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap);
+  border: 0;
+  outline: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+}
+.task-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-1);
+  padding: var(--space-1) var(--space-3) var(--space-3) var(--space-1);
+  cursor: grab;
+}
+.task-card__check {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  border-radius: 50%;
+}
+.task-card__check:hover,
+.task-card__check[aria-pressed='true'] {
+  color: var(--ok);
+}
+.task-card__main {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-1);
+  padding-top: 10px;
+}
+.task-card__title {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.task-card__title:hover {
+  color: var(--brand-text);
+}
+.task-card--done .task-card__title {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+.task-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+.task-card__move {
+  grid-column: 2;
+  justify-self: start;
+  min-height: 32px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--text-xs);
+}
+/* With a mouse you drag. On touch screens the menu below each card does the same job. */
+@media (hover: hover) and (pointer: fine) {
+  .task-card__move {
+    opacity: 0;
+  }
+  .task-card:hover .task-card__move,
+  .task-card__move:focus {
+    opacity: 1;
+  }
+}
+.task-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+.task-chip--overdue {
+  background: var(--brand-soft);
+  color: var(--brand-text);
+}
+.task-chip--today,
+.task-chip--soon {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.task-chip--link:hover {
+  color: var(--brand-text);
+}
+.task-avatar {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  color: var(--brand-text);
+  font-size: 10px;
+}
+.lead-tasks {
+  list-style: none;
+  padding: 0;
+  display: grid;
+}
+.lead-tasks li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.lead-tasks li + li {
+  border-top: 1px solid var(--line);
+}
+.lead-tasks__text {
+  display: grid;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.lead-tasks__done .lead-tasks__text {
+  color: var(--ink-3);
+  text-decoration: line-through;
+}
+
+/* ---------- Huddles ---------- */
+
+@keyframes huddle-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+.chat-item__live {
+  display: inline-grid;
+  place-items: center;
+  color: var(--ok);
+}
+.huddle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.huddle-pill--on {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.huddle-faces {
+  display: inline-flex;
+}
+.huddle-face {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--brand);
+  background: var(--on-brand);
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 700;
+}
+.huddle-face:first-child {
+  margin-left: 0;
+}
+@media (max-width: 479px) {
+  .huddle-start__text {
+    display: none;
+  }
+}
+
+/* The call panel floats above every page: above the tab bar on a phone, bottom left on a computer. */
+.huddle {
+  position: fixed;
+  z-index: 55;
+  right: var(--space-3);
+  left: var(--space-3);
+  bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + var(--space-3));
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--hero);
+  color: var(--on-hero);
+  box-shadow: var(--shadow-lg);
+}
+@media (min-width: 768px) {
+  .huddle {
+    /* Bottom left, so it never covers the message box or Send in chat. */
+    right: auto;
+    bottom: var(--space-6);
+    left: var(--space-6);
+    width: 320px;
+  }
+}
+.huddle .muted {
+  color: var(--on-hero-muted);
+}
+.huddle .icon-btn {
+  color: var(--on-hero);
+}
+.huddle__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.huddle__live {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ok);
+  animation: huddle-pulse 1.6s var(--ease) infinite;
+}
+.huddle__title {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+.huddle__title .strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.huddle__tiles {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+.huddle__tiles--2,
+.huddle__tiles--3,
+.huddle__tiles--4 {
+  grid-template-columns: 1fr 1fr;
+}
+.huddle-tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--on-hero) 10%, var(--hero));
+  outline: 2px solid transparent;
+  transition: outline-color var(--dur-fast) var(--ease);
+}
+.huddle__tiles--1 .huddle-tile {
+  aspect-ratio: 16 / 9;
+}
+.huddle-tile--speaking {
+  outline-color: var(--ok);
+}
+.huddle-tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.huddle-tile__mirror {
+  transform: scaleX(-1);
+}
+.huddle-tile__face {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+.huddle-tile__name {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: calc(100% - var(--space-4));
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: rgb(0 0 0 / 0.55);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.huddle__note {
+  margin-top: calc(-1 * var(--space-1));
+}
+.huddle__controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+}
+.huddle__ctl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: var(--tap);
+  height: var(--tap);
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--on-hero) 14%, var(--hero));
+  color: var(--on-hero);
+  font: inherit;
+  font-weight: 600;
+}
+.huddle__ctl:hover {
+  background: color-mix(in srgb, var(--on-hero) 22%, var(--hero));
+}
+.huddle__ctl--off {
+  background: var(--on-hero);
+  color: var(--hero);
+}
+.huddle__ctl--on {
+  background: var(--ok);
+  color: #fff;
+}
+.huddle__ctl--leave {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+.huddle__ctl--leave:hover {
+  background: var(--brand-strong);
+}
+.huddle--small {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+.huddle--small .huddle__controls {
+  justify-content: flex-end;
+}
+.huddle--small .huddle__ctl--leave span {
+  display: none;
+}
+
+/* ---------- Clips ---------- */
+
+.chat__clip {
+  display: block;
+  width: min(360px, 100%);
+  max-height: 360px;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-md);
+  background: #000;
+}
+span.chat__clip {
+  aspect-ratio: 16 / 9;
+  background: var(--surface-2);
+}
+.clip-stage-wrap {
+  position: relative;
+}
+.clip-stage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  background: #000;
+  object-fit: contain;
+}
+.clip-stage[hidden] {
+  display: none;
+}
+.clip-stage--mirror {
+  transform: scaleX(-1);
+}
+.clip-stage--empty {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--surface-2);
+  color: var(--ink-3);
+  text-align: center;
+}
+.clip-count {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  font-weight: 800;
+  text-shadow: 0 4px 24px rgb(0 0 0 / 0.6);
+}
+.clip-rec {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgb(0 0 0 / 0.6);
+  color: #fff;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.clip-rec__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff3b30;
+  animation: huddle-pulse 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .biz-callout--live > svg:first-child,
+  .huddle__live,
+  .clip-rec__dot {
+    animation: none;
+  }
+  .biz-stat:hover {
+    transform: none;
+  }
+}
